@@ -1,0 +1,16 @@
+.\objects\rtc_c.o: src\rtc_c.c
+.\objects\rtc_c.o: .\inc\rtc_c.h
+.\objects\rtc_c.o: D:\Keil\ARM\ARMCC\Bin\..\include\stdint.h
+.\objects\rtc_c.o: D:\Keil\ARM\ARMCC\Bin\..\include\stdbool.h
+.\objects\rtc_c.o: .\inc\msp.h
+.\objects\rtc_c.o: .\inc\msp432p401r.h
+.\objects\rtc_c.o: .\inc\msp_compatibility.h
+.\objects\rtc_c.o: .\inc\msp432p401r_classic.h
+.\objects\rtc_c.o: .\inc\core_cm4.h
+.\objects\rtc_c.o: .\inc\cmsis_version.h
+.\objects\rtc_c.o: .\inc\cmsis_compiler.h
+.\objects\rtc_c.o: .\inc\cmsis_armcc.h
+.\objects\rtc_c.o: .\inc\mpu_armv7.h
+.\objects\rtc_c.o: .\inc\system_msp432p401r.h
+.\objects\rtc_c.o: .\inc\interrupt.h
+.\objects\rtc_c.o: .\inc\debug.h

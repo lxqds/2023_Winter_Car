@@ -1,0 +1,16 @@
+.\objects\mpu.o: src\mpu.c
+.\objects\mpu.o: .\inc\debug.h
+.\objects\mpu.o: .\inc\interrupt.h
+.\objects\mpu.o: D:\Keil\ARM\ARMCC\Bin\..\include\stdint.h
+.\objects\mpu.o: D:\Keil\ARM\ARMCC\Bin\..\include\stdbool.h
+.\objects\mpu.o: .\inc\msp.h
+.\objects\mpu.o: .\inc\msp432p401r.h
+.\objects\mpu.o: .\inc\msp_compatibility.h
+.\objects\mpu.o: .\inc\msp432p401r_classic.h
+.\objects\mpu.o: .\inc\core_cm4.h
+.\objects\mpu.o: .\inc\cmsis_version.h
+.\objects\mpu.o: .\inc\cmsis_compiler.h
+.\objects\mpu.o: .\inc\cmsis_armcc.h
+.\objects\mpu.o: .\inc\mpu_armv7.h
+.\objects\mpu.o: .\inc\system_msp432p401r.h
+.\objects\mpu.o: .\inc\mpu.h

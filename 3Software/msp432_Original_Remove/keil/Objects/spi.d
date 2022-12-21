@@ -1,0 +1,17 @@
+.\objects\spi.o: ..\src\spi.c
+.\objects\spi.o: ..\inc\spi.h
+.\objects\spi.o: D:\Keil\ARM\ARMCC\Bin\..\include\stdbool.h
+.\objects\spi.o: D:\Keil\ARM\ARMCC\Bin\..\include\stdint.h
+.\objects\spi.o: ..\inc\msp.h
+.\objects\spi.o: ..\inc\msp432p401r.h
+.\objects\spi.o: ..\inc\msp_compatibility.h
+.\objects\spi.o: ..\inc\msp432p401r_classic.h
+.\objects\spi.o: ..\inc\core_cm4.h
+.\objects\spi.o: ..\inc\cmsis_version.h
+.\objects\spi.o: ..\inc\cmsis_compiler.h
+.\objects\spi.o: ..\inc\cmsis_armcc.h
+.\objects\spi.o: ..\inc\mpu_armv7.h
+.\objects\spi.o: ..\inc\system_msp432p401r.h
+.\objects\spi.o: ..\inc\eusci.h
+.\objects\spi.o: ..\inc\interrupt.h
+.\objects\spi.o: ..\inc\debug.h

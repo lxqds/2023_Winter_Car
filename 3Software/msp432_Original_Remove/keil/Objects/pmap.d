@@ -1,0 +1,14 @@
+.\objects\pmap.o: ..\src\pmap.c
+.\objects\pmap.o: ..\inc\debug.h
+.\objects\pmap.o: ..\inc\pmap.h
+.\objects\pmap.o: D:\Keil\ARM\ARMCC\Bin\..\include\stdint.h
+.\objects\pmap.o: ..\inc\msp.h
+.\objects\pmap.o: ..\inc\msp432p401r.h
+.\objects\pmap.o: ..\inc\msp_compatibility.h
+.\objects\pmap.o: ..\inc\msp432p401r_classic.h
+.\objects\pmap.o: ..\inc\core_cm4.h
+.\objects\pmap.o: ..\inc\cmsis_version.h
+.\objects\pmap.o: ..\inc\cmsis_compiler.h
+.\objects\pmap.o: ..\inc\cmsis_armcc.h
+.\objects\pmap.o: ..\inc\mpu_armv7.h
+.\objects\pmap.o: ..\inc\system_msp432p401r.h

@@ -4,9 +4,9 @@
 .\objects\system_msp432p401r.o: D:\Keil\ARM\PACK\TexasInstruments\MSP432P4xx_DFP\3.2.6\Device\Include\msp432p401r.h
 .\objects\system_msp432p401r.o: D:\Keil\ARM\PACK\TexasInstruments\MSP432P4xx_DFP\3.2.6\Device\Include\msp_compatibility.h
 .\objects\system_msp432p401r.o: D:\Keil\ARM\PACK\TexasInstruments\MSP432P4xx_DFP\3.2.6\Device\Include\msp432p401r_classic.h
-.\objects\system_msp432p401r.o: .\ti_driverlib\simplelink_msp432p4_sdk_3_40_01_02\third_party\CMSIS\Include\core_cm4.h
-.\objects\system_msp432p401r.o: .\ti_driverlib\simplelink_msp432p4_sdk_3_40_01_02\third_party\CMSIS\Include\cmsis_version.h
-.\objects\system_msp432p401r.o: .\ti_driverlib\simplelink_msp432p4_sdk_3_40_01_02\third_party\CMSIS\Include\cmsis_compiler.h
-.\objects\system_msp432p401r.o: .\ti_driverlib\simplelink_msp432p4_sdk_3_40_01_02\third_party\CMSIS\Include\cmsis_armcc.h
-.\objects\system_msp432p401r.o: .\ti_driverlib\simplelink_msp432p4_sdk_3_40_01_02\third_party\CMSIS\Include\mpu_armv7.h
+.\objects\system_msp432p401r.o: D:\Keil\ARM\PACK\ARM\CMSIS\4.5.0\CMSIS\Include\core_cm4.h
+.\objects\system_msp432p401r.o: D:\Keil\ARM\PACK\ARM\CMSIS\4.5.0\CMSIS\Include\core_cmInstr.h
+.\objects\system_msp432p401r.o: D:\Keil\ARM\PACK\ARM\CMSIS\4.5.0\CMSIS\Include\cmsis_armcc.h
+.\objects\system_msp432p401r.o: D:\Keil\ARM\PACK\ARM\CMSIS\4.5.0\CMSIS\Include\core_cmFunc.h
+.\objects\system_msp432p401r.o: D:\Keil\ARM\PACK\ARM\CMSIS\4.5.0\CMSIS\Include\core_cmSimd.h
 .\objects\system_msp432p401r.o: D:\Keil\ARM\PACK\TexasInstruments\MSP432P4xx_DFP\3.2.6\Device\Include\system_msp432p401r.h

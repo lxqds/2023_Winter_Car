@@ -206,7 +206,8 @@ void TA0_0_IRQHandler(void)
     bianmaqi[0]=0;
     MotorA_speed[3]=bianmaqi[3];
     bianmaqi[3]=0;
-
+		
+		
     MAP_GPIO_toggleOutputOnPin(GPIO_PORT_P1, GPIO_PIN0);
 
     /*结束填充用户代码*/

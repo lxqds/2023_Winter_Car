@@ -1,0 +1,17 @@
+.\objects\i2c.o: ..\src\i2c.c
+.\objects\i2c.o: ..\inc\i2c.h
+.\objects\i2c.o: D:\Keil\ARM\ARMCC\Bin\..\include\stdint.h
+.\objects\i2c.o: D:\Keil\ARM\ARMCC\Bin\..\include\stdbool.h
+.\objects\i2c.o: ..\inc\msp.h
+.\objects\i2c.o: ..\inc\msp432p401r.h
+.\objects\i2c.o: ..\inc\msp_compatibility.h
+.\objects\i2c.o: ..\inc\msp432p401r_classic.h
+.\objects\i2c.o: ..\inc\core_cm4.h
+.\objects\i2c.o: ..\inc\cmsis_version.h
+.\objects\i2c.o: ..\inc\cmsis_compiler.h
+.\objects\i2c.o: ..\inc\cmsis_armcc.h
+.\objects\i2c.o: ..\inc\mpu_armv7.h
+.\objects\i2c.o: ..\inc\system_msp432p401r.h
+.\objects\i2c.o: ..\inc\eusci.h
+.\objects\i2c.o: ..\inc\interrupt.h
+.\objects\i2c.o: ..\inc\debug.h

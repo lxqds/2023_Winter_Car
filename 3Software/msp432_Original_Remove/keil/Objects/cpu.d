@@ -1,0 +1,13 @@
+.\objects\cpu.o: ..\src\cpu.c
+.\objects\cpu.o: ..\inc\cpu.h
+.\objects\cpu.o: D:\Keil\ARM\ARMCC\Bin\..\include\stdint.h
+.\objects\cpu.o: ..\inc\msp.h
+.\objects\cpu.o: ..\inc\msp432p401r.h
+.\objects\cpu.o: ..\inc\msp_compatibility.h
+.\objects\cpu.o: ..\inc\msp432p401r_classic.h
+.\objects\cpu.o: ..\inc\core_cm4.h
+.\objects\cpu.o: ..\inc\cmsis_version.h
+.\objects\cpu.o: ..\inc\cmsis_compiler.h
+.\objects\cpu.o: ..\inc\cmsis_armcc.h
+.\objects\cpu.o: ..\inc\mpu_armv7.h
+.\objects\cpu.o: ..\inc\system_msp432p401r.h

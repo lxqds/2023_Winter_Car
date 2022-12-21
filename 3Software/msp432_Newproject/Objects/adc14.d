@@ -1,0 +1,16 @@
+.\objects\adc14.o: src\adc14.c
+.\objects\adc14.o: D:\Keil\ARM\ARMCC\Bin\..\include\stdint.h
+.\objects\adc14.o: D:\Keil\ARM\ARMCC\Bin\..\include\stdbool.h
+.\objects\adc14.o: .\inc\adc14.h
+.\objects\adc14.o: .\inc\msp.h
+.\objects\adc14.o: .\inc\msp432p401r.h
+.\objects\adc14.o: .\inc\msp_compatibility.h
+.\objects\adc14.o: .\inc\msp432p401r_classic.h
+.\objects\adc14.o: .\inc\core_cm4.h
+.\objects\adc14.o: .\inc\cmsis_version.h
+.\objects\adc14.o: .\inc\cmsis_compiler.h
+.\objects\adc14.o: .\inc\cmsis_armcc.h
+.\objects\adc14.o: .\inc\mpu_armv7.h
+.\objects\adc14.o: .\inc\system_msp432p401r.h
+.\objects\adc14.o: .\inc\debug.h
+.\objects\adc14.o: .\inc\interrupt.h

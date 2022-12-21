@@ -1,0 +1,15 @@
+.\objects\lcd_f.o: ..\src\lcd_f.c
+.\objects\lcd_f.o: D:\Keil\ARM\ARMCC\Bin\..\include\stdint.h
+.\objects\lcd_f.o: ..\inc\lcd_f.h
+.\objects\lcd_f.o: D:\Keil\ARM\ARMCC\Bin\..\include\stdbool.h
+.\objects\lcd_f.o: ..\inc\msp.h
+.\objects\lcd_f.o: ..\inc\msp432p401r.h
+.\objects\lcd_f.o: ..\inc\msp_compatibility.h
+.\objects\lcd_f.o: ..\inc\msp432p401r_classic.h
+.\objects\lcd_f.o: ..\inc\core_cm4.h
+.\objects\lcd_f.o: ..\inc\cmsis_version.h
+.\objects\lcd_f.o: ..\inc\cmsis_compiler.h
+.\objects\lcd_f.o: ..\inc\cmsis_armcc.h
+.\objects\lcd_f.o: ..\inc\mpu_armv7.h
+.\objects\lcd_f.o: ..\inc\system_msp432p401r.h
+.\objects\lcd_f.o: ..\inc\interrupt.h

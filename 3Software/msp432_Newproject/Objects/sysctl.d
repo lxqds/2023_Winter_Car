@@ -1,0 +1,15 @@
+.\objects\sysctl.o: src\sysctl.c
+.\objects\sysctl.o: D:\Keil\ARM\ARMCC\Bin\..\include\stdint.h
+.\objects\sysctl.o: D:\Keil\ARM\ARMCC\Bin\..\include\stdbool.h
+.\objects\sysctl.o: .\inc\sysctl.h
+.\objects\sysctl.o: .\inc\msp.h
+.\objects\sysctl.o: .\inc\msp432p401r.h
+.\objects\sysctl.o: .\inc\msp_compatibility.h
+.\objects\sysctl.o: .\inc\msp432p401r_classic.h
+.\objects\sysctl.o: .\inc\core_cm4.h
+.\objects\sysctl.o: .\inc\cmsis_version.h
+.\objects\sysctl.o: .\inc\cmsis_compiler.h
+.\objects\sysctl.o: .\inc\cmsis_armcc.h
+.\objects\sysctl.o: .\inc\mpu_armv7.h
+.\objects\sysctl.o: .\inc\system_msp432p401r.h
+.\objects\sysctl.o: .\inc\debug.h

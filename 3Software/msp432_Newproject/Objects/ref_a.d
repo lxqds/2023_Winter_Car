@@ -1,0 +1,15 @@
+.\objects\ref_a.o: src\ref_a.c
+.\objects\ref_a.o: .\inc\ref_a.h
+.\objects\ref_a.o: .\inc\msp.h
+.\objects\ref_a.o: .\inc\msp432p401r.h
+.\objects\ref_a.o: D:\Keil\ARM\ARMCC\Bin\..\include\stdint.h
+.\objects\ref_a.o: .\inc\msp_compatibility.h
+.\objects\ref_a.o: .\inc\msp432p401r_classic.h
+.\objects\ref_a.o: .\inc\core_cm4.h
+.\objects\ref_a.o: .\inc\cmsis_version.h
+.\objects\ref_a.o: .\inc\cmsis_compiler.h
+.\objects\ref_a.o: .\inc\cmsis_armcc.h
+.\objects\ref_a.o: .\inc\mpu_armv7.h
+.\objects\ref_a.o: .\inc\system_msp432p401r.h
+.\objects\ref_a.o: D:\Keil\ARM\ARMCC\Bin\..\include\stdbool.h
+.\objects\ref_a.o: .\inc\debug.h

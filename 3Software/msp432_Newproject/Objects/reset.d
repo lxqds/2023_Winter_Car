@@ -1,0 +1,14 @@
+.\objects\reset.o: src\reset.c
+.\objects\reset.o: .\inc\reset.h
+.\objects\reset.o: .\inc\msp.h
+.\objects\reset.o: .\inc\msp432p401r.h
+.\objects\reset.o: D:\Keil\ARM\ARMCC\Bin\..\include\stdint.h
+.\objects\reset.o: .\inc\msp_compatibility.h
+.\objects\reset.o: .\inc\msp432p401r_classic.h
+.\objects\reset.o: .\inc\core_cm4.h
+.\objects\reset.o: .\inc\cmsis_version.h
+.\objects\reset.o: .\inc\cmsis_compiler.h
+.\objects\reset.o: .\inc\cmsis_armcc.h
+.\objects\reset.o: .\inc\mpu_armv7.h
+.\objects\reset.o: .\inc\system_msp432p401r.h
+.\objects\reset.o: .\inc\debug.h

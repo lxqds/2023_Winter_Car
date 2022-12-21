@@ -1,0 +1,16 @@
+.\objects\systick.o: ..\src\systick.c
+.\objects\systick.o: ..\inc\debug.h
+.\objects\systick.o: ..\inc\interrupt.h
+.\objects\systick.o: D:\Keil\ARM\ARMCC\Bin\..\include\stdint.h
+.\objects\systick.o: D:\Keil\ARM\ARMCC\Bin\..\include\stdbool.h
+.\objects\systick.o: ..\inc\msp.h
+.\objects\systick.o: ..\inc\msp432p401r.h
+.\objects\systick.o: ..\inc\msp_compatibility.h
+.\objects\systick.o: ..\inc\msp432p401r_classic.h
+.\objects\systick.o: ..\inc\core_cm4.h
+.\objects\systick.o: ..\inc\cmsis_version.h
+.\objects\systick.o: ..\inc\cmsis_compiler.h
+.\objects\systick.o: ..\inc\cmsis_armcc.h
+.\objects\systick.o: ..\inc\mpu_armv7.h
+.\objects\systick.o: ..\inc\system_msp432p401r.h
+.\objects\systick.o: ..\inc\systick.h

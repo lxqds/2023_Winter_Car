@@ -1,0 +1,16 @@
+.\objects\timer32.o: ..\src\timer32.c
+.\objects\timer32.o: ..\inc\timer32.h
+.\objects\timer32.o: D:\Keil\ARM\ARMCC\Bin\..\include\stdint.h
+.\objects\timer32.o: D:\Keil\ARM\ARMCC\Bin\..\include\stdbool.h
+.\objects\timer32.o: ..\inc\msp.h
+.\objects\timer32.o: ..\inc\msp432p401r.h
+.\objects\timer32.o: ..\inc\msp_compatibility.h
+.\objects\timer32.o: ..\inc\msp432p401r_classic.h
+.\objects\timer32.o: ..\inc\core_cm4.h
+.\objects\timer32.o: ..\inc\cmsis_version.h
+.\objects\timer32.o: ..\inc\cmsis_compiler.h
+.\objects\timer32.o: ..\inc\cmsis_armcc.h
+.\objects\timer32.o: ..\inc\mpu_armv7.h
+.\objects\timer32.o: ..\inc\system_msp432p401r.h
+.\objects\timer32.o: ..\inc\interrupt.h
+.\objects\timer32.o: ..\inc\debug.h

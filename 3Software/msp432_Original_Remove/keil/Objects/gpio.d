@@ -1,0 +1,16 @@
+.\objects\gpio.o: ..\src\gpio.c
+.\objects\gpio.o: D:\Keil\ARM\ARMCC\Bin\..\include\stdint.h
+.\objects\gpio.o: ..\inc\gpio.h
+.\objects\gpio.o: ..\inc\msp.h
+.\objects\gpio.o: ..\inc\msp432p401r.h
+.\objects\gpio.o: ..\inc\msp_compatibility.h
+.\objects\gpio.o: ..\inc\msp432p401r_classic.h
+.\objects\gpio.o: ..\inc\core_cm4.h
+.\objects\gpio.o: ..\inc\cmsis_version.h
+.\objects\gpio.o: ..\inc\cmsis_compiler.h
+.\objects\gpio.o: ..\inc\cmsis_armcc.h
+.\objects\gpio.o: ..\inc\mpu_armv7.h
+.\objects\gpio.o: ..\inc\system_msp432p401r.h
+.\objects\gpio.o: ..\inc\debug.h
+.\objects\gpio.o: ..\inc\interrupt.h
+.\objects\gpio.o: D:\Keil\ARM\ARMCC\Bin\..\include\stdbool.h

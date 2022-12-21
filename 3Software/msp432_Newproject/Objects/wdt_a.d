@@ -1,0 +1,17 @@
+.\objects\wdt_a.o: src\wdt_a.c
+.\objects\wdt_a.o: D:\Keil\ARM\ARMCC\Bin\..\include\stdint.h
+.\objects\wdt_a.o: .\inc\wdt_a.h
+.\objects\wdt_a.o: .\inc\msp.h
+.\objects\wdt_a.o: .\inc\msp432p401r.h
+.\objects\wdt_a.o: .\inc\msp_compatibility.h
+.\objects\wdt_a.o: .\inc\msp432p401r_classic.h
+.\objects\wdt_a.o: .\inc\core_cm4.h
+.\objects\wdt_a.o: .\inc\cmsis_version.h
+.\objects\wdt_a.o: .\inc\cmsis_compiler.h
+.\objects\wdt_a.o: .\inc\cmsis_armcc.h
+.\objects\wdt_a.o: .\inc\mpu_armv7.h
+.\objects\wdt_a.o: .\inc\system_msp432p401r.h
+.\objects\wdt_a.o: .\inc\interrupt.h
+.\objects\wdt_a.o: D:\Keil\ARM\ARMCC\Bin\..\include\stdbool.h
+.\objects\wdt_a.o: .\inc\debug.h
+.\objects\wdt_a.o: .\inc\sysctl.h

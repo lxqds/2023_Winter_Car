@@ -1,0 +1,12 @@
+.\objects\system_msp432p401r_1.o: ..\src\system_msp432p401r.c
+.\objects\system_msp432p401r_1.o: D:\Keil\ARM\ARMCC\Bin\..\include\stdint.h
+.\objects\system_msp432p401r_1.o: ..\inc\msp.h
+.\objects\system_msp432p401r_1.o: ..\inc\msp432p401r.h
+.\objects\system_msp432p401r_1.o: ..\inc\msp_compatibility.h
+.\objects\system_msp432p401r_1.o: ..\inc\msp432p401r_classic.h
+.\objects\system_msp432p401r_1.o: ..\inc\core_cm4.h
+.\objects\system_msp432p401r_1.o: ..\inc\cmsis_version.h
+.\objects\system_msp432p401r_1.o: ..\inc\cmsis_compiler.h
+.\objects\system_msp432p401r_1.o: ..\inc\cmsis_armcc.h
+.\objects\system_msp432p401r_1.o: ..\inc\mpu_armv7.h
+.\objects\system_msp432p401r_1.o: ..\inc\system_msp432p401r.h

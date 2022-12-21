@@ -8,11 +8,11 @@
 .\objects\tim32.o: .\ti_driverlib\simplelink_msp432p4_sdk_3_40_01_02\ti/devices/msp432p4xx/inc/msp432p401r.h
 .\objects\tim32.o: .\ti_driverlib\simplelink_msp432p4_sdk_3_40_01_02\ti/devices/msp432p4xx/inc/msp_compatibility.h
 .\objects\tim32.o: .\ti_driverlib\simplelink_msp432p4_sdk_3_40_01_02\ti/devices/msp432p4xx/inc/msp432p401r_classic.h
-.\objects\tim32.o: .\ti_driverlib\simplelink_msp432p4_sdk_3_40_01_02\third_party\CMSIS\Include\core_cm4.h
-.\objects\tim32.o: .\ti_driverlib\simplelink_msp432p4_sdk_3_40_01_02\third_party\CMSIS\Include\cmsis_version.h
-.\objects\tim32.o: .\ti_driverlib\simplelink_msp432p4_sdk_3_40_01_02\third_party\CMSIS\Include\cmsis_compiler.h
-.\objects\tim32.o: .\ti_driverlib\simplelink_msp432p4_sdk_3_40_01_02\third_party\CMSIS\Include\cmsis_armcc.h
-.\objects\tim32.o: .\ti_driverlib\simplelink_msp432p4_sdk_3_40_01_02\third_party\CMSIS\Include\mpu_armv7.h
+.\objects\tim32.o: D:\Keil\ARM\PACK\ARM\CMSIS\4.5.0\CMSIS\Include\core_cm4.h
+.\objects\tim32.o: D:\Keil\ARM\PACK\ARM\CMSIS\4.5.0\CMSIS\Include\core_cmInstr.h
+.\objects\tim32.o: D:\Keil\ARM\PACK\ARM\CMSIS\4.5.0\CMSIS\Include\cmsis_armcc.h
+.\objects\tim32.o: D:\Keil\ARM\PACK\ARM\CMSIS\4.5.0\CMSIS\Include\core_cmFunc.h
+.\objects\tim32.o: D:\Keil\ARM\PACK\ARM\CMSIS\4.5.0\CMSIS\Include\core_cmSimd.h
 .\objects\tim32.o: .\ti_driverlib\simplelink_msp432p4_sdk_3_40_01_02\ti/devices/msp432p4xx/inc/system_msp432p401r.h
 .\objects\tim32.o: .\ti_driverlib\simplelink_msp432p4_sdk_3_40_01_02\ti/devices/msp432p4xx/driverlib/aes256.h
 .\objects\tim32.o: .\ti_driverlib\simplelink_msp432p4_sdk_3_40_01_02\ti/devices/msp432p4xx/driverlib/comp_e.h

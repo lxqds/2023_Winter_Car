@@ -16,13 +16,13 @@
 #define motor_One_B_PIN         GPIO_PIN0
 #define motor_One_B_INT         INT_PORT4
 
-#define motor_TWO_A_PORT        GPIO_PORT_P4
-#define motor_TWO_A_PIN         GPIO_PIN6
-#define motor_TWO_A_INT         INT_PORT4
+#define motor_Two_A_PORT        GPIO_PORT_P4
+#define motor_Two_A_PIN         GPIO_PIN6
+#define motor_Two_A_INT         INT_PORT4
 
-#define motor_TWO_B_PORT        GPIO_PORT_P4
-#define motor_TWO_B_PIN         GPIO_PIN7
-#define motor_TWO_B_INT         INT_PORT4
+#define motor_Two_B_PORT        GPIO_PORT_P4
+#define motor_Two_B_PIN         GPIO_PIN7
+#define motor_Two_B_INT         INT_PORT4
 
 #define motor_Three_A_PORT        GPIO_PORT_P4
 #define motor_Three_A_PIN         GPIO_PIN4
@@ -43,8 +43,8 @@
 #define motor_One_A_Value        BITBAND_PERI(P4IN, 1)
 #define motor_One_B_Value        BITBAND_PERI(P4IN, 0)
 
-#define motor_TWO_A_Value        BITBAND_PERI(P4IN, 6)
-#define motor_TWO_B_Value        BITBAND_PERI(P4IN, 7)
+#define motor_Two_A_Value        BITBAND_PERI(P4IN, 6)
+#define motor_Two_B_Value        BITBAND_PERI(P4IN, 7)
 
 #define motor_Three_A_Value        BITBAND_PERI(P4IN, 4)
 #define motor_Three_B_Value        BITBAND_PERI(P4IN, 5)

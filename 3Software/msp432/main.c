@@ -15,7 +15,7 @@
 #include "oled.h"
 #include "sysinit.h"
 #include "key.h"
-
+#include "bsp_exti.h"
 #define Key_Single_Mode 0 		//单次模式按下
 #define Key_Double_Mode 1		//连按模式
 
@@ -43,6 +43,7 @@ int main (void) {
 	SysInit();
 	OLED_Init();
 	KEY_Init();
+	Motor_Init_bianmaqi();
   // create 'thread' functions that start executing,
   // example: tid_name = osThreadCreate (osThread(name), NULL);
 	osThreadCreate(osThread(Thread_LED),NULL);
@@ -52,7 +53,7 @@ int main (void) {
 }
 
 uint8_t Key = Key_UnPress;
-
+extern int8_t bianmaqi[4];
 void Thread_LED(void const* argument)
 {
 	while (1)
@@ -63,15 +64,17 @@ void Thread_LED(void const* argument)
 		OLED_ShowString(2,4,"oledtest",16);
 		OLED_ShowString(3,6,"oledtest",16);
 		OLED_ShowString(16,0,"oledtest",16);
-		OLED_ShowNum(72,2,i,2,16);
+		OLED_ShowNum(0,0,i,2,16);
+		OLED_ShowNum(72,0,bianmaqi[0],3,16);
+		OLED_ShowNum(80,2,bianmaqi[1],3,16);
+		OLED_ShowNum(88,4,bianmaqi[2],3,16);
+		OLED_ShowNum(96,6,bianmaqi[3],3,16);
 		osDelay(1000);
 		i++;
 		if(i == 100)
 		{
 			i = 0;
 		}
-		
-		
 	}
 }
 
@@ -79,6 +82,7 @@ void Thread_Key(void const* argument)
 {
 	while (1)
 	{
+		osDelay(10);
 		LED_G_Tog();
 		Key = KEY_Scan(Key_Single_Mode);
 		if(Key)
@@ -86,5 +90,6 @@ void Thread_Key(void const* argument)
 			LED_R_Tog();
 			OLED_ShowNum(96,6,Key,2,16);
 		}
+		
 	}
 }

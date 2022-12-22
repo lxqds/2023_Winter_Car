@@ -47,3 +47,4 @@
 .\objects\main.o: .\ti_driverlib\simplelink_msp432p4_sdk_3_40_01_02\ti/devices/msp432p4xx/driverlib/flash.h
 .\objects\main.o: .\hardware\inc\oled.h
 .\objects\main.o: .\sys\inc\sysinit.h
+.\objects\main.o: .\hardware\inc\key.h

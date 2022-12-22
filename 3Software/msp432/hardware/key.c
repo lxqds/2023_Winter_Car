@@ -11,7 +11,7 @@
 //按键初始化函数
 void KEY_Init(void) //IO初始化
 {
-	GPIO_setAsInputPinWithPullUpResistor(GPIO_PORT_P1, GPIO_PIN1 | GPIO_PIN4);
+	MAP_GPIO_setAsInputPinWithPullUpResistor(GPIO_PORT_P1, GPIO_PIN1 | GPIO_PIN4);
 }
 //按键处理函数
 //返回按键值
@@ -41,14 +41,6 @@ uint8_t KEY_Scan(uint8_t mode)
 	return 0; // 无按键按下
 }
 
-void xvanxian(void) //IO初始化
-{
-	MAP_GPIO_setAsInputPinWithPullDownResistor(GPIO_PORT_P6, GPIO_PIN7);
-	MAP_GPIO_setAsInputPinWithPullDownResistor(GPIO_PORT_P5, GPIO_PIN6);
-	MAP_GPIO_setAsInputPinWithPullDownResistor(GPIO_PORT_P5, GPIO_PIN7);
-	MAP_GPIO_setAsInputPinWithPullDownResistor(GPIO_PORT_P6, GPIO_PIN6);
-	MAP_GPIO_setAsInputPinWithPullDownResistor(GPIO_PORT_P9, GPIO_PIN5);
-}
 
 
 

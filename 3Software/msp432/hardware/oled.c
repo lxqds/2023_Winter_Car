@@ -59,7 +59,7 @@ void I2C_SW_Configuration()
 {
   OLED_SSD1306_SCL_IO_INIT;
   OLED_SSD1306_SDA_IO_INIT;
-  delay_ms(200);
+  //delay_ms(200);
 }
 
 //起始信号

@@ -1,5 +1,5 @@
 Dependencies for Project 'msp432_Newproject', Target 'Target 1': (DO NOT MODIFY !)
-F (.\main.c)(0x63A2FB75)(--c99 --gnu -c --cpu Cortex-M4.fp --li -g -O0 --apcs=interwork --split_sections -I .\inc-I.\RTE\_Target_1-ID:\Keil\ARM\PACK\ARM\CMSIS\4.5.0\Device\ARM\ARMCM4\Include-ID:\Keil\ARM\CMSIS\Include-D__UVISION_VERSION="527" -DARMCM4_FP -D__MSP432P401R__-o .\objects\main.o --omf_browse .\objects\main.crf --depend .\objects\main.d)
+F (.\main.c)(0x63A2FB75)(--c99 --gnu -c --cpu Cortex-M4.fp -g -O0 --apcs=interwork --split_sections -I .\inc-I.\RTE\_Target_1-ID:\Keil\ARM\PACK\TexasInstruments\MSP432P4xx_DFP\3.2.6\Device\Include-ID:\Keil\ARM\CMSIS\Include-D__UVISION_VERSION="527" -D__MSP432P401R__ -D__MSP432P401R__-o .\objects\main.o --omf_browse .\objects\main.crf --depend .\objects\main.d)
 I (.\inc\driverlib.h)(0x63A265BC)
 I (.\inc\adc14.h)(0x63A2646A)
 I (D:\Keil\ARM\ARMCC\include\stdint.h)(0x569DEA3A)
@@ -42,7 +42,7 @@ I (.\inc\uart.h)(0x63A265BD)
 I (.\inc\wdt_a.h)(0x63A265BD)
 I (.\inc\sysctl.h)(0x63A265BD)
 I (.\inc\flash.h)(0x63A265BC)
-F (.\system_msp432p401r.c)(0x63A27DE4)(--c99 --gnu -c --cpu Cortex-M4.fp --li -g -O0 --apcs=interwork --split_sections -I .\inc-I.\RTE\_Target_1-ID:\Keil\ARM\PACK\ARM\CMSIS\4.5.0\Device\ARM\ARMCM4\Include-ID:\Keil\ARM\CMSIS\Include-D__UVISION_VERSION="527" -DARMCM4_FP -D__MSP432P401R__-o .\objects\system_msp432p401r.o --omf_browse .\objects\system_msp432p401r.crf --depend .\objects\system_msp432p401r.d)
+F (.\system_msp432p401r.c)(0x63A27DE4)(--c99 --gnu -c --cpu Cortex-M4.fp -g -O0 --apcs=interwork --split_sections -I .\inc-I.\RTE\_Target_1-ID:\Keil\ARM\PACK\TexasInstruments\MSP432P4xx_DFP\3.2.6\Device\Include-ID:\Keil\ARM\CMSIS\Include-D__UVISION_VERSION="527" -D__MSP432P401R__ -D__MSP432P401R__-o .\objects\system_msp432p401r.o --omf_browse .\objects\system_msp432p401r.crf --depend .\objects\system_msp432p401r.d)
 I (D:\Keil\ARM\ARMCC\include\stdint.h)(0x569DEA3A)
 I (.\inc\msp.h)(0x62E0FD00)
 I (.\inc\msp432p401r.h)(0x62E0FD00)
@@ -54,8 +54,8 @@ I (.\inc\cmsis_compiler.h)(0x5E30CD66)
 I (.\inc\cmsis_armcc.h)(0x5E30CD66)
 I (.\inc\mpu_armv7.h)(0x5E30CD66)
 I (.\inc\system_msp432p401r.h)(0x62E0FD00)
-F (.\startup_msp432p401r_uvision.s)(0x5E30CD66)(--cpu Cortex-M4.fp --li -g --apcs=interwork -I .\inc-I.\RTE\_Target_1-ID:\Keil\ARM\PACK\ARM\CMSIS\4.5.0\Device\ARM\ARMCM4\Include-ID:\Keil\ARM\CMSIS\Include--pd "__UVISION_VERSION SETA 527" --pd "ARMCM4_FP SETA 1"--list .\listings\startup_msp432p401r_uvision.lst --xref -o .\objects\startup_msp432p401r_uvision.o --depend .\objects\startup_msp432p401r_uvision.d)
-F (.\src\adc14.c)(0x63A2668E)(--c99 --gnu -c --cpu Cortex-M4.fp --li -g -O0 --apcs=interwork --split_sections -I .\inc-I.\RTE\_Target_1-ID:\Keil\ARM\PACK\ARM\CMSIS\4.5.0\Device\ARM\ARMCM4\Include-ID:\Keil\ARM\CMSIS\Include-D__UVISION_VERSION="527" -DARMCM4_FP -D__MSP432P401R__-o .\objects\adc14.o --omf_browse .\objects\adc14.crf --depend .\objects\adc14.d)
+F (.\startup_msp432p401r_uvision.s)(0x5E30CD66)(--cpu Cortex-M4.fp -g --apcs=interwork -I .\inc-I.\RTE\_Target_1-ID:\Keil\ARM\PACK\TexasInstruments\MSP432P4xx_DFP\3.2.6\Device\Include-ID:\Keil\ARM\CMSIS\Include--pd "__UVISION_VERSION SETA 527" --pd "__MSP432P401R__ SETA 1"--list .\listings\startup_msp432p401r_uvision.lst --xref -o .\objects\startup_msp432p401r_uvision.o --depend .\objects\startup_msp432p401r_uvision.d)
+F (.\src\adc14.c)(0x63A2668E)(--c99 --gnu -c --cpu Cortex-M4.fp -g -O0 --apcs=interwork --split_sections -I .\inc-I.\RTE\_Target_1-ID:\Keil\ARM\PACK\TexasInstruments\MSP432P4xx_DFP\3.2.6\Device\Include-ID:\Keil\ARM\CMSIS\Include-D__UVISION_VERSION="527" -D__MSP432P401R__ -D__MSP432P401R__-o .\objects\adc14.o --omf_browse .\objects\adc14.crf --depend .\objects\adc14.d)
 I (D:\Keil\ARM\ARMCC\include\stdint.h)(0x569DEA3A)
 I (D:\Keil\ARM\ARMCC\include\stdbool.h)(0x569DEA3A)
 I (.\inc\adc14.h)(0x63A2646A)
@@ -71,7 +71,7 @@ I (.\inc\mpu_armv7.h)(0x5E30CD66)
 I (.\inc\system_msp432p401r.h)(0x62E0FD00)
 I (.\inc\debug.h)(0x62E0FD00)
 I (.\inc\interrupt.h)(0x63A265BC)
-F (.\src\aes256.c)(0x63A2668E)(--c99 --gnu -c --cpu Cortex-M4.fp --li -g -O0 --apcs=interwork --split_sections -I .\inc-I.\RTE\_Target_1-ID:\Keil\ARM\PACK\ARM\CMSIS\4.5.0\Device\ARM\ARMCM4\Include-ID:\Keil\ARM\CMSIS\Include-D__UVISION_VERSION="527" -DARMCM4_FP -D__MSP432P401R__-o .\objects\aes256.o --omf_browse .\objects\aes256.crf --depend .\objects\aes256.d)
+F (.\src\aes256.c)(0x63A2668E)(--c99 --gnu -c --cpu Cortex-M4.fp -g -O0 --apcs=interwork --split_sections -I .\inc-I.\RTE\_Target_1-ID:\Keil\ARM\PACK\TexasInstruments\MSP432P4xx_DFP\3.2.6\Device\Include-ID:\Keil\ARM\CMSIS\Include-D__UVISION_VERSION="527" -D__MSP432P401R__ -D__MSP432P401R__-o .\objects\aes256.o --omf_browse .\objects\aes256.crf --depend .\objects\aes256.d)
 I (.\inc\aes256.h)(0x63A265BC)
 I (D:\Keil\ARM\ARMCC\include\stdint.h)(0x569DEA3A)
 I (D:\Keil\ARM\ARMCC\include\stdbool.h)(0x569DEA3A)
@@ -87,7 +87,7 @@ I (.\inc\mpu_armv7.h)(0x5E30CD66)
 I (.\inc\system_msp432p401r.h)(0x62E0FD00)
 I (.\inc\interrupt.h)(0x63A265BC)
 I (.\inc\debug.h)(0x62E0FD00)
-F (.\src\comp_e.c)(0x63A2668E)(--c99 --gnu -c --cpu Cortex-M4.fp --li -g -O0 --apcs=interwork --split_sections -I .\inc-I.\RTE\_Target_1-ID:\Keil\ARM\PACK\ARM\CMSIS\4.5.0\Device\ARM\ARMCM4\Include-ID:\Keil\ARM\CMSIS\Include-D__UVISION_VERSION="527" -DARMCM4_FP -D__MSP432P401R__-o .\objects\comp_e.o --omf_browse .\objects\comp_e.crf --depend .\objects\comp_e.d)
+F (.\src\comp_e.c)(0x63A2668E)(--c99 --gnu -c --cpu Cortex-M4.fp -g -O0 --apcs=interwork --split_sections -I .\inc-I.\RTE\_Target_1-ID:\Keil\ARM\PACK\TexasInstruments\MSP432P4xx_DFP\3.2.6\Device\Include-ID:\Keil\ARM\CMSIS\Include-D__UVISION_VERSION="527" -D__MSP432P401R__ -D__MSP432P401R__-o .\objects\comp_e.o --omf_browse .\objects\comp_e.crf --depend .\objects\comp_e.d)
 I (.\inc\comp_e.h)(0x63A265BC)
 I (D:\Keil\ARM\ARMCC\include\stdint.h)(0x569DEA3A)
 I (D:\Keil\ARM\ARMCC\include\stdbool.h)(0x569DEA3A)
@@ -103,7 +103,7 @@ I (.\inc\mpu_armv7.h)(0x5E30CD66)
 I (.\inc\system_msp432p401r.h)(0x62E0FD00)
 I (.\inc\interrupt.h)(0x63A265BC)
 I (.\inc\debug.h)(0x62E0FD00)
-F (.\src\crc32.c)(0x63A2668E)(--c99 --gnu -c --cpu Cortex-M4.fp --li -g -O0 --apcs=interwork --split_sections -I .\inc-I.\RTE\_Target_1-ID:\Keil\ARM\PACK\ARM\CMSIS\4.5.0\Device\ARM\ARMCM4\Include-ID:\Keil\ARM\CMSIS\Include-D__UVISION_VERSION="527" -DARMCM4_FP -D__MSP432P401R__-o .\objects\crc32.o --omf_browse .\objects\crc32.crf --depend .\objects\crc32.d)
+F (.\src\crc32.c)(0x63A2668E)(--c99 --gnu -c --cpu Cortex-M4.fp -g -O0 --apcs=interwork --split_sections -I .\inc-I.\RTE\_Target_1-ID:\Keil\ARM\PACK\TexasInstruments\MSP432P4xx_DFP\3.2.6\Device\Include-ID:\Keil\ARM\CMSIS\Include-D__UVISION_VERSION="527" -D__MSP432P401R__ -D__MSP432P401R__-o .\objects\crc32.o --omf_browse .\objects\crc32.crf --depend .\objects\crc32.d)
 I (.\inc\crc32.h)(0x62E0FD00)
 I (D:\Keil\ARM\ARMCC\include\stdint.h)(0x569DEA3A)
 I (.\inc\msp.h)(0x62E0FD00)
@@ -117,7 +117,7 @@ I (.\inc\cmsis_armcc.h)(0x5E30CD66)
 I (.\inc\mpu_armv7.h)(0x5E30CD66)
 I (.\inc\system_msp432p401r.h)(0x62E0FD00)
 I (.\inc\debug.h)(0x62E0FD00)
-F (.\src\cs.c)(0x63A2668E)(--c99 --gnu -c --cpu Cortex-M4.fp --li -g -O0 --apcs=interwork --split_sections -I .\inc-I.\RTE\_Target_1-ID:\Keil\ARM\PACK\ARM\CMSIS\4.5.0\Device\ARM\ARMCM4\Include-ID:\Keil\ARM\CMSIS\Include-D__UVISION_VERSION="527" -DARMCM4_FP -D__MSP432P401R__-o .\objects\cs.o --omf_browse .\objects\cs.crf --depend .\objects\cs.d)
+F (.\src\cs.c)(0x63A2668E)(--c99 --gnu -c --cpu Cortex-M4.fp -g -O0 --apcs=interwork --split_sections -I .\inc-I.\RTE\_Target_1-ID:\Keil\ARM\PACK\TexasInstruments\MSP432P4xx_DFP\3.2.6\Device\Include-ID:\Keil\ARM\CMSIS\Include-D__UVISION_VERSION="527" -D__MSP432P401R__ -D__MSP432P401R__-o .\objects\cs.o --omf_browse .\objects\cs.crf --depend .\objects\cs.d)
 I (D:\Keil\ARM\ARMCC\include\stdint.h)(0x569DEA3A)
 I (.\inc\cs.h)(0x63A265BC)
 I (D:\Keil\ARM\ARMCC\include\stdbool.h)(0x569DEA3A)
@@ -134,7 +134,7 @@ I (.\inc\system_msp432p401r.h)(0x62E0FD00)
 I (.\inc\interrupt.h)(0x63A265BC)
 I (.\inc\debug.h)(0x62E0FD00)
 I (.\inc\sysctl.h)(0x63A265BD)
-F (.\src\dma.c)(0x63A2668E)(--c99 --gnu -c --cpu Cortex-M4.fp --li -g -O0 --apcs=interwork --split_sections -I .\inc-I.\RTE\_Target_1-ID:\Keil\ARM\PACK\ARM\CMSIS\4.5.0\Device\ARM\ARMCM4\Include-ID:\Keil\ARM\CMSIS\Include-D__UVISION_VERSION="527" -DARMCM4_FP -D__MSP432P401R__-o .\objects\dma.o --omf_browse .\objects\dma.crf --depend .\objects\dma.d)
+F (.\src\dma.c)(0x63A2668E)(--c99 --gnu -c --cpu Cortex-M4.fp -g -O0 --apcs=interwork --split_sections -I .\inc-I.\RTE\_Target_1-ID:\Keil\ARM\PACK\TexasInstruments\MSP432P4xx_DFP\3.2.6\Device\Include-ID:\Keil\ARM\CMSIS\Include-D__UVISION_VERSION="527" -D__MSP432P401R__ -D__MSP432P401R__-o .\objects\dma.o --omf_browse .\objects\dma.crf --depend .\objects\dma.d)
 I (D:\Keil\ARM\ARMCC\include\stdint.h)(0x569DEA3A)
 I (.\inc\debug.h)(0x62E0FD00)
 I (.\inc\interrupt.h)(0x63A265BC)
@@ -150,7 +150,7 @@ I (.\inc\cmsis_armcc.h)(0x5E30CD66)
 I (.\inc\mpu_armv7.h)(0x5E30CD66)
 I (.\inc\system_msp432p401r.h)(0x62E0FD00)
 I (.\inc\dma.h)(0x63A265BC)
-F (.\src\flash.c)(0x63A2668E)(--c99 --gnu -c --cpu Cortex-M4.fp --li -g -O0 --apcs=interwork --split_sections -I .\inc-I.\RTE\_Target_1-ID:\Keil\ARM\PACK\ARM\CMSIS\4.5.0\Device\ARM\ARMCM4\Include-ID:\Keil\ARM\CMSIS\Include-D__UVISION_VERSION="527" -DARMCM4_FP -D__MSP432P401R__-o .\objects\flash.o --omf_browse .\objects\flash.crf --depend .\objects\flash.d)
+F (.\src\flash.c)(0x63A2668E)(--c99 --gnu -c --cpu Cortex-M4.fp -g -O0 --apcs=interwork --split_sections -I .\inc-I.\RTE\_Target_1-ID:\Keil\ARM\PACK\TexasInstruments\MSP432P4xx_DFP\3.2.6\Device\Include-ID:\Keil\ARM\CMSIS\Include-D__UVISION_VERSION="527" -D__MSP432P401R__ -D__MSP432P401R__-o .\objects\flash.o --omf_browse .\objects\flash.crf --depend .\objects\flash.d)
 I (D:\Keil\ARM\ARMCC\include\stdint.h)(0x569DEA3A)
 I (.\inc\flash.h)(0x63A265BC)
 I (D:\Keil\ARM\ARMCC\include\stdbool.h)(0x569DEA3A)
@@ -168,7 +168,7 @@ I (.\inc\sysctl.h)(0x63A265BD)
 I (.\inc\interrupt.h)(0x63A265BC)
 I (.\inc\cpu.h)(0x62E0FD00)
 I (.\inc\debug.h)(0x62E0FD00)
-F (.\src\flash_a.c)(0x63A2668E)(--c99 --gnu -c --cpu Cortex-M4.fp --li -g -O0 --apcs=interwork --split_sections -I .\inc-I.\RTE\_Target_1-ID:\Keil\ARM\PACK\ARM\CMSIS\4.5.0\Device\ARM\ARMCM4\Include-ID:\Keil\ARM\CMSIS\Include-D__UVISION_VERSION="527" -DARMCM4_FP -D__MSP432P401R__-o .\objects\flash_a.o --omf_browse .\objects\flash_a.crf --depend .\objects\flash_a.d)
+F (.\src\flash_a.c)(0x63A2668E)(--c99 --gnu -c --cpu Cortex-M4.fp -g -O0 --apcs=interwork --split_sections -I .\inc-I.\RTE\_Target_1-ID:\Keil\ARM\PACK\TexasInstruments\MSP432P4xx_DFP\3.2.6\Device\Include-ID:\Keil\ARM\CMSIS\Include-D__UVISION_VERSION="527" -D__MSP432P401R__ -D__MSP432P401R__-o .\objects\flash_a.o --omf_browse .\objects\flash_a.crf --depend .\objects\flash_a.d)
 I (D:\Keil\ARM\ARMCC\include\stdint.h)(0x569DEA3A)
 I (.\inc\flash_a.h)(0x63A265BC)
 I (D:\Keil\ARM\ARMCC\include\stdbool.h)(0x569DEA3A)
@@ -186,7 +186,7 @@ I (.\inc\debug.h)(0x62E0FD00)
 I (.\inc\interrupt.h)(0x63A265BC)
 I (.\inc\cpu.h)(0x62E0FD00)
 I (.\inc\sysctl_a.h)(0x63A265BD)
-F (.\src\fpu.c)(0x63A2668E)(--c99 --gnu -c --cpu Cortex-M4.fp --li -g -O0 --apcs=interwork --split_sections -I .\inc-I.\RTE\_Target_1-ID:\Keil\ARM\PACK\ARM\CMSIS\4.5.0\Device\ARM\ARMCM4\Include-ID:\Keil\ARM\CMSIS\Include-D__UVISION_VERSION="527" -DARMCM4_FP -D__MSP432P401R__-o .\objects\fpu.o --omf_browse .\objects\fpu.crf --depend .\objects\fpu.d)
+F (.\src\fpu.c)(0x63A2668E)(--c99 --gnu -c --cpu Cortex-M4.fp -g -O0 --apcs=interwork --split_sections -I .\inc-I.\RTE\_Target_1-ID:\Keil\ARM\PACK\TexasInstruments\MSP432P4xx_DFP\3.2.6\Device\Include-ID:\Keil\ARM\CMSIS\Include-D__UVISION_VERSION="527" -D__MSP432P401R__ -D__MSP432P401R__-o .\objects\fpu.o --omf_browse .\objects\fpu.crf --depend .\objects\fpu.d)
 I (.\inc\fpu.h)(0x63A265BC)
 I (D:\Keil\ARM\ARMCC\include\stdint.h)(0x569DEA3A)
 I (.\inc\msp.h)(0x62E0FD00)
@@ -199,7 +199,7 @@ I (.\inc\cmsis_compiler.h)(0x5E30CD66)
 I (.\inc\cmsis_armcc.h)(0x5E30CD66)
 I (.\inc\mpu_armv7.h)(0x5E30CD66)
 I (.\inc\system_msp432p401r.h)(0x62E0FD00)
-F (.\src\gpio.c)(0x63A2668E)(--c99 --gnu -c --cpu Cortex-M4.fp --li -g -O0 --apcs=interwork --split_sections -I .\inc-I.\RTE\_Target_1-ID:\Keil\ARM\PACK\ARM\CMSIS\4.5.0\Device\ARM\ARMCM4\Include-ID:\Keil\ARM\CMSIS\Include-D__UVISION_VERSION="527" -DARMCM4_FP -D__MSP432P401R__-o .\objects\gpio.o --omf_browse .\objects\gpio.crf --depend .\objects\gpio.d)
+F (.\src\gpio.c)(0x63A2668E)(--c99 --gnu -c --cpu Cortex-M4.fp -g -O0 --apcs=interwork --split_sections -I .\inc-I.\RTE\_Target_1-ID:\Keil\ARM\PACK\TexasInstruments\MSP432P4xx_DFP\3.2.6\Device\Include-ID:\Keil\ARM\CMSIS\Include-D__UVISION_VERSION="527" -D__MSP432P401R__ -D__MSP432P401R__-o .\objects\gpio.o --omf_browse .\objects\gpio.crf --depend .\objects\gpio.d)
 I (D:\Keil\ARM\ARMCC\include\stdint.h)(0x569DEA3A)
 I (.\inc\gpio.h)(0x63A265BC)
 I (.\inc\msp.h)(0x62E0FD00)
@@ -215,7 +215,7 @@ I (.\inc\system_msp432p401r.h)(0x62E0FD00)
 I (.\inc\debug.h)(0x62E0FD00)
 I (.\inc\interrupt.h)(0x63A265BC)
 I (D:\Keil\ARM\ARMCC\include\stdbool.h)(0x569DEA3A)
-F (.\src\i2c.c)(0x63A2668E)(--c99 --gnu -c --cpu Cortex-M4.fp --li -g -O0 --apcs=interwork --split_sections -I .\inc-I.\RTE\_Target_1-ID:\Keil\ARM\PACK\ARM\CMSIS\4.5.0\Device\ARM\ARMCM4\Include-ID:\Keil\ARM\CMSIS\Include-D__UVISION_VERSION="527" -DARMCM4_FP -D__MSP432P401R__-o .\objects\i2c.o --omf_browse .\objects\i2c.crf --depend .\objects\i2c.d)
+F (.\src\i2c.c)(0x63A2668E)(--c99 --gnu -c --cpu Cortex-M4.fp -g -O0 --apcs=interwork --split_sections -I .\inc-I.\RTE\_Target_1-ID:\Keil\ARM\PACK\TexasInstruments\MSP432P4xx_DFP\3.2.6\Device\Include-ID:\Keil\ARM\CMSIS\Include-D__UVISION_VERSION="527" -D__MSP432P401R__ -D__MSP432P401R__-o .\objects\i2c.o --omf_browse .\objects\i2c.crf --depend .\objects\i2c.d)
 I (.\inc\i2c.h)(0x63A265BC)
 I (D:\Keil\ARM\ARMCC\include\stdint.h)(0x569DEA3A)
 I (D:\Keil\ARM\ARMCC\include\stdbool.h)(0x569DEA3A)
@@ -232,7 +232,7 @@ I (.\inc\system_msp432p401r.h)(0x62E0FD00)
 I (.\inc\eusci.h)(0x63A265BC)
 I (.\inc\interrupt.h)(0x63A265BC)
 I (.\inc\debug.h)(0x62E0FD00)
-F (.\src\interrupt.c)(0x63A2668E)(--c99 --gnu -c --cpu Cortex-M4.fp --li -g -O0 --apcs=interwork --split_sections -I .\inc-I.\RTE\_Target_1-ID:\Keil\ARM\PACK\ARM\CMSIS\4.5.0\Device\ARM\ARMCM4\Include-ID:\Keil\ARM\CMSIS\Include-D__UVISION_VERSION="527" -DARMCM4_FP -D__MSP432P401R__-o .\objects\interrupt.o --omf_browse .\objects\interrupt.crf --depend .\objects\interrupt.d)
+F (.\src\interrupt.c)(0x63A2668E)(--c99 --gnu -c --cpu Cortex-M4.fp -g -O0 --apcs=interwork --split_sections -I .\inc-I.\RTE\_Target_1-ID:\Keil\ARM\PACK\TexasInstruments\MSP432P4xx_DFP\3.2.6\Device\Include-ID:\Keil\ARM\CMSIS\Include-D__UVISION_VERSION="527" -D__MSP432P401R__ -D__MSP432P401R__-o .\objects\interrupt.o --omf_browse .\objects\interrupt.crf --depend .\objects\interrupt.d)
 I (D:\Keil\ARM\ARMCC\include\stdint.h)(0x569DEA3A)
 I (.\inc\debug.h)(0x62E0FD00)
 I (.\inc\cpu.h)(0x62E0FD00)
@@ -248,7 +248,7 @@ I (.\inc\cmsis_compiler.h)(0x5E30CD66)
 I (.\inc\cmsis_armcc.h)(0x5E30CD66)
 I (.\inc\mpu_armv7.h)(0x5E30CD66)
 I (.\inc\system_msp432p401r.h)(0x62E0FD00)
-F (.\src\lcd_f.c)(0x63A2668F)(--c99 --gnu -c --cpu Cortex-M4.fp --li -g -O0 --apcs=interwork --split_sections -I .\inc-I.\RTE\_Target_1-ID:\Keil\ARM\PACK\ARM\CMSIS\4.5.0\Device\ARM\ARMCM4\Include-ID:\Keil\ARM\CMSIS\Include-D__UVISION_VERSION="527" -DARMCM4_FP -D__MSP432P401R__-o .\objects\lcd_f.o --omf_browse .\objects\lcd_f.crf --depend .\objects\lcd_f.d)
+F (.\src\lcd_f.c)(0x63A2668F)(--c99 --gnu -c --cpu Cortex-M4.fp -g -O0 --apcs=interwork --split_sections -I .\inc-I.\RTE\_Target_1-ID:\Keil\ARM\PACK\TexasInstruments\MSP432P4xx_DFP\3.2.6\Device\Include-ID:\Keil\ARM\CMSIS\Include-D__UVISION_VERSION="527" -D__MSP432P401R__ -D__MSP432P401R__-o .\objects\lcd_f.o --omf_browse .\objects\lcd_f.crf --depend .\objects\lcd_f.d)
 I (D:\Keil\ARM\ARMCC\include\stdint.h)(0x569DEA3A)
 I (.\inc\lcd_f.h)(0x63A265BC)
 I (D:\Keil\ARM\ARMCC\include\stdbool.h)(0x569DEA3A)
@@ -263,7 +263,7 @@ I (.\inc\cmsis_armcc.h)(0x5E30CD66)
 I (.\inc\mpu_armv7.h)(0x5E30CD66)
 I (.\inc\system_msp432p401r.h)(0x62E0FD00)
 I (.\inc\interrupt.h)(0x63A265BC)
-F (.\src\mpu.c)(0x63A2668F)(--c99 --gnu -c --cpu Cortex-M4.fp --li -g -O0 --apcs=interwork --split_sections -I .\inc-I.\RTE\_Target_1-ID:\Keil\ARM\PACK\ARM\CMSIS\4.5.0\Device\ARM\ARMCM4\Include-ID:\Keil\ARM\CMSIS\Include-D__UVISION_VERSION="527" -DARMCM4_FP -D__MSP432P401R__-o .\objects\mpu.o --omf_browse .\objects\mpu.crf --depend .\objects\mpu.d)
+F (.\src\mpu.c)(0x63A2668F)(--c99 --gnu -c --cpu Cortex-M4.fp -g -O0 --apcs=interwork --split_sections -I .\inc-I.\RTE\_Target_1-ID:\Keil\ARM\PACK\TexasInstruments\MSP432P4xx_DFP\3.2.6\Device\Include-ID:\Keil\ARM\CMSIS\Include-D__UVISION_VERSION="527" -D__MSP432P401R__ -D__MSP432P401R__-o .\objects\mpu.o --omf_browse .\objects\mpu.crf --depend .\objects\mpu.d)
 I (.\inc\debug.h)(0x62E0FD00)
 I (.\inc\interrupt.h)(0x63A265BC)
 I (D:\Keil\ARM\ARMCC\include\stdint.h)(0x569DEA3A)
@@ -279,7 +279,7 @@ I (.\inc\cmsis_armcc.h)(0x5E30CD66)
 I (.\inc\mpu_armv7.h)(0x5E30CD66)
 I (.\inc\system_msp432p401r.h)(0x62E0FD00)
 I (.\inc\mpu.h)(0x63A265BC)
-F (.\src\pcm.c)(0x63A2668F)(--c99 --gnu -c --cpu Cortex-M4.fp --li -g -O0 --apcs=interwork --split_sections -I .\inc-I.\RTE\_Target_1-ID:\Keil\ARM\PACK\ARM\CMSIS\4.5.0\Device\ARM\ARMCM4\Include-ID:\Keil\ARM\CMSIS\Include-D__UVISION_VERSION="527" -DARMCM4_FP -D__MSP432P401R__-o .\objects\pcm.o --omf_browse .\objects\pcm.crf --depend .\objects\pcm.d)
+F (.\src\pcm.c)(0x63A2668F)(--c99 --gnu -c --cpu Cortex-M4.fp -g -O0 --apcs=interwork --split_sections -I .\inc-I.\RTE\_Target_1-ID:\Keil\ARM\PACK\TexasInstruments\MSP432P4xx_DFP\3.2.6\Device\Include-ID:\Keil\ARM\CMSIS\Include-D__UVISION_VERSION="527" -D__MSP432P401R__ -D__MSP432P401R__-o .\objects\pcm.o --omf_browse .\objects\pcm.crf --depend .\objects\pcm.d)
 I (D:\Keil\ARM\ARMCC\include\stdint.h)(0x569DEA3A)
 I (.\inc\pcm.h)(0x63A265BC)
 I (D:\Keil\ARM\ARMCC\include\stdbool.h)(0x569DEA3A)
@@ -298,7 +298,7 @@ I (.\inc\interrupt.h)(0x63A265BC)
 I (.\inc\wdt_a.h)(0x63A265BD)
 I (.\inc\rtc_c.h)(0x63A265BD)
 I (.\inc\cpu.h)(0x62E0FD00)
-F (.\src\pmap.c)(0x63A2668F)(--c99 --gnu -c --cpu Cortex-M4.fp --li -g -O0 --apcs=interwork --split_sections -I .\inc-I.\RTE\_Target_1-ID:\Keil\ARM\PACK\ARM\CMSIS\4.5.0\Device\ARM\ARMCM4\Include-ID:\Keil\ARM\CMSIS\Include-D__UVISION_VERSION="527" -DARMCM4_FP -D__MSP432P401R__-o .\objects\pmap.o --omf_browse .\objects\pmap.crf --depend .\objects\pmap.d)
+F (.\src\pmap.c)(0x63A2668F)(--c99 --gnu -c --cpu Cortex-M4.fp -g -O0 --apcs=interwork --split_sections -I .\inc-I.\RTE\_Target_1-ID:\Keil\ARM\PACK\TexasInstruments\MSP432P4xx_DFP\3.2.6\Device\Include-ID:\Keil\ARM\CMSIS\Include-D__UVISION_VERSION="527" -D__MSP432P401R__ -D__MSP432P401R__-o .\objects\pmap.o --omf_browse .\objects\pmap.crf --depend .\objects\pmap.d)
 I (.\inc\debug.h)(0x62E0FD00)
 I (.\inc\pmap.h)(0x63A265BD)
 I (D:\Keil\ARM\ARMCC\include\stdint.h)(0x569DEA3A)
@@ -312,7 +312,7 @@ I (.\inc\cmsis_compiler.h)(0x5E30CD66)
 I (.\inc\cmsis_armcc.h)(0x5E30CD66)
 I (.\inc\mpu_armv7.h)(0x5E30CD66)
 I (.\inc\system_msp432p401r.h)(0x62E0FD00)
-F (.\src\pss.c)(0x63A2668F)(--c99 --gnu -c --cpu Cortex-M4.fp --li -g -O0 --apcs=interwork --split_sections -I .\inc-I.\RTE\_Target_1-ID:\Keil\ARM\PACK\ARM\CMSIS\4.5.0\Device\ARM\ARMCM4\Include-ID:\Keil\ARM\CMSIS\Include-D__UVISION_VERSION="527" -DARMCM4_FP -D__MSP432P401R__-o .\objects\pss.o --omf_browse .\objects\pss.crf --depend .\objects\pss.d)
+F (.\src\pss.c)(0x63A2668F)(--c99 --gnu -c --cpu Cortex-M4.fp -g -O0 --apcs=interwork --split_sections -I .\inc-I.\RTE\_Target_1-ID:\Keil\ARM\PACK\TexasInstruments\MSP432P4xx_DFP\3.2.6\Device\Include-ID:\Keil\ARM\CMSIS\Include-D__UVISION_VERSION="527" -D__MSP432P401R__ -D__MSP432P401R__-o .\objects\pss.o --omf_browse .\objects\pss.crf --depend .\objects\pss.d)
 I (D:\Keil\ARM\ARMCC\include\stdint.h)(0x569DEA3A)
 I (.\inc\pss.h)(0x63A265BD)
 I (.\inc\msp.h)(0x62E0FD00)
@@ -329,7 +329,7 @@ I (D:\Keil\ARM\ARMCC\include\stdbool.h)(0x569DEA3A)
 I (.\inc\interrupt.h)(0x63A265BC)
 I (.\inc\debug.h)(0x62E0FD00)
 I (.\inc\cpu.h)(0x62E0FD00)
-F (.\src\ref_a.c)(0x63A2668F)(--c99 --gnu -c --cpu Cortex-M4.fp --li -g -O0 --apcs=interwork --split_sections -I .\inc-I.\RTE\_Target_1-ID:\Keil\ARM\PACK\ARM\CMSIS\4.5.0\Device\ARM\ARMCM4\Include-ID:\Keil\ARM\CMSIS\Include-D__UVISION_VERSION="527" -DARMCM4_FP -D__MSP432P401R__-o .\objects\ref_a.o --omf_browse .\objects\ref_a.crf --depend .\objects\ref_a.d)
+F (.\src\ref_a.c)(0x63A2668F)(--c99 --gnu -c --cpu Cortex-M4.fp -g -O0 --apcs=interwork --split_sections -I .\inc-I.\RTE\_Target_1-ID:\Keil\ARM\PACK\TexasInstruments\MSP432P4xx_DFP\3.2.6\Device\Include-ID:\Keil\ARM\CMSIS\Include-D__UVISION_VERSION="527" -D__MSP432P401R__ -D__MSP432P401R__-o .\objects\ref_a.o --omf_browse .\objects\ref_a.crf --depend .\objects\ref_a.d)
 I (.\inc\ref_a.h)(0x63A265BD)
 I (.\inc\msp.h)(0x62E0FD00)
 I (.\inc\msp432p401r.h)(0x62E0FD00)
@@ -344,7 +344,7 @@ I (.\inc\mpu_armv7.h)(0x5E30CD66)
 I (.\inc\system_msp432p401r.h)(0x62E0FD00)
 I (D:\Keil\ARM\ARMCC\include\stdbool.h)(0x569DEA3A)
 I (.\inc\debug.h)(0x62E0FD00)
-F (.\src\reset.c)(0x63A2668F)(--c99 --gnu -c --cpu Cortex-M4.fp --li -g -O0 --apcs=interwork --split_sections -I .\inc-I.\RTE\_Target_1-ID:\Keil\ARM\PACK\ARM\CMSIS\4.5.0\Device\ARM\ARMCM4\Include-ID:\Keil\ARM\CMSIS\Include-D__UVISION_VERSION="527" -DARMCM4_FP -D__MSP432P401R__-o .\objects\reset.o --omf_browse .\objects\reset.crf --depend .\objects\reset.d)
+F (.\src\reset.c)(0x63A2668F)(--c99 --gnu -c --cpu Cortex-M4.fp -g -O0 --apcs=interwork --split_sections -I .\inc-I.\RTE\_Target_1-ID:\Keil\ARM\PACK\TexasInstruments\MSP432P4xx_DFP\3.2.6\Device\Include-ID:\Keil\ARM\CMSIS\Include-D__UVISION_VERSION="527" -D__MSP432P401R__ -D__MSP432P401R__-o .\objects\reset.o --omf_browse .\objects\reset.crf --depend .\objects\reset.d)
 I (.\inc\reset.h)(0x63A265BD)
 I (.\inc\msp.h)(0x62E0FD00)
 I (.\inc\msp432p401r.h)(0x62E0FD00)
@@ -358,7 +358,7 @@ I (.\inc\cmsis_armcc.h)(0x5E30CD66)
 I (.\inc\mpu_armv7.h)(0x5E30CD66)
 I (.\inc\system_msp432p401r.h)(0x62E0FD00)
 I (.\inc\debug.h)(0x62E0FD00)
-F (.\src\rtc_c.c)(0x63A2668F)(--c99 --gnu -c --cpu Cortex-M4.fp --li -g -O0 --apcs=interwork --split_sections -I .\inc-I.\RTE\_Target_1-ID:\Keil\ARM\PACK\ARM\CMSIS\4.5.0\Device\ARM\ARMCM4\Include-ID:\Keil\ARM\CMSIS\Include-D__UVISION_VERSION="527" -DARMCM4_FP -D__MSP432P401R__-o .\objects\rtc_c.o --omf_browse .\objects\rtc_c.crf --depend .\objects\rtc_c.d)
+F (.\src\rtc_c.c)(0x63A2668F)(--c99 --gnu -c --cpu Cortex-M4.fp -g -O0 --apcs=interwork --split_sections -I .\inc-I.\RTE\_Target_1-ID:\Keil\ARM\PACK\TexasInstruments\MSP432P4xx_DFP\3.2.6\Device\Include-ID:\Keil\ARM\CMSIS\Include-D__UVISION_VERSION="527" -D__MSP432P401R__ -D__MSP432P401R__-o .\objects\rtc_c.o --omf_browse .\objects\rtc_c.crf --depend .\objects\rtc_c.d)
 I (.\inc\rtc_c.h)(0x63A265BD)
 I (D:\Keil\ARM\ARMCC\include\stdint.h)(0x569DEA3A)
 I (D:\Keil\ARM\ARMCC\include\stdbool.h)(0x569DEA3A)
@@ -374,7 +374,7 @@ I (.\inc\mpu_armv7.h)(0x5E30CD66)
 I (.\inc\system_msp432p401r.h)(0x62E0FD00)
 I (.\inc\interrupt.h)(0x63A265BC)
 I (.\inc\debug.h)(0x62E0FD00)
-F (.\src\spi.c)(0x63A2668F)(--c99 --gnu -c --cpu Cortex-M4.fp --li -g -O0 --apcs=interwork --split_sections -I .\inc-I.\RTE\_Target_1-ID:\Keil\ARM\PACK\ARM\CMSIS\4.5.0\Device\ARM\ARMCM4\Include-ID:\Keil\ARM\CMSIS\Include-D__UVISION_VERSION="527" -DARMCM4_FP -D__MSP432P401R__-o .\objects\spi.o --omf_browse .\objects\spi.crf --depend .\objects\spi.d)
+F (.\src\spi.c)(0x63A2668F)(--c99 --gnu -c --cpu Cortex-M4.fp -g -O0 --apcs=interwork --split_sections -I .\inc-I.\RTE\_Target_1-ID:\Keil\ARM\PACK\TexasInstruments\MSP432P4xx_DFP\3.2.6\Device\Include-ID:\Keil\ARM\CMSIS\Include-D__UVISION_VERSION="527" -D__MSP432P401R__ -D__MSP432P401R__-o .\objects\spi.o --omf_browse .\objects\spi.crf --depend .\objects\spi.d)
 I (.\inc\spi.h)(0x63A265B3)
 I (D:\Keil\ARM\ARMCC\include\stdbool.h)(0x569DEA3A)
 I (D:\Keil\ARM\ARMCC\include\stdint.h)(0x569DEA3A)
@@ -391,7 +391,7 @@ I (.\inc\system_msp432p401r.h)(0x62E0FD00)
 I (.\inc\eusci.h)(0x63A265BC)
 I (.\inc\interrupt.h)(0x63A265BC)
 I (.\inc\debug.h)(0x62E0FD00)
-F (.\src\sysctl.c)(0x63A2668F)(--c99 --gnu -c --cpu Cortex-M4.fp --li -g -O0 --apcs=interwork --split_sections -I .\inc-I.\RTE\_Target_1-ID:\Keil\ARM\PACK\ARM\CMSIS\4.5.0\Device\ARM\ARMCM4\Include-ID:\Keil\ARM\CMSIS\Include-D__UVISION_VERSION="527" -DARMCM4_FP -D__MSP432P401R__-o .\objects\sysctl.o --omf_browse .\objects\sysctl.crf --depend .\objects\sysctl.d)
+F (.\src\sysctl.c)(0x63A2668F)(--c99 --gnu -c --cpu Cortex-M4.fp -g -O0 --apcs=interwork --split_sections -I .\inc-I.\RTE\_Target_1-ID:\Keil\ARM\PACK\TexasInstruments\MSP432P4xx_DFP\3.2.6\Device\Include-ID:\Keil\ARM\CMSIS\Include-D__UVISION_VERSION="527" -D__MSP432P401R__ -D__MSP432P401R__-o .\objects\sysctl.o --omf_browse .\objects\sysctl.crf --depend .\objects\sysctl.d)
 I (D:\Keil\ARM\ARMCC\include\stdint.h)(0x569DEA3A)
 I (D:\Keil\ARM\ARMCC\include\stdbool.h)(0x569DEA3A)
 I (.\inc\sysctl.h)(0x63A265BD)
@@ -406,7 +406,7 @@ I (.\inc\cmsis_armcc.h)(0x5E30CD66)
 I (.\inc\mpu_armv7.h)(0x5E30CD66)
 I (.\inc\system_msp432p401r.h)(0x62E0FD00)
 I (.\inc\debug.h)(0x62E0FD00)
-F (.\src\sysctl_a.c)(0x63A2668F)(--c99 --gnu -c --cpu Cortex-M4.fp --li -g -O0 --apcs=interwork --split_sections -I .\inc-I.\RTE\_Target_1-ID:\Keil\ARM\PACK\ARM\CMSIS\4.5.0\Device\ARM\ARMCM4\Include-ID:\Keil\ARM\CMSIS\Include-D__UVISION_VERSION="527" -DARMCM4_FP -D__MSP432P401R__-o .\objects\sysctl_a.o --omf_browse .\objects\sysctl_a.crf --depend .\objects\sysctl_a.d)
+F (.\src\sysctl_a.c)(0x63A2668F)(--c99 --gnu -c --cpu Cortex-M4.fp -g -O0 --apcs=interwork --split_sections -I .\inc-I.\RTE\_Target_1-ID:\Keil\ARM\PACK\TexasInstruments\MSP432P4xx_DFP\3.2.6\Device\Include-ID:\Keil\ARM\CMSIS\Include-D__UVISION_VERSION="527" -D__MSP432P401R__ -D__MSP432P401R__-o .\objects\sysctl_a.o --omf_browse .\objects\sysctl_a.crf --depend .\objects\sysctl_a.d)
 I (D:\Keil\ARM\ARMCC\include\stdint.h)(0x569DEA3A)
 I (D:\Keil\ARM\ARMCC\include\stdbool.h)(0x569DEA3A)
 I (.\inc\sysctl_a.h)(0x63A265BD)
@@ -421,7 +421,7 @@ I (.\inc\cmsis_armcc.h)(0x5E30CD66)
 I (.\inc\mpu_armv7.h)(0x5E30CD66)
 I (.\inc\system_msp432p401r.h)(0x62E0FD00)
 I (.\inc\debug.h)(0x62E0FD00)
-F (.\src\systick.c)(0x63A2668F)(--c99 --gnu -c --cpu Cortex-M4.fp --li -g -O0 --apcs=interwork --split_sections -I .\inc-I.\RTE\_Target_1-ID:\Keil\ARM\PACK\ARM\CMSIS\4.5.0\Device\ARM\ARMCM4\Include-ID:\Keil\ARM\CMSIS\Include-D__UVISION_VERSION="527" -DARMCM4_FP -D__MSP432P401R__-o .\objects\systick.o --omf_browse .\objects\systick.crf --depend .\objects\systick.d)
+F (.\src\systick.c)(0x63A2668F)(--c99 --gnu -c --cpu Cortex-M4.fp -g -O0 --apcs=interwork --split_sections -I .\inc-I.\RTE\_Target_1-ID:\Keil\ARM\PACK\TexasInstruments\MSP432P4xx_DFP\3.2.6\Device\Include-ID:\Keil\ARM\CMSIS\Include-D__UVISION_VERSION="527" -D__MSP432P401R__ -D__MSP432P401R__-o .\objects\systick.o --omf_browse .\objects\systick.crf --depend .\objects\systick.d)
 I (.\inc\debug.h)(0x62E0FD00)
 I (.\inc\interrupt.h)(0x63A265BC)
 I (D:\Keil\ARM\ARMCC\include\stdint.h)(0x569DEA3A)
@@ -437,7 +437,7 @@ I (.\inc\cmsis_armcc.h)(0x5E30CD66)
 I (.\inc\mpu_armv7.h)(0x5E30CD66)
 I (.\inc\system_msp432p401r.h)(0x62E0FD00)
 I (.\inc\systick.h)(0x62E0FD02)
-F (.\src\timer_a.c)(0x63A2668F)(--c99 --gnu -c --cpu Cortex-M4.fp --li -g -O0 --apcs=interwork --split_sections -I .\inc-I.\RTE\_Target_1-ID:\Keil\ARM\PACK\ARM\CMSIS\4.5.0\Device\ARM\ARMCM4\Include-ID:\Keil\ARM\CMSIS\Include-D__UVISION_VERSION="527" -DARMCM4_FP -D__MSP432P401R__-o .\objects\timer_a.o --omf_browse .\objects\timer_a.crf --depend .\objects\timer_a.d)
+F (.\src\timer_a.c)(0x63A2668F)(--c99 --gnu -c --cpu Cortex-M4.fp -g -O0 --apcs=interwork --split_sections -I .\inc-I.\RTE\_Target_1-ID:\Keil\ARM\PACK\TexasInstruments\MSP432P4xx_DFP\3.2.6\Device\Include-ID:\Keil\ARM\CMSIS\Include-D__UVISION_VERSION="527" -D__MSP432P401R__ -D__MSP432P401R__-o .\objects\timer_a.o --omf_browse .\objects\timer_a.crf --depend .\objects\timer_a.d)
 I (.\inc\timer_a.h)(0x63A265BD)
 I (D:\Keil\ARM\ARMCC\include\stdint.h)(0x569DEA3A)
 I (.\inc\msp.h)(0x62E0FD00)
@@ -453,7 +453,7 @@ I (.\inc\system_msp432p401r.h)(0x62E0FD00)
 I (D:\Keil\ARM\ARMCC\include\stdbool.h)(0x569DEA3A)
 I (.\inc\interrupt.h)(0x63A265BC)
 I (.\inc\debug.h)(0x62E0FD00)
-F (.\src\timer32.c)(0x63A2668F)(--c99 --gnu -c --cpu Cortex-M4.fp --li -g -O0 --apcs=interwork --split_sections -I .\inc-I.\RTE\_Target_1-ID:\Keil\ARM\PACK\ARM\CMSIS\4.5.0\Device\ARM\ARMCM4\Include-ID:\Keil\ARM\CMSIS\Include-D__UVISION_VERSION="527" -DARMCM4_FP -D__MSP432P401R__-o .\objects\timer32.o --omf_browse .\objects\timer32.crf --depend .\objects\timer32.d)
+F (.\src\timer32.c)(0x63A2668F)(--c99 --gnu -c --cpu Cortex-M4.fp -g -O0 --apcs=interwork --split_sections -I .\inc-I.\RTE\_Target_1-ID:\Keil\ARM\PACK\TexasInstruments\MSP432P4xx_DFP\3.2.6\Device\Include-ID:\Keil\ARM\CMSIS\Include-D__UVISION_VERSION="527" -D__MSP432P401R__ -D__MSP432P401R__-o .\objects\timer32.o --omf_browse .\objects\timer32.crf --depend .\objects\timer32.d)
 I (.\inc\timer32.h)(0x63A265BD)
 I (D:\Keil\ARM\ARMCC\include\stdint.h)(0x569DEA3A)
 I (D:\Keil\ARM\ARMCC\include\stdbool.h)(0x569DEA3A)
@@ -469,7 +469,7 @@ I (.\inc\mpu_armv7.h)(0x5E30CD66)
 I (.\inc\system_msp432p401r.h)(0x62E0FD00)
 I (.\inc\interrupt.h)(0x63A265BC)
 I (.\inc\debug.h)(0x62E0FD00)
-F (.\src\uart.c)(0x63A2668F)(--c99 --gnu -c --cpu Cortex-M4.fp --li -g -O0 --apcs=interwork --split_sections -I .\inc-I.\RTE\_Target_1-ID:\Keil\ARM\PACK\ARM\CMSIS\4.5.0\Device\ARM\ARMCM4\Include-ID:\Keil\ARM\CMSIS\Include-D__UVISION_VERSION="527" -DARMCM4_FP -D__MSP432P401R__-o .\objects\uart.o --omf_browse .\objects\uart.crf --depend .\objects\uart.d)
+F (.\src\uart.c)(0x63A2668F)(--c99 --gnu -c --cpu Cortex-M4.fp -g -O0 --apcs=interwork --split_sections -I .\inc-I.\RTE\_Target_1-ID:\Keil\ARM\PACK\TexasInstruments\MSP432P4xx_DFP\3.2.6\Device\Include-ID:\Keil\ARM\CMSIS\Include-D__UVISION_VERSION="527" -D__MSP432P401R__ -D__MSP432P401R__-o .\objects\uart.o --omf_browse .\objects\uart.crf --depend .\objects\uart.d)
 I (.\inc\uart.h)(0x63A265BD)
 I (D:\Keil\ARM\ARMCC\include\stdint.h)(0x569DEA3A)
 I (D:\Keil\ARM\ARMCC\include\stdbool.h)(0x569DEA3A)
@@ -486,7 +486,7 @@ I (.\inc\system_msp432p401r.h)(0x62E0FD00)
 I (.\inc\eusci.h)(0x63A265BC)
 I (.\inc\interrupt.h)(0x63A265BC)
 I (.\inc\debug.h)(0x62E0FD00)
-F (.\src\wdt_a.c)(0x63A2668F)(--c99 --gnu -c --cpu Cortex-M4.fp --li -g -O0 --apcs=interwork --split_sections -I .\inc-I.\RTE\_Target_1-ID:\Keil\ARM\PACK\ARM\CMSIS\4.5.0\Device\ARM\ARMCM4\Include-ID:\Keil\ARM\CMSIS\Include-D__UVISION_VERSION="527" -DARMCM4_FP -D__MSP432P401R__-o .\objects\wdt_a.o --omf_browse .\objects\wdt_a.crf --depend .\objects\wdt_a.d)
+F (.\src\wdt_a.c)(0x63A2668F)(--c99 --gnu -c --cpu Cortex-M4.fp -g -O0 --apcs=interwork --split_sections -I .\inc-I.\RTE\_Target_1-ID:\Keil\ARM\PACK\TexasInstruments\MSP432P4xx_DFP\3.2.6\Device\Include-ID:\Keil\ARM\CMSIS\Include-D__UVISION_VERSION="527" -D__MSP432P401R__ -D__MSP432P401R__-o .\objects\wdt_a.o --omf_browse .\objects\wdt_a.crf --depend .\objects\wdt_a.d)
 I (D:\Keil\ARM\ARMCC\include\stdint.h)(0x569DEA3A)
 I (.\inc\wdt_a.h)(0x63A265BD)
 I (.\inc\msp.h)(0x62E0FD00)

@@ -1,0 +1,6 @@
+{
+    "files.associations": {
+        "*.H": "a51",
+        "oled.h": "c"
+    }
+}

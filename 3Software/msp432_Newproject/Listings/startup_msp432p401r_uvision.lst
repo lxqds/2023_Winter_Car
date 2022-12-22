@@ -561,10 +561,10 @@ ARM Macro Assembler    Page 9
               00000000 
 Command Line: --debug --xref --diag_suppress=9931 --cpu=Cortex-M4.fp --apcs=int
 erwork --depend=.\objects\startup_msp432p401r_uvision.d -o.\objects\startup_msp
-432p401r_uvision.o -I.\inc -I.\RTE\_Target_1 -ID:\Keil\ARM\PACK\ARM\CMSIS\4.5.0
-\Device\ARM\ARMCM4\Include -ID:\Keil\ARM\CMSIS\Include --predefine="__UVISION_V
-ERSION SETA 527" --predefine="ARMCM4_FP SETA 1" --list=.\listings\startup_msp43
-2p401r_uvision.lst startup_msp432p401r_uvision.s
+432p401r_uvision.o -I.\inc -I.\RTE\_Target_1 -ID:\Keil\ARM\PACK\TexasInstrument
+s\MSP432P4xx_DFP\3.2.6\Device\Include -ID:\Keil\ARM\CMSIS\Include --predefine="
+__UVISION_VERSION SETA 527" --predefine="__MSP432P401R__ SETA 1" --list=.\listi
+ngs\startup_msp432p401r_uvision.lst startup_msp432p401r_uvision.s
 
 
 

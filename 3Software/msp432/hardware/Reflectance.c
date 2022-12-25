@@ -6,12 +6,12 @@
 
 void Reflectance_Init2(void)
 {
-	P7->DIR &= ~0xFF;
+	P5->DIR &= ~0xFF;
 }
 uint8_t Reflectance_Read2(void)
 {
 	uint8_t Result;
-	Result = P7->IN;
+	Result = P5->IN;
 	return Result;
 }
 void Reflectance_Init(void){

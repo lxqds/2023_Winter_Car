@@ -16,6 +16,8 @@
 #include "key.h"
 #include "bsp_exti.h"
 #include "Reflectance.h"
+#include "bsp_Servo.h"
+#include "bsp_motor.h"
 /**
 *  变量宏定义
 */
@@ -61,6 +63,12 @@ int main (void) {
 	KEY_Init();
 	Motor_Init_bianmaqi();
 	Reflectance_Init2();
+	Servo_Init();
+	Motor_Init();
+	Motor_Control(1,0,40);
+	Motor_Control(2,0,40);
+	Motor_Control(3,1,0);
+	Motor_Control(4,0,40);
   // create 'thread' functions that start executing,
   // example: tid_name = osThreadCreate (osThread(name), NULL);
 	osThreadCreate(osThread(Thread_LED),NULL);
@@ -103,6 +111,7 @@ void Thread_Key(void const* argument)
 		Key = KEY_Scan(Key_Single_Mode);
 		if(Key)
 		{
+			Servo_Control(1,40);
 			LED_R_Tog();
 			ReadData = Reflectance_Read2();
 			OLED_Clear();

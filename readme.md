@@ -26,3 +26,7 @@ day5-3.外部中断计时编码器
 <img src="assets/image-20221223205958984.png" alt="image-20221223205958984" style="zoom:25%;" />	
 
 2.   学习了RTX,CMSIS等知识
+
+## day7-8
+
+>   1.看RTX官方手册

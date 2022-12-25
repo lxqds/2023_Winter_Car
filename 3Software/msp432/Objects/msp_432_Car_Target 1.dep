@@ -1095,8 +1095,36 @@ I (D:\Keil\ARM\ARMCC\include\stdbool.h)(0x569DEA3A)
 I (.\ti_driverlib\simplelink_msp432p4_sdk_3_40_01_02\ti/devices/msp432p4xx/driverlib/debug.h)(0x62E0FD00)
 I (.\ti_driverlib\simplelink_msp432p4_sdk_3_40_01_02\ti/devices/msp432p4xx/driverlib/sysctl.h)(0x62E0FD02)
 F (.\ti_driverlib\simplelink_msp432p4_sdk_3_40_01_02\ti\devices\msp432p4xx\driverlib\keil\msp432p4xx_driverlib.lib)(0x62E0FD44)()
+F (.\Thread.c)(0x55E7844A)(--c99 --gnu -c --cpu Cortex-M4.fp -D__RTX -g -O0 --apcs=interwork --split_sections -I .\sys\inc -I .\hardware\inc -I .\ti_driverlib\simplelink_msp432p4_sdk_3_40_01_02-I.\RTE\_Target_1-ID:\Keil\ARM\PACK\ARM\CMSIS\4.5.0\CMSIS\Include-ID:\Keil\ARM\PACK\ARM\CMSIS\4.5.0\CMSIS\RTOS\RTX\INC-ID:\Keil\ARM\PACK\TexasInstruments\MSP432P4xx_DFP\3.2.6\Device\Include-D__UVISION_VERSION="527" -D_RTE_ -D__MSP432P401R__-o .\objects\thread.o --omf_browse .\objects\thread.crf --depend .\objects\thread.d)
+I (D:\Keil\ARM\PACK\ARM\CMSIS\4.5.0\CMSIS\RTOS\RTX\INC\cmsis_os.h)(0x562747DE)
+I (D:\Keil\ARM\ARMCC\include\stdint.h)(0x569DEA3A)
+I (D:\Keil\ARM\ARMCC\include\stddef.h)(0x569DEA3A)
+F (.\Timer.c)(0x55E7844A)(--c99 --gnu -c --cpu Cortex-M4.fp -D__RTX -g -O0 --apcs=interwork --split_sections -I .\sys\inc -I .\hardware\inc -I .\ti_driverlib\simplelink_msp432p4_sdk_3_40_01_02-I.\RTE\_Target_1-ID:\Keil\ARM\PACK\ARM\CMSIS\4.5.0\CMSIS\Include-ID:\Keil\ARM\PACK\ARM\CMSIS\4.5.0\CMSIS\RTOS\RTX\INC-ID:\Keil\ARM\PACK\TexasInstruments\MSP432P4xx_DFP\3.2.6\Device\Include-D__UVISION_VERSION="527" -D_RTE_ -D__MSP432P401R__-o .\objects\timer.o --omf_browse .\objects\timer.crf --depend .\objects\timer.d)
+I (D:\Keil\ARM\PACK\ARM\CMSIS\4.5.0\CMSIS\RTOS\RTX\INC\cmsis_os.h)(0x562747DE)
+I (D:\Keil\ARM\ARMCC\include\stdint.h)(0x569DEA3A)
+I (D:\Keil\ARM\ARMCC\include\stddef.h)(0x569DEA3A)
+F (.\Semaphore.c)(0x55E7844A)(--c99 --gnu -c --cpu Cortex-M4.fp -D__RTX -g -O0 --apcs=interwork --split_sections -I .\sys\inc -I .\hardware\inc -I .\ti_driverlib\simplelink_msp432p4_sdk_3_40_01_02-I.\RTE\_Target_1-ID:\Keil\ARM\PACK\ARM\CMSIS\4.5.0\CMSIS\Include-ID:\Keil\ARM\PACK\ARM\CMSIS\4.5.0\CMSIS\RTOS\RTX\INC-ID:\Keil\ARM\PACK\TexasInstruments\MSP432P4xx_DFP\3.2.6\Device\Include-D__UVISION_VERSION="527" -D_RTE_ -D__MSP432P401R__-o .\objects\semaphore.o --omf_browse .\objects\semaphore.crf --depend .\objects\semaphore.d)
+I (D:\Keil\ARM\PACK\ARM\CMSIS\4.5.0\CMSIS\RTOS\RTX\INC\cmsis_os.h)(0x562747DE)
+I (D:\Keil\ARM\ARMCC\include\stdint.h)(0x569DEA3A)
+I (D:\Keil\ARM\ARMCC\include\stddef.h)(0x569DEA3A)
+F (.\Mutex.c)(0x55E7844A)(--c99 --gnu -c --cpu Cortex-M4.fp -D__RTX -g -O0 --apcs=interwork --split_sections -I .\sys\inc -I .\hardware\inc -I .\ti_driverlib\simplelink_msp432p4_sdk_3_40_01_02-I.\RTE\_Target_1-ID:\Keil\ARM\PACK\ARM\CMSIS\4.5.0\CMSIS\Include-ID:\Keil\ARM\PACK\ARM\CMSIS\4.5.0\CMSIS\RTOS\RTX\INC-ID:\Keil\ARM\PACK\TexasInstruments\MSP432P4xx_DFP\3.2.6\Device\Include-D__UVISION_VERSION="527" -D_RTE_ -D__MSP432P401R__-o .\objects\mutex.o --omf_browse .\objects\mutex.crf --depend .\objects\mutex.d)
+I (D:\Keil\ARM\PACK\ARM\CMSIS\4.5.0\CMSIS\RTOS\RTX\INC\cmsis_os.h)(0x562747DE)
+I (D:\Keil\ARM\ARMCC\include\stdint.h)(0x569DEA3A)
+I (D:\Keil\ARM\ARMCC\include\stddef.h)(0x569DEA3A)
+F (.\MsgQueue.c)(0x55E7844A)(--c99 --gnu -c --cpu Cortex-M4.fp -D__RTX -g -O0 --apcs=interwork --split_sections -I .\sys\inc -I .\hardware\inc -I .\ti_driverlib\simplelink_msp432p4_sdk_3_40_01_02-I.\RTE\_Target_1-ID:\Keil\ARM\PACK\ARM\CMSIS\4.5.0\CMSIS\Include-ID:\Keil\ARM\PACK\ARM\CMSIS\4.5.0\CMSIS\RTOS\RTX\INC-ID:\Keil\ARM\PACK\TexasInstruments\MSP432P4xx_DFP\3.2.6\Device\Include-D__UVISION_VERSION="527" -D_RTE_ -D__MSP432P401R__-o .\objects\msgqueue.o --omf_browse .\objects\msgqueue.crf --depend .\objects\msgqueue.d)
+I (D:\Keil\ARM\PACK\ARM\CMSIS\4.5.0\CMSIS\RTOS\RTX\INC\cmsis_os.h)(0x562747DE)
+I (D:\Keil\ARM\ARMCC\include\stdint.h)(0x569DEA3A)
+I (D:\Keil\ARM\ARMCC\include\stddef.h)(0x569DEA3A)
+F (.\MemPool.c)(0x55E7844A)(--c99 --gnu -c --cpu Cortex-M4.fp -D__RTX -g -O0 --apcs=interwork --split_sections -I .\sys\inc -I .\hardware\inc -I .\ti_driverlib\simplelink_msp432p4_sdk_3_40_01_02-I.\RTE\_Target_1-ID:\Keil\ARM\PACK\ARM\CMSIS\4.5.0\CMSIS\Include-ID:\Keil\ARM\PACK\ARM\CMSIS\4.5.0\CMSIS\RTOS\RTX\INC-ID:\Keil\ARM\PACK\TexasInstruments\MSP432P4xx_DFP\3.2.6\Device\Include-D__UVISION_VERSION="527" -D_RTE_ -D__MSP432P401R__-o .\objects\mempool.o --omf_browse .\objects\mempool.crf --depend .\objects\mempool.d)
+I (D:\Keil\ARM\PACK\ARM\CMSIS\4.5.0\CMSIS\RTOS\RTX\INC\cmsis_os.h)(0x562747DE)
+I (D:\Keil\ARM\ARMCC\include\stdint.h)(0x569DEA3A)
+I (D:\Keil\ARM\ARMCC\include\stddef.h)(0x569DEA3A)
+F (.\MailQueue.c)(0x55E7844A)(--c99 --gnu -c --cpu Cortex-M4.fp -D__RTX -g -O0 --apcs=interwork --split_sections -I .\sys\inc -I .\hardware\inc -I .\ti_driverlib\simplelink_msp432p4_sdk_3_40_01_02-I.\RTE\_Target_1-ID:\Keil\ARM\PACK\ARM\CMSIS\4.5.0\CMSIS\Include-ID:\Keil\ARM\PACK\ARM\CMSIS\4.5.0\CMSIS\RTOS\RTX\INC-ID:\Keil\ARM\PACK\TexasInstruments\MSP432P4xx_DFP\3.2.6\Device\Include-D__UVISION_VERSION="527" -D_RTE_ -D__MSP432P401R__-o .\objects\mailqueue.o --omf_browse .\objects\mailqueue.crf --depend .\objects\mailqueue.d)
+I (D:\Keil\ARM\PACK\ARM\CMSIS\4.5.0\CMSIS\RTOS\RTX\INC\cmsis_os.h)(0x562747DE)
+I (D:\Keil\ARM\ARMCC\include\stdint.h)(0x569DEA3A)
+I (D:\Keil\ARM\ARMCC\include\stddef.h)(0x569DEA3A)
 F (D:\Keil\ARM\PACK\ARM\CMSIS\4.5.0\CMSIS\RTOS\RTX\LIB\ARM\RTX_CM4.lib)(0x56245D06)()
-F (RTE\CMSIS\RTX_Conf_CM.c)(0x63A3F2B9)(--c99 --gnu -c --cpu Cortex-M4.fp -D__RTX -g -O0 --apcs=interwork --split_sections -I .\sys\inc -I .\hardware\inc -I .\ti_driverlib\simplelink_msp432p4_sdk_3_40_01_02-I.\RTE\_Target_1-ID:\Keil\ARM\PACK\ARM\CMSIS\4.5.0\CMSIS\Include-ID:\Keil\ARM\PACK\ARM\CMSIS\4.5.0\CMSIS\RTOS\RTX\INC-ID:\Keil\ARM\PACK\TexasInstruments\MSP432P4xx_DFP\3.2.6\Device\Include-D__UVISION_VERSION="527" -D_RTE_ -D__MSP432P401R__-o .\objects\rtx_conf_cm.o --omf_browse .\objects\rtx_conf_cm.crf --depend .\objects\rtx_conf_cm.d)
+F (RTE\CMSIS\RTX_Conf_CM.c)(0x63A80256)(--c99 --gnu -c --cpu Cortex-M4.fp -D__RTX -g -O0 --apcs=interwork --split_sections -I .\sys\inc -I .\hardware\inc -I .\ti_driverlib\simplelink_msp432p4_sdk_3_40_01_02-I.\RTE\_Target_1-ID:\Keil\ARM\PACK\ARM\CMSIS\4.5.0\CMSIS\Include-ID:\Keil\ARM\PACK\ARM\CMSIS\4.5.0\CMSIS\RTOS\RTX\INC-ID:\Keil\ARM\PACK\TexasInstruments\MSP432P4xx_DFP\3.2.6\Device\Include-D__UVISION_VERSION="527" -D_RTE_ -D__MSP432P401R__-o .\objects\rtx_conf_cm.o --omf_browse .\objects\rtx_conf_cm.crf --depend .\objects\rtx_conf_cm.d)
 I (D:\Keil\ARM\PACK\ARM\CMSIS\4.5.0\CMSIS\RTOS\RTX\INC\cmsis_os.h)(0x562747DE)
 I (D:\Keil\ARM\ARMCC\include\stdint.h)(0x569DEA3A)
 I (D:\Keil\ARM\ARMCC\include\stddef.h)(0x569DEA3A)

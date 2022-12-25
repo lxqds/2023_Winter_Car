@@ -1,27 +1,36 @@
 
 #include <stdint.h>
 #include <ti/devices/msp432p4xx/driverlib/driverlib.h>
-#include "delay.h"
 #include "Reflectance.h"
+#include "cmsis_os.h"                   // ARM::CMSIS:RTOS:Keil RTX
 
-
+void Reflectance_Init2(void)
+{
+	P7->DIR &= ~0xFF;
+}
+uint8_t Reflectance_Read2(void)
+{
+	uint8_t Result;
+	Result = P7->IN;
+	return Result;
+}
 void Reflectance_Init(void){
     // write this as part of Lab 6
   P6->DIR |= BIT0;
   P6->OUT &= ~BIT0;
-  P5->DIR &= ~0xFF; // P7.0-7.7 input
+  P7->DIR &= ~0xFF; // P7.0-7.7 input
 }
 
 uint8_t Reflectance_Read(uint32_t time){
-uint8_t result;
+static uint8_t result;
     // write this as part of Lab 6
   P6->OUT |= BIT0;  // Turn on IR light
-  P5->DIR |= 0xFF;  // P7.0-7.7 output
-  P5->OUT |= 0xFF;  // Set P7.0-7.7 high
-  delay_us(10);
-  P5->DIR &= ~0xFF; // P7.0-7.7 input
-  delay_us(time);
-  result = P5->IN;
+  P7->DIR |= 0xFF;  // P7.0-7.7 output
+  P7->OUT |= 0xFF;  // Set P7.0-7.7 high
+  osDelay(1);
+  P7->DIR &= ~0xFF; // P7.0-7.7 input
+  osDelay(time);
+  result = P7->IN;
   P6->OUT &= ~BIT0; // Turn off IR light
 
   return result;
@@ -65,7 +74,7 @@ void Reflectance_Start(void){
   P6->OUT |= BIT0;  // Turn on IR light
   P5->DIR |= 0xFF;  // P7.0-7.7 output
   P5->OUT |= 0xFF;  // Set P7.0-7.7 high
-  delay_us(10);
+  //delay_us(10);
   P5->DIR &= ~0xFF; // P7.0-7.7 input
 }
 uint8_t Reflectance_End(void){

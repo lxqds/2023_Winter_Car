@@ -2,7 +2,7 @@
  * @Description: 点灯
  * @Author: Liang xiaoqi
  * @Date: 2022-12-21 15:48:04
- * @LastEditTime: 2022-12-24 01:00:23
+ * @LastEditTime: 2022-12-25 18:08:56
  * @LastEditors: Liang xiaoqi
  */
 /*----------------------------------------------------------------------------
@@ -15,6 +15,7 @@
 #include "sysinit.h"
 #include "key.h"
 #include "bsp_exti.h"
+#include "Reflectance.h"
 /**
 *  变量宏定义
 */
@@ -59,6 +60,7 @@ int main (void) {
 	OLED_Init();
 	KEY_Init();
 	Motor_Init_bianmaqi();
+	Reflectance_Init2();
   // create 'thread' functions that start executing,
   // example: tid_name = osThreadCreate (osThread(name), NULL);
 	osThreadCreate(osThread(Thread_LED),NULL);
@@ -74,9 +76,9 @@ void Thread_LED(void const* argument)
 		static uint8_t i=0;
 		LED_R_Tog();
 		OLED_ShowString(1,2,"oledtest",16);
-		OLED_ShowString(2,4,"oledtest",16);
-		OLED_ShowString(3,6,"oledtest",16);
-		OLED_ShowString(16,0,"oledtest",16);
+//		OLED_ShowString(2,4,"oledtest",16);
+//		OLED_ShowString(3,6,"oledtest",16);
+//		OLED_ShowString(16,0,"oledtest",16);
 		OLED_ShowNum(0,0,i,2,16);
 		OLED_ShowNum(72,0,bianmaqi[0],3,16);
 		OLED_ShowNum(80,2,bianmaqi[1],3,16);
@@ -93,6 +95,7 @@ void Thread_LED(void const* argument)
 
 void Thread_Key(void const* argument)
 {
+	static uint8_t ReadData;
 	while (1)
 	{
 		osDelay(10);
@@ -101,7 +104,10 @@ void Thread_Key(void const* argument)
 		if(Key)
 		{
 			LED_R_Tog();
+			ReadData = Reflectance_Read2();
+			OLED_Clear();
 			OLED_ShowNum(96,6,Key,2,16);
+			OLED_ShowBin(1,4,ReadData,8,16);
 		}
 		
 	}

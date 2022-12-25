@@ -49,3 +49,4 @@
 .\objects\main.o: .\sys\inc\sysinit.h
 .\objects\main.o: .\hardware\inc\key.h
 .\objects\main.o: .\hardware\inc\bsp_exti.h
+.\objects\main.o: .\hardware\inc\Reflectance.h

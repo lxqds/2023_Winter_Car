@@ -52,3 +52,4 @@
 .\objects\main.o: .\hardware\inc\Reflectance.h
 .\objects\main.o: bsp_Servo.h
 .\objects\main.o: .\hardware\inc\bsp_motor.h
+.\objects\main.o: .\hardware\inc\timA.h

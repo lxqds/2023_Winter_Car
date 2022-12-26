@@ -18,6 +18,7 @@
 #include "Reflectance.h"
 #include "bsp_Servo.h"
 #include "bsp_motor.h"
+#include "timA.h"
 /**
 *  变量宏定义
 */
@@ -65,10 +66,9 @@ int main (void) {
 	Reflectance_Init2();
 	Servo_Init();
 	Motor_Init();
-	Motor_Control(1,0,40);
-	Motor_Control(2,0,40);
-	Motor_Control(3,1,0);
-	Motor_Control(4,0,40);
+
+	Motor_Control(3,0,5);
+	Motor_Control(4,0,20);
   // create 'thread' functions that start executing,
   // example: tid_name = osThreadCreate (osThread(name), NULL);
 	osThreadCreate(osThread(Thread_LED),NULL);
@@ -98,20 +98,38 @@ void Thread_LED(void const* argument)
 		{
 			i = 0;
 		}
+		
 	}
 }
 
 void Thread_Key(void const* argument)
 {
 	static uint8_t ReadData;
+	 uint16_t i=500;
+	 uint8_t dir=1;
 	while (1)
 	{
 		osDelay(10);
 		LED_G_Tog();
 		Key = KEY_Scan(Key_Single_Mode);
+		switch(dir)
+		{
+			case 0:i--;break;
+			case 1:i++;break;
+		}
+		if((i==499)|(i==1000))
+		{
+			dir =!dir;
+		}
+		else
+		{
+			dir = dir;
+		}
+		Servo_Control(2,1000);
+		Servo_Control(1,i);
+		OLED_ShowNum(1,6,i,4,16);
 		if(Key)
 		{
-			Servo_Control(1,40);
 			LED_R_Tog();
 			ReadData = Reflectance_Read2();
 			OLED_Clear();

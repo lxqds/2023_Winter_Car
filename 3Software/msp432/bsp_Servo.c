@@ -29,7 +29,7 @@ void Servo_Init(void)
  * @param	uint8_t Duty_Cycle	占空比0-99
  * @return	
  */
-void Servo_Control(uint8_t Servox,uint8_t Duty_Cycle)
+void Servo_Control(uint8_t Servox,uint16_t Duty_Cycle)
 {
 	uint16_t Servo;
 	switch(Servox)
@@ -39,5 +39,5 @@ void Servo_Control(uint8_t Servox,uint8_t Duty_Cycle)
 		case Servo2:	Servo = TIMER_A_CAPTURECOMPARE_REGISTER_4;
 			break;
 	}
-	Timer_A_setCompareValue(TIMER_A2_BASE,Servo,200*Duty_Cycle);
+	Timer_A_setCompareValue(TIMER_A2_BASE,Servo,Duty_Cycle);
 }

@@ -16,6 +16,6 @@ void Servo_Init(void);
  * @param	uint32_t Duty_Cycle	占空比0-99
  * @return	
  */
-void Servo_Control(uint8_t Servox,uint8_t Duty_Cycle);
+void Servo_Control(uint8_t Servox,uint16_t Duty_Cycle);
 
 #endif

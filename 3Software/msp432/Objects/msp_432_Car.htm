@@ -3,7 +3,7 @@
 <title>Static Call Graph - [.\Objects\msp_432_Car.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image .\Objects\msp_432_Car.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060061: Last Updated: Mon Dec 26 01:37:25 2022
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060061: Last Updated: Mon Dec 26 17:56:26 2022
 <BR><P>
 <H3>Maximum Stack Usage =        132 bytes + Unknown(Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -590,7 +590,7 @@ Global Symbols
 <LI><a href="#[47]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Thread_Key
 </UL>
 
-<P><STRONG><a name="[77]"></a>Motor_Control</STRONG> (Thumb, 562 bytes, Stack size 40 bytes, bsp_motor.o(i.Motor_Control))
+<P><STRONG><a name="[77]"></a>Motor_Control</STRONG> (Thumb, 574 bytes, Stack size 40 bytes, bsp_motor.o(i.Motor_Control))
 <BR><BR>[Stack]<UL><LI>Max Depth = 40<LI>Call Chain = Motor_Control
 </UL>
 <BR>[Calls]<UL><LI><a href="#[78]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Timer_A_setCompareValue
@@ -598,7 +598,7 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[49]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[9b]"></a>Motor_Init</STRONG> (Thumb, 232 bytes, Stack size 32 bytes, bsp_motor.o(i.Motor_Init))
+<P><STRONG><a name="[9b]"></a>Motor_Init</STRONG> (Thumb, 234 bytes, Stack size 32 bytes, bsp_motor.o(i.Motor_Init))
 <BR><BR>[Stack]<UL><LI>Max Depth = 32<LI>Call Chain = Motor_Init
 </UL>
 <BR>[Called By]<UL><LI><a href="#[49]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
@@ -622,9 +622,9 @@ Global Symbols
 <P><STRONG><a name="[7b]"></a>OLED_Init</STRONG> (Thumb, 236 bytes, Stack size 4 bytes, oled.o(i.OLED_Init))
 <BR><BR>[Stack]<UL><LI>Max Depth = 36<LI>Call Chain = OLED_Init &rArr; OLED_Clear &rArr; OLED_WR_Byte &rArr; Send_Byte
 </UL>
-<BR>[Calls]<UL><LI><a href="#[7c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2C_SW_Configuration
-<LI><a href="#[79]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_Clear
+<BR>[Calls]<UL><LI><a href="#[79]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_Clear
 <LI><a href="#[7a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_WR_Byte
+<LI><a href="#[7c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2C_SW_Configuration
 </UL>
 <BR>[Called By]<UL><LI><a href="#[49]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
@@ -677,10 +677,10 @@ Global Symbols
 <P><STRONG><a name="[7a]"></a>OLED_WR_Byte</STRONG> (Thumb, 56 bytes, Stack size 12 bytes, oled.o(i.OLED_WR_Byte))
 <BR><BR>[Stack]<UL><LI>Max Depth = 20<LI>Call Chain = OLED_WR_Byte &rArr; Send_Byte
 </UL>
-<BR>[Calls]<UL><LI><a href="#[86]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2C_Stop
-<LI><a href="#[83]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2C_Start
-<LI><a href="#[84]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Send_Byte
+<BR>[Calls]<UL><LI><a href="#[84]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Send_Byte
 <LI><a href="#[85]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2C_WaitAck
+<LI><a href="#[86]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2C_Stop
+<LI><a href="#[83]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2C_Start
 </UL>
 <BR>[Called By]<UL><LI><a href="#[7b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_Init
 <LI><a href="#[79]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_Clear
@@ -707,7 +707,7 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[7a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_WR_Byte
 </UL>
 
-<P><STRONG><a name="[87]"></a>Servo_Control</STRONG> (Thumb, 42 bytes, Stack size 16 bytes, bsp_servo.o(i.Servo_Control))
+<P><STRONG><a name="[87]"></a>Servo_Control</STRONG> (Thumb, 38 bytes, Stack size 16 bytes, bsp_servo.o(i.Servo_Control))
 <BR><BR>[Stack]<UL><LI>Max Depth = 16<LI>Call Chain = Servo_Control
 </UL>
 <BR>[Calls]<UL><LI><a href="#[78]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Timer_A_setCompareValue
@@ -771,7 +771,7 @@ Global Symbols
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> startup_msp432p401r_uvision.o(RESET)
 </UL>
-<P><STRONG><a name="[47]"></a>Thread_Key</STRONG> (Thumb, 92 bytes, Stack size 8 bytes, main.o(i.Thread_Key))
+<P><STRONG><a name="[47]"></a>Thread_Key</STRONG> (Thumb, 190 bytes, Stack size 8 bytes, main.o(i.Thread_Key))
 <BR><BR>[Stack]<UL><LI>Max Depth = 132<LI>Call Chain = Thread_Key &rArr; OLED_ShowNum &rArr; OLED_ShowChar &rArr; OLED_Set_Pos &rArr; OLED_WR_Byte &rArr; Send_Byte
 </UL>
 <BR>[Calls]<UL><LI><a href="#[8b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osDelay
@@ -867,7 +867,7 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[92]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;isrMessagePut
 </UL>
 
-<P><STRONG><a name="[49]"></a>main</STRONG> (Thumb, 102 bytes, Stack size 8 bytes, main.o(i.main))
+<P><STRONG><a name="[49]"></a>main</STRONG> (Thumb, 82 bytes, Stack size 8 bytes, main.o(i.main))
 <BR><BR>[Stack]<UL><LI>Max Depth = 88<LI>Call Chain = main &rArr; osKernelInitialize &rArr; svcKernelInitialize &rArr; svcThreadCreate &rArr; rt_tsk_create &rArr; rt_init_context &rArr; rt_init_stack
 </UL>
 <BR>[Calls]<UL><LI><a href="#[60]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osThreadCreate

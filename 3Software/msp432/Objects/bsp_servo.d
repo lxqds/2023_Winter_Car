@@ -1,5 +1,5 @@
-.\objects\bsp_servo.o: bsp_Servo.c
-.\objects\bsp_servo.o: bsp_Servo.h
+.\objects\bsp_servo.o: hardware\bsp_Servo.c
+.\objects\bsp_servo.o: .\hardware\inc\bsp_Servo.h
 .\objects\bsp_servo.o: .\ti_driverlib\simplelink_msp432p4_sdk_3_40_01_02\ti/devices/msp432p4xx/driverlib/driverlib.h
 .\objects\bsp_servo.o: .\ti_driverlib\simplelink_msp432p4_sdk_3_40_01_02\ti/devices/msp432p4xx/driverlib/adc14.h
 .\objects\bsp_servo.o: D:\Keil\ARM\ARMCC\Bin\..\include\stdint.h

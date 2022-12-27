@@ -22,14 +22,18 @@ Dialog DLL:      TCM.DLL V1.14.8.0
  
 <h2>Project:</h2>
 C:\Users\lxq\Desktop\2023WinterVacation\2021国赛F题小车\3Software\msp432\msp_432_Car.uvprojx
-Project File Date:  12/26/2022
+Project File Date:  12/27/2022
 
 <h2>Output:</h2>
 *** Using Compiler 'V5.06 update 1 (build 61)', folder: 'D:\Keil\ARM\ARMCC\Bin'
 Build target 'Target 1'
+compiling main.c...
+main.c(146): warning:  #1-D: last line of file ends without a newline
+  }
+main.c: 1 warning, 0 errors
 linking...
-Program Size: Code=11028 RO-data=2792 RW-data=124 ZI-data=3764  
-".\Objects\msp_432_Car.axf" - 0 Error(s), 0 Warning(s).
+Program Size: Code=8588 RO-data=476 RW-data=96 ZI-data=3728  
+".\Objects\msp_432_Car.axf" - 0 Error(s), 1 Warning(s).
 
 <h2>Software Packages used:</h2>
 
@@ -60,25 +64,25 @@ Package Vendor: TexasInstruments
    * Component: ARM::CMSIS:CORE:4.3.0
 
    * Component: ARM::CMSIS:RTOS:Keil RTX:4.80.0
-      Source file:   CMSIS\RTOS\RTX\UserCodeTemplates\MsgQueue.c
+      Source file:   CMSIS\RTOS\RTX\UserCodeTemplates\Mutex.c
+      Include file:  CMSIS\RTOS\RTX\UserCodeTemplates\osObjects.h
+      Source file:   CMSIS\RTOS\RTX\UserCodeTemplates\Timer.c
+      Source file:   CMSIS\RTOS\RTX\UserCodeTemplates\MemPool.c
+      Include file:  CMSIS\RTOS\RTX\INC\cmsis_os.h
+      Source file:   CMSIS\RTOS\RTX\SRC\ARM\SVC_Table.s
+      Source file:   CMSIS\RTOS\RTX\Templates\RTX_Conf_CM.c
+      Source file:   CMSIS\RTOS\RTX\UserCodeTemplates\main.c
       Source file:   CMSIS\RTOS\RTX\UserCodeTemplates\Semaphore.c
       Source file:   CMSIS\RTOS\RTX\UserCodeTemplates\Thread.c
-      Source file:   CMSIS\RTOS\RTX\SRC\ARM\SVC_Table.s
-      Source file:   CMSIS\RTOS\RTX\UserCodeTemplates\MemPool.c
       Source file:   CMSIS\RTOS\RTX\UserCodeTemplates\MailQueue.c
+      Source file:   CMSIS\RTOS\RTX\UserCodeTemplates\MsgQueue.c
       Library file:  CMSIS\RTOS\RTX\LIB\ARM\RTX_CM4.lib
-      Source file:   CMSIS\RTOS\RTX\UserCodeTemplates\main.c
-      Include file:  CMSIS\RTOS\RTX\INC\cmsis_os.h
-      Source file:   CMSIS\RTOS\RTX\Templates\RTX_Conf_CM.c
-      Include file:  CMSIS\RTOS\RTX\UserCodeTemplates\osObjects.h
-      Source file:   CMSIS\RTOS\RTX\UserCodeTemplates\Mutex.c
-      Source file:   CMSIS\RTOS\RTX\UserCodeTemplates\Timer.c
 
    * Component: TexasInstruments::Device:Startup:3.2.2
-      Include file:  Device\Include\msp_compatibility.h
       Source file:   Examples\BlinkLED\blinkLED.c
-      Source file:   Device\Source\startup_msp432p401r_uvision.s
       Source file:   Device\Source\system_msp432p401r.c
+      Source file:   Device\Source\startup_msp432p401r_uvision.s
+      Include file:  Device\Include\msp_compatibility.h
       Source file:   Examples\EmptyMain\main.c
 Build Time Elapsed:  00:00:01
 </pre>

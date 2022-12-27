@@ -43,7 +43,7 @@ osThreadDef (Thread_Key,osPriorityNormal,1,0);
  *  变量
  */
 uint8_t Key = Key_UnPress;
-extern int8_t bianmaqi[4];
+//extern int8_t bianmaqi[4];
 
 /**
  *  任务句柄
@@ -67,8 +67,6 @@ int main (void) {
 	Servo_Init();
 	Motor_Init();
 
-	Motor_Control(3,0,5);
-	Motor_Control(4,0,20);
   // create 'thread' functions that start executing,
   // example: tid_name = osThreadCreate (osThread(name), NULL);
 	osThreadCreate(osThread(Thread_LED),NULL);
@@ -81,6 +79,23 @@ void Thread_LED(void const* argument)
 {
 	while (1)
 	{
+
+	}
+}
+
+void Thread_Key(void const* argument)
+{
+	
+	while (1)
+	{
+		
+		
+	}
+}
+
+void TEST_Thread(void)
+{
+	//1
 		static uint8_t i=0;
 		LED_R_Tog();
 		OLED_ShowString(1,2,"oledtest",16);
@@ -88,42 +103,31 @@ void Thread_LED(void const* argument)
 //		OLED_ShowString(3,6,"oledtest",16);
 //		OLED_ShowString(16,0,"oledtest",16);
 		OLED_ShowNum(0,0,i,2,16);
-		OLED_ShowNum(72,0,bianmaqi[0],3,16);
-		OLED_ShowNum(80,2,bianmaqi[1],3,16);
-		OLED_ShowNum(88,4,bianmaqi[2],3,16);
-		OLED_ShowNum(96,6,bianmaqi[3],3,16);
+//		OLED_ShowNum(72,0,bianmaqi[0],3,16);
+//		OLED_ShowNum(80,2,bianmaqi[1],3,16);
+//		OLED_ShowNum(88,4,bianmaqi[2],3,16);
+//		OLED_ShowNum(96,6,bianmaqi[3],3,16);
 		osDelay(1000);
 		i++;
 		if(i == 100)
 		{
 			i = 0;
 		}
-		
-	}
-}
-
-void Thread_Key(void const* argument)
-{
-	static uint8_t ReadData;
-	 uint16_t i=500;
-	 uint8_t dir=1;
-	while (1)
-	{
+		//2
+		static uint8_t ReadData;
+//	 uint16_t i=500;
+	 uint8_t dir=0;
 		osDelay(10);
 		LED_G_Tog();
 		Key = KEY_Scan(Key_Single_Mode);
 		switch(dir)
 		{
-			case 0:i--;break;
-			case 1:i++;break;
+			case 1:i--;break;
+			case 0:i++;break;
 		}
 		if((i==499)|(i==1000))
 		{
 			dir =!dir;
-		}
-		else
-		{
-			dir = dir;
 		}
 		Servo_Control(2,1000);
 		Servo_Control(1,i);
@@ -136,6 +140,7 @@ void Thread_Key(void const* argument)
 			OLED_ShowNum(96,6,Key,2,16);
 			OLED_ShowBin(1,4,ReadData,8,16);
 		}
-		
-	}
+		//3
+		Motor_Control(3,0,5);
+		Motor_Control(4,0,20);
 }

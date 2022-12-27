@@ -159,40 +159,6 @@ uint8_t Delay_time=0;
 uint8_t TIMflag=0;
 // 6.编写TIMA ISR
 
-
-//float KP = 1.5;
-//float KI = 0.80;
-//float KD = 0.05;
-//float PID_Set1(int Err,int Tar){
-//	static float Delta,PWM,I_Delta,L_Delta;
-//	Delta = Tar - Err;
-//	I_Delta += Delta;
-//	PWM = KP*Delta+KI*I_Delta+KD*(Delta - L_Delta);
-//	L_Delta = Delta;
-//	return PWM;
-//}
-//float PID_Set2(int Err,int Tar){
-//	static float Delta,PWM,I_Delta,L_Delta;
-//	Delta = Tar - Err;
-//	I_Delta += Delta;
-//	PWM = KP*Delta+KI*I_Delta+KD*(Delta - L_Delta);
-//	L_Delta = Delta;
-//	return PWM;
-//}
-
-float PID_PWM1[4];
-
-int MotorA_speed[4]={0};
-extern int bianmaqi[4];
-
-extern uint16_t XUNJIBias;
-extern int Motor_A,Motor_B,Target_A,Target_B;
-extern uint8_t StopFlag;
-extern uint8_t OneMeter_Flag;
-extern uint8_t Mode;
-extern uint8_t Key ;
-float Velocity_Mode1=20,Velocity_Mode2 = 35,Velocity_Mode3 = 68,Turn;
-
 void TA0_0_IRQHandler(void)
 {
     MAP_Timer_A_clearCaptureCompareInterrupt(TIMER_A0_BASE, TIMER_A_CAPTURECOMPARE_REGISTER_0);
@@ -202,10 +168,6 @@ void TA0_0_IRQHandler(void)
         TIMflag=1;
     }
     /*开始填充用户代码*/
-    MotorA_speed[0]=bianmaqi[0];
-    bianmaqi[0]=0;
-    MotorA_speed[3]=bianmaqi[3];
-    bianmaqi[3]=0;
 		
 		
     MAP_GPIO_toggleOutputOnPin(GPIO_PORT_P1, GPIO_PIN0);

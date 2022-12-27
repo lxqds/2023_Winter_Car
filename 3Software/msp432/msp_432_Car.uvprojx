@@ -338,7 +338,7 @@
               <MiscControls></MiscControls>
               <Define></Define>
               <Undefine></Undefine>
-              <IncludePath>.\sys\inc;.\hardware\inc;.\ti_driverlib\simplelink_msp432p4_sdk_3_40_01_02</IncludePath>
+              <IncludePath>.\sys\inc;.\hardware\inc;.\ti_driverlib\simplelink_msp432p4_sdk_3_40_01_02;.\hardware\MPU6050_6500;.\hardware\MPU6050_6500\DMP\driver\include;.\hardware\MPU6050_6500\eMPL;.\hardware\MPU6050_6500\IIC</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -433,11 +433,6 @@
               <FilePath>.\hardware\bsp_motor.c</FilePath>
             </File>
             <File>
-              <FileName>bsp_Servo.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\bsp_Servo.c</FilePath>
-            </File>
-            <File>
               <FileName>key.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\hardware\key.c</FilePath>
@@ -466,6 +461,11 @@
               <FileName>timA.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\hardware\timA.c</FilePath>
+            </File>
+            <File>
+              <FileName>bsp_Servo.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\hardware\bsp_Servo.c</FilePath>
             </File>
           </Files>
         </Group>

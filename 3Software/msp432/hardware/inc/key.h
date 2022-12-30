@@ -14,11 +14,6 @@
 #define KEY1 BITBAND_PERI(P1IN, 1) //读取按键1
 #define KEY2 BITBAND_PERI(P1IN, 4) //读取按键2
 
-#define xvnxina1    BITBAND_PERI(P6IN,7)
-#define xvnxina2    BITBAND_PERI(P5IN,6)
-#define xvnxina3    BITBAND_PERI(P5IN,7)
-#define xvnxina4    BITBAND_PERI(P6IN,6)
-#define xvnxina5    BITBAND_PERI(P9IN,5)
 
 #define KEY1_PRES 1 //KEY1按下
 #define KEY2_PRES 2 //KEY2按下

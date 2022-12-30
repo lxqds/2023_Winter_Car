@@ -10,8 +10,11 @@ void Reflectance_Init2(void)
 uint8_t Reflectance_Read2(void)
 {
 	uint8_t Result;
+//	P5->DIR |= 0xFF;
+//	P5->OUT |= 0xFF;
+//	P5->DIR &= ~0xFF;
 	Result = P5->IN;
-	return Result;
+	return (Result<<3);//将前三位挤占，后三位为0
 }
 void Reflectance_Init(void){
     // write this as part of Lab 6

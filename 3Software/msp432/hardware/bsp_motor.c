@@ -30,7 +30,7 @@ void Motor_Init(void)
 	TimA1_PWMConfig.clockSourceDivider = 2;					//分频为1M	
 	TimA1_PWMConfig.timerPeriod = 1199; 							//以1M的频率计99个数，产生频率为10kHZ的周期信号
 	TimA1_PWMConfig.compareOutputMode = TIMER_A_OUTPUTMODE_TOGGLE_SET;//配置为模式6输出
-	TimA1_PWMConfig.dutyCycle = 400;								//初始值为0
+	TimA1_PWMConfig.dutyCycle = 0;								//初始值为0
 	
 	TimA1_PWMConfig.compareRegister = TIMER_A_CAPTURECOMPARE_REGISTER_3;
 	MAP_Timer_A_generatePWM(TIMER_A1_BASE, &TimA1_PWMConfig); 
@@ -45,7 +45,7 @@ void Motor_Init(void)
 /**
  * @brief	电机控制函数
  * @param	Motorx 选择电机 1 ，2，3，4分别对应A，B,C D 
- * @param	Dir		方向选择 1 前进 0后退 2，3停止
+ * @param	Dir		方向选择 1 前进 0后退 2刹车，3停止
  * @param	PWM		PWM大小范围0-99
  * @return	
  */
@@ -73,8 +73,8 @@ void Motor_Control(uint8_t Motorx,uint8_t Dir,uint8_t PWM)
 		case 3:
 				Motor_Port1	=	GPIO_PORT_P8;
 				Motor_Port2	=	GPIO_PORT_P8;
-				Motor_Pin1	=	GPIO_PIN3;
-				Motor_Pin2	=	GPIO_PIN2;
+				Motor_Pin1	=	GPIO_PIN2;
+				Motor_Pin2	=	GPIO_PIN3;
 				Motor_PWM_Select = TIMER_A_CAPTURECOMPARE_REGISTER_3;
 		break;
 		case 4:

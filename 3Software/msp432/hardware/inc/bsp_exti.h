@@ -54,7 +54,15 @@
 
 #define motor_PORT_IRQHandler    PORT4_IRQHandler
 
+typedef struct
+{
+	int16_t EncoderA;
+	int16_t EncoderB;
+	int16_t EncoderC;
+	int16_t EncoderD;
+}Encoder;
 
+void GetEncoder(Encoder*p);
 void Motor_Init_bianmaqi(void);
 uint32_t GET_bianmaqi(void);
 

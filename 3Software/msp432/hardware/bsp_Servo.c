@@ -26,7 +26,7 @@ void Servo_Init(void)
 /**
  * @brief	舵机控制
  * @param	uint8_t Servox 		选择舵机Servo1或Servo2	1或2
- * @param	uint8_t Duty_Cycle	占空比0-99
+ * @param	uint8_t Duty_Cycle	占空比499-2499
  * @return	
  */
 void Servo_Control(uint8_t Servox,uint16_t Duty_Cycle)

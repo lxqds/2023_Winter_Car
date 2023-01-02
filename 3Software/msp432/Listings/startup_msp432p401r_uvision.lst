@@ -562,11 +562,10 @@ ARM Macro Assembler    Page 9
 Command Line: --debug --xref --diag_suppress=9931 --cpu=Cortex-M4.fp --apcs=int
 erwork --depend=.\objects\startup_msp432p401r_uvision.d -o.\objects\startup_msp
 432p401r_uvision.o -I.\RTE\_Target_1 -ID:\Keil\ARM\PACK\ARM\CMSIS\4.5.0\CMSIS\I
-nclude -ID:\Keil\ARM\PACK\ARM\CMSIS\4.5.0\CMSIS\RTOS\RTX\INC -ID:\Keil\ARM\PACK
-\TexasInstruments\MSP432P4xx_DFP\3.2.6\Device\Include --predefine="__RTX SETA 1
-" --predefine="__UVISION_VERSION SETA 527" --predefine="_RTE_ SETA 1" --predefi
-ne="__MSP432P401R__ SETA 1" --list=.\listings\startup_msp432p401r_uvision.lst R
-TE\Device\MSP432P401R\startup_msp432p401r_uvision.s
+nclude -ID:\Keil\ARM\PACK\TexasInstruments\MSP432P4xx_DFP\3.2.6\Device\Include 
+--predefine="__UVISION_VERSION SETA 527" --predefine="_RTE_ SETA 1" --predefine
+="__MSP432P401R__ SETA 1" --list=.\listings\startup_msp432p401r_uvision.lst RTE
+\Device\MSP432P401R\startup_msp432p401r_uvision.s
 
 
 
@@ -1274,4 +1273,4 @@ Symbol: __use_two_region_memory
       None
 Comment: __use_two_region_memory unused
 3 symbols
-409 symbols in table
+408 symbols in table

@@ -155,25 +155,20 @@ void TimA0_Int_Init(uint16_t ccr0, uint16_t psc)
     // 5.开启串口端口中断
     MAP_Interrupt_enableInterrupt(INT_TA0_0);
 }
-uint8_t Delay_time=0;
-uint8_t TIMflag=0;
+
 // 6.编写TIMA ISR
 
-void TA0_0_IRQHandler(void)
-{
-    MAP_Timer_A_clearCaptureCompareInterrupt(TIMER_A0_BASE, TIMER_A_CAPTURECOMPARE_REGISTER_0);
-    Delay_time++;
-    if(Delay_time>25){
-        Delay_time=0;
-        TIMflag=1;
-    }
-    /*开始填充用户代码*/
-		
-		
-    MAP_GPIO_toggleOutputOnPin(GPIO_PORT_P1, GPIO_PIN0);
+//void TA0_0_IRQHandler(void)
+//{
+//    MAP_Timer_A_clearCaptureCompareInterrupt(TIMER_A0_BASE, TIMER_A_CAPTURECOMPARE_REGISTER_0);
+//    
+//    /*开始填充用户代码*/
+//		
+//		
+//    MAP_GPIO_toggleOutputOnPin(GPIO_PORT_P1, GPIO_PIN0);
 
-    /*结束填充用户代码*/
-}
+//    /*结束填充用户代码*/
+//}
 /*********************************************************************************************************/
 
 

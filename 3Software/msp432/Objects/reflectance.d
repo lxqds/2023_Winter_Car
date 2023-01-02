@@ -42,5 +42,4 @@
 .\objects\reflectance.o: .\ti_driverlib\simplelink_msp432p4_sdk_3_40_01_02\ti/devices/msp432p4xx/driverlib/sysctl.h
 .\objects\reflectance.o: .\ti_driverlib\simplelink_msp432p4_sdk_3_40_01_02\ti/devices/msp432p4xx/driverlib/flash.h
 .\objects\reflectance.o: .\hardware\inc\Reflectance.h
-.\objects\reflectance.o: D:\Keil\ARM\PACK\ARM\CMSIS\4.5.0\CMSIS\RTOS\RTX\INC\cmsis_os.h
-.\objects\reflectance.o: D:\Keil\ARM\ARMCC\Bin\..\include\stddef.h
+.\objects\reflectance.o: .\sys\inc\delay.h

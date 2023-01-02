@@ -1,7 +1,7 @@
 #include <stdint.h>
 #include <ti/devices/msp432p4xx/driverlib/driverlib.h>
 #include "Reflectance.h"
-#include "cmsis_os.h"                   // ARM::CMSIS:RTOS:Keil RTX
+#include "delay.h"
 
 void Reflectance_Init2(void)
 {
@@ -29,9 +29,9 @@ static uint8_t result;
   P6->OUT |= BIT0;  // Turn on IR light
   P7->DIR |= 0xFF;  // P7.0-7.7 output
   P7->OUT |= 0xFF;  // Set P7.0-7.7 high
-  osDelay(1);
+  delay_us(10);
   P7->DIR &= ~0xFF; // P7.0-7.7 input
-  osDelay(time);
+  delay_us(time);
   result = P7->IN;
   P6->OUT &= ~BIT0; // Turn off IR light
 

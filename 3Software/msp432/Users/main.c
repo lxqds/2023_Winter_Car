@@ -1,8 +1,11 @@
 #include "myconfig.h"
 
+
+void Menudisplay();
+
 void main(void)
 {
-	uint8_t State=Main_State,New_State=Main_State;
+	
 	SysInit();
 	KEY_Init();
 	LED_Init();
@@ -16,7 +19,14 @@ void main(void)
 	while(1)
 	{
 		Reflectance_Data = Reflectance_Read2();
-		if(State!=New_State)
+		Menudisplay();
+	}
+}
+
+void Menudisplay()
+{
+	uint8_t State=Main_State,New_State=Main_State;
+	if(State!=New_State)
 		{
 			OLED_Clear();
 			Key = 0;
@@ -78,6 +88,4 @@ void main(void)
 				}
 			}break;
 		}
-	}
 }
-

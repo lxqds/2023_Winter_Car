@@ -40,7 +40,8 @@ void TA0_0_IRQHandler(void)
 		MAP_GPIO_toggleOutputOnPin(GPIO_PORT_P1, GPIO_PIN0);
 	}
     /*开始填充用户代码*/
-	Key = KEY_Scan(1);	
+	//Key = KEY_Scan(1);
+	Key = Key_Scan();
 	Encoder[0] = bianmaqi[0];
 	Encoder[1] = bianmaqi[1];
 	Encoder[2] = bianmaqi[2];

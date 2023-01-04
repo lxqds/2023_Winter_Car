@@ -16,6 +16,7 @@
 "..\output\sysinit.o"
 "..\output\delay.o"
 "..\output\bsp_xx.o"
+"..\output\pid.o"
 "..\output\startup_msp432p401r_uvision.o"
 "..\output\system_msp432p401r.o"
 --strict --scatter "..\Output\msp_432_Car.sct"

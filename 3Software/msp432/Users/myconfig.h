@@ -37,7 +37,11 @@ typedef enum
 	State2,
 }Menu_State;
 
-
+typedef struct 
+{
+	uint8_t Distance_Flag;
+	uint8_t CarStart_Flag;
+}Flag_Init;
 
 /* extern提供给其他C文件调用的函数 --------------------------------------------------------------------------------------------*/
 extern 	uint8_t Key;

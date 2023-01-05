@@ -70,6 +70,10 @@ uint8_t Key_Scan(void)
 			{
 				Key_State_Flag = Key_Press_Again;	//进入下一个按键状态
 				Key_Value[1]++;						//键值++
+			}else
+			{
+				Key_State_Flag = Key_Press_Once;
+				Return_Value = 0;
 			}
 		}
 		break;
@@ -86,10 +90,10 @@ uint8_t Key_Scan(void)
 			}else
 			{
 				Key_State_Flag = Key_Press_Release;	//返回上一个状态
-				for(i=0;i<2;i++)					//消抖清零
-				{
-					Key_Value[i] = 0;
-				}
+//				for(i=0;i<2;i++)					//消抖清零
+//				{
+//					Key_Value[i] = 0;
+//				}
 			}
 		}
 		break;
@@ -105,28 +109,37 @@ uint8_t Key_Scan(void)
 				Key_Value[1]++;
 			}else
 			{
-				Key_State_Flag = Key_Press_Release;
+				Key_State_Flag = Key_Press_Release;	//松手进入下一个状态
 			}
 			
 			if(Key_Value[0] > KEY_KEEP_TIMELENTH)
 			{
-				Key_State_Flag = Key_Press_Release;
+				Key_State_Flag = Key_Press_Keep;	//未松手保持状态
 				return KEY1_LONG_PRESS;
 			}else if(Key_Value[1] > KEY_KEEP_TIMELENTH)
 			{
-				Key_State_Flag = Key_Press_Release;
+				Key_State_Flag = Key_Press_Keep;
 				return KEY2_LONG_PRESS;
 			}
 		}
 		break;
 		case Key_Press_Release:
 		{
-			if((Key_Value[0] >= 3)&&(Key_Value[0] < KEY_KEEP_TIMELENTH))
+			if((Key_Value[0] >= 1)&&(Key_Value[0] < KEY_KEEP_TIMELENTH))	//按键检测到按的过程是短按
 			{
 				Return_Value = KEY1_ONCE_PRESS;
-			}else if((Key_Value[1] >= 3)&&(Key_Value[0] < KEY_KEEP_TIMELENTH))
+			}else if((Key_Value[1] >= 1)&&(Key_Value[0] < KEY_KEEP_TIMELENTH))	//按键2短按
 			{
 				Return_Value = KEY2_ONCE_PRESS;
+			}else if((Key_Value[0] >= KEY_KEEP_TIMELENTH))						//按键1长按
+			{
+				Return_Value = KEY1_LONG_PRESS;
+			}else if((Key_Value[1] >= KEY_KEEP_TIMELENTH))						//按键2长按
+			{
+				Return_Value = KEY2_LONG_PRESS;
+			}else
+			{
+				Return_Value = 0;
 			}
 			
 			if((KEY1 == 1) &&(KEY2 == 1))//没有按键按下

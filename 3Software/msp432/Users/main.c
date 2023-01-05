@@ -5,7 +5,6 @@ void Menudisplay();
 
 void main(void)
 {
-	
 	SysInit();
 	KEY_Init();
 	LED_Init();
@@ -29,7 +28,6 @@ void Menudisplay()
 	if(State!=New_State)
 		{
 			OLED_Clear();
-			Key = 0;
 			State = New_State;
 		}
 		if(Key)

@@ -98,5 +98,6 @@ void OLED_ShowChinese(uint8_t x, uint8_t y, uint8_t no, uint8_t sizey);
 void OLED_DrawBMP(uint8_t x, uint8_t y, uint8_t sizex, uint8_t sizey, uint8_t BMP[]);
 void OLED_Init(void);
 void OLED_ShowBin(uint8_t x,uint8_t y,uint16_t Num,uint8_t len,uint8_t size);
-
+void OLED_Showdecimal(uint8_t x,uint8_t y,float num,uint8_t z_len,uint8_t f_len,uint8_t size2);
+void OLED_ShowBNum(uint8_t x,uint8_t y,float num,uint8_t len,uint8_t size2);
 #endif

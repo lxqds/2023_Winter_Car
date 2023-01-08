@@ -18,11 +18,7 @@
 
 /* define -----------------------------------------------------------------------------------------------------------------*/
 uint8_t Delay10msCnt = 0;
-uint8_t Key;
 uint8_t Reflectance_Data;
-int8_t Encoder[4];
-
-
 
 /**
  * @name:TA0_0_IRQHandler
@@ -43,15 +39,16 @@ void TA0_0_IRQHandler(void)
 	//Key = KEY_Scan(1);
 	//Key = Key_Scan();
 	Key_Scan2();
-	Encoder[0] = bianmaqi[0];
-	Encoder[1] = bianmaqi[1];
-	Encoder[2] = bianmaqi[2];
-	Encoder[3] = bianmaqi[3];
-	
-	bianmaqi[0] = 0;
-	bianmaqi[1]	= 0;
-	bianmaqi[2]	= 0;
-	bianmaqi[3]	= 0;
+	Encoder_Scan();
+//	Encoder[0] = bianmaqi[0];
+//	Encoder[1] = bianmaqi[1];
+//	Encoder[2] = bianmaqi[2];
+//	Encoder[3] = bianmaqi[3];
+//	
+//	bianmaqi[0] = 0;
+//	bianmaqi[1]	= 0;
+//	bianmaqi[2]	= 0;
+//	bianmaqi[3]	= 0;
     
 
     /*结束填充用户代码*/

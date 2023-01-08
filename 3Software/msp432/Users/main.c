@@ -3,7 +3,7 @@
 
 void Menudisplay();
 
-void main(void)
+int main(void)
 {
 	SysInit();
 	KEY_Init();
@@ -15,11 +15,12 @@ void main(void)
 	Motor_Init();
 	Motor_Init_bianmaqi();
 	
-	while(1)
+	for(;;)
 	{
 		Reflectance_Data = Reflectance_Read2();
 		Menudisplay();
 	}
+	return 0;
 }
 
 void Menudisplay()
@@ -54,11 +55,14 @@ void Menudisplay()
 			case State1:
 			{
 				OLED_ShowString(0,0,"Function1",16);
-				OLED_ShowBin(1,4,Reflectance_Data,8,16);
-//				OLED_ShowNum(96,0,Encoder[0],2,16);
-//				OLED_ShowNum(96,2,Encoder[1],2,16);
-				OLED_ShowNum(96,4,Encoder[2],3,16);
-				OLED_ShowNum(96,6,Encoder[3],3,16);
+				//OLED_ShowBin(1,4,Reflectance_Data,8,16);
+
+				OLED_ShowBNum(0,4,Encoder.Speed[2],3,16);
+				OLED_ShowBNum(0,6,Encoder.Speed[3],3,16);
+				OLED_ShowBNum(64,4,Encoder.Distance[2],3,16);
+				OLED_ShowBNum(64,6,Encoder.Distance[3],3,16);
+//				OLED_ShowNum(96,4,(uint8_t)Encoder.Speed[2],3,16);
+//				OLED_ShowNum(96,6,(uint8_t)Encoder.Speed[3],3,16);
 				if(Keys[0].Single_Flag == 1)
 				{
 					Keys[0].Single_Flag = 0;

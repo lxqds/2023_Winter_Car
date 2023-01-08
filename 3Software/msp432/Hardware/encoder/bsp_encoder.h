@@ -67,11 +67,26 @@
 
 #define motor_PORT_IRQHandler    PORT4_IRQHandler
 
+
+
+#define RESOLUTION 			13*20*2 							//13线30减速比2倍频的分辨率，轮子转一圈产生的脉冲数
+#define OUTSIDE_DIAMETER 	2*3.14f*3.35f							//轮子的外径，用于距离测量，单位cm
+#define PER_PULSE_CM		(2*3.14f*3.35f)/(13*20*2)			//一个脉冲走过的CM数
+
+typedef struct
+{
+	int16_t Encoder_Once[4];	//一个定时10ms内的总计数，10ms刷新，中断累加
+	int16_t Encoder[4];			//编码器显示的值，10ms取一次，不累加，仅读取
+	int32_t Encoder_Total[4];	//读取完成之后，读取值加入，用于里程计数
+	float Speed[4];				//记录速度
+	float Distance[4];			//记录距离
+}Encoder_Init;
+
 /* extern提供给其他C文件调用的函数 --------------------------------------------------------------------------------------------*/
 extern int8_t bianmaqi[4];
-
+extern Encoder_Init Encoder;
 void Motor_Init_bianmaqi(void);
-
+void Encoder_Scan(void);
 
 
 #endif /* __XXX_H */

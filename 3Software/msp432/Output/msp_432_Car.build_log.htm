@@ -27,16 +27,18 @@ Project File Date:  01/05/2023
 <h2>Output:</h2>
 *** Using Compiler 'V5.06 update 1 (build 61)', folder: 'D:\Keil\ARM\ARMCC\Bin'
 Build target 'Target 1'
+compiling myconfig.c...
+compiling bsp_encoder.c...
 compiling main.c...
 ..\Users\main.c(4): warning:  #1295-D: Deprecated declaration Menudisplay - give arg types
   void Menudisplay();
-..\Users\main.c(6): warning:  #951-D: return type of function "main" must be "int"
-  void main(void)
 ..\Users\main.c(8): warning:  #223-D: function "SysInit" declared implicitly
   	SysInit();
+..\Users\main.c(23): warning:  #111-D: statement is unreachable
+  	return 0;
 ..\Users\main.c: 3 warnings, 0 errors
 linking...
-Program Size: Code=4282 RO-data=2670 RW-data=24 ZI-data=624  
+Program Size: Code=4446 RO-data=2670 RW-data=16 ZI-data=688  
 "..\Output\msp_432_Car.axf" - 0 Error(s), 3 Warning(s).
 
 <h2>Software Packages used:</h2>
@@ -63,11 +65,11 @@ Package Vendor: TexasInstruments
    * Component: ARM::CMSIS:CORE:5.6.0
 
    * Component: TexasInstruments::Device:Startup:3.2.2
-      Source file:   Examples/EmptyMain/main.c
       Source file:   Device/Source/startup_msp432p401r_uvision.s
-      Source file:   Examples/BlinkLED/blinkLED.c
       Include file:  Device/Include/msp_compatibility.h
       Source file:   Device/Source/system_msp432p401r.c
+      Source file:   Examples/BlinkLED/blinkLED.c
+      Source file:   Examples/EmptyMain/main.c
 Build Time Elapsed:  00:00:01
 </pre>
 </body>

@@ -260,6 +260,77 @@ void OLED_ShowNum(uint8_t x, uint8_t y, uint32_t num, uint8_t len, uint8_t sizey
     OLED_ShowChar(x + (sizey / 2 + m) * t, y, temp + '0', sizey);
   }
 }
+//z_len为整数显示位数，f_len为小数显示位数，size2为字体大小
+void OLED_Showdecimal(uint8_t x,uint8_t y,float num,uint8_t z_len,uint8_t f_len,uint8_t size2)
+{         	
+	uint8_t t,temp;
+	uint8_t enshow;
+	int z_temp,f_temp;      
+	z_temp=(int)num;
+	//整数部分
+	for(t=0;t<z_len;t++)
+	{
+		temp=(z_temp/oled_pow(10,z_len-t-1))%10;
+		if(enshow==0 && t<(z_len-1))
+		{
+			if(temp==0)
+			{
+				OLED_ShowChar(x+(size2/2)*t,y,' ',size2);
+				continue;
+			}
+			else
+			enshow=1;
+		}
+		OLED_ShowChar(x+(size2/2)*t,y,temp+'0',size2); 
+	}
+	//小数点
+	OLED_ShowChar(x+(size2/2)*(z_len),y,'.',size2); 
+	
+	f_temp=(int)((num-z_temp)*(oled_pow(10,f_len)));
+  //小数部分
+	for(t=0;t<f_len;t++)
+	{
+		temp=(f_temp/oled_pow(10,f_len-t-1))%10;
+		OLED_ShowChar(x+(size2/2)*(t+z_len)+5,y,temp+'0',size2); 
+	}
+}
+void OLED_ShowBNum(uint8_t x,uint8_t y,float num,uint8_t len,uint8_t size2)//len:带小数点、负号数据个数
+{         	
+	uint8_t t,temp,i=0;
+	uint8_t enshow=0;
+	uint16_t k;
+	if(num<0)
+	{
+	num=-num;
+	i=1;     //负数标志	
+	}	
+	k=num*10; //此处为显示一位小数*10转化为整数，若要显示几位就@我（自己想办法）
+	for(t=0;t<len;t++)
+	{
+		temp=(k/oled_pow(10,len-t-1))%10;
+		if(enshow==0&&t<(len-1))
+		{
+			if(temp==0)
+			{
+			if(((k/oled_pow(10,len-t-2)%10)!=0)&&(i==1))//判断是否为负数且在最高位前一位
+			{
+			OLED_ShowChar(x+(size2/2)*t,y,'-',size2);
+			i=0;	                                    //清除判断后一位的标志
+			}
+			else
+		    OLED_ShowChar(x+(size2/2)*t,y,' ',size2);   //如果没到数字就显示空格
+			continue;
+			}else enshow=1;		//此处是判断是否要显示数字	
+		}
+		if(t==len-1)
+		{
+		OLED_ShowChar(x+(size2/2)*t,y,'.',size2);
+       //判断是否为最后一位的前一位（显示一位小数）
+		t++;
+		}
+	 	OLED_ShowChar(x+(size2/2)*t,y,temp+'0',size2); //一位一位显示下去
+	 }
+}
 
 void OLED_ShowBin(uint8_t x,uint8_t y,uint16_t Num,uint8_t len,uint8_t size)
 {

@@ -46,7 +46,7 @@ typedef struct
 /* extern提供给其他C文件调用的函数 --------------------------------------------------------------------------------------------*/
 extern 	uint8_t Key;
 extern	uint8_t Reflectance_Data;
-extern	int8_t Encoder[4];
+
 
 
 

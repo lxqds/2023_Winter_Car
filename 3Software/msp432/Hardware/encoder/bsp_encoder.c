@@ -17,6 +17,7 @@
 
 /* define -----------------------------------------------------------------------------------------------------------------*/
 int8_t bianmaqi[4]={0};
+Encoder_Init Encoder = {0};
 
 /**
  * @name	Motor_Init_bianmaqi
@@ -66,6 +67,33 @@ void Motor_Init_bianmaqi(void){
 	MAP_SysCtl_enableSRAMBankRetention(SYSCTL_SRAM_BANK1);
 
 }
+/**
+ * @name	motor_PORT_IRQHandler
+ * @brief	电机编码器捕获外部上下沿中断
+ * @param	无
+ * @return	无
+ */
+void Encoder_Scan(void)
+{
+//	Encoder.Encoder[0] = Encoder.Encoder_Once[0];	//读取累计的编码器值
+//	Encoder.Encoder[1] = Encoder.Encoder_Once[1];
+//	Encoder.Encoder[2] = Encoder.Encoder_Once[2];
+//	Encoder.Encoder[3] = Encoder.Encoder_Once[3];
+//	
+//	Encoder.Encoder_Total[0] +=  Encoder.Encoder[0];	//累计放入到累计值中
+//	Encoder.Encoder_Total[1] +=  Encoder.Encoder[1];
+//	Encoder.Encoder_Total[2] +=  Encoder.Encoder[2];
+//	Encoder.Encoder_Total[3] +=  Encoder.Encoder[3];
+	for (uint8_t i = 0;i<4; i++)
+	{
+		Encoder.Encoder[i] = Encoder.Encoder_Once[i];				//读取累计的编码器值
+		Encoder.Encoder_Total[i] +=  Encoder.Encoder[i];			//累计放入到累计值中
+		Encoder.Encoder_Once[i] = 0;								//清零
+		Encoder.Distance[i] += Encoder.Encoder[i]*PER_PULSE_CM;		//距离等于脉冲数×每一个脉冲走过cm数
+		Encoder.Speed[i] = Encoder.Encoder[i]*PER_PULSE_CM/0.01f;	//速度等于距离除于时间
+	}
+	
+}
 
 /**
  * @name	motor_PORT_IRQHandler
@@ -85,62 +113,64 @@ void motor_PORT_IRQHandler(void)
 		case motor_One_A_PIN:
 		{
 			if(motor_One_B_Value ==  1) 
-				bianmaqi[0]--;
+				Encoder.Encoder_Once[0]--;
 			else if(motor_One_B_Value ==  0)
-				bianmaqi[0]++;
+				Encoder.Encoder_Once[0]++;
 		}break;
 		case motor_One_B_PIN:
 		{
 			if(motor_One_A_Value ==  1) 
-				bianmaqi[0]++;
+				Encoder.Encoder_Once[0]++;
 			else if(motor_One_A_Value ==  0)
-				bianmaqi[0]--;
+				Encoder.Encoder_Once[0]--;
 		}break;
 		//电机2
 		case motor_Two_A_PIN:
 		{
 			if(motor_Two_B_Value ==  1) 
-				bianmaqi[1]--;
+				Encoder.Encoder_Once[1]--;
 			else if(motor_Two_B_Value ==  0)
-				bianmaqi[1]++;
+				Encoder.Encoder_Once[1]++;
 		}break;
 		case motor_Two_B_PIN:
 		{
 			if(motor_Two_A_Value ==  1) 
-				bianmaqi[1]++;
+				Encoder.Encoder_Once[1]++;
 			else if(motor_Two_A_Value ==  0)
-				bianmaqi[1]--;
+				Encoder.Encoder_Once[1]--;
 		}break;
 		//电机3
 		case motor_Three_A_PIN:
 		{
 			if(motor_Three_B_Value ==  1) 
-				bianmaqi[2]--;
+				Encoder.Encoder_Once[2]--;
 			else if(motor_Three_B_Value ==  0)
-				bianmaqi[2]++;
+				Encoder.Encoder_Once[2]++;
 		}break;
 		case motor_Three_B_PIN:
 		{
 			if(motor_Three_A_Value ==  1) 
-				bianmaqi[2]++;
+				Encoder.Encoder_Once[2]++;
 			else if(motor_Three_A_Value ==  0)
-				bianmaqi[2]--;
+				Encoder.Encoder_Once[2]--;
 		}break;
 		//电机4
 		case motor_Four_A_PIN:
 		{
 			if(motor_Four_B_Value ==  1) 
-				bianmaqi[3]++;
+				Encoder.Encoder_Once[3]++;
 			else if(motor_Four_B_Value ==  0)
-				bianmaqi[3]--;
+				Encoder.Encoder_Once[3]--;
 		}break;
 		case motor_Four_B_PIN:
 		{
 			if(motor_Four_A_Value ==  1) 
-				bianmaqi[3]--;
+				Encoder.Encoder_Once[3]--;
 			else if(motor_Four_A_Value ==  0)
-				bianmaqi[3]++;
+				Encoder.Encoder_Once[3]++;
 		}break;
 	}
 }
+
+
 /*****************************************************END OF FILE*********************************************************/	

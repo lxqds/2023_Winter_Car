@@ -10,7 +10,7 @@
 /* Includes -------------------------------------------------------------------------------------------------------------*/
 #include "key.h"
 /* define -----------------------------------------------------------------------------------------------------------------*/
-
+Keys_Init Keys[2]={0,0};
 
 
 //按键初始化函数
@@ -50,7 +50,7 @@ uint8_t KEY_Scan(uint8_t mode)
  * @name	Key_Scan()
  * @brief	按键扫描
  * @param	无
-* @return	按下的按键值	1:KEY1短按 2：KEY1长按 3:KEY2短按 4：KEY2长按
+ * @return	按下的按键值	1:KEY1短按 2：KEY1长按 3:KEY2短按 4：KEY2长按
  */
 uint8_t Key_Scan(void)
 {
@@ -155,3 +155,82 @@ uint8_t Key_Scan(void)
 	}
 	return Return_Value;
 }
+
+/**
+ * @name	Key_Scan2()
+ * @brief	按键扫描
+ * @param	无
+ * @return	按下的按键值	1:KEY1短按 2：KEY1长按 3:KEY2短按 4：KEY2长按
+ */
+void Key_Scan2(void)
+{
+	Keys[0].Key_State = KEY1;//读取按键的状态
+	Keys[1].Key_State = KEY2;
+	
+	for(uint8_t i = 0;i < 2;i++)
+	{
+		switch(Keys[i].Jump_State)
+		{
+			case 0:
+			{
+				if(Keys[i].Key_State == 0 )
+				{
+					Keys[i].Jump_State = 1;
+					Keys[i].Key_Down_Time = 0;//开启按键按下的时间判断
+				}
+			}
+			break;
+			case 1:
+			{
+				if(Keys[i].Key_State == 0 )
+				{
+					Keys[i].Jump_State = 2;
+				}
+				else
+				{
+					Keys[i].Jump_State = 0;
+				}
+			}
+			break;
+			case 2:
+			{
+				if(Keys[i].Key_State == 1 &&Keys[i].Key_Down_Time < 100)
+				{
+					if(Keys[i].Doule_Time_Flag == 0) //按键按下的第一次
+					{
+						Keys[i].Doule_Time_Flag =1;	//开启在双击判断
+						Keys[i].Double_Time = 0;		//初始化时间
+					}
+					else
+					{
+						Keys[i].Double_Flag = 1;		//在定时时间内按键按下两次
+						Keys[i].Doule_Time_Flag = 0;
+					}
+					Keys[i].Jump_State = 0;				//回到状态0
+				}else if(Keys[i].Key_State == 1 && Keys[i].Key_Down_Time >100)
+				{
+					Keys[i].Jump_State = 0;
+				}
+				else
+				{
+					if(Keys[i].Key_Down_Time == 100)	//如果时间到就置1
+					{
+						Keys[i].Long_Press_Flag = 1;
+					}
+					Keys[i].Key_Down_Time++;
+				}
+			}
+			break;
+		}
+		if(Keys[i].Doule_Time_Flag ==1)
+		{
+			Keys[i].Double_Time++;					//检测到双击检测开启，计时
+			if(Keys[i].Double_Time > 50)				//在相应计时内没有按键按下，则是单击
+			{
+				Keys[i].Single_Flag = 1;
+				Keys[i].Doule_Time_Flag = 0;			//将标志位恢复
+			}
+		}
+	}
+}
+

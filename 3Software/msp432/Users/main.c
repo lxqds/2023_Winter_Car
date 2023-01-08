@@ -24,15 +24,11 @@ void main(void)
 
 void Menudisplay()
 {
-	uint8_t State=Main_State,New_State=Main_State;
+	static uint8_t State=Main_State,New_State=Main_State;
 	if(State!=New_State)
 		{
 			OLED_Clear();
 			State = New_State;
-		}
-		if(Key)
-		{
-			OLED_ShowNum(96,6,Key,2,16);
 		}
 		switch(State)
 		{
@@ -41,15 +37,18 @@ void Menudisplay()
 				OLED_ShowString(0,0,"Main_Menu",16);
 				OLED_ShowString(0,2,"1.Function1",16);
 				OLED_ShowString(0,4,"2.Function2",16);
-				if(Key == 1)
+				if(Keys[0].Single_Flag == 1)
 				{
-					OLED_Clear();
+					Keys[0].Single_Flag = 0;
 					New_State = State1;
-				}
-				if(Key == 2)
+				}else if(Keys[0].Double_Flag == 1)
 				{
-					OLED_Clear();
+					Keys[0].Double_Flag = 0;
 					New_State = State2;
+				}else if(Keys[0].Long_Press_Flag == 1)
+				{
+					Keys[0].Long_Press_Flag = 0;
+					New_State = Main_State;
 				}
 			}break;
 			case State1:
@@ -60,29 +59,35 @@ void Menudisplay()
 //				OLED_ShowNum(96,2,Encoder[1],2,16);
 				OLED_ShowNum(96,4,Encoder[2],3,16);
 				OLED_ShowNum(96,6,Encoder[3],3,16);
-				if(Key == 1)
+				if(Keys[0].Single_Flag == 1)
 				{
-					OLED_Clear();
+					Keys[0].Single_Flag = 0;
 					New_State = State1;
-				}
-				if(Key == 2)
+				}else if(Keys[0].Double_Flag == 1)
 				{
-					OLED_Clear();
+					Keys[0].Double_Flag = 0;
+					New_State = State2;
+				}else if(Keys[0].Long_Press_Flag == 1)
+				{
+					Keys[0].Long_Press_Flag = 0;
 					New_State = Main_State;
 				}
 			}break;
 			case State2:
 			{
 				OLED_ShowString(64,0,"Function2",16);
-				if(Key == 1)
+				if(Keys[0].Single_Flag == 1)
 				{
-					OLED_Clear();
-					New_State = Main_State;
-				}
-				if(Key == 2)
+					Keys[0].Single_Flag = 0;
+					New_State = State1;
+				}else if(Keys[0].Double_Flag == 1)
 				{
-					OLED_Clear();
+					Keys[0].Double_Flag = 0;
 					New_State = State2;
+				}else if(Keys[0].Long_Press_Flag == 1)
+				{
+					Keys[0].Long_Press_Flag = 0;
+					New_State = Main_State;
 				}
 			}break;
 		}

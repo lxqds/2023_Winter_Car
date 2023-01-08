@@ -41,7 +41,8 @@ void TA0_0_IRQHandler(void)
 	}
     /*开始填充用户代码*/
 	//Key = KEY_Scan(1);
-	Key = Key_Scan();
+	//Key = Key_Scan();
+	Key_Scan2();
 	Encoder[0] = bianmaqi[0];
 	Encoder[1] = bianmaqi[1];
 	Encoder[2] = bianmaqi[2];

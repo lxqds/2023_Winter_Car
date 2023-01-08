@@ -32,9 +32,23 @@ typedef enum
 	Key_Press_Release,
 }Key_State;
 
+typedef struct
+{
+	uint8_t Jump_State;
+	uint8_t Key_Down_Time;
+	uint8_t Double_Time;
+	bool Doule_Time_Flag;
+	bool Key_State;
+	bool Single_Flag;
+	bool Double_Flag;
+	bool Long_Press_Flag;
+}Keys_Init;
+
+extern Keys_Init Keys[2];
 
 void KEY_Init(void);       //IO初始化
 uint8_t KEY_Scan(uint8_t); //按键扫描函数
 
 uint8_t Key_Scan(void);
+void Key_Scan2(void);
 #endif

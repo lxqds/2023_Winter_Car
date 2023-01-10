@@ -84,7 +84,12 @@ void Menudisplay()
 			}break;
 			case State2:
 			{
+				short x,y,z;
+				MPU_Get_Gyroscope(&x,&y,&z);
 				OLED_ShowString(64,0,"Function2",16);
+				OLED_ShowBNum(0,2,x,6,16);
+				OLED_ShowBNum(0,4,y,6,16);
+				OLED_ShowBNum(0,6,z,6,16);
 				if(Keys[0].Single_Flag == 1)
 				{
 					Keys[0].Single_Flag = 0;

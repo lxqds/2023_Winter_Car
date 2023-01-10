@@ -29,6 +29,11 @@
 #include "timA.h"
 #include "bsp_Servo.h"
 
+#include "mpu6050.h"
+#include "mpuiic.h"   
+#include "inv_mpu.h"
+#include "inv_mpu_dmp_motion_driver.h" 
+
 /* define定义 -----------------------------------------------------------------------------------------------------------------*/
 typedef enum 
 {

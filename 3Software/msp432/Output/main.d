@@ -51,3 +51,7 @@
 ..\output\main.o: ..\Hardware\sys\delay.h
 ..\output\main.o: ..\Hardware\timA\timA.h
 ..\output\main.o: ..\Hardware\servo\bsp_Servo.h
+..\output\main.o: ..\Hardware\MPU6050\mpu6050.h
+..\output\main.o: ..\Hardware\MPU6050\mpuiic.h
+..\output\main.o: ..\Hardware\MPU6050\eMPL\inv_mpu.h
+..\output\main.o: ..\Hardware\MPU6050\eMPL\inv_mpu_dmp_motion_driver.h

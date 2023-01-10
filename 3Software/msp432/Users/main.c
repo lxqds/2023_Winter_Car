@@ -6,6 +6,8 @@ void Menudisplay();
 int main(void)
 {
 	SysInit();
+//	MPU_Init();//³õʼ»¯MPU6050
+//	while(mpu_dmp_init()){;}//DMP³õʼ»¯
 	KEY_Init();
 	LED_Init();
 	OLED_Init();
@@ -14,7 +16,10 @@ int main(void)
 	Servo_Init();
 	Motor_Init();
 	Motor_Init_bianmaqi();
-	
+	MPU_Init();//³õʼ»¯MPU6050
+//	while(mpu_dmp_init()){;}//DMP³õʼ»¯
+	//MPU_IIC_Init();
+
 	for(;;)
 	{
 		Reflectance_Data = Reflectance_Read2();

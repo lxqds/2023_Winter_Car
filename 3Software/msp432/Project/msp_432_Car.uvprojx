@@ -340,7 +340,7 @@
               <MiscControls></MiscControls>
               <Define></Define>
               <Undefine></Undefine>
-              <IncludePath>..\Libraries\ti_driverlib\simplelink_msp432p4_sdk_3_40_01_02;..\Users;..\Hardware\encoder;..\Hardware\key;..\Hardware\led;..\Hardware\motor;..\Hardware\oled;..\Hardware\pid;..\Hardware\reflectance;..\Hardware\servo;..\Hardware\sys;..\Hardware\tim32;..\Hardware\timA;..\Hardware\uart1</IncludePath>
+              <IncludePath>..\Libraries\ti_driverlib\simplelink_msp432p4_sdk_3_40_01_02;..\Users;..\Hardware\encoder;..\Hardware\key;..\Hardware\led;..\Hardware\motor;..\Hardware\oled;..\Hardware\pid;..\Hardware\reflectance;..\Hardware\servo;..\Hardware\sys;..\Hardware\tim32;..\Hardware\timA;..\Hardware\uart1;..\Hardware\MPU6050;..\Hardware\MPU6050\eMPL</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -518,6 +518,31 @@
               <FileName>PID.h</FileName>
               <FileType>5</FileType>
               <FilePath>..\Hardware\pid\PID.h</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>MPU6050</GroupName>
+          <Files>
+            <File>
+              <FileName>mpu6050.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Hardware\MPU6050\mpu6050.c</FilePath>
+            </File>
+            <File>
+              <FileName>mpuiic.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Hardware\MPU6050\mpuiic.c</FilePath>
+            </File>
+            <File>
+              <FileName>inv_mpu.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Hardware\MPU6050\eMPL\inv_mpu.c</FilePath>
+            </File>
+            <File>
+              <FileName>inv_mpu_dmp_motion_driver.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Hardware\MPU6050\eMPL\inv_mpu_dmp_motion_driver.c</FilePath>
             </File>
           </Files>
         </Group>

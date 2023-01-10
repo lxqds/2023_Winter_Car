@@ -2,28 +2,28 @@
 #define __MPUIIC_H
 #include <ti/devices/msp432p4xx/driverlib/driverlib.h>
 //////////////////////////////////////////////////////////////////////////////////	 
-//±¾³ÌĞòÖ»¹©Ñ§Ï°Ê¹ÓÃ£¬Î´¾­×÷ÕßĞí¿É£¬²»µÃÓÃÓÚÆäËüÈÎºÎÓÃÍ¾
-//ALIENTEKÕ½½¢STM32¿ª·¢°åV3
-//MPU6050 IICÇı¶¯ ´úÂë	   
-//ÕıµãÔ­×Ó@ALIENTEK
-//¼¼ÊõÂÛÌ³:www.openedv.com
-//´´½¨ÈÕÆÚ:2015/1/17
-//°æ±¾£ºV1.0
-//°æÈ¨ËùÓĞ£¬µÁ°æ±Ø¾¿¡£
-//Copyright(C) ¹ãÖİÊĞĞÇÒíµç×Ó¿Æ¼¼ÓĞÏŞ¹«Ë¾ 2009-2019
+//æœ¬ç¨‹åºåªä¾›å­¦ä¹ ä½¿ç”¨ï¼Œæœªç»ä½œè€…è®¸å¯ï¼Œä¸å¾—ç”¨äºå…¶å®ƒä»»ä½•ç”¨é€”
+//ALIENTEKæˆ˜èˆ°STM32å¼€å‘æ¿V3
+//MPU6050 IICé©±åŠ¨ ä»£ç 	   
+//æ­£ç‚¹åŸå­@ALIENTEK
+//æŠ€æœ¯è®ºå›:www.openedv.com
+//åˆ›å»ºæ—¥æœŸ:2015/1/17
+//ç‰ˆæœ¬ï¼šV1.0
+//ç‰ˆæƒæ‰€æœ‰ï¼Œç›—ç‰ˆå¿…ç©¶ã€‚
+//Copyright(C) å¹¿å·å¸‚æ˜Ÿç¿¼ç”µå­ç§‘æŠ€æœ‰é™å…¬å¸ 2009-2019
 //All rights reserved									  
 //////////////////////////////////////////////////////////////////////////////////
  	   		   
-//IO·½ÏòÉèÖÃ
-#define MPU_SDA_IN()  {P6->DIR &= 0xEF;}  // P7.0-7.7 output;}6.4ÖÃ0
-#define MPU_SDA_OUT() {P6->DIR |= 0x10;;}	//p6.4ÖÃ1
+//IOæ–¹å‘è®¾ç½®
+#define MPU_SDA_IN()  {MAP_GPIO_setAsInputPin(GPIO_PORT_P6,GPIO_PIN4);}  // P7.0-7.7 output;}6.4ç½®0
+#define MPU_SDA_OUT() {MAP_GPIO_setAsOutputPin(GPIO_PORT_P6,GPIO_PIN4);}	//p6.4ç½®1
 
-//#define MPU_SDA_IN()  {BITBAND_PERI(P6IN, 4);}  // P7.0-7.7 output;}6.4ÖÃ0
-//#define MPU_SDA_OUT() {BITBAND_PERI(P6OUT, 4);}	//p6.4ÖÃ1
-//IO²Ù×÷º¯Êı	 
+//#define MPU_SDA_IN()  {BITBAND_PERI(P6IN, 4);}  // P7.0-7.7 output;}6.4ç½®0
+//#define MPU_SDA_OUT() {BITBAND_PERI(P6OUT, 4);}	//p6.4ç½®1
+//IOæ“ä½œå‡½æ•°	 
 #define MPU_IIC_SCL    (BITBAND_PERI(P6OUT, 5)) 		//SCL
 #define MPU_IIC_SDA    (BITBAND_PERI(P6OUT, 4)) 		//SDA	 
-#define MPU_READ_SDA   (BITBAND_PERI(P6IN, 4)) 		//ÊäÈëSDA 
+#define MPU_READ_SDA   (BITBAND_PERI(P6IN, 4)) 		//è¾“å…¥SDA 
 
 //MPU6050 I2C SCL P6.5
 #define MPU6050_SCL_PIN_NUM (5)
@@ -41,16 +41,16 @@ typedef uint8_t u8;
 typedef uint16_t u16;
 typedef uint32_t u32;
 
-//IICËùÓĞ²Ù×÷º¯Êı
-void MPU_IIC_Delay(void);				//MPU IICÑÓÊ±º¯Êı
-void MPU_IIC_Init(void);                //³õÊ¼»¯IICµÄIO¿Ú				 
-void MPU_IIC_Start(void);				//·¢ËÍIIC¿ªÊ¼ĞÅºÅ
-void MPU_IIC_Stop(void);	  			//·¢ËÍIICÍ£Ö¹ĞÅºÅ
-void MPU_IIC_Send_Byte(u8 txd);			//IIC·¢ËÍÒ»¸ö×Ö½Ú
-u8 MPU_IIC_Read_Byte(unsigned char ack);//IIC¶ÁÈ¡Ò»¸ö×Ö½Ú
-u8 MPU_IIC_Wait_Ack(void); 				//IICµÈ´ıACKĞÅºÅ
-void MPU_IIC_Ack(void);					//IIC·¢ËÍACKĞÅºÅ
-void MPU_IIC_NAck(void);				//IIC²»·¢ËÍACKĞÅºÅ
+//IICæ‰€æœ‰æ“ä½œå‡½æ•°
+void MPU_IIC_Delay(void);				//MPU IICå»¶æ—¶å‡½æ•°
+void MPU_IIC_Init(void);                //åˆå§‹åŒ–IICçš„IOå£				 
+void MPU_IIC_Start(void);				//å‘é€IICå¼€å§‹ä¿¡å·
+void MPU_IIC_Stop(void);	  			//å‘é€IICåœæ­¢ä¿¡å·
+void MPU_IIC_Send_Byte(u8 txd);			//IICå‘é€ä¸€ä¸ªå­—èŠ‚
+u8 MPU_IIC_Read_Byte(unsigned char ack);//IICè¯»å–ä¸€ä¸ªå­—èŠ‚
+u8 MPU_IIC_Wait_Ack(void); 				//IICç­‰å¾…ACKä¿¡å·
+void MPU_IIC_Ack(void);					//IICå‘é€ACKä¿¡å·
+void MPU_IIC_NAck(void);				//IICä¸å‘é€ACKä¿¡å·
 
 void IMPU_IC_Write_One_Byte(u8 daddr,u8 addr,u8 data);
 u8 MPU_IIC_Read_One_Byte(u8 daddr,u8 addr);	  

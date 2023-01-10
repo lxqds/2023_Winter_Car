@@ -6,8 +6,6 @@ void Menudisplay();
 int main(void)
 {
 	SysInit();
-//	MPU_Init();//³õʼ»¯MPU6050
-//	while(mpu_dmp_init()){;}//DMP³õʼ»¯
 	KEY_Init();
 	LED_Init();
 	OLED_Init();
@@ -17,6 +15,7 @@ int main(void)
 	Motor_Init();
 	Motor_Init_bianmaqi();
 	MPU_Init();//³õʼ»¯MPU6050
+	mpu_dmp_init();
 //	while(mpu_dmp_init()){;}//DMP³õʼ»¯
 	//MPU_IIC_Init();
 
@@ -85,8 +84,13 @@ void Menudisplay()
 			case State2:
 			{
 				short x,y,z;
+				float p,r,yow;
 				MPU_Get_Gyroscope(&x,&y,&z);
+				mpu_dmp_get_data(&p,&r,&yow);
 				OLED_ShowString(64,0,"Function2",16);
+				OLED_ShowBNum(64,2,p,6,16);
+				OLED_ShowBNum(64,4,r,6,16);
+				OLED_ShowBNum(64,6,yow,6,16);
 				OLED_ShowBNum(0,2,x,6,16);
 				OLED_ShowBNum(0,4,y,6,16);
 				OLED_ShowBNum(0,6,z,6,16);

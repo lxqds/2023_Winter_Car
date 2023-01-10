@@ -1,5 +1,5 @@
-#ifndef __MPU6050_H
-#define __MPU6050_H	
+#ifndef __BSP_MPU6050_H
+#define __BSP_MPU6050_H	
 #include "IIC.h"
 #include "delay.h"
 //////////////////////////////////////////////////////////////////////////////////	 
@@ -114,39 +114,3 @@ u8 MPU_Get_Gyroscope(short *gx,short *gy,short *gz);
 u8 MPU_Get_Accelerometer(short *ax,short *ay,short *az);
 
 #endif
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

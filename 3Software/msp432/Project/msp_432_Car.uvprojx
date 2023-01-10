@@ -340,7 +340,7 @@
               <MiscControls></MiscControls>
               <Define></Define>
               <Undefine></Undefine>
-              <IncludePath>..\Libraries\ti_driverlib\simplelink_msp432p4_sdk_3_40_01_02;..\Users;..\Hardware\encoder;..\Hardware\key;..\Hardware\led;..\Hardware\motor;..\Hardware\oled;..\Hardware\pid;..\Hardware\reflectance;..\Hardware\servo;..\Hardware\sys;..\Hardware\tim32;..\Hardware\timA;..\Hardware\uart1;..\Hardware\IIC;..\Hardware\IIC\eMPL</IncludePath>
+              <IncludePath>..\Libraries\ti_driverlib\simplelink_msp432p4_sdk_3_40_01_02;..\Users;..\Hardware\encoder;..\Hardware\key;..\Hardware\led;..\Hardware\motor;..\Hardware\oled;..\Hardware\pid;..\Hardware\reflectance;..\Hardware\servo;..\Hardware\sys;..\Hardware\tim32;..\Hardware\timA;..\Hardware\uart1;..\Hardware\IIC;..\Hardware\IIC\eMPL;..\Users\Control</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -553,6 +553,21 @@
               <FileName>inv_mpu.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\Hardware\IIC\eMPL\inv_mpu.c</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>Control</GroupName>
+          <Files>
+            <File>
+              <FileName>Control.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Users\Control\Control.c</FilePath>
+            </File>
+            <File>
+              <FileName>Control.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\Users\Control\Control.h</FilePath>
             </File>
           </Files>
         </Group>

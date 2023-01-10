@@ -110,5 +110,18 @@ void Motor_Control(uint8_t Motorx,uint8_t Dir,uint8_t PWM)
 		break;
 		case 11 ... 99:Timer_A_setCompareValue(TIMER_A1_BASE,Motor_PWM_Select,12*PWM);
 		break;
+		default:		Timer_A_setCompareValue(TIMER_A1_BASE,Motor_PWM_Select,12*99);
+		break;
 	}
+}
+void Set_PWM(float PWM1,float PWM2)
+{
+	if(PWM1>0)
+	Motor_Control(3,0,PWM1);
+	else
+	Motor_Control(3,1,-PWM1);
+	if(PWM2>0)
+	Motor_Control(4,0,PWM2);
+	else
+	Motor_Control(4,1,-PWM2);
 }

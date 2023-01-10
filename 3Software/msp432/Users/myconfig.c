@@ -40,6 +40,8 @@ void TA0_0_IRQHandler(void)
 	//Key = Key_Scan();
 	Key_Scan2();
 	Encoder_Scan();
+//	Car_Go_Distance(500,4);
+	
 //	Encoder[0] = bianmaqi[0];
 //	Encoder[1] = bianmaqi[1];
 //	Encoder[2] = bianmaqi[2];

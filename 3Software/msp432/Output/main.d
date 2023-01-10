@@ -54,3 +54,5 @@
 ..\output\main.o: ..\Hardware\IIC\bsp_MPU6050.h
 ..\output\main.o: ..\Hardware\IIC\IIC.h
 ..\output\main.o: ..\Hardware\IIC\eMPL\inv_mpu.h
+..\output\main.o: ..\Users\Control\control.h
+..\output\main.o: ..\Hardware\pid\PID.h

@@ -21,6 +21,8 @@
 #define Motor_Stop 		3;
 void Motor_Init(void);
 void Motor_Control(uint8_t Motorx,uint8_t Dir,uint8_t PWM);
+void Set_PWM(float PWM1,float PWM2);
+
 //void motor_Init(void);
 //void motor2_Init(void);
 

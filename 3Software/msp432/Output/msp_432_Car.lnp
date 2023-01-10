@@ -21,6 +21,7 @@
 "..\output\bsp_mpu6050.o"
 "..\output\inv_mpu_dmp_motion_driver.o"
 "..\output\inv_mpu.o"
+"..\output\control.o"
 "..\output\startup_msp432p401r_uvision.o"
 "..\output\system_msp432p401r.o"
 --strict --scatter "..\Output\msp_432_Car.sct"

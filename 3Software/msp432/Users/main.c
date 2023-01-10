@@ -14,11 +14,12 @@ int main(void)
 	Servo_Init();
 	Motor_Init();
 	Motor_Init_bianmaqi();
-	MPU_Init();//³õʼ»¯MPU6050
+	MPU_Init();
 	mpu_dmp_init();
-//	while(mpu_dmp_init()){;}//DMP³õʼ»¯
-	//MPU_IIC_Init();
-
+	PID1_Param_Init(&PID1_Position);
+	PID1_Param_Input(&PID1_Position,0,0.001,0.001);
+	PID2_Param_Init(&PID2_Velocity);
+	PID2_Param_Input(&PID2_Velocity,4,0.01,0.01);
 	for(;;)
 	{
 		Reflectance_Data = Reflectance_Read2();
@@ -61,10 +62,10 @@ void Menudisplay()
 				OLED_ShowString(0,0,"Function1",16);
 				//OLED_ShowBin(1,4,Reflectance_Data,8,16);
 
-				OLED_ShowBNum(0,4,Encoder.Speed[2],3,16);
-				OLED_ShowBNum(0,6,Encoder.Speed[3],3,16);
-				OLED_ShowBNum(64,4,Encoder.Distance[2],3,16);
-				OLED_ShowBNum(64,6,Encoder.Distance[3],3,16);
+				OLED_ShowBNum(0,4,Encoder.Speed[2],6,16);
+				OLED_ShowBNum(0,6,Encoder.Speed[3],6,16);
+				OLED_ShowBNum(64,4,Encoder.Distance[2],6,16);
+				OLED_ShowBNum(64,6,Encoder.Distance[3],6,16);
 //				OLED_ShowNum(96,4,(uint8_t)Encoder.Speed[2],3,16);
 //				OLED_ShowNum(96,6,(uint8_t)Encoder.Speed[3],3,16);
 				if(Keys[0].Single_Flag == 1)

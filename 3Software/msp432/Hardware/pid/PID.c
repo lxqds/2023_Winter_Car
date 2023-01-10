@@ -19,8 +19,8 @@
 
  */
 
-//_PID1 PID1;//位置式PID
-//_PID2 PID2;//增量式PID
+_PID1 PID1_Position;//位置式PID
+_PID2 PID2_Velocity;//增量式PID
 
 /**
  * @brief: 初始化位置式PID

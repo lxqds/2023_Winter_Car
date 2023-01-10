@@ -1,6 +1,8 @@
 #ifndef __PID_H
 #define __PID_H
+/* Includes -------------------------------------------------------------------------------------------------------------*/
 
+/* define定义 -----------------------------------------------------------------------------------------------------------------*/
 //位置式PID
 typedef struct _PID1
 {
@@ -24,6 +26,9 @@ typedef struct _PID2
     float KP,KI,KD;          		//定义比例、积分、微分系数
 }_PID2;
 
+/* extern提供给其他C文件调用的函数 --------------------------------------------------------------------------------------------*/
+extern _PID1 PID1_Position;
+extern _PID2 PID2_Velocity;
 void PID1_Param_Init(struct _PID1 * PID);
 void PID1_Param_Input(struct _PID1 *PID,float KP,float KI,float KD);
 float PID1_Run(struct _PID1 *PID,float Actual_Val,float Target_Val);

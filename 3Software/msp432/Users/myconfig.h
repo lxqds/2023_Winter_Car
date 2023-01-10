@@ -28,11 +28,12 @@
 #include "Reflectance.h"
 #include "timA.h"
 #include "bsp_Servo.h"
+#include "sysinit.h"
+#include "usart.h"
 
 #include "bsp_MPU6050.h"
 #include "inv_mpu.h"
 
-#include "control.h"
 /* define定义 -----------------------------------------------------------------------------------------------------------------*/
 typedef enum 
 {
@@ -50,7 +51,7 @@ typedef struct
 /* extern提供给其他C文件调用的函数 --------------------------------------------------------------------------------------------*/
 extern 	uint8_t Key;
 extern	uint8_t Reflectance_Data;
-
+extern  uint8_t ble_com;
 
 
 

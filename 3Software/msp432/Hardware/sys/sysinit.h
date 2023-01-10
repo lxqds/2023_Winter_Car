@@ -14,6 +14,6 @@
 #include <stdint.h>
 #include <stdbool.h>
 
-void SysInit(void);
+void SysInit1(void);
 
 #endif

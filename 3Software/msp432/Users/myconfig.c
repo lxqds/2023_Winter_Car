@@ -19,7 +19,7 @@
 /* define -----------------------------------------------------------------------------------------------------------------*/
 uint8_t Delay10msCnt = 0;
 uint8_t Reflectance_Data;
-
+uint8_t ble_com;
 /**
  * @name:TA0_0_IRQHandler
  * @brief:TA0中断回调函数
@@ -40,17 +40,6 @@ void TA0_0_IRQHandler(void)
 	//Key = Key_Scan();
 	Key_Scan2();
 	Encoder_Scan();
-//	Car_Go_Distance(500,4);
-	
-//	Encoder[0] = bianmaqi[0];
-//	Encoder[1] = bianmaqi[1];
-//	Encoder[2] = bianmaqi[2];
-//	Encoder[3] = bianmaqi[3];
-//	
-//	bianmaqi[0] = 0;
-//	bianmaqi[1]	= 0;
-//	bianmaqi[2]	= 0;
-//	bianmaqi[3]	= 0;
     
 
     /*结束填充用户代码*/
@@ -70,4 +59,26 @@ void T32_INT2_IRQHandler(void)
 
     /*结束填充用户代码*/
 }
+
+void EUSCIA0_IRQHandler(void)
+{
+
+    uint32_t status = UART_getEnabledInterruptStatus(EUSCI_A0_BASE);
+		
+    if(status & EUSCI_A_UART_RECEIVE_INTERRUPT_FLAG) //接收中断
+    {
+			ble_com = MAP_UART_receiveData(EUSCI_A0_BASE);
+    }
+}
+void EUSCIA2_IRQHandler(void)
+{
+
+    uint32_t status = UART_getEnabledInterruptStatus(EUSCI_A2_BASE);
+		
+    if(status & EUSCI_A_UART_RECEIVE_INTERRUPT_FLAG) //接收中断
+    {
+			ble_com = MAP_UART_receiveData(EUSCI_A2_BASE);
+    }
+}
+
 /*****************************************************END OF FILE*********************************************************/	

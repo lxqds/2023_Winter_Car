@@ -5,7 +5,9 @@ void Menudisplay();
 
 int main(void)
 {
-	SysInit();
+	SysInit1();
+	uart_init0(115200);
+	uart_init(115200);
 	KEY_Init();
 	LED_Init();
 	OLED_Init();
@@ -15,15 +17,12 @@ int main(void)
 	Motor_Init();
 	Motor_Init_bianmaqi();
 	MPU_Init();
-	mpu_dmp_init();
-	PID1_Param_Init(&PID1_Position);
-	PID1_Param_Input(&PID1_Position,0,0.001,0.001);
-	PID2_Param_Init(&PID2_Velocity);
-	PID2_Param_Input(&PID2_Velocity,4,0.01,0.01);
 	for(;;)
 	{
 		Reflectance_Data = Reflectance_Read2();
 		Menudisplay();
+		printf("test!");
+		MAP_UART_transmitData(EUSCI_A2_BASE, 0x66);
 	}
 	return 0;
 }
@@ -60,6 +59,7 @@ void Menudisplay()
 			case State1:
 			{
 				OLED_ShowString(0,0,"Function1",16);
+				OLED_ShowNum(0,2,ble_com,3,16);
 				//OLED_ShowBin(1,4,Reflectance_Data,8,16);
 
 				OLED_ShowBNum(0,4,Encoder.Speed[2],6,16);

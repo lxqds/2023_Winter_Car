@@ -20,7 +20,7 @@ int printf(const char *str, ...);
 #endif
 
 
-
+void uart_init0(uint32_t baudRate);
 void uart_init(uint32_t baudRate);
 void USART_SendCharArr(uint8_t *char_arr ,uint16_t length);
 void AnoTc_SendUserTest(uint16_t A, uint16_t B, uint32_t C);

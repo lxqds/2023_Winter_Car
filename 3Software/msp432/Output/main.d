@@ -51,8 +51,9 @@
 ..\output\main.o: ..\Hardware\sys\delay.h
 ..\output\main.o: ..\Hardware\timA\timA.h
 ..\output\main.o: ..\Hardware\servo\bsp_Servo.h
+..\output\main.o: ..\Hardware\sys\sysinit.h
+..\output\main.o: ..\Hardware\uart1\usart.h
+..\output\main.o: D:\Keil\ARM\ARMCC\Bin\..\include\stdio.h
 ..\output\main.o: ..\Hardware\IIC\bsp_MPU6050.h
 ..\output\main.o: ..\Hardware\IIC\IIC.h
 ..\output\main.o: ..\Hardware\IIC\eMPL\inv_mpu.h
-..\output\main.o: ..\Users\Control\control.h
-..\output\main.o: ..\Hardware\pid\PID.h

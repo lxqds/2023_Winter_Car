@@ -68,14 +68,14 @@ void _sys_exit(int x)
 int fgetc(FILE *f)
 {
   while (EUSCI_A_UART_RECEIVE_INTERRUPT_FLAG !=
-         UART_getInterruptStatus(EUSCI_A0_BASE, EUSCI_A_UART_RECEIVE_INTERRUPT_FLAG))
+         UART_getInterruptStatus(EUSCI_A2_BASE, EUSCI_A_UART_RECEIVE_INTERRUPT_FLAG))
     ;
-  return UART_receiveData(EUSCI_A0_BASE);
+  return UART_receiveData(EUSCI_A2_BASE);
 }
 #endif
 int fputc(int ch, FILE *f)
 {
-  UART_transmitData(EUSCI_A2_BASE, ch & 0xFF);
+  UART_transmitData(EUSCI_A0_BASE, ch & 0xFF);
   return ch;
 }
 /*****************   函数说明   *****************
@@ -89,7 +89,50 @@ int fputc(int ch, FILE *f)
  *
  *****************   说明结束   *****************/
 #endif
+void uart_init0(uint32_t baudRate)
+{
+#ifdef EUSCI_A_UART_7_BIT_LEN
+  //固件库v3_40_01_02
+  //默认SMCLK 48MHz 比特率 115200
+  const eUSCI_UART_ConfigV1 uartConfig =
+      {
+          EUSCI_A_UART_CLOCKSOURCE_SMCLK,                // SMCLK Clock Source
+          26,                                            // BRDIV = 26
+          0,                                             // UCxBRF = 0
+          111,                                           // UCxBRS = 111
+          EUSCI_A_UART_NO_PARITY,                        // No Parity
+          EUSCI_A_UART_LSB_FIRST,                        // MSB First
+          EUSCI_A_UART_ONE_STOP_BIT,                     // One stop bit
+          EUSCI_A_UART_MODE,                             // UART mode
+          EUSCI_A_UART_OVERSAMPLING_BAUDRATE_GENERATION, // Oversampling
+          EUSCI_A_UART_8_BIT_LEN                         // 8 bit data length
+      };
+  eusci_calcBaudDividers((eUSCI_UART_ConfigV1 *)&uartConfig, baudRate); //配置波特率
+#else
+  //固件库v3_21_00_05
+  //默认SMCLK 48MHz 比特率 115200
+  const eUSCI_UART_Config uartConfig =
+      {
+          EUSCI_A_UART_CLOCKSOURCE_SMCLK,                // SMCLK Clock Source
+          26,                                            // BRDIV = 26
+          0,                                             // UCxBRF = 0
+          111,                                           // UCxBRS = 111
+          EUSCI_A_UART_NO_PARITY,                        // No Parity
+          EUSCI_A_UART_LSB_FIRST,                        // MSB First
+          EUSCI_A_UART_ONE_STOP_BIT,                     // One stop bit
+          EUSCI_A_UART_MODE,                             // UART mode
+          EUSCI_A_UART_OVERSAMPLING_BAUDRATE_GENERATION, // Oversampling
+      };
+  eusci_calcBaudDividers((eUSCI_UART_Config *)&uartConfig, baudRate); //配置波特率
+#endif
 
+  MAP_GPIO_setAsPeripheralModuleFunctionOutputPin(GPIO_PORT_P1, GPIO_PIN2 | GPIO_PIN3, GPIO_PRIMARY_MODULE_FUNCTION);
+  MAP_UART_initModule(EUSCI_A0_BASE, &uartConfig);
+  MAP_UART_enableModule(EUSCI_A0_BASE);
+  UART_enableInterrupt(EUSCI_A0_BASE,EUSCI_A_UART_RECEIVE_INTERRUPT);
+  Interrupt_enableInterrupt(INT_EUSCIA0);
+  Interrupt_enableMaster();
+}
 void uart_init(uint32_t baudRate)
 {
 #ifdef EUSCI_A_UART_7_BIT_LEN
@@ -127,17 +170,17 @@ void uart_init(uint32_t baudRate)
   eusci_calcBaudDividers((eUSCI_UART_Config *)&uartConfig, baudRate); //配置波特率
 #endif
 
-  MAP_GPIO_setAsPeripheralModuleFunctionOutputPin(GPIO_PORT_P9, GPIO_PIN6 | GPIO_PIN7, GPIO_PRIMARY_MODULE_FUNCTION);
+  MAP_GPIO_setAsPeripheralModuleFunctionOutputPin(GPIO_PORT_P3, GPIO_PIN2 | GPIO_PIN3, GPIO_PRIMARY_MODULE_FUNCTION);
   MAP_UART_initModule(EUSCI_A2_BASE, &uartConfig);
   MAP_UART_enableModule(EUSCI_A2_BASE);
   UART_enableInterrupt(EUSCI_A2_BASE,EUSCI_A_UART_RECEIVE_INTERRUPT);
-  Interrupt_enableInterrupt(INT_EUSCIA3);
+  Interrupt_enableInterrupt(INT_EUSCIA2);
   Interrupt_enableMaster();
 }
 void USART_SendCharArr(uint8_t *char_arr ,uint16_t length){
   uint16_t i;
   for(i=0;i<length;i++){
-    UART_transmitData(EUSCI_A2_BASE, char_arr[i]);
+    UART_transmitData(EUSCI_A0_BASE, char_arr[i]);
   }
 }
 

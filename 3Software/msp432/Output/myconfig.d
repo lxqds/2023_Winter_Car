@@ -57,3 +57,7 @@
 ..\output\myconfig.o: ..\Hardware\IIC\bsp_MPU6050.h
 ..\output\myconfig.o: ..\Hardware\IIC\IIC.h
 ..\output\myconfig.o: ..\Hardware\IIC\eMPL\inv_mpu.h
+..\output\myconfig.o: ..\Hardware\protocol\protocol.h
+..\output\myconfig.o: ..\Hardware\pid\bsp_pid.h
+..\output\myconfig.o: D:\Keil\ARM\ARMCC\Bin\..\include\stdlib.h
+..\output\myconfig.o: D:\Keil\ARM\ARMCC\Bin\..\include\math.h

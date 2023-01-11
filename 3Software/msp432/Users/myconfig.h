@@ -34,6 +34,9 @@
 #include "bsp_MPU6050.h"
 #include "inv_mpu.h"
 
+#include "protocol.h"
+#include "bsp_pid.h"
+
 /* define定义 -----------------------------------------------------------------------------------------------------------------*/
 typedef enum 
 {

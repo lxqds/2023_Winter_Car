@@ -7,6 +7,7 @@
 /*****************************************************************************/
 #include <ti/devices/msp432p4xx/driverlib/driverlib.h>
 #include "usart.h"
+#include "bsp_motor.h"
 
 #ifdef _cplusplus
 extern "C" {
@@ -22,12 +23,14 @@ extern "C" {
 typedef __packed struct
 {
   uint32_t head;    // 包头
-  uint8_t ch;       // 通道
+  uint8_t ch;		// 通道
   uint32_t len;     // 包长度
   uint8_t cmd;      // 命令
 //  uint8_t sum;      // 校验和
   
 }packet_head_t;
+
+extern packet_head_t set_packet;
 
 #define FRAME_HEADER     0x59485A53    // 帧头
 

@@ -114,6 +114,7 @@ void Motor_Control(uint8_t Motorx,uint8_t Dir,uint8_t PWM)
 		break;
 	}
 }
+
 void Set_PWM(float PWM1,float PWM2)
 {
 	if(PWM1>0)
@@ -124,4 +125,24 @@ void Set_PWM(float PWM1,float PWM2)
 	Motor_Control(4,0,PWM2);
 	else
 	Motor_Control(4,1,-PWM2);
+}
+/**
+ * @name	set_motor_enable
+ * @brief	使能电机
+ * @param	无
+ * @return	无
+ */
+void set_motor_enable(void)
+{
+	MAP_Timer_A_enableInterrupt(TIMER_A1_BASE);
+}
+/**
+ * @name	set_motor_disable
+ * @brief	失能电机
+ * @param	无
+ * @return	无
+ */
+void set_motor_disable(void)
+{
+	MAP_Timer_A_disableInterrupt(TIMER_A1_BASE);
 }

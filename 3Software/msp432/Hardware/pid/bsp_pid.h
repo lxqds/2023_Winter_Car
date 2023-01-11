@@ -21,6 +21,7 @@ typedef struct
 }_pid;
 
 
+extern _pid speed_pid,move_pid;
 
 extern void PID_param_init(void);
 extern void set_pid_target(_pid *pid, float temp_val);

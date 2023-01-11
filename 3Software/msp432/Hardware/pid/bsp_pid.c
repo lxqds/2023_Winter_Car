@@ -37,7 +37,7 @@ void PID_param_init()
   move_pid.err=0.0;
   move_pid.err_last=0.0;
   move_pid.integral=0.0;
-  move_pid.Kp = 0.02;
+  move_pid.Kp = 0.05;
   move_pid.Ki = 0.0;
   move_pid.Kd = 0.0;
 		

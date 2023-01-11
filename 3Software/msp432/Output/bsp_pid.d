@@ -47,4 +47,5 @@
 ..\output\bsp_pid.o: D:\Keil\ARM\ARMCC\Bin\..\include\math.h
 ..\output\bsp_pid.o: ..\Hardware\protocol\protocol.h
 ..\output\bsp_pid.o: ..\Hardware\uart1\usart.h
+..\output\bsp_pid.o: ..\Hardware\motor\bsp_motor.h
 ..\output\bsp_pid.o: ..\Hardware\sys\delay.h

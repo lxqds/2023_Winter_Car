@@ -348,13 +348,13 @@ int8_t receiving_process(void)
       
       case START_CMD:
       {
-//        Set_Stepper_Start();             // 启动
+        set_motor_enable();             // 启动
       }
       break;
       
       case STOP_CMD:
       {
-//        Set_Stepper_Stop();              // 停止
+        set_motor_disable();              // 停止
       }
       break;
       
@@ -384,7 +384,7 @@ int8_t receiving_process(void)
     }
   }
 }
-
+packet_head_t set_packet;
 /**
   * @brief 设置上位机的值
   * @param cmd：命令
@@ -401,8 +401,9 @@ void set_computer_value(uint8_t cmd, uint8_t ch, void *data, uint8_t num)
   static packet_head_t set_packet;
   
   set_packet.head = FRAME_HEADER;     // 包头 0x59485A53
-  set_packet.len  = 0x0B + num;      // 包长
   set_packet.ch   = ch;              // 设置通道
+  set_packet.len  = 0x0B + num;      // 包长
+  
   set_packet.cmd  = cmd;             // 设置命令
   
   sum = check_sum(0, (uint8_t *)&set_packet, sizeof(set_packet));       // 计算包头校验和

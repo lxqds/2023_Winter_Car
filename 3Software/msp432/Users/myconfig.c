@@ -20,6 +20,7 @@
 uint8_t Delay10msCnt = 0;
 uint8_t Reflectance_Data;
 uint8_t ble_com;
+float PWMtemp;
 /**
  * @name:TA0_0_IRQHandler
  * @brief:TA0中断回调函数
@@ -40,8 +41,8 @@ void TA0_0_IRQHandler(void)
 	//Key = Key_Scan();
 	Key_Scan2();
 	Encoder_Scan();
-    
-
+    PWMtemp=PID_realize(&move_pid,Encoder.Distance[2]);
+	Set_PWM(PWMtemp,PWMtemp);
     /*结束填充用户代码*/
 }
 
@@ -64,10 +65,11 @@ void EUSCIA0_IRQHandler(void)
 {
 
     uint32_t status = UART_getEnabledInterruptStatus(EUSCI_A0_BASE);
-		
+	uint8_t dr;	
     if(status & EUSCI_A_UART_RECEIVE_INTERRUPT_FLAG) //接收中断
     {
-			ble_com = MAP_UART_receiveData(EUSCI_A0_BASE);
+		dr = MAP_UART_receiveData(EUSCI_A0_BASE);
+		protocol_data_recv(&dr,1);
     }
 }
 void EUSCIA2_IRQHandler(void)

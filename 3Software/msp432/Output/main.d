@@ -57,3 +57,7 @@
 ..\output\main.o: ..\Hardware\IIC\bsp_MPU6050.h
 ..\output\main.o: ..\Hardware\IIC\IIC.h
 ..\output\main.o: ..\Hardware\IIC\eMPL\inv_mpu.h
+..\output\main.o: ..\Hardware\protocol\protocol.h
+..\output\main.o: ..\Hardware\pid\bsp_pid.h
+..\output\main.o: D:\Keil\ARM\ARMCC\Bin\..\include\stdlib.h
+..\output\main.o: D:\Keil\ARM\ARMCC\Bin\..\include\math.h

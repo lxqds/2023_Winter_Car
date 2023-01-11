@@ -1,6 +1,7 @@
 #include "myconfig.h"
 
-
+int temp=200;
+int data2=20;
 void Menudisplay();
 
 int main(void)
@@ -17,12 +18,22 @@ int main(void)
 	Motor_Init();
 	Motor_Init_bianmaqi();
 	MPU_Init();
+	
+	protocol_init();
+	PID_param_init();
+	set_pid_target(&move_pid,500);
+	uint32_t data = 0x01020304;
+	char *p = (char *)&data;
+	printf("0x0%x\n",*p);//判断大小端，0x04为小端，0x01为大端
+	set_computer_value(SEND_START_CMD,0x01,NULL,1);
 	for(;;)
 	{
+		receiving_process();
+		set_computer_value(SEND_TARGET_CMD, 0x01, &temp, 1);
+		set_computer_value(SEND_FACT_CMD, 0x01, &data2, 1);
 		Reflectance_Data = Reflectance_Read2();
 		Menudisplay();
-		printf("test!");
-		MAP_UART_transmitData(EUSCI_A2_BASE, 0x66);
+		
 	}
 	return 0;
 }

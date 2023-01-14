@@ -24,14 +24,16 @@ int main(void)
 	PID_param_init(&speed_pid);
 	PID_param_init(&speed_pid2);
 	
-	set_p_i_d(&move_pid,110,0,0.5);
-	set_p_i_d(&move_pid2,110,0,0.5);
-	set_p_i_d(&speed_pid,0.5,0.001,0);
-	set_p_i_d(&speed_pid2,0.5,0.001,0);
+	set_p_i_d(&move_pid,11,0,0);
+	set_p_i_d(&move_pid2,11,0,0);
+	set_p_i_d(&speed_pid,1.8,0.1,0);
+	set_p_i_d(&speed_pid2,1.8,0.1,0);
 	
-	set_pid_target(&move_pid,50);
 	set_pid_target(&move_pid2,50);
-	
+	set_pid_target(&move_pid,50);
+
+//	set_pid_target(&speed_pid,50);
+//	set_pid_target(&speed_pid2,50);
 	uint32_t data = 0x01020304;
 	char *p = (char *)&data;
 	printf("0x0%x\n",*p);//判断大小端，0x04为小端，0x01为大端
@@ -40,11 +42,11 @@ int main(void)
 	{
 		
 		
-		int temp1 = Encoder.Distance[2];    // 上位机需要整数参数，转换一下
-		int temp2 = Encoder.Distance[3];    // 上位机需要整数参数，转换一下
+		int temp1 = Encoder.Speed[2];    // 上位机需要整数参数，转换一下
+		int temp2 = Encoder.Distance[2];    // 上位机需要整数参数，转换一下
 		receiving_process();
-		set_computer_value(SEND_FACT_CMD, 0x01,&temp1, 1);
-		set_computer_value(SEND_FACT_CMD, 0x02,&temp2, 1);
+		set_computer_value(SEND_FACT_CMD, 0x02,&temp1, 1);
+		set_computer_value(SEND_FACT_CMD, 0x01,&temp2, 1);
 		
 		Reflectance_Data = Reflectance_Read2();
 		Menudisplay();
@@ -86,9 +88,13 @@ void Menudisplay(void)
 				OLED_ShowString(0,0,"Function1",16);
 				//OLED_ShowBin(1,4,Reflectance_Data,8,16);
 				
-				OLED_ShowBNum(0,2,move_pid.Kp,4,16);
-				OLED_ShowBNum(48,2,move_pid.Ki,2,16);
-				OLED_ShowBNum(72,2,move_pid.Kd,3,16);
+//				OLED_ShowBNum(0,2,move_pid.Kp,4,16);
+//				OLED_ShowBNum(48,2,move_pid.Ki,2,16);
+//				OLED_ShowBNum(72,2,move_pid.Kd,3,16);
+				
+				OLED_ShowBNum(0,2,speed_pid.Kp,4,16);
+				OLED_ShowBNum(48,2,speed_pid.Ki,2,16);
+				OLED_ShowBNum(72,2,speed_pid.Kd,3,16);
 				
 				OLED_ShowBNum(0,4,Encoder.Speed[2],6,16);
 				OLED_ShowBNum(0,6,Encoder.Speed[3],6,16);

@@ -115,16 +115,90 @@ void Motor_Control(uint8_t Motorx,uint8_t Dir,uint8_t PWM)
 	}
 }
 
+void Motor_Control_Dir(uint8_t Motorx,uint8_t Dir)
+{
+	uint8_t Motor_Port1;//PORT为0-16
+	uint8_t Motor_Port2;
+	uint32_t Motor_Pin1;//Pin为0xFFFF
+	uint32_t Motor_Pin2;
+	switch(Motorx)
+	{
+		case 1:	Motor_Port1	=	GPIO_PORT_P8;
+				Motor_Port2	=	GPIO_PORT_P8;
+				Motor_Pin1	=	GPIO_PIN5;
+				Motor_Pin2	=	GPIO_PIN6;
+		break;
+		case 2:	Motor_Port1	=	GPIO_PORT_P9;
+				Motor_Port2	=	GPIO_PORT_P8;
+				Motor_Pin1	=	GPIO_PIN0;
+				Motor_Pin2	=	GPIO_PIN7;
+		break;
+		case 3:
+				Motor_Port1	=	GPIO_PORT_P8;
+				Motor_Port2	=	GPIO_PORT_P8;
+				Motor_Pin1	=	GPIO_PIN2;
+				Motor_Pin2	=	GPIO_PIN3;
+		break;
+		case 4:
+				Motor_Port1	=	GPIO_PORT_P9;
+				Motor_Port2	=	GPIO_PORT_P8;
+				Motor_Pin1	=	GPIO_PIN1;
+				Motor_Pin2	=	GPIO_PIN4;
+		break;
+	}
+	switch(Dir)
+	{
+		case 0:
+				MAP_GPIO_setOutputHighOnPin(Motor_Port1,Motor_Pin1);
+				MAP_GPIO_setOutputLowOnPin(Motor_Port2,Motor_Pin2);
+		break;
+		case 1:
+				MAP_GPIO_setOutputLowOnPin(Motor_Port1,Motor_Pin1);
+				MAP_GPIO_setOutputHighOnPin(Motor_Port2,Motor_Pin2);
+		break;
+		case 2:
+				MAP_GPIO_setOutputHighOnPin(Motor_Port1,Motor_Pin1);
+				MAP_GPIO_setOutputHighOnPin(Motor_Port2,Motor_Pin2);
+		break;
+		case 3:
+				MAP_GPIO_setOutputLowOnPin(Motor_Port1,Motor_Pin1);
+				MAP_GPIO_setOutputLowOnPin(Motor_Port2,Motor_Pin2);
+		break;
+	}
+}
+
+
 void Set_PWM(float PWM1,float PWM2)
 {
-	if(PWM1>0)
-	Motor_Control(3,0,PWM1);
-	else
-	Motor_Control(3,1,-PWM1);
+//	if(PWM1>0)
+//	Motor_Control_Dir(3,0); 
+//	else
+//	{
+//		PWM1 = -PWM1;
+//		Motor_Control_Dir(3,1);;
+//	}
+
+//	if(PWM2>0)
+//	Motor_Control_Dir(4,0);
+//	else
+//	{
+//		PWM2 = -PWM2;
+//		Motor_Control_Dir(4,1);
+//	}
+//	
+//	Timer_A_setCompareValue(TIMER_A1_BASE,TIMER_A_CAPTURECOMPARE_REGISTER_2,12*(uint16_t)PWM2);
+//	Timer_A_setCompareValue(TIMER_A1_BASE,TIMER_A_CAPTURECOMPARE_REGISTER_3,12*(uint16_t)PWM1);
+	
 	if(PWM2>0)
 	Motor_Control(4,0,PWM2);
 	else
 	Motor_Control(4,1,-PWM2);
+	
+	if(PWM1>0)
+	Motor_Control(3,0,PWM1);
+	else
+	Motor_Control(3,1,-PWM1);
+	
 }
 /**
  * @name	set_motor_enable

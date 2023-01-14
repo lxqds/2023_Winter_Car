@@ -36,7 +36,7 @@ void CTRL_compute_Position2(void)
  */
 void CTRL_compute_Position(void)
 { 
-	uint16_t Limit_MAXspeed = 100;
+	uint16_t Limit_MAXspeed = 70;
 	move_pid.output = PID_realize(&move_pid,Encoder.Distance[2]);
 	move_pid2.output = PID_realize(&move_pid2,Encoder.Distance[3]);
 	

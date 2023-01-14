@@ -52,14 +52,14 @@ void TA0_0_IRQHandler(void)
 //	if(Car_Star_Flag)
 	{
 		TIMA_Count ++;
-		if(TIMA_Count %2)		//控制周期为20ms
+//		if(TIMA_Count %2)		//控制周期为20ms
 		{
 			CTRL_compute_Position();
 			CTRL_compute_Speed();
 			Set_PWM(speed_pid.output,speed_pid2.output);
 		}
 		
-		if(TIMA_Count ==5)		//控制周期为50ms
+		if(TIMA_Count ==50)		//控制周期为500ms
 		{
 			TIMA_Count = 0;
 //			CTRL_compute_Position();

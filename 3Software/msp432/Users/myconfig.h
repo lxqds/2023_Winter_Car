@@ -36,6 +36,7 @@
 
 #include "protocol.h"
 #include "bsp_pid.h"
+#include "control.h"
 
 /* define定义 -----------------------------------------------------------------------------------------------------------------*/
 typedef enum 
@@ -54,7 +55,6 @@ typedef struct
 /* extern提供给其他C文件调用的函数 --------------------------------------------------------------------------------------------*/
 extern 	uint8_t Key;
 extern	uint8_t Reflectance_Data;
-extern  uint8_t ble_com;
 
 
 

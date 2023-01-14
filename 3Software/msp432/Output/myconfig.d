@@ -61,3 +61,4 @@
 ..\output\myconfig.o: ..\Hardware\pid\bsp_pid.h
 ..\output\myconfig.o: D:\Keil\ARM\ARMCC\Bin\..\include\stdlib.h
 ..\output\myconfig.o: D:\Keil\ARM\ARMCC\Bin\..\include\math.h
+..\output\myconfig.o: ..\Users\Control\control.h

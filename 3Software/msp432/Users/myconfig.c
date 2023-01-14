@@ -18,9 +18,16 @@
 
 /* define -----------------------------------------------------------------------------------------------------------------*/
 uint8_t Delay10msCnt = 0;
+uint8_t TIMA_Count = 0;
+uint8_t Car_Star_Flag = 1;
 uint8_t Reflectance_Data;
-uint8_t ble_com;
-float PWMtemp;
+uint8_t Recive_Byte;
+
+float PWMtemp1,PWMtemp2;
+
+
+
+
 /**
  * @name:TA0_0_IRQHandler
  * @brief:TA0中断回调函数
@@ -41,8 +48,24 @@ void TA0_0_IRQHandler(void)
 	//Key = Key_Scan();
 	Key_Scan2();
 	Encoder_Scan();
-    PWMtemp=PID_realize(&move_pid,Encoder.Distance[2]);
-	Set_PWM(PWMtemp,PWMtemp);
+	
+//	if(Car_Star_Flag)
+	{
+		TIMA_Count ++;
+		if(TIMA_Count %2)		//控制周期为20ms
+		{
+			CTRL_compute_Position();
+			CTRL_compute_Speed();
+			Set_PWM(speed_pid.output,speed_pid2.output);
+		}
+		
+		if(TIMA_Count ==5)		//控制周期为50ms
+		{
+			TIMA_Count = 0;
+//			CTRL_compute_Position();
+		}
+	}
+   
     /*结束填充用户代码*/
 }
 
@@ -70,16 +93,16 @@ void EUSCIA0_IRQHandler(void)
     {
 		dr = MAP_UART_receiveData(EUSCI_A0_BASE);
 		protocol_data_recv(&dr,1);
+
     }
 }
 void EUSCIA2_IRQHandler(void)
 {
-
     uint32_t status = UART_getEnabledInterruptStatus(EUSCI_A2_BASE);
 		
     if(status & EUSCI_A_UART_RECEIVE_INTERRUPT_FLAG) //接收中断
     {
-			ble_com = MAP_UART_receiveData(EUSCI_A2_BASE);
+			Recive_Byte = MAP_UART_receiveData(EUSCI_A2_BASE);
     }
 }
 

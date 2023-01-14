@@ -22,11 +22,20 @@
 #include <ti/devices/msp432p4xx/driverlib/driverlib.h>
 #include "bsp_encoder.h"
 #include "bsp_motor.h"
-#include "PID.h"
+#include "bsp_pid.h"
 /* define定义 -----------------------------------------------------------------------------------------------------------------*/
-
+typedef struct 
+{
+	float q1,q2,q3,q4;
+	float Setpoint,Output,Integral,Last_error;
+	uint32_t timer;
+}CTRL;
 /* extern提供给其他C文件调用的函数 --------------------------------------------------------------------------------------------*/
-bool Car_Go_Distance(float Distance_cm,float Speed_cm_s);
+void CTRL_compute_Position(void);
+void CTRL_compute_Speed(void);
+
+bool Car_Go_Distance(float Distance1,float Distance2);
+bool Spin_Turn(uint8_t Angle);
 #endif /* __XXX_H */
 
 /*****************************************************END OF FILE*********************************************************/	

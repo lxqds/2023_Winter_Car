@@ -21,41 +21,50 @@
 
 /* 定义全局变量 */
 _pid speed_pid,move_pid;
+_pid speed_pid2,move_pid2;
 float set_point=0.0;
 int pid_status=0;
 
 /**
   * @brief  PID参数初始化
-  *	@note 	无
+  *	@note 	初始化的pid
   * @retval 无
   */
-void PID_param_init()
+void PID_param_init(_pid *pid)
 {
 	/* 初始化位置环PID参数 */
-  move_pid.target_val=0.0;				
-  move_pid.actual_val=0.0;
-  move_pid.err=0.0;
-  move_pid.err_last=0.0;
-  move_pid.integral=0.0;
-  move_pid.Kp = 0.05;
-  move_pid.Ki = 0.0;
-  move_pid.Kd = 0.0;
-		
+  pid->target_val=0.0;				
+  pid->actual_val=0.0;
+  pid->err=0.0;
+  pid->err_last=0.0;
+  pid->integral=0.0;
+  pid->Kp = 0.5;
+  pid->Ki = 0.0;
+  pid->Kd = 0.0;
+  
   #if PID_ASSISTANT_EN
     float move_pid_temp[3] = {move_pid.Kp, move_pid.Ki, move_pid.Kd};
     set_computer_value(SEND_P_I_D_CMD, CURVES_CH1, move_pid_temp, 3);// 给通道 1 发送 P I D 值
   #endif
 	delay_ms(10);
 	/* 初始化速度环PID参数 */
-  speed_pid.target_val=0.0;				
-  speed_pid.actual_val=0.0;
-  speed_pid.err=0.0;
-  speed_pid.err_last=0.0;
-  speed_pid.integral=0.0;
-  speed_pid.Kp = 0.01;
-  speed_pid.Ki = 0.093;
-  speed_pid.Kd = 0.09;
-
+//  speed_pid.target_val=0.0;				
+//  speed_pid.actual_val=0.0;
+//  speed_pid.err=0.0;
+//  speed_pid.err_last=0.0;
+//  speed_pid.integral=0.0;
+//  speed_pid.Kp = 0.01;
+//  speed_pid.Ki = 0.093;
+//  speed_pid.Kd = 0.09;
+//  
+//  speed_pid2.target_val=0.0;				
+//  speed_pid2.actual_val=0.0;
+//  speed_pid2.err=0.0;
+//  speed_pid2.err_last=0.0;
+//  speed_pid2.integral=0.0;
+//  speed_pid2.Kp = 0.01;
+//  speed_pid2.Ki = 0.093;
+//  speed_pid2.Kd = 0.09;
   #if PID_ASSISTANT_EN
     float speed_pid_temp[3] = {speed_pid.Kp, speed_pid.Ki, speed_pid.Kd};
     set_computer_value(SEND_P_I_D_CMD, CURVES_CH2, speed_pid_temp, 3);// 给通道 1 发送 P I D 值
@@ -65,7 +74,7 @@ void PID_param_init()
 /**
   * @brief  设置目标值
   * @param  val		目标值
-	*	@note 	无
+  *	@note 	无
   * @retval 无
   */
 void set_pid_target(_pid *pid, float temp_val)
@@ -76,7 +85,7 @@ void set_pid_target(_pid *pid, float temp_val)
 /**
   * @brief  获取目标值
   * @param  无
-	*	@note 	无
+  *	@note 	无
   * @retval 目标值
   */
 float get_pid_actual(_pid *pid)
@@ -89,7 +98,7 @@ float get_pid_actual(_pid *pid)
   * @param  p：比例系数 P
   * @param  i：积分系数 i
   * @param  d：微分系数 d
-	*	@note 	无
+  *	@note 	无
   * @retval 无
   */
 void set_p_i_d(_pid *pid, float p, float i, float d)

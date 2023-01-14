@@ -61,3 +61,4 @@
 ..\output\main.o: ..\Hardware\pid\bsp_pid.h
 ..\output\main.o: D:\Keil\ARM\ARMCC\Bin\..\include\stdlib.h
 ..\output\main.o: D:\Keil\ARM\ARMCC\Bin\..\include\math.h
+..\output\main.o: ..\Users\Control\control.h

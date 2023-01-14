@@ -324,11 +324,13 @@ int8_t receiving_process(void)
         
         if (packet.ch == CURVES_CH1)
         {
-          set_p_i_d(&move_pid, p_temp, i_temp, d_temp);    // 设置 P I D
+			set_p_i_d(&move_pid, p_temp, i_temp, d_temp);    // 设置 P I D
+			set_p_i_d(&move_pid2, p_temp, i_temp, d_temp);    // 设置 P I D
         }
         else if (packet.ch == CURVES_CH2)
         {
-          set_p_i_d(&speed_pid, p_temp, i_temp, d_temp);    // 设置 P I D
+			set_p_i_d(&speed_pid, p_temp, i_temp, d_temp);    // 设置 P I D
+			set_p_i_d(&speed_pid2, p_temp, i_temp, d_temp);    // 设置 P I D
         }
       }
       break;

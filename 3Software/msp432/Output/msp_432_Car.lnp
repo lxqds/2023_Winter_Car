@@ -22,6 +22,8 @@
 "..\output\inv_mpu.o"
 "..\output\bsp_pid.o"
 "..\output\protocol.o"
+"..\output\control.o"
+"..\output\ctrl.o"
 "..\output\startup_msp432p401r_uvision.o"
 "..\output\system_msp432p401r.o"
 --strict --scatter "..\Output\msp_432_Car.sct"

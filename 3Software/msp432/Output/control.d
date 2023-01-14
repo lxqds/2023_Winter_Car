@@ -44,4 +44,10 @@
 ..\output\control.o: ..\Libraries\ti_driverlib\simplelink_msp432p4_sdk_3_40_01_02\ti/devices/msp432p4xx/driverlib/flash.h
 ..\output\control.o: ..\Hardware\encoder\bsp_encoder.h
 ..\output\control.o: ..\Hardware\motor\bsp_motor.h
-..\output\control.o: ..\Hardware\pid\PID.h
+..\output\control.o: ..\Hardware\pid\bsp_pid.h
+..\output\control.o: D:\Keil\ARM\ARMCC\Bin\..\include\stdio.h
+..\output\control.o: D:\Keil\ARM\ARMCC\Bin\..\include\stdlib.h
+..\output\control.o: D:\Keil\ARM\ARMCC\Bin\..\include\math.h
+..\output\control.o: ..\Hardware\protocol\protocol.h
+..\output\control.o: ..\Hardware\uart1\usart.h
+..\output\control.o: ..\Hardware\sys\delay.h

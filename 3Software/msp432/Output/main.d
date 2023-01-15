@@ -50,6 +50,7 @@
 ..\output\main.o: ..\Hardware\reflectance\Reflectance.h
 ..\output\main.o: ..\Hardware\sys\delay.h
 ..\output\main.o: ..\Hardware\timA\timA.h
+..\output\main.o: ..\Hardware\tim32\tim32.h
 ..\output\main.o: ..\Hardware\servo\bsp_Servo.h
 ..\output\main.o: ..\Hardware\sys\sysinit.h
 ..\output\main.o: ..\Hardware\uart1\usart.h

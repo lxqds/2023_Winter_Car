@@ -50,6 +50,7 @@
 ..\output\myconfig.o: ..\Hardware\reflectance\Reflectance.h
 ..\output\myconfig.o: ..\Hardware\sys\delay.h
 ..\output\myconfig.o: ..\Hardware\timA\timA.h
+..\output\myconfig.o: ..\Hardware\tim32\tim32.h
 ..\output\myconfig.o: ..\Hardware\servo\bsp_Servo.h
 ..\output\myconfig.o: ..\Hardware\sys\sysinit.h
 ..\output\myconfig.o: ..\Hardware\uart1\usart.h

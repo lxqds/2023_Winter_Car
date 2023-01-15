@@ -344,10 +344,12 @@ int8_t receiving_process(void)
         if (packet.ch == CURVES_CH1)    
         {
           set_pid_target(&move_pid, actual_temp);    // 设置目标值
+			set_pid_target(&move_pid2, actual_temp);    // 设置目标值
         }
 		else if(packet.ch == CURVES_CH2)
 		{
 			set_pid_target(&speed_pid, actual_temp);    // 设置通道2目标值
+			set_pid_target(&speed_pid2, actual_temp);    // 设置通道2目标值
 		}
       }
       break;

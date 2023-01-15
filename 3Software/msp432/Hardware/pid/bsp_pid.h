@@ -18,6 +18,7 @@ typedef struct
   float err_last;          		//定义上一个偏差值
   float Kp,Ki,Kd;          		//定义比例、积分、微分系数
   float integral;          		//定义积分值
+	float Last_output;			//上一次输出用于构造限幅滤波器
   float output;
 }_pid;
 

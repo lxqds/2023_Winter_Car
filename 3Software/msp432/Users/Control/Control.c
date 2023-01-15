@@ -36,7 +36,7 @@ void CTRL_compute_Position2(void)
  */
 void CTRL_compute_Position(void)
 { 
-	uint16_t Limit_MAXspeed = 70;
+	uint16_t Limit_MAXspeed = 100;
 	move_pid.output = PID_realize(&move_pid,Encoder.Distance[2]);
 	move_pid2.output = PID_realize(&move_pid2,Encoder.Distance[3]);
 	
@@ -69,6 +69,16 @@ void CTRL_compute_Speed(void)
 {
 	speed_pid.output = PID_realize(&speed_pid,Encoder.Speed[2]);
 	speed_pid2.output = PID_realize(&speed_pid2,Encoder.Speed[3]);
+//	if(speed_pid.output - speed_pid.Last_output > 5)// 限制增量为5
+//	{
+//		speed_pid.output = speed_pid.Last_output + 5;
+//	}
+//	 speed_pid.Last_output = speed_pid.output;
+//	if(speed_pid2.output - speed_pid2.Last_output > 5)// 限制增量为5
+//	{
+//		speed_pid2.output = speed_pid2.Last_output + 5;
+//	}
+//	 speed_pid2.Last_output = speed_pid2.output;
 	
 	if(speed_pid.output >90)
 	{

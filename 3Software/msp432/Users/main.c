@@ -11,7 +11,7 @@ int main(void)
 	LED_Init();
 	OLED_Init();
 	Reflectance_Init2();
-	TimA0_Int_Init(9999,48);//48分频，分频后1M，计数10000，
+	TimA0_Int_Init(9999,48);//48分频，分频后1M，计数10000，10ms
 	Servo_Init();
 	Motor_Init();
 	Motor_Init_bianmaqi();
@@ -24,10 +24,10 @@ int main(void)
 	PID_param_init(&speed_pid);
 	PID_param_init(&speed_pid2);
 	
-	set_p_i_d(&move_pid,11,0,0);
-	set_p_i_d(&move_pid2,11,0,0);
-	set_p_i_d(&speed_pid,1.8,0.1,0);
-	set_p_i_d(&speed_pid2,1.8,0.1,0);
+	set_p_i_d(&move_pid,50,0,50);
+	set_p_i_d(&move_pid2,50,0,50);
+	set_p_i_d(&speed_pid,0.45,0.03,0);
+	set_p_i_d(&speed_pid2,0.45,0.03,0);
 	
 	set_pid_target(&move_pid2,50);
 	set_pid_target(&move_pid,50);
@@ -40,14 +40,15 @@ int main(void)
 	set_computer_value(SEND_START_CMD,0x01,NULL,1);
 	for(;;)
 	{
-		
-		
-		int temp1 = Encoder.Speed[2];    // 上位机需要整数参数，转换一下
-		int temp2 = Encoder.Distance[2];    // 上位机需要整数参数，转换一下
-		receiving_process();
-		set_computer_value(SEND_FACT_CMD, 0x02,&temp1, 1);
-		set_computer_value(SEND_FACT_CMD, 0x01,&temp2, 1);
-		
+//		int temp1 = Encoder.Speed[2];    // 上位机需要整数参数，转换一下
+//		int temp2 = Encoder.Distance[2];    // 上位机需要整数参数，转换一下
+//		int temp3 = Encoder.Speed[3];    // 上位机需要整数参数，转换一下
+//		int temp4 = Encoder.Distance[3];    // 上位机需要整数参数，转换一下
+//		receiving_process();
+//		set_computer_value(SEND_FACT_CMD, 0x02,&temp1, 1);
+//		set_computer_value(SEND_FACT_CMD, 0x01,&temp2, 1);
+//		set_computer_value(SEND_FACT_CMD, 0x04,&temp3, 1);
+//		set_computer_value(SEND_FACT_CMD, 0x03,&temp4, 1);
 		Reflectance_Data = Reflectance_Read2();
 		Menudisplay();
 	}

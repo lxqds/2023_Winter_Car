@@ -17,7 +17,7 @@
 #include "myconfig.h"
 
 /* define -----------------------------------------------------------------------------------------------------------------*/
-uint8_t Delay10msCnt = 0;
+uint16_t Delay10msCnt = 0;
 uint8_t TIMA_Count = 0;
 uint8_t Car_Star_Flag = 1;
 uint8_t Reflectance_Data;
@@ -37,12 +37,7 @@ float PWMtemp1,PWMtemp2;
 void TA0_0_IRQHandler(void)
 {
     MAP_Timer_A_clearCaptureCompareInterrupt(TIMER_A0_BASE, TIMER_A_CAPTURECOMPARE_REGISTER_0);
-    Delay10msCnt++;
-	if(Delay10msCnt>50)
-	{
-		Delay10msCnt = 0;//延时500ms
-		MAP_GPIO_toggleOutputOnPin(GPIO_PORT_P1, GPIO_PIN0);
-	}
+    
     /*开始填充用户代码*/
 	//Key = KEY_Scan(1);
 	//Key = Key_Scan();
@@ -75,9 +70,9 @@ void TA0_0_IRQHandler(void)
  * @param:无
  * @retuen:无
  */
-void T32_INT2_IRQHandler(void)
+void T32_INT1_IRQHandler(void)
 {
-    MAP_Timer32_clearInterruptFlag(TIMER32_1_BASE);
+    MAP_Timer32_clearInterruptFlag(TIMER32_0_BASE);
 
     /*开始填充用户代码*/
 

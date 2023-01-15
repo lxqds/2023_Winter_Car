@@ -27,6 +27,7 @@
 #include "oled.h"
 #include "Reflectance.h"
 #include "timA.h"
+#include "tim32.h"
 #include "bsp_Servo.h"
 #include "sysinit.h"
 #include "usart.h"

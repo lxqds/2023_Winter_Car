@@ -51,3 +51,15 @@
 ..\output\control.o: ..\Hardware\protocol\protocol.h
 ..\output\control.o: ..\Hardware\uart1\usart.h
 ..\output\control.o: ..\Hardware\sys\delay.h
+..\output\control.o: ..\Users\myconfig.h
+..\output\control.o: ..\Hardware\key\key.h
+..\output\control.o: ..\Hardware\led\led.h
+..\output\control.o: ..\Hardware\oled\oled.h
+..\output\control.o: ..\Hardware\reflectance\Reflectance.h
+..\output\control.o: ..\Hardware\timA\timA.h
+..\output\control.o: ..\Hardware\tim32\tim32.h
+..\output\control.o: ..\Hardware\servo\bsp_Servo.h
+..\output\control.o: ..\Hardware\sys\sysinit.h
+..\output\control.o: ..\Hardware\IIC\bsp_MPU6050.h
+..\output\control.o: ..\Hardware\IIC\IIC.h
+..\output\control.o: ..\Hardware\IIC\eMPL\inv_mpu.h

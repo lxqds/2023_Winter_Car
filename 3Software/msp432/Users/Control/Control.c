@@ -14,6 +14,7 @@
 
 /* Includes -------------------------------------------------------------------------------------------------------------*/
 #include "Control.h"
+#include "myconfig.h"
 /* define -----------------------------------------------------------------------------------------------------------------*/
 CTRL CTRL_Position;
 CTRL CTRL_Speed;
@@ -36,7 +37,7 @@ void CTRL_compute_Position2(void)
  */
 void CTRL_compute_Position(void)
 { 
-	uint16_t Limit_MAXspeed = 100;
+	uint16_t Limit_MAXspeed = 50;
 	move_pid.output = PID_realize(&move_pid,Encoder.Distance[2]);
 	move_pid2.output = PID_realize(&move_pid2,Encoder.Distance[3]);
 	
@@ -98,6 +99,48 @@ void CTRL_compute_Speed(void)
 	}
 }
 
+void Car_Go(float Distance)
+{
+	
+	Encoder.Distance[2] = 0;
+	Encoder.Distance[3] = 0;
+
+	Flag.Start_Line_Flag = 1;
+	Flag.Target_Distance_Left = Distance;
+	Flag.Target_Distance_Right = Distance;
+	Flag.Is_EnMOTOR = 1;
+	Flag.CarStart_Flag = 1;
+	
+	set_pid_target(&move_pid,Flag.Target_Distance_Left);
+	set_pid_target(&move_pid2,Flag.Target_Distance_Right);
+}
+void Car_Spin(uint8_t Direction)
+{
+	float Distance_Left,Distance_Right;
+	Encoder.Distance[2] = 0;
+	Encoder.Distance[3] = 0;
+
+	
+	switch(Direction)
+	{
+		case 0: Distance_Left=-10.5f;Distance_Right=10.5f;break;
+		case 1: Distance_Left=10.5f;Distance_Right=-10.5f;break;
+		case 2: Distance_Left=-21;Distance_Right=21;break;
+		default:break;
+	}
+	Flag.Target_Distance_Left  = Distance_Left;
+	Flag.Target_Distance_Right = Distance_Right;
+	
+	Flag.Spin_Start_Flag = 1;
+	Flag.Is_EnMOTOR = 1;
+	Flag.CarStart_Flag = 1;
+	
+	set_pid_target(&move_pid,Flag.Target_Distance_Left);
+	set_pid_target(&move_pid2,Flag.Target_Distance_Right);
+}
+
+
+
 /**
  * @name	Car_Go_Distance
  * @brief	车运行走距离x
@@ -141,7 +184,6 @@ bool Spin_Turn(uint8_t Angle)
 		else
 			return 0;
 	}
-	
 }
 
 /*****************************************************END OF FILE*********************************************************/	

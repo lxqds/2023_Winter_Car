@@ -32,21 +32,19 @@ int main(void)
 	set_pid_target(&move_pid2,50);
 	set_pid_target(&move_pid,50);
 
-//	set_pid_target(&speed_pid,50);
-//	set_pid_target(&speed_pid2,50);
 	uint32_t data = 0x01020304;
 	char *p = (char *)&data;
 	printf("0x0%x\n",*p);//判断大小端，0x04为小端，0x01为大端
 	set_computer_value(SEND_START_CMD,0x01,NULL,1);
 	for(;;)
 	{
-//		int temp1 = Encoder.Speed[2];    // 上位机需要整数参数，转换一下
-//		int temp2 = Encoder.Distance[2];    // 上位机需要整数参数，转换一下
+		int temp1 = Encoder.Speed[2];    // 上位机需要整数参数，转换一下
+		int temp2 = Encoder.Distance[2];    // 上位机需要整数参数，转换一下
 //		int temp3 = Encoder.Speed[3];    // 上位机需要整数参数，转换一下
 //		int temp4 = Encoder.Distance[3];    // 上位机需要整数参数，转换一下
-//		receiving_process();
-//		set_computer_value(SEND_FACT_CMD, 0x02,&temp1, 1);
-//		set_computer_value(SEND_FACT_CMD, 0x01,&temp2, 1);
+		receiving_process();
+		set_computer_value(SEND_FACT_CMD, 0x02,&temp1, 1);
+		set_computer_value(SEND_FACT_CMD, 0x01,&temp2, 1);
 //		set_computer_value(SEND_FACT_CMD, 0x04,&temp3, 1);
 //		set_computer_value(SEND_FACT_CMD, 0x03,&temp4, 1);
 		Reflectance_Data = Reflectance_Read2();
@@ -86,6 +84,7 @@ void Menudisplay(void)
 			}break;
 			case State1:
 			{
+				set_motor_enable();
 				OLED_ShowString(0,0,"Function1",16);
 				//OLED_ShowBin(1,4,Reflectance_Data,8,16);
 				
@@ -106,14 +105,12 @@ void Menudisplay(void)
 				if(Keys[1].Single_Flag == 1)
 				{
 					Keys[1].Single_Flag = 0;
-					set_pid_target(&move_pid,0);
-					set_pid_target(&move_pid2,0);
+					Car_Go(50);  
 				}
 				if(Keys[1].Double_Flag == 1)
 				{
 					Keys[1].Double_Flag = 0;
-					set_pid_target(&move_pid,50);
-					set_pid_target(&move_pid2,50);
+					Car_Spin(0);
 				}
 				if(Keys[0].Single_Flag == 1)
 				{
@@ -131,6 +128,7 @@ void Menudisplay(void)
 			}break;
 			case State2:
 			{
+				set_motor_disable();
 				short x,y,z;
 				float p,r,yow;
 				MPU_Get_Gyroscope(&x,&y,&z);

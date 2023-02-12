@@ -5,6 +5,26 @@ import sensor, image, lcd, time
 import KPU as kpu
 import gc, sys
 
+import ustruct#导入ustruct模块方便转换数据
+
+from machine import UART
+from board import board_info
+from fpioa_manager import fm
+fm.register(24,fm.fpioa.UART1_TX,force=True)
+fm.register(25,fm.fpioa.UART1_RX,force=True)
+
+def Send_Data(X,Y,D):
+    global uart
+    data = ustruct.pack("<bbhhfb",#数据包的格式控制
+                              0x23,#数据包头部1
+                              0x66,#数据包头部2
+                              int(X),#数据1
+                              int(Y),#数据2
+                              float(D),#数据3
+                              0x11)#数据包结束
+    uart = UART(UART.UART1,115200,8,0,1,timeout=1000,read_buf_len=4096)
+    uart.write(data);
+
 def lcd_show_except(e):
     import uio
     err_str = uio.StringIO()
@@ -48,6 +68,7 @@ def main(anchors, labels = None, model_addr="/sd/m.kmodel", sensor_window=(224, 
     kpu.init_yolo2(task, 0.5, 0.3, 5, anchors) # threshold:[0,1], nms_value: [0, 1]
     try:
         while 1:
+            string ="0"
             img = sensor.snapshot()
             t = time.ticks_ms()
             objects = kpu.run_yolo2(task, img)
@@ -57,7 +78,9 @@ def main(anchors, labels = None, model_addr="/sd/m.kmodel", sensor_window=(224, 
                     pos = obj.rect()
                     img.draw_rectangle(pos)
                     img.draw_string(pos[0], pos[1], "%s : %.2f" %(labels[obj.classid()], obj.value()), scale=2, color=(255, 0, 0))
-            img.draw_string(0, 200, "t:%dms" %(t), scale=2, color=(255, 0, 0))
+                    string = labels[obj.classid()]
+                    Send_Data(pos[0],pos[1],labels[obj.classid()])
+            img.draw_string(0, 200, "t:%dms     %s" %(t,string), scale=2, color=(255, 0, 0))
             lcd.display(img)
     except Exception as e:
         raise e

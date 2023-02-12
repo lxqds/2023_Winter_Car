@@ -67,6 +67,8 @@ def main(anchors, labels = None, model_addr="/sd/m.kmodel", sensor_window=(224, 
 
 if __name__ == "__main__":
     try:
+        labels = ['8', '1', '3', '2', '5', '4', '6', '7']
+        anchors = [2.78, 2.56, 4.25, 3.19, 4.06, 4.38, 3.34, 3.53, 5.31, 5.09]
         #main(anchors = anchors, labels=labels, model_addr=0x300000, lcd_rotation=2, sensor_window=(224, 224))
         main(anchors = anchors, labels=labels, model_addr="/sd/m.kmodel", lcd_rotation=2, sensor_window=(224, 224))
     except Exception as e:

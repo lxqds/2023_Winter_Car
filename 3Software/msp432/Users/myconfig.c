@@ -23,8 +23,10 @@ uint8_t Car_Star_Flag = 1;
 uint8_t Reflectance_Data;
 uint8_t Recive_Byte;
 
-float PWMtemp1,PWMtemp2;
+Flag_Init Flag;
 
+float PWMtemp1,PWMtemp2;
+float g_fTargetJourney = 50;
 
 
 
@@ -44,20 +46,88 @@ void TA0_0_IRQHandler(void)
 	Key_Scan2();
 	Encoder_Scan();
 	
-//	if(Car_Star_Flag)
+	if(Flag.Start_Line_Flag == 1)
 	{
-		TIMA_Count ++;
-//		if(TIMA_Count %2)		//控制周期为20ms
+		//判断距离是否达到实际的距离
+		if(Encoder.Distance[2] >= (Flag.Target_Distance_Left ) &&Encoder.Distance[3] >= (Flag.Target_Distance_Right ) )
 		{
-			CTRL_compute_Position();
-			CTRL_compute_Speed();
-			Set_PWM(speed_pid.output,speed_pid2.output);
+			Flag.Stop_Count++;
+			if(Flag.Stop_Count>100)
+			{
+				Flag.Stop_Flag = 1;//置标志位
+				Flag.Start_Line_Flag = 0;
+				Flag.Stop_Count = 0;
+				LED_G_On();
+				
+				Flag.Is_EnMOTOR = 0;//电机失能
+			}
+		}
+		else
+		{
+			Flag.Stop_Flag = 0;
+			Flag.Stop_Count = 0;
+			LED_G_Off();
 		}
 		
-		if(TIMA_Count ==50)		//控制周期为500ms
+		if(Flag.Is_EnMOTOR == 1)
 		{
-			TIMA_Count = 0;
-//			CTRL_compute_Position();
+			{
+				CTRL_compute_Position();
+				CTRL_compute_Speed();
+				
+				//巡线补偿
+				if(Flag.Bias_Left == 1)
+				{
+					PWMtemp1 = speed_pid.output + 5;
+					PWMtemp2 = speed_pid2.output -5;
+				}else if(Flag.Bias_Right == 1)
+				{
+					PWMtemp1 = speed_pid.output - 5;
+					PWMtemp2 = speed_pid2.output + 5;
+				}
+				else
+				{
+					PWMtemp1 = speed_pid.output;
+					PWMtemp2 = speed_pid2.output;
+				}
+				Set_PWM(PWMtemp1 ,PWMtemp2);
+			}
+		}
+	}
+	
+	if(Flag.Spin_Start_Flag == 1)
+	{
+		//判断距离是否达到实际的距离
+		if(Encoder.Distance[2] == (Flag.Target_Distance_Left ) &&Encoder.Distance[3] == (Flag.Target_Distance_Right ) )
+		{
+			Flag.Stop_Count++;
+			if(Flag.Stop_Count>100)
+			{
+				Flag.Stop_Flag = 1;//置标志位
+				Flag.Spin_Start_Flag = 0;
+				Flag.Stop_Count = 0;
+				LED_G_On();
+				
+				Flag.Is_EnMOTOR = 0;//电机失能
+			}	
+		}
+		else
+		{
+			Flag.Stop_Flag = 0;
+			Flag.Stop_Count = 0;
+			LED_G_Off();
+		}
+		
+		if(Flag.Is_EnMOTOR == 1)
+		{
+			{
+				CTRL_compute_Position();
+				CTRL_compute_Speed();
+				
+				PWMtemp1 = speed_pid.output;
+				PWMtemp2 = speed_pid2.output;
+				Set_PWM(PWMtemp1 ,PWMtemp2);
+			}
 		}
 	}
    
@@ -81,7 +151,6 @@ void T32_INT1_IRQHandler(void)
 
 void EUSCIA0_IRQHandler(void)
 {
-
     uint32_t status = UART_getEnabledInterruptStatus(EUSCI_A0_BASE);
 	uint8_t dr;	
     if(status & EUSCI_A_UART_RECEIVE_INTERRUPT_FLAG) //接收中断

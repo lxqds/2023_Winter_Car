@@ -167,7 +167,7 @@ void Motor_Control_Dir(uint8_t Motorx,uint8_t Dir)
 	}
 }
 
-
+uint8_t Motor_enable_Flag = 0;
 void Set_PWM(float PWM1,float PWM2)
 {
 //	if(PWM1>0)
@@ -188,17 +188,23 @@ void Set_PWM(float PWM1,float PWM2)
 //	
 //	Timer_A_setCompareValue(TIMER_A1_BASE,TIMER_A_CAPTURECOMPARE_REGISTER_2,12*(uint16_t)PWM2);
 //	Timer_A_setCompareValue(TIMER_A1_BASE,TIMER_A_CAPTURECOMPARE_REGISTER_3,12*(uint16_t)PWM1);
-	
-	if(PWM2>0)
-	Motor_Control(4,0,PWM2);
-	else
-	Motor_Control(4,1,-PWM2);
-	
-	if(PWM1>0)
-	Motor_Control(3,0,PWM1);
-	else
-	Motor_Control(3,1,-PWM1);
-	
+	if(Motor_enable_Flag == 1)
+	{
+		if(PWM2>0)
+		Motor_Control(4,0,PWM2);
+		else
+		Motor_Control(4,1,-PWM2);
+		
+		if(PWM1>0)
+		Motor_Control(3,0,PWM1);
+		else
+		Motor_Control(3,1,-PWM1);
+	}
+	else 
+	{
+		Motor_Control(4,0,0);
+		Motor_Control(3,0,0);
+	}
 }
 /**
  * @name	set_motor_enable
@@ -208,7 +214,7 @@ void Set_PWM(float PWM1,float PWM2)
  */
 void set_motor_enable(void)
 {
-	MAP_Timer_A_enableInterrupt(TIMER_A1_BASE);
+	Motor_enable_Flag = 1;
 }
 /**
  * @name	set_motor_disable
@@ -218,5 +224,5 @@ void set_motor_enable(void)
  */
 void set_motor_disable(void)
 {
-	MAP_Timer_A_disableInterrupt(TIMER_A1_BASE);
+	Motor_enable_Flag = 0;
 }

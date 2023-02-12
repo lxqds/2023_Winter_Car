@@ -21,19 +21,28 @@ Target DLL:      CMSIS_AGDI.dll V1.33.15.0
 Dialog DLL:      TCM.DLL V1.56.4.0
  
 <h2>Project:</h2>
-C:\Users\lxq\Desktop\2023WinterVacation\2021国赛F题小车\3Software\msp432\Project\msp_432_Car.uvprojx
+\\LAPTOP-3K5UFLL3\Users\lxq\Desktop\2023WinterVacation\2021国赛F题小车\3Software\msp432\Project\msp_432_Car.uvprojx
 Project File Date:  01/13/2023
 
 <h2>Output:</h2>
 *** Using Compiler 'V5.06 update 1 (build 61)', folder: 'D:\Keil\ARM\ARMCC\Bin'
 Build target 'Target 1'
+compiling Control.c...
+..\Users\Control\Control.c(155): warning:  #1035-D: single-precision operand implicitly converted to double-precision
+  	if((Encoder.Distance[2]>=Distance1-0.1)&&(Encoder.Distance[3]>=Distance2-0.1))
+..\Users\Control\Control.c(155): warning:  #1035-D: single-precision operand implicitly converted to double-precision
+  	if((Encoder.Distance[2]>=Distance1-0.1)&&(Encoder.Distance[3]>=Distance2-0.1))
+..\Users\Control\Control.c(187): warning:  #940-D: missing return statement at end of non-void function "Spin_Turn"
+  }
+..\Users\Control\Control.c: 3 warnings, 0 errors
+compiling myconfig.c...
 compiling main.c...
-..\Users\main.c(55): warning:  #111-D: statement is unreachable
+..\Users\main.c(53): warning:  #111-D: statement is unreachable
   	return 0;
 ..\Users\main.c: 1 warning, 0 errors
 linking...
-Program Size: Code=16902 RO-data=3354 RW-data=80 ZI-data=1016  
-"..\Output\msp_432_Car.axf" - 0 Error(s), 1 Warning(s).
+Program Size: Code=18378 RO-data=3350 RW-data=92 ZI-data=1044  
+"..\Output\msp_432_Car.axf" - 0 Error(s), 4 Warning(s).
 
 <h2>Software Packages used:</h2>
 
@@ -59,12 +68,12 @@ Package Vendor: TexasInstruments
    * Component: ARM::CMSIS:CORE:5.6.0
 
    * Component: TexasInstruments::Device:Startup:3.2.2
-      Source file:   Examples/EmptyMain/main.c
-      Include file:  Device/Include/msp_compatibility.h
-      Source file:   Examples/BlinkLED/blinkLED.c
-      Source file:   Device/Source/startup_msp432p401r_uvision.s
       Source file:   Device/Source/system_msp432p401r.c
-Build Time Elapsed:  00:00:01
+      Source file:   Examples/BlinkLED/blinkLED.c
+      Include file:  Device/Include/msp_compatibility.h
+      Source file:   Device/Source/startup_msp432p401r_uvision.s
+      Source file:   Examples/EmptyMain/main.c
+Build Time Elapsed:  00:00:03
 </pre>
 </body>
 </html>

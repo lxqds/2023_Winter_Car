@@ -34,6 +34,9 @@ typedef struct
 void CTRL_compute_Position(void);
 void CTRL_compute_Speed(void);
 
+void Car_Go(float Distance);
+void Car_Spin(uint8_t Direction);
+
 bool Car_Go_Distance(float Distance1,float Distance2);
 bool Spin_Turn(uint8_t Angle);
 #endif /* __XXX_H */

@@ -49,14 +49,28 @@ typedef enum
 
 typedef struct 
 {
+	uint8_t Is_EnMOTOR;
+	uint8_t Stop_Flag;
+	uint8_t Start_Line_Flag;
+	uint8_t Turn_Flag;
+	uint8_t Spin_Start_Flag;
+	uint8_t Spin_Succeed_Flag;
+	uint8_t Stop_Count;
+	uint8_t Spin_count;
 	uint8_t Distance_Flag;
 	uint8_t CarStart_Flag;
+	float  Target_Distance_Left;	//左轮
+	float Target_Distance_Right;//右轮
+	
+	uint8_t Bias_Left;
+	uint8_t Bias_Right;
+	uint8_t Bias_Middle;
 }Flag_Init;
 
 /* extern提供给其他C文件调用的函数 --------------------------------------------------------------------------------------------*/
 extern 	uint8_t Key;
 extern	uint8_t Reflectance_Data;
-
+extern Flag_Init Flag;
 
 
 

@@ -65,6 +65,10 @@ typedef struct
 	uint8_t Bias_Left;
 	uint8_t Bias_Right;
 	uint8_t Bias_Middle;
+	
+	uint8_t Load_drug;
+	uint8_t Target_Num;
+	uint8_t Step_Count;//用于处理识别目标后所做的路线步骤
 }Flag_Init;
 
 /* extern提供给其他C文件调用的函数 --------------------------------------------------------------------------------------------*/

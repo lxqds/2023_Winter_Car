@@ -123,9 +123,9 @@ void Car_Spin(uint8_t Direction)
 	
 	switch(Direction)
 	{
-		case 0: Distance_Left=-10.5f;Distance_Right=10.5f;break;
-		case 1: Distance_Left=10.5f;Distance_Right=-10.5f;break;
-		case 2: Distance_Left=-21;Distance_Right=21;break;
+		case 0: Distance_Left=-15.5f;Distance_Right=15.5f;break;
+		case 1: Distance_Left=15.5f;Distance_Right=-15.5f;break;
+		case 2: Distance_Left=-30;Distance_Right=30;break;
 		default:break;
 	}
 	Flag.Target_Distance_Left  = Distance_Left;
@@ -152,7 +152,7 @@ bool Car_Go_Distance(float Distance1,float Distance2)
 	set_pid_target(&move_pid,Distance1);
 	set_pid_target(&move_pid2,Distance2);
 	
-	if((Encoder.Distance[2]>=Distance1-0.1)&&(Encoder.Distance[3]>=Distance2-0.1))
+	if((Encoder.Distance[2]>=Distance1-0.1f)&&(Encoder.Distance[3]>=Distance2-0.1f))
 	{
 		return 1;
 	}else
@@ -184,6 +184,7 @@ bool Spin_Turn(uint8_t Angle)
 		else
 			return 0;
 	}
+	return 1;
 }
 
 /*****************************************************END OF FILE*********************************************************/	

@@ -1,6 +1,9 @@
 #include "myconfig.h"
 
+uint8_t Step;
+
 void Menudisplay(void);
+void PID_Data_Send(void);
 
 int main(void)
 {
@@ -18,7 +21,6 @@ int main(void)
 	MPU_Init();
 	
 	protocol_init();
-	
 	PID_param_init(&move_pid);
 	PID_param_init(&move_pid2);
 	PID_param_init(&speed_pid);
@@ -38,6 +40,115 @@ int main(void)
 	set_computer_value(SEND_START_CMD,0x01,NULL,1);
 	for(;;)
 	{
+		Reflectance_Data = Reflectance_Read2();
+		Menudisplay();
+		PID_Data_Send();
+		
+		//set_motor_enable();
+		if(Keys[0].Single_Flag ==1)
+		{
+			Keys[0].Single_Flag =0;
+			Flag.Load_drug = 1;
+			Flag.Target_Num = 1;
+			Flag.Step_Count=0;
+			LED_G_On();
+			Car_Go(50);
+		}
+//		else 
+//		{
+//			Flag.Load_drug = 0;
+//		}
+		
+		if(Flag.Load_drug ==1)
+		{
+			if(Flag.Target_Num ==1)
+			{
+				
+				switch(Flag.Step_Count)
+				{
+					case 0:
+					{
+						Flag.Step_Count++;
+						Car_Go(50);
+					}break;
+					case 1:
+					{
+						if(Flag.Stop_Flag ==1)
+						{
+							Flag.Step_Count++;
+							Car_Spin(0);
+						}
+					}break;
+					case 2:
+					{
+						if(Flag.Stop_Flag ==1)
+						{
+							Flag.Step_Count++;
+							Car_Go(50);
+						}
+					}break;
+					case 3:
+					{
+						if(Flag.Stop_Flag ==1)//到达位置点亮led
+						{
+							Flag.Step_Count++;
+							LED_G_On();
+						}
+					}break;
+					case 4:
+					{
+						if(Keys[0].Single_Flag ==1)//如果药被取走
+						{
+							Keys[0].Single_Flag =0;
+							LED_G_Off();
+							Flag.Step_Count++;
+							Car_Spin(2);//自转180度
+						}
+					}break;
+					case 5:
+					{
+						if(Flag.Stop_Flag ==1)//自转180度后车子停下
+						{
+							Flag.Step_Count++;
+							Car_Go(50);
+						}
+					}break;
+					case 6:
+					{
+						if(Flag.Stop_Flag ==1)
+						{
+							Flag.Step_Count++;
+							Car_Spin(1);
+						}
+					}break;
+					case 7:
+					{
+						if(Flag.Stop_Flag ==1)
+						{
+							Flag.Step_Count++;
+							Car_Go(50);
+						}
+					}break;	
+					case 8:
+					{
+						if(Flag.Stop_Flag ==1)
+						{
+							Flag.Step_Count++;
+							LED_G_On();
+						}
+					}break;
+					
+				}
+			}
+		}
+		
+		
+		
+	}
+	//return 0;
+}
+void PID_Data_Send(void)
+{
 		int temp1 = Encoder.Speed[2];    // 上位机需要整数参数，转换一下
 		int temp2 = Encoder.Distance[2];    // 上位机需要整数参数，转换一下
 //		int temp3 = Encoder.Speed[3];    // 上位机需要整数参数，转换一下
@@ -47,12 +158,7 @@ int main(void)
 		set_computer_value(SEND_FACT_CMD, 0x01,&temp2, 1);
 //		set_computer_value(SEND_FACT_CMD, 0x04,&temp3, 1);
 //		set_computer_value(SEND_FACT_CMD, 0x03,&temp4, 1);
-		Reflectance_Data = Reflectance_Read2();
-		Menudisplay();
-	}
-	return 0;
 }
-
 void Menudisplay(void)
 {
 	static uint8_t State=Main_State,New_State=Main_State;

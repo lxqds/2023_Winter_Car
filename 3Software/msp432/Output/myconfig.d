@@ -63,3 +63,4 @@
 ..\output\myconfig.o: D:\KeilMDKArm\ARM\ARMCC\Bin\..\include\stdlib.h
 ..\output\myconfig.o: D:\KeilMDKArm\ARM\ARMCC\Bin\..\include\math.h
 ..\output\myconfig.o: ..\Users\Control\control.h
+..\output\myconfig.o: ..\Hardware\k210\k210.h

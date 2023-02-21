@@ -340,7 +340,7 @@
               <MiscControls></MiscControls>
               <Define></Define>
               <Undefine></Undefine>
-              <IncludePath>..\Libraries\ti_driverlib\simplelink_msp432p4_sdk_3_40_01_02;..\Users;..\Hardware\encoder;..\Hardware\key;..\Hardware\led;..\Hardware\motor;..\Hardware\oled;..\Hardware\reflectance;..\Hardware\servo;..\Hardware\sys;..\Hardware\tim32;..\Hardware\timA;..\Hardware\uart1;..\Hardware\IIC;..\Hardware\IIC\eMPL;..\Hardware\protocol;..\Hardware\pid;..\Users\Control;..\Users\app</IncludePath>
+              <IncludePath>..\Libraries\ti_driverlib\simplelink_msp432p4_sdk_3_40_01_02;..\Users;..\Hardware\encoder;..\Hardware\key;..\Hardware\led;..\Hardware\motor;..\Hardware\oled;..\Hardware\reflectance;..\Hardware\servo;..\Hardware\sys;..\Hardware\tim32;..\Hardware\timA;..\Hardware\uart1;..\Hardware\IIC;..\Hardware\IIC\eMPL;..\Hardware\protocol;..\Hardware\pid;..\Users\Control;..\Users\app;..\Hardware\k210</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -587,17 +587,17 @@
           </Files>
         </Group>
         <Group>
-          <GroupName>CTRL</GroupName>
+          <GroupName>k210</GroupName>
           <Files>
             <File>
-              <FileName>CTRL.c</FileName>
+              <FileName>k210.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\Users\app\CTRL.c</FilePath>
+              <FilePath>..\Hardware\k210\k210.c</FilePath>
             </File>
             <File>
-              <FileName>CTRL.h</FileName>
+              <FileName>k210.h</FileName>
               <FileType>5</FileType>
-              <FilePath>..\Users\app\CTRL.h</FilePath>
+              <FilePath>..\Hardware\k210\k210.h</FilePath>
             </File>
           </Files>
         </Group>

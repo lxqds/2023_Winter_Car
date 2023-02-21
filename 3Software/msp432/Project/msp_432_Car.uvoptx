@@ -658,8 +658,8 @@
   </Group>
 
   <Group>
-    <GroupName>CTRL</GroupName>
-    <tvExp>0</tvExp>
+    <GroupName>k210</GroupName>
+    <tvExp>1</tvExp>
     <tvExpOptDlg>0</tvExpOptDlg>
     <cbSel>0</cbSel>
     <RteFlg>0</RteFlg>
@@ -670,8 +670,8 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>..\Users\app\CTRL.c</PathWithFileName>
-      <FilenameWithoutPath>CTRL.c</FilenameWithoutPath>
+      <PathWithFileName>..\Hardware\k210\k210.c</PathWithFileName>
+      <FilenameWithoutPath>k210.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
@@ -682,8 +682,8 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>..\Users\app\CTRL.h</PathWithFileName>
-      <FilenameWithoutPath>CTRL.h</FilenameWithoutPath>
+      <PathWithFileName>..\Hardware\k210\k210.h</PathWithFileName>
+      <FilenameWithoutPath>k210.h</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>

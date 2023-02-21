@@ -63,3 +63,4 @@
 ..\output\control.o: ..\Hardware\IIC\bsp_MPU6050.h
 ..\output\control.o: ..\Hardware\IIC\IIC.h
 ..\output\control.o: ..\Hardware\IIC\eMPL\inv_mpu.h
+..\output\control.o: ..\Hardware\k210\k210.h

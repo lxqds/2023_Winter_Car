@@ -63,3 +63,4 @@
 ..\output\main.o: D:\KeilMDKArm\ARM\ARMCC\Bin\..\include\stdlib.h
 ..\output\main.o: D:\KeilMDKArm\ARM\ARMCC\Bin\..\include\math.h
 ..\output\main.o: ..\Users\Control\control.h
+..\output\main.o: ..\Hardware\k210\k210.h

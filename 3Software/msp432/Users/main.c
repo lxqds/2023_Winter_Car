@@ -1,6 +1,5 @@
 #include "myconfig.h"
 
-uint8_t Step;
 
 void Menudisplay(void);
 void PID_Data_Send(void);
@@ -10,6 +9,7 @@ int main(void)
 	SysInit1();
 	uart_init0(115200);
 	uart_init(115200);
+	uart_init2(115200);
 	KEY_Init();
 	LED_Init();
 	OLED_Init();
@@ -44,26 +44,11 @@ int main(void)
 		Menudisplay();
 		PID_Data_Send();
 		
-		//set_motor_enable();
-		if(Keys[0].Single_Flag ==1)
-		{
-			Keys[0].Single_Flag =0;
-			Flag.Load_drug = 1;
-			Flag.Target_Num = 1;
-			Flag.Step_Count=0;
-			LED_G_On();
-			Car_Go(50);
-		}
-//		else 
-//		{
-//			Flag.Load_drug = 0;
-//		}
-		
+
 		if(Flag.Load_drug ==1)
 		{
 			if(Flag.Target_Num ==1)
 			{
-				
 				switch(Flag.Step_Count)
 				{
 					case 0:
@@ -77,6 +62,7 @@ int main(void)
 						{
 							Flag.Step_Count++;
 							Car_Spin(0);
+							LED_B_On();
 						}
 					}break;
 					case 2:
@@ -202,12 +188,15 @@ void Menudisplay(void)
 				OLED_ShowBNum(48,2,speed_pid.Ki,2,16);
 				OLED_ShowBNum(72,2,speed_pid.Kd,3,16);
 				
-				OLED_ShowBNum(0,4,Encoder.Speed[2],6,16);
-				OLED_ShowBNum(0,6,Encoder.Speed[3],6,16);
-				OLED_ShowBNum(64,4,Encoder.Distance[2],6,16);
-				OLED_ShowBNum(64,6,Encoder.Distance[3],6,16);
-//				OLED_ShowNum(96,4,(uint8_t)Encoder.Speed[2],3,16);
-//				OLED_ShowNum(96,6,(uint8_t)Encoder.Speed[3],3,16);
+				OLED_ShowBNum(0,4,Encoder.Speed[2],3,16);
+				OLED_ShowBNum(0,6,Encoder.Speed[3],3,16);
+				OLED_ShowBNum(48,4,Encoder.Distance[2],3,16);
+				OLED_ShowBNum(48,6,Encoder.Distance[3],3,16);
+				OLED_ShowNum(96,2,SensorData1.X,3,16);
+				OLED_ShowNum(96,4,SensorData1.Y,3,16);
+				OLED_ShowNum(96,6,SensorData1.D.Float_Data,3,16);
+				
+				
 				if(Keys[1].Single_Flag == 1)
 				{
 					Keys[1].Single_Flag = 0;
@@ -222,6 +211,11 @@ void Menudisplay(void)
 				{
 					Keys[0].Single_Flag = 0;
 					New_State = State1;
+					Keys[0].Single_Flag =0;
+					Flag.Load_drug = 1;
+					Flag.Target_Num = 1;
+					Flag.Step_Count=0;
+					LED_G_On();
 				}else if(Keys[0].Double_Flag == 1)
 				{
 					Keys[0].Double_Flag = 0;

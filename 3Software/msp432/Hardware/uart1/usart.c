@@ -1,4 +1,3 @@
-#include <ti/devices/msp432p4xx/driverlib/driverlib.h>
 
 #ifndef __USART_H
 #define __USART_H
@@ -175,6 +174,52 @@ void uart_init(uint32_t baudRate)
   MAP_UART_enableModule(EUSCI_A2_BASE);
   UART_enableInterrupt(EUSCI_A2_BASE,EUSCI_A_UART_RECEIVE_INTERRUPT);
   Interrupt_enableInterrupt(INT_EUSCIA2);
+  Interrupt_enableMaster();
+}
+
+
+void uart_init2(uint32_t baudRate)
+{
+#ifdef EUSCI_A_UART_7_BIT_LEN
+  //固件库v3_40_01_02
+  //默认SMCLK 48MHz 比特率 115200
+  const eUSCI_UART_ConfigV1 uartConfig =
+      {
+          EUSCI_A_UART_CLOCKSOURCE_SMCLK,                // SMCLK Clock Source
+          26,                                            // BRDIV = 26
+          0,                                             // UCxBRF = 0
+          111,                                           // UCxBRS = 111
+          EUSCI_A_UART_NO_PARITY,                        // No Parity
+          EUSCI_A_UART_LSB_FIRST,                        // MSB First
+          EUSCI_A_UART_ONE_STOP_BIT,                     // One stop bit
+          EUSCI_A_UART_MODE,                             // UART mode
+          EUSCI_A_UART_OVERSAMPLING_BAUDRATE_GENERATION, // Oversampling
+          EUSCI_A_UART_8_BIT_LEN                         // 8 bit data length
+      };
+  eusci_calcBaudDividers((eUSCI_UART_ConfigV1 *)&uartConfig, baudRate); //配置波特率
+#else
+  //固件库v3_21_00_05
+  //默认SMCLK 48MHz 比特率 115200
+  const eUSCI_UART_Config uartConfig =
+      {
+          EUSCI_A_UART_CLOCKSOURCE_SMCLK,                // SMCLK Clock Source
+          26,                                            // BRDIV = 26
+          0,                                             // UCxBRF = 0
+          111,                                           // UCxBRS = 111
+          EUSCI_A_UART_NO_PARITY,                        // No Parity
+          EUSCI_A_UART_LSB_FIRST,                        // MSB First
+          EUSCI_A_UART_ONE_STOP_BIT,                     // One stop bit
+          EUSCI_A_UART_MODE,                             // UART mode
+          EUSCI_A_UART_OVERSAMPLING_BAUDRATE_GENERATION, // Oversampling
+      };
+  eusci_calcBaudDividers((eUSCI_UART_Config *)&uartConfig, baudRate); //配置波特率
+#endif
+
+  MAP_GPIO_setAsPeripheralModuleFunctionOutputPin(GPIO_PORT_P9, GPIO_PIN6 | GPIO_PIN7, GPIO_PRIMARY_MODULE_FUNCTION);
+  MAP_UART_initModule(EUSCI_A3_BASE, &uartConfig);
+  MAP_UART_enableModule(EUSCI_A3_BASE);
+  UART_enableInterrupt(EUSCI_A3_BASE,EUSCI_A_UART_RECEIVE_INTERRUPT);
+  Interrupt_enableInterrupt(INT_EUSCIA3);
   Interrupt_enableMaster();
 }
 void USART_SendCharArr(uint8_t *char_arr ,uint16_t length){

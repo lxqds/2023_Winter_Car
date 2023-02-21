@@ -28,8 +28,7 @@ Flag_Init Flag;
 float PWMtemp1,PWMtemp2;
 float g_fTargetJourney = 50;
 
-
-
+uint8_t TempData;
 /**
  * @name:TA0_0_IRQHandler
  * @brief:TA0中断回调函数
@@ -49,7 +48,7 @@ void TA0_0_IRQHandler(void)
 	if(Flag.Start_Line_Flag == 1)
 	{
 		//判断距离是否达到实际的距离
-		if(Encoder.Distance[2] >= (Flag.Target_Distance_Left ) &&Encoder.Distance[3] >= (Flag.Target_Distance_Right ) )
+		if(Encoder.Distance[2] >= (Flag.Target_Distance_Left ) ||Encoder.Distance[3] >= (Flag.Target_Distance_Right ) )
 		{
 			Flag.Stop_Count++;
 			if(Flag.Stop_Count>100)
@@ -97,16 +96,20 @@ void TA0_0_IRQHandler(void)
 	
 	if(Flag.Spin_Start_Flag == 1)
 	{
+//		if((Encoder.Distance[2] >= (Flag.Target_Distance_Left-0.1 )&&(Encoder.Distance[2] <= (Flag.Target_Distance_Left+0.1 )))||(Encoder.Distance[3] >= (Flag.Target_Distance_Right-0.1 )&&Encoder.Distance[3] >= (Flag.Target_Distance_Right+0.1 )))
+//		{
+//			Flag.Target_Distance_Arrive = 1;
+//		}
 		//判断距离是否达到实际的距离
-		if(Encoder.Distance[2] == (Flag.Target_Distance_Left ) &&Encoder.Distance[3] == (Flag.Target_Distance_Right ) )
+//		if(Flag.Target_Distance_Arrive ==1)
+		if((Encoder.Distance[2] >= (Flag.Target_Distance_Left-0.1 )&&(Encoder.Distance[2] <= (Flag.Target_Distance_Left+0.1 )))||(Encoder.Distance[3] >= (Flag.Target_Distance_Right-0.1 )&&Encoder.Distance[3] >= (Flag.Target_Distance_Right+0.1 )))
 		{
 			Flag.Stop_Count++;
 			if(Flag.Stop_Count>100)
 			{
 				Flag.Stop_Flag = 1;//置标志位
-				Flag.Spin_Start_Flag = 0;
-				Flag.Stop_Count = 0;
-				LED_G_On();
+				Flag.Spin_Start_Flag = 0;//开始转弯				Flag.Stop_Count = 0;//停止计时
+				LED_G_On();//点灯
 				
 				Flag.Is_EnMOTOR = 0;//电机失能
 			}	
@@ -152,22 +155,30 @@ void T32_INT1_IRQHandler(void)
 void EUSCIA0_IRQHandler(void)
 {
     uint32_t status = UART_getEnabledInterruptStatus(EUSCI_A0_BASE);
-	uint8_t dr;	
+	uint8_t dr;
     if(status & EUSCI_A_UART_RECEIVE_INTERRUPT_FLAG) //接收中断
     {
 		dr = MAP_UART_receiveData(EUSCI_A0_BASE);
 		protocol_data_recv(&dr,1);
-
     }
 }
 void EUSCIA2_IRQHandler(void)
 {
     uint32_t status = UART_getEnabledInterruptStatus(EUSCI_A2_BASE);
-		
+	
     if(status & EUSCI_A_UART_RECEIVE_INTERRUPT_FLAG) //接收中断
     {
-			Recive_Byte = MAP_UART_receiveData(EUSCI_A2_BASE);
+		Recive_Byte = MAP_UART_receiveData(EUSCI_A2_BASE);
     }
 }
 
+void EUSCIA3_IRQHandler(void)
+{
+    uint32_t status = UART_getEnabledInterruptStatus(EUSCI_A3_BASE);
+    if(status & EUSCI_A_UART_RECEIVE_INTERRUPT_FLAG) //接收中断
+    {
+			TempData = MAP_UART_receiveData(EUSCI_A3_BASE);
+			Get_Data_To_Array(TempData);
+    }
+}
 /*****************************************************END OF FILE*********************************************************/	

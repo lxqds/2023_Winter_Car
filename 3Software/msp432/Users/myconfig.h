@@ -39,6 +39,7 @@
 #include "bsp_pid.h"
 #include "control.h"
 
+#include "k210.h"
 /* define定义 -----------------------------------------------------------------------------------------------------------------*/
 typedef enum 
 {
@@ -69,13 +70,15 @@ typedef struct
 	uint8_t Load_drug;
 	uint8_t Target_Num;
 	uint8_t Step_Count;//用于处理识别目标后所做的路线步骤
+	
+	uint8_t Target_Distance_Arrive;
 }Flag_Init;
 
 /* extern提供给其他C文件调用的函数 --------------------------------------------------------------------------------------------*/
 extern 	uint8_t Key;
 extern	uint8_t Reflectance_Data;
 extern Flag_Init Flag;
-
+extern  SensorData SensorData1;
 
 
 

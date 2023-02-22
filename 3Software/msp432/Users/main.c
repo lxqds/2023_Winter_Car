@@ -44,9 +44,26 @@ int main(void)
 		Menudisplay();
 		PID_Data_Send();
 		
-
-		if(Flag.Load_drug ==1)
+		if(SensorData1.D.Float_Data&&Flag.Recognize_Num_Flag ==0)
 		{
+			static uint8_t Last_Num,Temp_Num;//创建临时变量存储判断数字
+			Temp_Num = SensorData1.D.Float_Data;//暂存变量
+			if(Temp_Num == Last_Num)			//
+			{
+				Flag.Recognize_Num_Count++;
+				if(Flag.Recognize_Num_Count>=10)
+				{
+					Flag.Recognize_Num_Flag = 1;//识别到数字后置标志位为1,待处理数字
+					Flag.Target_Num = Temp_Num;//设置目标病房
+				}
+			}
+			Last_Num = Temp_Num;
+		}
+		
+
+		if(Flag.Load_drug == 1&&Flag.Recognize_Num_Flag == 1)//装有药以及识别到数字后开始行动
+		{
+			
 			if(Flag.Target_Num ==1)
 			{
 				switch(Flag.Step_Count)
@@ -62,6 +79,7 @@ int main(void)
 						{
 							Flag.Step_Count++;
 							Car_Spin(0);
+							LED_G_Off();
 							LED_B_On();
 						}
 					}break;
@@ -78,14 +96,15 @@ int main(void)
 						if(Flag.Stop_Flag ==1)//到达位置点亮led
 						{
 							Flag.Step_Count++;
+							LED_B_Off();
 							LED_G_On();
 						}
 					}break;
 					case 4:
 					{
-						if(Keys[0].Single_Flag ==1)//如果药被取走
+						if(Keys[0].Double_Flag ==1)//如果药被取走
 						{
-							Keys[0].Single_Flag =0;
+							Keys[0].Double_Flag =0;
 							LED_G_Off();
 							Flag.Step_Count++;
 							Car_Spin(2);//自转180度
@@ -105,6 +124,7 @@ int main(void)
 						{
 							Flag.Step_Count++;
 							Car_Spin(1);
+							LED_G_Off();
 						}
 					}break;
 					case 7:
@@ -113,6 +133,7 @@ int main(void)
 						{
 							Flag.Step_Count++;
 							Car_Go(50);
+							LED_G_Off();
 						}
 					}break;	
 					case 8:
@@ -123,9 +144,9 @@ int main(void)
 							LED_G_On();
 						}
 					}break;
-					
 				}
 			}
+			
 		}
 		
 		
@@ -164,11 +185,13 @@ void Menudisplay(void)
 				{
 					Keys[0].Single_Flag = 0;
 					New_State = State1;
-				}else if(Keys[0].Double_Flag == 1)
+				}
+				else if(Keys[0].Double_Flag == 1)
 				{
 					Keys[0].Double_Flag = 0;
 					New_State = State2;
-				}else if(Keys[0].Long_Press_Flag == 1)
+				}
+				else if(Keys[0].Long_Press_Flag == 1)
 				{
 					Keys[0].Long_Press_Flag = 0;
 					New_State = Main_State;
@@ -213,14 +236,16 @@ void Menudisplay(void)
 					New_State = State1;
 					Keys[0].Single_Flag =0;
 					Flag.Load_drug = 1;
-					Flag.Target_Num = 1;
-					Flag.Step_Count=0;
+//					Flag.Target_Num = 1;
+//					Flag.Step_Count=0;
 					LED_G_On();
-				}else if(Keys[0].Double_Flag == 1)
-				{
-					Keys[0].Double_Flag = 0;
-					New_State = State2;
-				}else if(Keys[0].Long_Press_Flag == 1)
+				}
+//				else if(Keys[0].Double_Flag == 1)
+//				{
+//					Keys[0].Double_Flag = 0;
+//					New_State = State2;
+//				}
+				else if(Keys[0].Long_Press_Flag == 1)
 				{
 					Keys[0].Long_Press_Flag = 0;
 					New_State = Main_State;

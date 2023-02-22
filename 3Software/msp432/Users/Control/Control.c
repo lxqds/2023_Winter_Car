@@ -105,6 +105,7 @@ void Car_Go(float Distance)
 	Encoder.Distance[2] = 0;
 	Encoder.Distance[3] = 0;
 
+	Flag.Stop_Flag =0;
 	Flag.Start_Line_Flag = 1;
 	Flag.Target_Distance_Left = Distance;
 	Flag.Target_Distance_Right = Distance;
@@ -131,6 +132,7 @@ void Car_Spin(uint8_t Direction)
 	Flag.Target_Distance_Left  = Distance_Left;
 	Flag.Target_Distance_Right = Distance_Right;
 	
+	Flag.Stop_Flag =0;//走之前将停止标志位置0
 	Flag.Spin_Start_Flag = 1;
 	Flag.Is_EnMOTOR = 1;
 	Flag.CarStart_Flag = 1;

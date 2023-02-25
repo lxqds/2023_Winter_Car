@@ -73,14 +73,6 @@ def main(anchors, labels = None, model_addr="/sd/m.kmodel", sensor_window=(224, 
             t = time.ticks_ms()
             objects = kpu.run_yolo2(task, img)
             t = time.ticks_ms() - t
-            if objects:
-                for obj in objects:
-                    pos = obj.rect()
-                    img.draw_rectangle(pos)
-                    img.draw_string(pos[0], pos[1], "%s : %.2f" %(labels[obj.classid()], obj.value()), scale=2, color=(255, 0, 0))
-                    string = labels[obj.classid()]
-                    Send_Data(pos[0],pos[1],labels[obj.classid()])
-            else:
                 Send_Data(0,0,0)
             img.draw_string(0, 200, "t:%dms     %s" %(t,string), scale=2, color=(255, 0, 0))
             lcd.display(img)

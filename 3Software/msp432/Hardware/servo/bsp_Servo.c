@@ -42,3 +42,25 @@ void Servo_Control(uint8_t Servox,uint16_t Duty_Cycle)
 	}
 	Timer_A_setCompareValue(TIMER_A2_BASE,Servo,Duty_Cycle);
 }
+/**
+ * @brief	舵机控制
+ * @param	uint8_t Servox 		选择舵机Servo1或Servo2	1或2
+ * @param	uint8_t Duty_Cycle	占空比499-2499
+ * @return	无
+ */
+void Servo_Control2(uint8_t Servox,uint8_t Angle)
+{
+	uint16_t Servo,Duty_Cycle;
+	if(Servox==1)
+		Duty_Cycle = -11.1f*Angle+2500;//上方为舵机1，下方为舵机2；
+	if(Servox==2)
+	Duty_Cycle = -11.1f*Angle+2500;	
+	switch(Servox)
+	{
+		case Servo1: 	Servo = TIMER_A_CAPTURECOMPARE_REGISTER_1;
+			break;
+		case Servo2:	Servo = TIMER_A_CAPTURECOMPARE_REGISTER_4;
+			break;
+	}
+	Timer_A_setCompareValue(TIMER_A2_BASE,Servo,Duty_Cycle);
+}

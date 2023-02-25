@@ -69,12 +69,22 @@ typedef struct
 	
 	uint8_t Load_drug;
 	uint8_t Target_Num;
+	uint8_t Target_Num_Flag;
 	uint8_t Step_Count;//用于处理识别目标后所做的路线步骤
 	
-	uint8_t Target_Distance_Arrive;
+	uint8_t Target_Distance_Arrive;//距离到达标志位
 	
-	uint8_t Recognize_Num_Count;
-	uint8_t Recognize_Num_Flag;
+	
+	uint8_t Recognize_Num_Count;//识别数字的数量判断
+	uint8_t Recognize_Num_Flag;//识别到数字
+	uint8_t Recognize_Num;//识别到的数字
+	
+	uint8_t GO_Flag;
+	uint8_t Back_Flag;
+	
+	uint8_t Routine[9];//记忆路线
+	uint8_t Current_Position;
+	uint8_t Task;
 }Flag_Init;
 
 /* extern提供给其他C文件调用的函数 --------------------------------------------------------------------------------------------*/

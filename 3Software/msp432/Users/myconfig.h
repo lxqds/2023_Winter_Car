@@ -66,6 +66,8 @@ typedef struct
 	uint8_t Bias_Left;
 	uint8_t Bias_Right;
 	uint8_t Bias_Middle;
+	int16_t Bias;//偏差
+	uint8_t CrossRoad_Flag;
 	
 	uint8_t Load_drug;
 	uint8_t Target_Num;

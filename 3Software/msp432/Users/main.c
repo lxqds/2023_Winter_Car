@@ -51,6 +51,41 @@ int main(void)
 	for(;;)
 	{//主循环
 		Reflectance_Data = Reflectance_Read2();
+		switch(Reflectance_Data)
+		{//读取循迹模块的值并判断所在位置，偏差，位置
+			case 0b00000000:
+			{
+				Flag.Bias =0;
+			}break;
+			case 0b01100000:
+			{//左偏1
+				Flag.Bias =5;
+			}break;
+			case 0b01000000:
+			{//左偏2
+				Flag.Bias =5;
+			}break;
+			case 0b10000000:
+			{//左偏3
+				Flag.Bias =30;
+			}break;
+			case 0b00110000:
+			{//右偏1
+				Flag.Bias =-5;
+			}break;
+			case 0b00010000:
+			{//右偏2
+				Flag.Bias =-5;
+			}break;
+			case 0b00001000:
+			{//右偏3
+				Flag.Bias =-30;
+			}break;
+			case 0b11111000:
+			{//遇到路口
+				Flag.CrossRoad_Flag = 1;
+			}
+		}
 		Menudisplay();
 		PID_Data_Send();
 //		{//调试区
@@ -97,11 +132,16 @@ int main(void)
 						}break;
 						case 1:
 						{
-							if(Flag.Stop_Flag ==1)
-							{
+							if(Flag.Stop_Flag ==1||Flag.CrossRoad_Flag==1)
+							{//如果车子到达距离停止或者遇到十字路口
+								Flag.Stop_Flag = 1;//置标志位
+								Flag.Start_Line_Flag = 0;
+								Flag.Stop_Count = 0;
+								LED_G_On();
+								
+								Flag.Is_EnMOTOR = 0;//电机失能
 								Flag.Step_Count++;
 								Car_Spin(0);
-								LED_G_Off();
 								LED_B_On();
 							}
 						}break;
@@ -555,15 +595,12 @@ void Menudisplay(void)
 			{
 				set_motor_enable();
 				OLED_ShowString(0,0,"Function1",16);
-				//OLED_ShowBin(1,4,Reflectance_Data,8,16);
+				OLED_ShowBin(1,2,Reflectance_Data,8,16);
 				
-//				OLED_ShowBNum(0,2,move_pid.Kp,4,16);
-//				OLED_ShowBNum(48,2,move_pid.Ki,2,16);
-//				OLED_ShowBNum(72,2,move_pid.Kd,3,16);
 				
-				OLED_ShowBNum(0,2,speed_pid.Kp,4,16);
-				OLED_ShowBNum(48,2,speed_pid.Ki,2,16);
-				OLED_ShowBNum(72,2,speed_pid.Kd,3,16);
+//				OLED_ShowBNum(0,2,speed_pid.Kp,4,16);
+//				OLED_ShowBNum(48,2,speed_pid.Ki,2,16);
+//				OLED_ShowBNum(72,2,speed_pid.Kd,3,16);
 				
 				OLED_ShowBNum(0,4,Encoder.Speed[2],3,16);
 				OLED_ShowBNum(0,6,Encoder.Speed[3],3,16);

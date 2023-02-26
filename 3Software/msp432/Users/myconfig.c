@@ -27,6 +27,8 @@ Flag_Init Flag;
 
 float PWMtemp1,PWMtemp2;
 float g_fTargetJourney = 50;
+float Average_Distance;
+
 
 uint8_t TempData;
 /**
@@ -74,21 +76,31 @@ void TA0_0_IRQHandler(void)
 				CTRL_compute_Position();
 				CTRL_compute_Speed();
 				
+				if(Flag.Bias == 0)
+				{//如果车在线的中间，将行走的距离取平均
+					Average_Distance = (Encoder.Distance[2] + Encoder.Distance[3])/2;
+					Encoder.Distance[2] = Average_Distance;
+					Encoder.Distance[3] = Average_Distance;
+				}
 				//巡线补偿
-				if(Flag.Bias_Left == 1)
-				{
-					PWMtemp1 = speed_pid.output + 5;
-					PWMtemp2 = speed_pid2.output -5;
-				}else if(Flag.Bias_Right == 1)
-				{
-					PWMtemp1 = speed_pid.output - 5;
-					PWMtemp2 = speed_pid2.output + 5;
-				}
-				else
-				{
-					PWMtemp1 = speed_pid.output;
-					PWMtemp2 = speed_pid2.output;
-				}
+				
+//				if(Flag.Bias_Left == 1)
+//				{
+//					PWMtemp1 = speed_pid.output + 5;
+//					PWMtemp2 = speed_pid2.output -5;
+//				}else if(Flag.Bias_Right == 1)
+//				{
+//					PWMtemp1 = speed_pid.output - 5;
+//					PWMtemp2 = speed_pid2.output + 5;
+//				}
+//				else
+//				{
+//					PWMtemp1 = speed_pid.output;
+//					PWMtemp2 = speed_pid2.output;
+//				}
+				PWMtemp1 = speed_pid.output + Flag.Bias;
+				PWMtemp2 = speed_pid2.output - Flag.Bias;
+				
 				Set_PWM(PWMtemp1 ,PWMtemp2);
 			}
 		}

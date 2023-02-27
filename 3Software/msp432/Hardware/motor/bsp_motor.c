@@ -59,8 +59,8 @@ void Motor_Control(uint8_t Motorx,uint8_t Dir,uint8_t PWM)
 	{
 		case 1:	Motor_Port1	=	GPIO_PORT_P8;
 				Motor_Port2	=	GPIO_PORT_P8;
-				Motor_Pin1	=	GPIO_PIN5;
-				Motor_Pin2	=	GPIO_PIN6;
+				Motor_Pin1	=	GPIO_PIN6;
+				Motor_Pin2	=	GPIO_PIN5;
 				Motor_PWM_Select = TIMER_A_CAPTURECOMPARE_REGISTER_1;
 		break;
 		case 2:	Motor_Port1	=	GPIO_PORT_P9;
@@ -204,6 +204,26 @@ void Set_PWM(float PWM1,float PWM2)
 	{
 		Motor_Control(4,0,0);
 		Motor_Control(3,0,0);
+	}
+}
+void Set_PWM2(float PWM1,float PWM2)
+{
+	if(Motor_enable_Flag == 1)
+	{//
+		if(PWM1>0)
+		Motor_Control(1,0,PWM1);
+		else
+		Motor_Control(1,1,-PWM1);
+		
+		if(PWM2>0)
+		Motor_Control(2,0,PWM2);
+		else
+		Motor_Control(2,1,-PWM2);
+	}
+	else 
+	{//电机失能停止
+		Motor_Control(1,0,0);
+		Motor_Control(2,0,0);
 	}
 }
 /**

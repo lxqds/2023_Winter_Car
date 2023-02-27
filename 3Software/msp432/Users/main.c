@@ -39,7 +39,7 @@ int main(void)
 		
 		set_computer_value(SEND_START_CMD,0x01,NULL,1);
 	}
-
+	
 	
 	{//判断大小端
 		uint32_t data = 0x01020304;
@@ -88,13 +88,18 @@ int main(void)
 		}
 		Menudisplay();
 		PID_Data_Send();
-//		{//调试区
+		{//调试区
 //			while(1)
 //			{
+//				
+////				Motor_Control(1,1,40);
+////				Motor_Control(2,1,40);
+//				set_motor_enable();
+//				Set_PWM2(-50,-50);
 //				//Servo_Control2(1,50);//向左调整舵机
-//				Servo_Control2(2,120);//向右调整舵机//110右1//120//右二
+////				Servo_Control2(2,120);//向右调整舵机//110右1//120//右二
 //			}
-//		}
+		}
 		
 		if(Flag.Task == 0)
 		{//第一步识别数字
@@ -594,6 +599,7 @@ void Menudisplay(void)
 			case State1:
 			{
 				set_motor_enable();
+//				Set_PWM2(-20,-20);
 				OLED_ShowString(0,0,"Function1",16);
 				OLED_ShowBin(1,2,Reflectance_Data,8,16);
 				
@@ -602,10 +608,19 @@ void Menudisplay(void)
 //				OLED_ShowBNum(48,2,speed_pid.Ki,2,16);
 //				OLED_ShowBNum(72,2,speed_pid.Kd,3,16);
 				
-				OLED_ShowBNum(0,4,Encoder.Speed[2],3,16);
-				OLED_ShowBNum(0,6,Encoder.Speed[3],3,16);
-				OLED_ShowBNum(48,4,Encoder.Distance[2],3,16);
-				OLED_ShowBNum(48,6,Encoder.Distance[3],3,16);
+				{//前轮编码器
+					OLED_ShowBNum(0,4,Encoder.Speed[0],3,16);
+					OLED_ShowBNum(0,6,Encoder.Speed[1],3,16);
+					OLED_ShowBNum(48,4,Encoder.Distance[0],3,16);
+					OLED_ShowBNum(48,6,Encoder.Distance[1],3,16);
+				}
+//				{//后轮编码器
+//					OLED_ShowBNum(0,4,Encoder.Speed[2],3,16);
+//					OLED_ShowBNum(0,6,Encoder.Speed[3],3,16);
+//					OLED_ShowBNum(48,4,Encoder.Distance[2],3,16);
+//					OLED_ShowBNum(48,6,Encoder.Distance[3],3,16);
+//				}
+				
 				OLED_ShowNum(96,2,SensorData1.X,3,16);
 				OLED_ShowNum(96,4,SensorData1.Y,3,16);
 				OLED_ShowNum(96,6,SensorData1.D.Float_Data,3,16);
@@ -614,7 +629,7 @@ void Menudisplay(void)
 				if(Keys[1].Single_Flag == 1)
 				{
 					Keys[1].Single_Flag = 0;
-					Car_Go(-50);  
+					Car_Go(50);  
 				}
 				if(Keys[1].Double_Flag == 1)
 				{

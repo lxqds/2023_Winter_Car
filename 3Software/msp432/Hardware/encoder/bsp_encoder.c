@@ -16,8 +16,8 @@
 #include "bsp_encoder.h"
 
 /* define -----------------------------------------------------------------------------------------------------------------*/
-int8_t bianmaqi[4]={0};
-Encoder_Init Encoder = {0};
+//int8_t bianmaqi[4]={0};
+Encoder_Init Encoder ;
 
 /**
  * @name	Motor_Init_bianmaqi
@@ -75,6 +75,7 @@ void Motor_Init_bianmaqi(void){
  */
 void Encoder_Scan(void)
 {
+	uint8_t i=0;
 //	Encoder.Encoder[0] = Encoder.Encoder_Once[0];	//读取累计的编码器值
 //	Encoder.Encoder[1] = Encoder.Encoder_Once[1];
 //	Encoder.Encoder[2] = Encoder.Encoder_Once[2];
@@ -84,7 +85,7 @@ void Encoder_Scan(void)
 //	Encoder.Encoder_Total[1] +=  Encoder.Encoder[1];
 //	Encoder.Encoder_Total[2] +=  Encoder.Encoder[2];
 //	Encoder.Encoder_Total[3] +=  Encoder.Encoder[3];
-	for (uint8_t i = 0;i<4; i++)
+	for (i = 0;i<4; i++)
 	{
 		Encoder.Encoder[i] = Encoder.Encoder_Once[i];				//读取累计的编码器值
 		Encoder.Encoder_Total[i] +=  Encoder.Encoder[i];			//累计放入到累计值中
@@ -92,7 +93,6 @@ void Encoder_Scan(void)
 		Encoder.Distance[i] += Encoder.Encoder[i]*PER_PULSE_CM;		//距离等于脉冲数×每一个脉冲走过cm数
 		Encoder.Speed[i] = Encoder.Encoder[i]*PER_PULSE_CM/0.01f;	//速度等于距离除于时间
 	}
-	
 }
 
 /**
@@ -128,16 +128,16 @@ void motor_PORT_IRQHandler(void)
 		case motor_Two_A_PIN:
 		{
 			if(motor_Two_B_Value ==  1) 
-				Encoder.Encoder_Once[1]--;
-			else if(motor_Two_B_Value ==  0)
 				Encoder.Encoder_Once[1]++;
+			else if(motor_Two_B_Value ==  0)
+				Encoder.Encoder_Once[1]--;
 		}break;
 		case motor_Two_B_PIN:
 		{
 			if(motor_Two_A_Value ==  1) 
-				Encoder.Encoder_Once[1]++;
-			else if(motor_Two_A_Value ==  0)
 				Encoder.Encoder_Once[1]--;
+			else if(motor_Two_A_Value ==  0)
+				Encoder.Encoder_Once[1]++;
 		}break;
 		//电机3
 		case motor_Three_A_PIN:

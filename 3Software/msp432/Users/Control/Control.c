@@ -36,7 +36,7 @@ void CTRL_compute_Position2(void)
  * @return	无
  */
 void CTRL_compute_Position(void)
-{ 
+{
 	uint16_t Limit_MAXspeed = 40;
 	move_pid.output = PID_realize(&move_pid,Encoder.Distance[2]);
 	move_pid2.output = PID_realize(&move_pid2,Encoder.Distance[3]);
@@ -101,7 +101,6 @@ void CTRL_compute_Speed(void)
 
 void Car_Go(float Distance)
 {
-	
 	Encoder.Distance[2] = 0;
 	Encoder.Distance[3] = 0;
 
@@ -120,13 +119,12 @@ void Car_Spin(uint8_t Direction)
 	float Distance_Left,Distance_Right;
 	Encoder.Distance[2] = 0;
 	Encoder.Distance[3] = 0;
-
 	
 	switch(Direction)
 	{
-		case 0: Distance_Left=-12.5f;Distance_Right=12.5f;break;
-		case 1: Distance_Left=12.5f;Distance_Right=-12.5f;break;
-		case 2: Distance_Left=-25;Distance_Right=25;break;
+		case 0: Distance_Left=-15.5f;Distance_Right=15.5f;break;
+		case 1: Distance_Left=15.5f;Distance_Right=-15.5f;break;
+		case 2: Distance_Left=-30;Distance_Right=30;break;
 		default:break;
 	}
 	Flag.Target_Distance_Left  = Distance_Left;
@@ -171,14 +169,16 @@ bool Spin_Turn(uint8_t Angle)
 			return 1;
 		else
 			return 0;
-	}else 
+	}
+	else
 	if(Angle ==1)
 	{
 		if(Car_Go_Distance(-10.5,10.5))
 			return 1;
 		else
 			return 0;
-	}else
+	}
+	else
 	if(Angle ==2)
 	{
 		if(Car_Go_Distance(21,-21))
@@ -188,5 +188,4 @@ bool Spin_Turn(uint8_t Angle)
 	}
 	return 1;
 }
-
 /*****************************************************END OF FILE*********************************************************/	

@@ -53,8 +53,8 @@
 #define motor_Four_B_PIN         GPIO_PIN7
 #define motor_Four_B_INT         INT_PORT4
 
-#define motor_One_A_Value        BITBAND_PERI(P4IN, 1)
-#define motor_One_B_Value        BITBAND_PERI(P4IN, 0)
+#define motor_One_A_Value        BITBAND_PERI(P4IN, 0)//0，1相反了
+#define motor_One_B_Value        BITBAND_PERI(P4IN, 1)
 
 #define motor_Two_A_Value        BITBAND_PERI(P4IN, 2)
 #define motor_Two_B_Value        BITBAND_PERI(P4IN, 3)

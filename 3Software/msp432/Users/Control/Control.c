@@ -124,9 +124,9 @@ void Car_Spin(uint8_t Direction)
 	
 	switch(Direction)
 	{
-		case 0: Distance_Left=-15.5f;Distance_Right=15.5f;break;
-		case 1: Distance_Left=15.5f;Distance_Right=-15.5f;break;
-		case 2: Distance_Left=-30;Distance_Right=30;break;
+		case 0: Distance_Left=-12.5f;Distance_Right=12.5f;break;
+		case 1: Distance_Left=12.5f;Distance_Right=-12.5f;break;
+		case 2: Distance_Left=-25;Distance_Right=25;break;
 		default:break;
 	}
 	Flag.Target_Distance_Left  = Distance_Left;

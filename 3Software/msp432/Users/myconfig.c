@@ -25,7 +25,7 @@ uint8_t Recive_Byte;
 
 Flag_Init Flag;
 
-float PWMtemp1,PWMtemp2;
+float PWMtemp1,PWMtemp2,PWMtemp3,PWMtemp4;
 float g_fTargetJourney = 50;
 float Average_Distance;
 
@@ -75,34 +75,34 @@ void TA0_0_IRQHandler(void)
 			{
 				CTRL_compute_Position();
 				CTRL_compute_Speed();
+				//转向环
+				CTRL_compute_Direction(Flag.Bias);
 				
-				if(Flag.Bias == 0)
-				{//如果车在线的中间，将行走的距离取平均
-					Average_Distance = (Encoder.Distance[2] + Encoder.Distance[3])/2;
-					Encoder.Distance[2] = Average_Distance;
-					Encoder.Distance[3] = Average_Distance;
+				{
+	//				if(Flag.Bias == 0)
+	//				{//如果车在线的中间，将行走的距离取平均
+	//					Average_Distance = (Encoder.Distance[2] + Encoder.Distance[3])/2;
+	//					Encoder.Distance[2] = Average_Distance;
+	//					Encoder.Distance[3] = Average_Distance;
+	//				}
+//					PWMtemp1 = speed_pid.output + Flag.Bias;
+//					PWMtemp2 = speed_pid2.output - Flag.Bias;
 				}
-				//巡线补偿
-				
-//				if(Flag.Bias_Left == 1)
-//				{
-//					PWMtemp1 = speed_pid.output + 5;
-//					PWMtemp2 = speed_pid2.output -5;
-//				}else if(Flag.Bias_Right == 1)
-//				{
-//					PWMtemp1 = speed_pid.output - 5;
-//					PWMtemp2 = speed_pid2.output + 5;
-//				}
-//				else
-//				{
-//					PWMtemp1 = speed_pid.output;
-//					PWMtemp2 = speed_pid2.output;
-//				}
-				PWMtemp1 = speed_pid.output + Flag.Bias;
-				PWMtemp2 = speed_pid2.output - Flag.Bias;
-				
+
+//				PWMtemp1 = speed_pid.output + Dir_pid.output  ;
+//				PWMtemp2 = speed_pid2.output - Dir_pid2.output;
+				PWMtemp1 = speed_pid.output ;
+				PWMtemp2 = speed_pid2.output;
+				PWMtemp3 = speed_pid3.output ;
+				PWMtemp4 = speed_pid4.output ;
 				Set_PWM(PWMtemp1 ,PWMtemp2);
+				Set_PWM2(PWMtemp3 ,PWMtemp4);
 			}
+		}
+		else
+		{
+			Set_PWM(0,0);
+			Set_PWM2(0,0);
 		}
 	}
 	
@@ -142,7 +142,13 @@ void TA0_0_IRQHandler(void)
 				PWMtemp1 = speed_pid.output;
 				PWMtemp2 = speed_pid2.output;
 				Set_PWM(PWMtemp1 ,PWMtemp2);
+				Set_PWM2(PWMtemp1 ,PWMtemp2);
 			}
+		}
+		else
+		{
+			Set_PWM(0,0);
+			Set_PWM2(0,0);
 		}
 	}
    

@@ -22,6 +22,9 @@
 /* 定义全局变量 */
 _pid speed_pid,move_pid;
 _pid speed_pid2,move_pid2;
+_pid speed_pid3,move_pid3;
+_pid speed_pid4,move_pid4;
+_pid Dir_pid,Dir_pid2;
 float set_point=0.0;
 int pid_status=0;
 

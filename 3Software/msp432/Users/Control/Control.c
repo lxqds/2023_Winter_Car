@@ -30,6 +30,35 @@ void CTRL_compute_Position2(void)
 	CTRL_Position.Output += CTRL_Position.q3 * CTRL_Position.Integral;
 }
 /**
+ * @name	转向环
+ * @brief	转向环
+ * @param	无
+ * @return	无
+ */
+void CTRL_compute_Direction(int8_t Bias)
+{
+	Dir_pid.output = PID_realize(&Dir_pid,Bias);
+	Dir_pid2.output = PID_realize(&Dir_pid2,Bias);
+	
+	if(Dir_pid.output >50)
+	{
+		Dir_pid.output = 50;
+	}
+	else if(Dir_pid.output<-50)
+	{
+		Dir_pid.output = -50;
+	}
+	if(Dir_pid2.output >50)
+	{
+		Dir_pid2.output = 50;
+	}
+	else if(Dir_pid2.output<-50)
+	{
+		Dir_pid2.output = -50;
+	}
+	
+}
+/**
  * @name	位置环
  * @brief	位置环
  * @param	无
@@ -40,6 +69,8 @@ void CTRL_compute_Position(void)
 	uint16_t Limit_MAXspeed = 40;
 	move_pid.output = PID_realize(&move_pid,Encoder.Distance[2]);
 	move_pid2.output = PID_realize(&move_pid2,Encoder.Distance[3]);
+	move_pid3.output = PID_realize(&move_pid3,Encoder.Distance[0]);
+	move_pid4.output = PID_realize(&move_pid4,Encoder.Distance[1]);
 	
 	if(move_pid.output > Limit_MAXspeed)
 	{
@@ -57,8 +88,27 @@ void CTRL_compute_Position(void)
 	{
 		move_pid2.output = -Limit_MAXspeed;//限制轮子最高转速
 	}
+	
+	if(move_pid3.output > Limit_MAXspeed)
+	{
+		move_pid3.output = Limit_MAXspeed;//限制轮子最高转速
+	}
+	else if(move_pid3.output < -Limit_MAXspeed)
+	{
+		move_pid3.output = -Limit_MAXspeed;//限制轮子最高转速
+	}
+	if(move_pid4.output > Limit_MAXspeed)
+	{
+		move_pid4.output = Limit_MAXspeed;//限制轮子最高转速
+	}
+	else if(move_pid4.output < -Limit_MAXspeed)
+	{
+		move_pid4.output = -Limit_MAXspeed;//限制轮子最高转速
+	}
 	speed_pid.target_val = move_pid.output;			//速度环输入
 	speed_pid2.target_val = move_pid2.output;		//
+	speed_pid3.target_val = move_pid3.output;			//速度环输入
+	speed_pid4.target_val = move_pid4.output;		//
 }
 /**
  * @name	速度环
@@ -70,10 +120,12 @@ void CTRL_compute_Speed(void)
 {
 	speed_pid.output = PID_realize(&speed_pid,Encoder.Speed[2]);
 	speed_pid2.output = PID_realize(&speed_pid2,Encoder.Speed[3]);
+	speed_pid3.output = PID_realize(&speed_pid3,Encoder.Speed[0]);
+	speed_pid4.output = PID_realize(&speed_pid4,Encoder.Speed[1]);
 //	if(speed_pid.output - speed_pid.Last_output > 5)// 限制增量为5
 //	{
 //		speed_pid.output = speed_pid.Last_output + 5;
-//	}
+//	}   
 //	 speed_pid.Last_output = speed_pid.output;
 //	if(speed_pid2.output - speed_pid2.Last_output > 5)// 限制增量为5
 //	{
@@ -97,10 +149,29 @@ void CTRL_compute_Speed(void)
 	{
 		speed_pid2.output = -90;
 	}
+	
+	if(speed_pid3.output >90)
+	{
+		speed_pid3.output = 90;
+	}
+	else if(speed_pid3.output<-90)
+	{
+		speed_pid3.output = -90;
+	}
+	if(speed_pid4.output >90)
+	{
+		speed_pid4.output = 90;
+	}
+	else if(speed_pid4.output<-90)
+	{
+		speed_pid4.output = -90;
+	}
 }
 
 void Car_Go(float Distance)
 {
+	Encoder.Distance[0] = 0;
+	Encoder.Distance[1] = 0;
 	Encoder.Distance[2] = 0;
 	Encoder.Distance[3] = 0;
 
@@ -112,19 +183,23 @@ void Car_Go(float Distance)
 	Flag.CarStart_Flag = 1;
 	
 	set_pid_target(&move_pid,Flag.Target_Distance_Left);
+		set_pid_target(&move_pid3,Flag.Target_Distance_Left);
 	set_pid_target(&move_pid2,Flag.Target_Distance_Right);
+		set_pid_target(&move_pid4,Flag.Target_Distance_Right);
 }
 void Car_Spin(uint8_t Direction)
 {
 	float Distance_Left,Distance_Right;
+	
+	
 	Encoder.Distance[2] = 0;
 	Encoder.Distance[3] = 0;
 	
 	switch(Direction)
 	{
-		case 0: Distance_Left=-15.5f;Distance_Right=15.5f;break;
-		case 1: Distance_Left=15.5f;Distance_Right=-15.5f;break;
-		case 2: Distance_Left=-30;Distance_Right=30;break;
+		case 0: Distance_Left=-10.5f;Distance_Right=10.5f;break;
+		case 1: Distance_Left=10.5f;Distance_Right=-10.5f;break;
+		case 2: Distance_Left=-21;Distance_Right=21;break;
 		default:break;
 	}
 	Flag.Target_Distance_Left  = Distance_Left;
@@ -137,6 +212,8 @@ void Car_Spin(uint8_t Direction)
 	
 	set_pid_target(&move_pid,Flag.Target_Distance_Left);
 	set_pid_target(&move_pid2,Flag.Target_Distance_Right);
+	set_pid_target(&move_pid3,Flag.Target_Distance_Left);
+	set_pid_target(&move_pid4,Flag.Target_Distance_Right);
 }
 
 

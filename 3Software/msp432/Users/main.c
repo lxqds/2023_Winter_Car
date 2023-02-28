@@ -24,15 +24,30 @@ int main(void)
 		protocol_init();
 		PID_param_init(&move_pid);
 		PID_param_init(&move_pid2);
+		PID_param_init(&move_pid3);
+		PID_param_init(&move_pid4);
+		
 		PID_param_init(&speed_pid);
 		PID_param_init(&speed_pid2);
+		PID_param_init(&speed_pid3);
+		PID_param_init(&speed_pid4);
+		
+		PID_param_init(&Dir_pid);
+		PID_param_init(&Dir_pid2);
 	}
 	
 	{//配置PID
-		set_p_i_d(&move_pid,50,0,50);
-		set_p_i_d(&move_pid2,50,0,50);
+		set_p_i_d(&move_pid,8,0,50);
+		set_p_i_d(&move_pid2,8,0,50);
+		set_p_i_d(&move_pid3,8,0,50);
+		set_p_i_d(&move_pid4,8,0,50);
 		set_p_i_d(&speed_pid,0.45,0.03,0);
 		set_p_i_d(&speed_pid2,0.45,0.03,0);
+		set_p_i_d(&speed_pid3,0.45,0.03,0);
+		set_p_i_d(&speed_pid4,0.45,0.03,0);
+		
+		set_p_i_d(&Dir_pid,0.45,0,0.03);
+		set_p_i_d(&Dir_pid2,0.45,0,0.03);
 		
 		set_pid_target(&move_pid2,50);
 		set_pid_target(&move_pid,50);
@@ -59,32 +74,37 @@ int main(void)
 			}break;
 			case 0b01100000:
 			{//左偏1
-				Flag.Bias =5;
+				Flag.Bias =-5;
 			}break;
 			case 0b01000000:
 			{//左偏2
-				Flag.Bias =5;
+				Flag.Bias =-5;
 			}break;
 			case 0b10000000:
 			{//左偏3
-				Flag.Bias =30;
+				Flag.Bias =-30;
 			}break;
 			case 0b00110000:
 			{//右偏1
-				Flag.Bias =-5;
+				Flag.Bias =5;
 			}break;
 			case 0b00010000:
 			{//右偏2
-				Flag.Bias =-5;
+				Flag.Bias =5;
 			}break;
 			case 0b00001000:
 			{//右偏3
-				Flag.Bias =-30;
+				Flag.Bias =30;
 			}break;
 			case 0b11111000:
 			{//遇到路口
 				Flag.CrossRoad_Flag = 1;
 			}
+			default:
+			{
+				Set_PWM(0,0);
+				Set_PWM2(0,0);
+			} break;
 		}
 		Menudisplay();
 		PID_Data_Send();

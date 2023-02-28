@@ -25,6 +25,9 @@ typedef struct
 
 extern _pid speed_pid,move_pid;
 extern _pid speed_pid2,move_pid2;
+extern _pid speed_pid3,move_pid3;
+extern _pid speed_pid4,move_pid4;
+extern _pid Dir_pid,Dir_pid2;//转向环
 
 extern void PID_param_init(_pid *pid);
 extern void set_pid_target(_pid *pid, float temp_val);

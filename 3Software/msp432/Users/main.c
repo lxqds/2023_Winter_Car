@@ -46,12 +46,13 @@ int main(void)
 		set_p_i_d(&speed_pid3,0.45,0.03,0);
 		set_p_i_d(&speed_pid4,0.45,0.03,0);
 		
-		set_p_i_d(&Dir_pid,0.45,0,0.03);
-		set_p_i_d(&Dir_pid2,0.45,0,0.03);
+		set_p_i_d(&Dir_pid,1.2,0,0.6);
+		set_p_i_d(&Dir_pid2,1.2,0,0.6);
 		
 		set_pid_target(&move_pid2,50);
 		set_pid_target(&move_pid,50);
-		
+		set_pid_target(&Dir_pid,0);
+		set_pid_target(&Dir_pid2,0);
 		set_computer_value(SEND_START_CMD,0x01,NULL,1);
 	}
 	
@@ -65,6 +66,9 @@ int main(void)
 	
 	for(;;)
 	{//主循环
+		{//PID发送
+			PID_Data_Send();
+		}
 		Reflectance_Data = Reflectance_Read2();
 		switch(Reflectance_Data)
 		{//读取循迹模块的值并判断所在位置，偏差，位置
@@ -74,27 +78,27 @@ int main(void)
 			}break;
 			case 0b01100000:
 			{//左偏1
-				Flag.Bias =-5;
+				Flag.Bias =-10;
 			}break;
 			case 0b01000000:
 			{//左偏2
-				Flag.Bias =-5;
+				Flag.Bias =-20;
 			}break;
 			case 0b10000000:
 			{//左偏3
-				Flag.Bias =-30;
+				Flag.Bias =-50;
 			}break;
 			case 0b00110000:
 			{//右偏1
-				Flag.Bias =5;
+				Flag.Bias =10;
 			}break;
 			case 0b00010000:
 			{//右偏2
-				Flag.Bias =5;
+				Flag.Bias =20;
 			}break;
 			case 0b00001000:
 			{//右偏3
-				Flag.Bias =30;
+				Flag.Bias =50;
 			}break;
 			case 0b11111000:
 			{//遇到路口
@@ -107,15 +111,17 @@ int main(void)
 			} break;
 		}
 		Menudisplay();
-		PID_Data_Send();
+//		PID_Data_Send();
 		{//调试区
 //			while(1)
 //			{
-//				
+//				Menudisplay();
+//				PID_Data_Send();
+//				receiving_process();
 ////				Motor_Control(1,1,40);
 ////				Motor_Control(2,1,40);
-//				set_motor_enable();
-//				Set_PWM2(-50,-50);
+////				set_motor_enable();
+////				Set_PWM2(-50,-50);
 //				//Servo_Control2(1,50);//向左调整舵机
 ////				Servo_Control2(2,120);//向右调整舵机//110右1//120//右二
 //			}
@@ -577,11 +583,13 @@ void PID_Data_Send(void)
 {
 		int temp1 = Encoder.Speed[2];    // 上位机需要整数参数，转换一下
 		int temp2 = Encoder.Distance[2];    // 上位机需要整数参数，转换一下
+		int temp3 = Flag.Bias;
 //		int temp3 = Encoder.Speed[3];    // 上位机需要整数参数，转换一下
 //		int temp4 = Encoder.Distance[3];    // 上位机需要整数参数，转换一下
 		receiving_process();
 		set_computer_value(SEND_FACT_CMD, 0x02,&temp1, 1);
 		set_computer_value(SEND_FACT_CMD, 0x01,&temp2, 1);
+		set_computer_value(SEND_FACT_CMD, 0x03,&temp3, 1);
 //		set_computer_value(SEND_FACT_CMD, 0x04,&temp3, 1);
 //		set_computer_value(SEND_FACT_CMD, 0x03,&temp4, 1);
 }

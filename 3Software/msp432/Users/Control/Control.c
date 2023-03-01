@@ -40,21 +40,21 @@ void CTRL_compute_Direction(int8_t Bias)
 	Dir_pid.output = PID_realize(&Dir_pid,Bias);
 	Dir_pid2.output = PID_realize(&Dir_pid2,Bias);
 	
-	if(Dir_pid.output >50)
+	if(Dir_pid.output >90)
 	{
-		Dir_pid.output = 50;
+		Dir_pid.output = 90;
 	}
-	else if(Dir_pid.output<-50)
+	else if(Dir_pid.output<-90)
 	{
-		Dir_pid.output = -50;
+		Dir_pid.output = -90;
 	}
-	if(Dir_pid2.output >50)
+	if(Dir_pid2.output >90)
 	{
-		Dir_pid2.output = 50;
+		Dir_pid2.output = 90;
 	}
-	else if(Dir_pid2.output<-50)
+	else if(Dir_pid2.output<-90)
 	{
-		Dir_pid2.output = -50;
+		Dir_pid2.output = -90;
 	}
 	
 }

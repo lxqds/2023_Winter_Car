@@ -17,7 +17,7 @@
 #include "protocol.h"
 #include <string.h>
 #include "bsp_pid.h"
-
+#include "myconfig.h"
 
 extern _pid speed_pid, move_pid;
 
@@ -282,7 +282,7 @@ int32_t protocol_init(void)
     
     /* 初始化分配数据接收与解析缓冲区*/
     parser.recv_ptr = recv_buf;
-  
+	
     return 0;
 }
 
@@ -300,6 +300,7 @@ int8_t receiving_process(void)
   
   while(1)
   {
+	 
     cmd_type = protocol_frame_parse(frame_data, &frame_len);
     switch (cmd_type)
     {
@@ -310,10 +311,11 @@ int8_t receiving_process(void)
 
       case SET_P_I_D_CMD:
       {
+		  LED_B_On();
         uint32_t temp0 = COMPOUND_32BIT(&frame_data[13]);
         uint32_t temp1 = COMPOUND_32BIT(&frame_data[17]);
         uint32_t temp2 = COMPOUND_32BIT(&frame_data[21]);
-
+		
         packet.ch = frame_data[CHX_INDEX_VAL];
         
         float p_temp, i_temp, d_temp;
@@ -323,20 +325,27 @@ int8_t receiving_process(void)
         d_temp = *(float *)&temp2;
         
         if (packet.ch == CURVES_CH1)
-        {
+        {//通道1的包
+			 LED_B_On();
 			set_p_i_d(&move_pid, p_temp, i_temp, d_temp);    // 设置 P I D
 			set_p_i_d(&move_pid2, p_temp, i_temp, d_temp);    // 设置 P I D
         }
         else if (packet.ch == CURVES_CH2)
-        {
+        {//通道2的包
 			set_p_i_d(&speed_pid, p_temp, i_temp, d_temp);    // 设置 P I D
 			set_p_i_d(&speed_pid2, p_temp, i_temp, d_temp);    // 设置 P I D
         }
+		else if (packet.ch == CURVES_CH3)
+		{//通道3的包
+			set_p_i_d(&Dir_pid, p_temp, i_temp, d_temp);    // 设置 P I D
+			set_p_i_d(&Dir_pid2, p_temp, i_temp, d_temp);    // 设置 P I D
+		}
       }
       break;
 
       case SET_TARGET_CMD:
       {
+		  LED_B_On();
         int actual_temp = COMPOUND_32BIT(&frame_data[13]); 
 				packet.ch = frame_data[CHX_INDEX_VAL];
         
@@ -356,6 +365,7 @@ int8_t receiving_process(void)
       
       case START_CMD:
       {
+		  LED_B_On();
         set_motor_enable();             // 启动
       }
       break;

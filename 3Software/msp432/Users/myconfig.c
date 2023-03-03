@@ -92,6 +92,10 @@ void TA0_0_IRQHandler(void)
 //				PWMtemp1 = speed_pid.output + Dir_pid.output  ;
 //				PWMtemp2 = speed_pid2.output - Dir_pid2.output;
 				{//全部pid
+				speed_pid.output 	=40;
+                speed_pid2.output   =40;
+                speed_pid3.output   =40;
+				speed_pid4.output	=40;
 				PWMtemp1 = speed_pid.output + Dir_pid.output;
 				PWMtemp2 = speed_pid2.output - Dir_pid2.output;
 				PWMtemp3 = speed_pid3.output + Dir_pid.output;
@@ -120,13 +124,14 @@ void TA0_0_IRQHandler(void)
 //		}
 		//判断距离是否达到实际的距离
 //		if(Flag.Target_Distance_Arrive ==1)
-		if((Encoder.Distance[2] >= (Flag.Target_Distance_Left-0.1 )&&(Encoder.Distance[2] <= (Flag.Target_Distance_Left+0.1 )))||(Encoder.Distance[3] >= (Flag.Target_Distance_Right-0.1 )&&Encoder.Distance[3] >= (Flag.Target_Distance_Right+0.1 )))
+		if((Encoder.Distance[2] >= (Flag.Target_Distance_Left-0.1f )&&(Encoder.Distance[2] <= (Flag.Target_Distance_Left+0.1f )))||(Encoder.Distance[3] >= (Flag.Target_Distance_Right-0.1f )&&Encoder.Distance[3] >= (Flag.Target_Distance_Right+0.1f )))
 		{
 			Flag.Stop_Count++;
 			if(Flag.Stop_Count>100)
 			{
 				Flag.Stop_Flag = 1;//置标志位
-				Flag.Spin_Start_Flag = 0;//开始转弯				Flag.Stop_Count = 0;//停止计时
+				Flag.Spin_Start_Flag = 0;//开始转弯				
+				Flag.Stop_Count = 0;//停止计时
 				LED_G_On();//点灯
 				
 				Flag.Is_EnMOTOR = 0;//电机失能

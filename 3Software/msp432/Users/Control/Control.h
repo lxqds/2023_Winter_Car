@@ -33,7 +33,7 @@ typedef struct
 /* extern提供给其他C文件调用的函数 --------------------------------------------------------------------------------------------*/
 void CTRL_compute_Position(void);
 void CTRL_compute_Speed(void);
-void CTRL_compute_Direction(int8_t Bias);
+void CTRL_compute_Direction(int16_t Bias);
 
 
 void Car_Go(float Distance);

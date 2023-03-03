@@ -8,6 +8,7 @@ int main(void)
 {
 	{//初始化代码
 		SysInit1();
+		delay_init();
 		uart_init0(115200);
 		uart_init(115200);
 		uart_init2(115200);
@@ -46,13 +47,13 @@ int main(void)
 		set_p_i_d(&speed_pid3,0.45,0.03,0);
 		set_p_i_d(&speed_pid4,0.45,0.03,0);
 		
-		set_p_i_d(&Dir_pid,1.2,0,0.6);
-		set_p_i_d(&Dir_pid2,1.2,0,0.6);
+		set_p_i_d(&Dir_pid,0.8,0,0.4);
+		set_p_i_d(&Dir_pid2,0.8,0,0.4);
 		
 		set_pid_target(&move_pid2,50);
 		set_pid_target(&move_pid,50);
-		set_pid_target(&Dir_pid,0);
-		set_pid_target(&Dir_pid2,0);
+		set_pid_target(&Dir_pid,-0.1);
+		set_pid_target(&Dir_pid2,-0.1);
 		set_computer_value(SEND_START_CMD,0x01,NULL,1);
 	}
 	
@@ -72,7 +73,7 @@ int main(void)
 		Reflectance_Data = Reflectance_Read2();
 		switch(Reflectance_Data)
 		{//读取循迹模块的值并判断所在位置，偏差，位置
-			case 0b00000000:
+			case 0b00100000:
 			{
 				Flag.Bias =0;
 			}break;
@@ -82,11 +83,11 @@ int main(void)
 			}break;
 			case 0b01000000:
 			{//左偏2
-				Flag.Bias =-20;
+				Flag.Bias =-200;
 			}break;
 			case 0b10000000:
 			{//左偏3
-				Flag.Bias =-50;
+				Flag.Bias =-160;
 			}break;
 			case 0b00110000:
 			{//右偏1
@@ -94,11 +95,11 @@ int main(void)
 			}break;
 			case 0b00010000:
 			{//右偏2
-				Flag.Bias =20;
+				Flag.Bias =200;
 			}break;
 			case 0b00001000:
 			{//右偏3
-				Flag.Bias =50;
+				Flag.Bias =160;
 			}break;
 			case 0b11111000:
 			{//遇到路口
@@ -106,8 +107,12 @@ int main(void)
 			}
 			default:
 			{
-				Set_PWM(0,0);
-				Set_PWM2(0,0);
+				Flag.Stop_Flag = 1;//置标志位
+				Flag.Spin_Start_Flag = 0;//开始转弯				
+				Flag.Stop_Count = 0;//停止计时
+				LED_G_On();//点灯
+				
+				Flag.Is_EnMOTOR = 0;//电机失能
 			} break;
 		}
 		Menudisplay();

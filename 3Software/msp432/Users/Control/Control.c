@@ -35,7 +35,7 @@ void CTRL_compute_Position2(void)
  * @param	无
  * @return	无
  */
-void CTRL_compute_Direction(int8_t Bias)
+void CTRL_compute_Direction(int16_t Bias)
 {
 	Dir_pid.output = PID_realize(&Dir_pid,Bias);
 	Dir_pid2.output = PID_realize(&Dir_pid2,Bias);

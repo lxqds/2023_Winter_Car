@@ -2946,7 +2946,7 @@ unsigned short inv_row_2_scale(const signed char *row)
 //空函数,未用到.
 void mget_ms(unsigned long *time)
 {
-	uint32_t temp;
+//	uint32_t temp;
 	delay_ms(*time);
 }
 //mpu6050,dmp初始化

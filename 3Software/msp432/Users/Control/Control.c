@@ -105,10 +105,10 @@ void CTRL_compute_Position(void)
 	{
 		move_pid4.output = -Limit_MAXspeed;//限制轮子最高转速
 	}
-	speed_pid.target_val = move_pid.output;			//速度环输入
-	speed_pid2.target_val = move_pid2.output;		//
-	speed_pid3.target_val = move_pid3.output;			//速度环输入
-	speed_pid4.target_val = move_pid4.output;		//
+	speed_pid.target_val = move_pid.output+Dir_pid.output;			//速度环输入
+	speed_pid2.target_val = move_pid2.output-Dir_pid2.output;		//
+	speed_pid3.target_val = move_pid3.output+Dir_pid.output;			//速度环输入
+	speed_pid4.target_val = move_pid4.output-Dir_pid2.output;		//
 }
 /**
  * @name	速度环

@@ -74,9 +74,10 @@ void TA0_0_IRQHandler(void)
 		{
 			{
 				CTRL_compute_Position();
+				CTRL_compute_Direction(Flag.Bias);
 				CTRL_compute_Speed();
 				//转向环
-				CTRL_compute_Direction(Flag.Bias);
+				
 				
 				{
 	//				if(Flag.Bias == 0)
@@ -92,14 +93,18 @@ void TA0_0_IRQHandler(void)
 //				PWMtemp1 = speed_pid.output + Dir_pid.output  ;
 //				PWMtemp2 = speed_pid2.output - Dir_pid2.output;
 				{//全部pid
-				speed_pid.output 	=20;
-                speed_pid2.output   =20;
-                speed_pid3.output   =20;
-				speed_pid4.output	=20;
-				PWMtemp1 = speed_pid.output + Dir_pid.output;
-				PWMtemp2 = speed_pid2.output - Dir_pid2.output;
-				PWMtemp3 = speed_pid3.output + Dir_pid.output;
-				PWMtemp4 = speed_pid4.output - Dir_pid2.output;
+//				speed_pid.output 	=20;
+//                speed_pid2.output   =20;
+//                speed_pid3.output   =20;
+//				speed_pid4.output	=20;
+//				PWMtemp1 = speed_pid.output + Dir_pid.output;
+//				PWMtemp2 = speed_pid2.output - Dir_pid2.output;
+//				PWMtemp3 = speed_pid3.output + Dir_pid.output;
+//				PWMtemp4 = speed_pid4.output - Dir_pid2.output;
+				PWMtemp1 = speed_pid.output ;
+                PWMtemp2 = speed_pid2.output;
+                PWMtemp3 = speed_pid3.output;
+				PWMtemp4 = speed_pid4.output;	
 				}
 //				PWMtemp1 =   + Dir_pid.output;
 //				PWMtemp2 =   - Dir_pid2.output;

@@ -52,8 +52,8 @@ int main(void)
 		
 		set_pid_target(&move_pid2,50);
 		set_pid_target(&move_pid,50);
-		set_pid_target(&Dir_pid,-0.1);
-		set_pid_target(&Dir_pid2,-0.1);
+		set_pid_target(&Dir_pid,-0.01);
+		set_pid_target(&Dir_pid2,-0.01);
 		set_computer_value(SEND_START_CMD,0x01,NULL,1);
 	}
 	
@@ -73,6 +73,10 @@ int main(void)
 		Reflectance_Data = Reflectance_Read2();
 		switch(Reflectance_Data)
 		{//读取循迹模块的值并判断所在位置，偏差，位置
+			case 0b00000000:
+			{
+				Flag.Bias =0;
+			}break;
 			case 0b00100000:
 			{
 				Flag.Bias =0;
@@ -83,7 +87,7 @@ int main(void)
 			}break;
 			case 0b01000000:
 			{//左偏2
-				Flag.Bias =-200;
+				Flag.Bias =-20;
 			}break;
 			case 0b10000000:
 			{//左偏3
@@ -95,7 +99,7 @@ int main(void)
 			}break;
 			case 0b00010000:
 			{//右偏2
-				Flag.Bias =200;
+				Flag.Bias =20;
 			}break;
 			case 0b00001000:
 			{//右偏3
@@ -115,6 +119,16 @@ int main(void)
 				Flag.Is_EnMOTOR = 0;//电机失能
 			} break;
 		}
+		if(SensorData1.D.Float_Data)
+		{
+				Flag.Stop_Flag = 1;//置标志位
+				Flag.Spin_Start_Flag = 0;//开始转弯				
+				Flag.Stop_Count = 0;//停止计时
+				LED_G_On();//点灯
+				
+				Flag.Is_EnMOTOR = 0;//电机失能
+		}
+		
 		Menudisplay();
 //		PID_Data_Send();
 		{//调试区

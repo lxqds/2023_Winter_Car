@@ -92,10 +92,10 @@ void TA0_0_IRQHandler(void)
 //				PWMtemp1 = speed_pid.output + Dir_pid.output  ;
 //				PWMtemp2 = speed_pid2.output - Dir_pid2.output;
 				{//全部pid
-				speed_pid.output 	=40;
-                speed_pid2.output   =40;
-                speed_pid3.output   =40;
-				speed_pid4.output	=40;
+				speed_pid.output 	=20;
+                speed_pid2.output   =20;
+                speed_pid3.output   =20;
+				speed_pid4.output	=20;
 				PWMtemp1 = speed_pid.output + Dir_pid.output;
 				PWMtemp2 = speed_pid2.output - Dir_pid2.output;
 				PWMtemp3 = speed_pid3.output + Dir_pid.output;

@@ -21,6 +21,7 @@ uint16_t Delay10msCnt = 0;
 uint8_t TIMA_Count = 0;
 uint8_t Car_Star_Flag = 1;
 uint8_t Reflectance_Data;
+uint8_t Last_Reflectance_Data;
 uint8_t Recive_Byte;
 
 Flag_Init Flag;
@@ -50,66 +51,63 @@ void TA0_0_IRQHandler(void)
 	if(Flag.Start_Line_Flag == 1)
 	{
 		//判断距离是否达到实际的距离
-		if(Encoder.Distance[2] >= (Flag.Target_Distance_Left ) ||Encoder.Distance[3] >= (Flag.Target_Distance_Right ) )
+		if((Encoder.Speed[2]==0||Encoder.Speed[3]==0))
 		{
 			Flag.Stop_Count++;
 			if(Flag.Stop_Count>100)
 			{
 				Flag.Stop_Flag = 1;//置标志位
-				Flag.Start_Line_Flag = 0;
-				Flag.Stop_Count = 0;
-				LED_G_On();
+				Flag.Spin_Start_Flag = 0;//开始转弯				
+				Flag.Stop_Count = 0;//停止计时
+				LED_G_On();//点灯
 				
 				Flag.Is_EnMOTOR = 0;//电机失能
-			}
+			}	
 		}
 		else
 		{
 			Flag.Stop_Flag = 0;
-			Flag.Stop_Count = 0;
 			LED_G_Off();
 		}
+//		if((Encoder.Distance[2] >= (Flag.Target_Distance_Left-0.5f )&&(Encoder.Distance[2] <= (Flag.Target_Distance_Left+0.5f )))||(Encoder.Distance[3] >= (Flag.Target_Distance_Right-0.5f )&&Encoder.Distance[3] >= (Flag.Target_Distance_Right+0.5f )))
+//		{
+//			Flag.Stop_Count++;
+//			if(Flag.Stop_Count>100)
+//			{
+//				Flag.Stop_Flag = 1;//置标志位
+//				Flag.Start_Line_Flag = 0;
+//				Flag.Stop_Count = 0;
+//				LED_G_On();
+//				
+//				Flag.Is_EnMOTOR = 0;//电机失能
+//			}
+//		}
+//		else
+//		{
+//			Flag.Stop_Flag = 0;
+//			Flag.Stop_Count = 0;
+//			LED_G_Off();
+//		}
 		
 		if(Flag.Is_EnMOTOR == 1)
 		{
 			{
+				{
+				{
+				PWMtemp1  =0;
+				PWMtemp2  =0;
+				PWMtemp3  =0;
+				PWMtemp4  =0;
 				CTRL_compute_Position();
 				CTRL_compute_Direction(Flag.Bias);
 				CTRL_compute_Speed();
 				//转向环
-				
-				
-				{
-	//				if(Flag.Bias == 0)
-	//				{//如果车在线的中间，将行走的距离取平均
-	//					Average_Distance = (Encoder.Distance[2] + Encoder.Distance[3])/2;
-	//					Encoder.Distance[2] = Average_Distance;
-	//					Encoder.Distance[3] = Average_Distance;
-	//				}
-//					PWMtemp1 = speed_pid.output + Flag.Bias;
-//					PWMtemp2 = speed_pid2.output - Flag.Bias;
 				}
-
-//				PWMtemp1 = speed_pid.output + Dir_pid.output  ;
-//				PWMtemp2 = speed_pid2.output - Dir_pid2.output;
-				{//全部pid
-//				speed_pid.output 	=20;
-//                speed_pid2.output   =20;
-//                speed_pid3.output   =20;
-//				speed_pid4.output	=20;
-//				PWMtemp1 = speed_pid.output + Dir_pid.output;
-//				PWMtemp2 = speed_pid2.output - Dir_pid2.output;
-//				PWMtemp3 = speed_pid3.output + Dir_pid.output;
-//				PWMtemp4 = speed_pid4.output - Dir_pid2.output;
 				PWMtemp1 = speed_pid.output ;
                 PWMtemp2 = speed_pid2.output;
                 PWMtemp3 = speed_pid3.output;
 				PWMtemp4 = speed_pid4.output;	
 				}
-//				PWMtemp1 =   + Dir_pid.output;
-//				PWMtemp2 =   - Dir_pid2.output;
-//				PWMtemp3 =   + Dir_pid.output;
-//				PWMtemp4 =   - Dir_pid2.output;
 				Set_PWM(PWMtemp1 ,PWMtemp2);
 				Set_PWM2(PWMtemp3 ,PWMtemp4);
 			}
@@ -129,7 +127,7 @@ void TA0_0_IRQHandler(void)
 //		}
 		//判断距离是否达到实际的距离
 //		if(Flag.Target_Distance_Arrive ==1)
-		if((Encoder.Distance[2] >= (Flag.Target_Distance_Left-0.1f )&&(Encoder.Distance[2] <= (Flag.Target_Distance_Left+0.1f )))||(Encoder.Distance[3] >= (Flag.Target_Distance_Right-0.1f )&&Encoder.Distance[3] >= (Flag.Target_Distance_Right+0.1f )))
+		if((Encoder.Speed[2]==0||Encoder.Speed[3]==0))
 		{
 			Flag.Stop_Count++;
 			if(Flag.Stop_Count>100)
@@ -145,20 +143,45 @@ void TA0_0_IRQHandler(void)
 		else
 		{
 			Flag.Stop_Flag = 0;
-			Flag.Stop_Count = 0;
 			LED_G_Off();
 		}
+//		if((Encoder.Distance[2] >= (Flag.Target_Distance_Left-0.5f )&&(Encoder.Distance[2] <= (Flag.Target_Distance_Left+0.5f )))||(Encoder.Distance[3] >= (Flag.Target_Distance_Right-0.5f )&&Encoder.Distance[3] >= (Flag.Target_Distance_Right+0.5f )))
+//		{
+//			Flag.Stop_Count++;
+//			if(Flag.Stop_Count>100)
+//			{
+//				Flag.Stop_Flag = 1;//置标志位
+//				Flag.Spin_Start_Flag = 0;//开始转弯				
+//				Flag.Stop_Count = 0;//停止计时
+//				LED_G_On();//点灯
+//				
+//				Flag.Is_EnMOTOR = 0;//电机失能
+//			}	
+//		}
+//		else
+//		{
+//			Flag.Stop_Flag = 0;
+//			Flag.Stop_Count = 0;
+//			LED_G_Off();
+//		}
 		
 		if(Flag.Is_EnMOTOR == 1)
 		{
 			{
+				PWMtemp1  =0;
+				PWMtemp2  =0;
+				PWMtemp3  =0;
+				PWMtemp4  =0;
+				
 				CTRL_compute_Position();
 				CTRL_compute_Speed();
 				
 				PWMtemp1 = speed_pid.output;
 				PWMtemp2 = speed_pid2.output;
+				PWMtemp3 = speed_pid3.output;
+				PWMtemp4 = speed_pid4.output;
 				Set_PWM(PWMtemp1 ,PWMtemp2);
-				Set_PWM2(PWMtemp1 ,PWMtemp2);
+				Set_PWM2(PWMtemp3 ,PWMtemp4);
 			}
 		}
 		else

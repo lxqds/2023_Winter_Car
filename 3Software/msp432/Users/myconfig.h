@@ -67,6 +67,7 @@ typedef struct
 	uint8_t Bias_Right;
 	uint8_t Bias_Middle;
 	int16_t Bias;//偏差
+	int16_t Last_Bias;//偏差
 	uint8_t CrossRoad_Flag;
 	
 	uint8_t Load_drug;
@@ -87,11 +88,16 @@ typedef struct
 	uint8_t Routine[9];//记忆路线
 	uint8_t Current_Position;
 	uint8_t Task;
+	
+	uint8_t White_Count;//跑偏计数
+	uint8_t White_Flag;//空白标志位
 }Flag_Init;
 
 /* extern提供给其他C文件调用的函数 --------------------------------------------------------------------------------------------*/
 extern 	uint8_t Key;
 extern	uint8_t Reflectance_Data;
+extern 	uint8_t Last_Reflectance_Data;
+
 extern Flag_Init Flag;
 extern  SensorData SensorData1;
 

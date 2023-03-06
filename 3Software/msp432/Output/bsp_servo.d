@@ -42,3 +42,4 @@
 ..\output\bsp_servo.o: ..\Libraries\ti_driverlib\simplelink_msp432p4_sdk_3_40_01_02\ti/devices/msp432p4xx/driverlib/wdt_a.h
 ..\output\bsp_servo.o: ..\Libraries\ti_driverlib\simplelink_msp432p4_sdk_3_40_01_02\ti/devices/msp432p4xx/driverlib/sysctl.h
 ..\output\bsp_servo.o: ..\Libraries\ti_driverlib\simplelink_msp432p4_sdk_3_40_01_02\ti/devices/msp432p4xx/driverlib/flash.h
+..\output\bsp_servo.o: ..\Hardware\sys\delay.h

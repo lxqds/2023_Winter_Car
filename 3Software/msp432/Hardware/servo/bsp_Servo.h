@@ -20,4 +20,6 @@ void Servo_Init(void);
  */
 void Servo_Control(uint8_t Servox,uint16_t Duty_Cycle);
 void Servo_Control2(uint8_t Servox,uint8_t Angle);
+void Servo_Scan(void);
+uint8_t Servo_Scan2(uint8_t Servox,uint8_t Left,uint8_t Right);
 #endif

@@ -1,5 +1,5 @@
 #include "bsp_Servo.h"
-
+#include "delay.h"
 /**
  * @brief	初始化舵机
  * @param	无
@@ -63,4 +63,45 @@ void Servo_Control2(uint8_t Servox,uint8_t Angle)
 			break;
 	}
 	Timer_A_setCompareValue(TIMER_A2_BASE,Servo,Duty_Cycle);
+}
+/**
+ * @brief	舵机扫描
+ * @param	uint8_t Servox 		选择舵机Servo1或Servo2	1或2
+ * @param	uint8_t Duty_Cycle	占空比499-2499
+ * @return	无
+ */
+void Servo_Scan(void)
+{
+	uint8_t i=0;
+	uint8_t j=0;
+	for(i=0;i<90;i++)
+	{
+		delay_ms(60);
+		Servo_Control2(2,i);
+	}
+}
+/**
+ * @brief	舵机扫描2
+ * @param	uint8_t Servox 		选择舵机Servo1或Servo2	1或2
+ * @param	uint8_t Duty_Cycle	占空比499-2499
+ * @return	无
+ */
+uint8_t Servo_Scan2(uint8_t Servox,uint8_t Left,uint8_t Right)
+{
+	static uint8_t i=0;
+	i++;
+	switch(Servox)
+	{
+		case 1:Servo_Control2(1,Left+i);break;
+		case 2:Servo_Control2(2,Left+i);break;
+	}
+	if(i==Right)
+	{
+		i=0;
+		return 255;
+	}
+	else
+	{
+		return Left+i;
+	}
 }

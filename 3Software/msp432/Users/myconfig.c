@@ -47,8 +47,17 @@ void TA0_0_IRQHandler(void)
     /*开始填充用户代码*/
 	//Key = KEY_Scan(1);
 	//Key = Key_Scan();
+	
 	Key_Scan2();
 	Encoder_Scan();
+	
+	Delay10msCnt++;
+	if(Delay10msCnt==5)
+	{
+		Delay10msCnt=0;
+		Servo_Scan2(2,45,50);
+	}
+	
 	
 	if(Flag.Start_Line_Flag == 1)
 	{

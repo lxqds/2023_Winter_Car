@@ -154,20 +154,23 @@ int main(void)
 		Menudisplay();
 //		PID_Data_Send();
 		{//调试区
-//			while(1)
-//			{
+			while(1)
+			{
+				//Servo_Scan();
+//				Servo_Scan2(2,45,70);
+//				delay_ms(60);
 //				Servo_Control2(1,90);
 //				Servo_Control2(2,90);
-////				Menudisplay();
-////				PID_Data_Send();
-////				receiving_process();
-////				Motor_Control(1,1,40);
-////				Motor_Control(2,1,40);
-////				set_motor_enable();
-////				Set_PWM2(-50,-50);
-////				//Servo_Control2(1,50);//向左调整舵机
-////				Servo_Control2(2,120);//向右调整舵机//110右1//120//右二
-//			}
+//				Menudisplay();
+//				PID_Data_Send();
+//				receiving_process();
+//				Motor_Control(1,1,40);
+//				Motor_Control(2,1,40);
+//				set_motor_enable();
+//				Set_PWM2(-50,-50);
+//				//Servo_Control2(1,50);//向左调整舵机
+//				Servo_Control2(2,120);//向右调整舵机//110右1//120//右二
+			}
 		}
 		
 		if(Flag.Task == 0)

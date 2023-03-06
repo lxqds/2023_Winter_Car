@@ -129,6 +129,10 @@ int main(void)
 			{//遇到路口
 				Flag.CrossRoad_Flag = 1;
 			}
+			case 0b11011000:
+			{//遇到路口
+				Flag.CrossRoad_Flag = 1;
+			}
 			default:
 			{
 				//如果没有偏差以上一次为准
@@ -196,12 +200,12 @@ int main(void)
 					switch(Flag.Step_Count)
 					{
 						case 0:
-						{
+						{//直走80cm
 							Flag.Step_Count++;
 							Car_Go(80);
 						}break;
 						case 1:
-						{
+						{//当检测到路口或是车停止就再直走10cm
 							if(Flag.CrossRoad_Flag == 1)
 							{
 								Flag.CrossRoad_Flag = 0;
@@ -221,7 +225,7 @@ int main(void)
 							}
 						}break;
 						case 2:
-						{
+						{//转完之后直走
 							if(Flag.Stop_Flag ==1)
 							{
 								Flag.Step_Count++;
@@ -229,7 +233,7 @@ int main(void)
 							}
 						}break;
 						case 3:
-						{
+						{//检测到停止标志再走5cm
 							if(Flag.CrossRoad_Flag == 1)
 							{
 								Flag.CrossRoad_Flag = 0;
@@ -243,7 +247,7 @@ int main(void)
 							}
 						}break;
 						case 4:
-						{
+						{//检测药被取走
 							delay_ms(1000);
 //							if(Keys[0].Double_Flag ==1)//如果药被取走
 							{
@@ -254,7 +258,7 @@ int main(void)
 							}
 						}break;
 						case 5:
-						{
+						{//检测到转完180度后停下
 							if(Flag.Stop_Flag ==1)//向右转180度后车子停下
 							{
 								Flag.Step_Count++;
@@ -262,7 +266,7 @@ int main(void)
 							}
 						}break;
 						case 6:
-						{
+						{//
 							if(Flag.CrossRoad_Flag == 1)
 							{
 								Flag.CrossRoad_Flag = 0;

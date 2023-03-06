@@ -15,8 +15,10 @@
 /* Includes -------------------------------------------------------------------------------------------------------------*/
 
 #include "myconfig.h"
-
+#include "math.h"
 /* define -----------------------------------------------------------------------------------------------------------------*/
+#define ABS(x) ((x)>=0?(x):-(x)))
+
 uint16_t Delay10msCnt = 0;
 uint8_t TIMA_Count = 0;
 uint8_t Car_Star_Flag = 1;
@@ -125,9 +127,8 @@ void TA0_0_IRQHandler(void)
 //		{
 //			Flag.Target_Distance_Arrive = 1;
 //		}
-		//判断距离是否达到实际的距离
-//		if(Flag.Target_Distance_Arrive ==1)
-		if((Encoder.Speed[2]==0||Encoder.Speed[3]==0))
+		//判断1.电机是否停转以及编码器的距离超过10cm或者2.编码器到达10cm以上同时巡线检测到中线
+		if(((Encoder.Speed[2]==0||Encoder.Speed[3]==0)&&((fabs(Encoder.Distance[2])>10.f)||(fabs(Encoder.Distance[3])>10.f)))||(((fabs(Encoder.Distance[2])>10.f)||(fabs(Encoder.Distance[3])>10.f))&&Reflectance_Data==0b00100000))
 		{
 			Flag.Stop_Count++;
 			if(Flag.Stop_Count>100)

@@ -186,6 +186,12 @@ void Car_Go(float Distance)
 	set_pid_target(&move_pid2,Flag.Target_Distance_Right);
 	set_pid_target(&move_pid4,Flag.Target_Distance_Right);
 }
+/**
+ * @name	转向
+ * @brief	转向向左90，向右90，向左180，向右180
+ * @param	无
+ * @return	无
+ */
 void Car_Spin(uint8_t Direction)
 {
 	float Distance_Left=0,Distance_Right=0;
@@ -199,7 +205,8 @@ void Car_Spin(uint8_t Direction)
 	{
 		case 0: Distance_Left=-14.f;Distance_Right=14.f;break;
 		case 1: Distance_Left=14.f;Distance_Right=-14.f;break;
-		case 2: Distance_Left=-30.f;Distance_Right=30.f;break;
+		case 2: Distance_Left=-32.f;Distance_Right=32.f;break;//
+		case 3: Distance_Left=32.f;Distance_Right=-32.f;break;
 		default:break;
 	}
 	Flag.Target_Distance_Left  = Distance_Left;

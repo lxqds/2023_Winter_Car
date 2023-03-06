@@ -230,18 +230,10 @@ int main(void)
 						}break;
 						case 3:
 						{
-							if(Flag.White_Flag ==1)
+							if(Flag.CrossRoad_Flag == 1)
 							{
-								Flag.White_Count++;
-								if(Flag.White_Count>=100)
-								{
-									Flag.White_Flag =0;
-									Car_Go(2);
-								}
-								else
-								{
-									Flag.White_Count =0;
-								}
+								Flag.CrossRoad_Flag = 0;
+								Car_Go(5);
 							}
 							if(Flag.Stop_Flag ==1)//到达位置点亮led
 							{
@@ -258,12 +250,12 @@ int main(void)
 								Keys[0].Double_Flag =0;
 								LED_G_Off();
 								Flag.Step_Count++;
-								Car_Spin(2);//自转180度
+								Car_Spin(3);//自向右转180度
 							}
 						}break;
 						case 5:
 						{
-							if(Flag.Stop_Flag ==1)//自转180度后车子停下
+							if(Flag.Stop_Flag ==1)//向右转180度后车子停下
 							{
 								Flag.Step_Count++;
 								Car_Go(60);
@@ -294,18 +286,10 @@ int main(void)
 						}break;	
 						case 8:
 						{
-							if(Flag.White_Flag ==1)
+							if(Flag.CrossRoad_Flag == 1)
 							{
-								Flag.White_Count++;
-								if(Flag.White_Count>=100)
-								{
-									Flag.White_Flag =0;
-									Car_Go(2);
-								}
-								else
-								{
-									Flag.White_Count =0;
-								}
+								Flag.CrossRoad_Flag = 0;
+								Car_Go(5);
 							}
 							if(Flag.Stop_Flag ==1)
 							{
@@ -354,18 +338,10 @@ int main(void)
 						}break;
 						case 3:
 						{
-							if(Flag.White_Flag ==1)
+							if(Flag.CrossRoad_Flag == 1)
 							{
-								Flag.White_Count++;
-								if(Flag.White_Count>=100)
-								{
-									Flag.White_Flag =0;
-									Car_Go(2);
-								}
-								else
-								{
-									Flag.White_Count =0;
-								}
+								Flag.CrossRoad_Flag = 0;
+								Car_Go(5);
 							}
 							if(Flag.Stop_Flag ==1)//到达位置点亮led
 							{
@@ -382,12 +358,12 @@ int main(void)
 								Keys[0].Double_Flag =0;
 								LED_G_Off();
 								Flag.Step_Count++;
-								Car_Spin(2);//自转180度
+								Car_Spin(2);//自左转180度
 							}
 						}break;
 						case 5:
 						{
-							if(Flag.Stop_Flag ==1)//自转180度后车子停下
+							if(Flag.Stop_Flag ==1)//自左转180度后车子停下
 							{
 								Flag.Step_Count++;
 								Car_Go(60);
@@ -418,18 +394,10 @@ int main(void)
 						}break;	
 						case 8:
 						{
-							if(Flag.White_Flag ==1)
+							if(Flag.CrossRoad_Flag == 1)
 							{
-								Flag.White_Count++;
-								if(Flag.White_Count>=100)
-								{
-									Flag.White_Flag =0;
-									Car_Go(2);
-								}
-								else
-								{
-									Flag.White_Count =0;
-								}
+								Flag.CrossRoad_Flag = 0;
+								Car_Go(5);
 							}
 							if(Flag.Stop_Flag ==1)
 							{

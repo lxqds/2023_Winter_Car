@@ -95,7 +95,7 @@ uint8_t Servo_Scan2(uint8_t Servox,uint8_t Left,uint8_t Right)
 		case 1:Servo_Control2(1,Left+i);break;
 		case 2:Servo_Control2(2,Left+i);break;
 	}
-	if(i==Right)
+	if((Left+i)==Right)
 	{
 		i=0;
 		return 255;

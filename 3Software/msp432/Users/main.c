@@ -35,6 +35,7 @@ int main(void)
 		
 		PID_param_init(&Dir_pid);
 		PID_param_init(&Dir_pid2);
+		Servo_Control2(2,65);
 	}
 	
 	{//配置PID
@@ -154,23 +155,25 @@ int main(void)
 		Menudisplay();
 //		PID_Data_Send();
 		{//调试区
-			while(1)
-			{
-				//Servo_Scan();
-//				Servo_Scan2(2,45,70);
-//				delay_ms(60);
-//				Servo_Control2(1,90);
-//				Servo_Control2(2,90);
-//				Menudisplay();
-//				PID_Data_Send();
-//				receiving_process();
-//				Motor_Control(1,1,40);
-//				Motor_Control(2,1,40);
-//				set_motor_enable();
-//				Set_PWM2(-50,-50);
-//				//Servo_Control2(1,50);//向左调整舵机
-//				Servo_Control2(2,120);//向右调整舵机//110右1//120//右二
-			}
+//			while(1)
+//			{
+//				delay_ms(5000);
+//				Flag.Servo_Scan_Flag =1;
+//				//Servo_Scan();
+////				Servo_Scan2(2,45,70);
+////				delay_ms(60);
+////				Servo_Control2(1,90);
+////				Servo_Control2(2,90);
+////				Menudisplay();
+////				PID_Data_Send();
+////				receiving_process();
+////				Motor_Control(1,1,40);
+////				Motor_Control(2,1,40);
+////				set_motor_enable();
+////				Set_PWM2(-50,-50);
+////				//Servo_Control2(1,50);//向左调整舵机
+////				Servo_Control2(2,120);//向右调整舵机//110右1//120//右二
+//			}
 		}
 		
 		if(Flag.Task == 0)
@@ -423,130 +426,225 @@ int main(void)
 					{//直走120
 						Flag.Step_Count++;
 						Car_Go(120);
+						Servo_Control2(2,70);
 					}break;
 					case 1:
-					{//停下，向左调整
+					{//识别到数字停下，扫描数字
 						if(SensorData1.D.Float_Data)
 						{	
-								Car_Go(1);
+							Car_Go(1);
+							Flag.Step_Count++;
+//								Flag.Stop_Flag = 1;			
+//								Flag.Stop_Count = 0;//停止计时
+//								LED_G_On();//点灯
 						}
-						if(Flag.Stop_Flag ==1)
-						{
-							Servo_Control2(2,120);//向左调整舵机
-							Flag.Step_Count++;//进入下一个状态
-						}
+						Flag.CrossRoad_Flag = 0;
 					}break;
 					case 2:
-					{//识别数字
-						if(SensorData1.D.Float_Data&&Flag.Recognize_Num_Flag ==0)
-						{//识别数字
-							static uint8_t Last_Num,Temp_Num;//创建临时变量存储判断数字
-							Temp_Num = SensorData1.D.Float_Data;//暂存变量
-							if(Temp_Num == Last_Num)			//
-							{
-								Flag.Recognize_Num_Count++;
-								if(Flag.Recognize_Num_Count>=10)
-								{
-									Flag.Recognize_Num_Flag = 1;//识别到数字后置标志位为1,待处理数字
-									Flag.Recognize_Num = Temp_Num;//设置目标病房
-								}
-							}
-							Last_Num = Temp_Num;
-						}
-						if(Flag.Recognize_Num_Flag ==1)
-						{//识别数字后,清除标志位，记忆路线，与目标相同或不同   
-							Flag.Recognize_Num_Flag =0;
-							Flag.Routine[3] = Flag.Recognize_Num;//记忆3号路线的数字
-							if(Flag.Recognize_Num ==Flag.Target_Num)
-							{//与目标相同
-								Flag.Step_Count =63;//三号路线走法
-							}
-							else 
-							{//不同，调整舵机
-								Servo_Control2(2,110);//向右调整舵机
-								Flag.Step_Count ++;
-							}
+					{
+						if(Flag.Stop_Flag ==1)
+						{//车子停下后开启舵机扫描
+							Flag.Servo_Scan_Flag = 1;
+							Flag.Step_Count++;
 						}
 					}break;
 					case 3:
-					{//看右边数字
-						if(SensorData1.D.Float_Data&&Flag.Recognize_Num_Flag ==0)
-						{//识别数字
-							static uint8_t Last_Num,Temp_Num;//创建临时变量存储判断数字
-							Temp_Num = SensorData1.D.Float_Data;//暂存变量
-							if(Temp_Num == Last_Num)			//
-							{
-								Flag.Recognize_Num_Count++;
-								if(Flag.Recognize_Num_Count>=10)
-								{
-									Flag.Recognize_Num_Flag = 1;//识别到数字后置标志位为1,待处理数字
-									Flag.Recognize_Num = Temp_Num;//设置目标病房
-								}
+					{
+						if(Flag.Servo_Scan_Flag ==0)
+							{//舵机扫描完成后标志位置0
+								Flag.Step_Count++;//进入下一个状态
+								Car_Go(50);
 							}
-							Last_Num = Temp_Num;
-						}
-						if(Flag.Recognize_Num_Flag ==1)
-						{//识别数字后
-							Flag.Recognize_Num_Flag =0;
-							Flag.Routine[4] = Flag.Recognize_Num;//记忆为4号路线的数字
-							if(Flag.Recognize_Num ==Flag.Target_Num)
-							{//与目标相同
-								Flag.Step_Count =74;//四号路线走法
-							}
-							else
-							{//不同的话，直走
-								Car_Go(30);//
-								Flag.Step_Count ++;
-							}
-						}
 					}break;
 					case 4:
+					{//直走50cm
+						if(Flag.CrossRoad_Flag == 1)
+						{//遇到十字路口暂停
+							Flag.CrossRoad_Flag = 0;
+							Car_Go(10);
+						}
+						if(Flag.Stop_Flag ==1)	
+						{
+							if(Flag.Num_Recognize[0] == Flag.Target_Num)
+							{//左转
+								Car_Spin(0);
+								Flag.Step_Count=10;//进入下一个状态
+							}
+							else if(Flag.Num_Recognize[1] == Flag.Target_Num)
+							{//右转
+								Car_Spin(1);
+								Flag.Step_Count=20;//进入下一个状态
+							}
+							else 
+							{//直走
+								Car_Go(100);
+								Flag.Step_Count=30;//进入下一个状态
+							}
+						}
+					}break;
+					{//3号走法
+					case 10:
+					{//车子转完弯停下来后
+						if(Flag.Stop_Flag ==1)
+						{
+							Car_Go(60);
+							Flag.Step_Count++;
+						}
+					}break;
+					case 11:
 					{
-						if(Flag.Stop_Flag == 1)
+						if(Flag.CrossRoad_Flag == 1)
 						{
-							Servo_Control2(1,45);//向左调整舵机
-							Servo_Control2(2,45);
-							Flag.Step_Count++;//进入下一个状态
+							Flag.CrossRoad_Flag = 0;
+							Car_Go(5);
 						}
-					}break;
-					case 5:
-					{
-						
-					}break;
-					case 63:
-					{//3号路线走法
-						Car_Go(15);
-						Flag.Step_Count++;//进入下一个状态
-					}break;
-					case 64:
-					{//转弯
-						if(Flag.Stop_Flag == 1)
+						if(Flag.Stop_Flag ==1)	
 						{
-							Car_Spin(0);
-							Flag.Step_Count++;//进入下一个状态
-						}
-					}break;
-					case 65:
-					{//直行
-						if(Flag.Stop_Flag == 1)
-						{
-							Car_Go(50);
-							Flag.Step_Count++;//进入下一个状态
-						}
-					}break;
-					case 66:
-					{//点灯，返回标志位置1
-						if(Flag.Stop_Flag == 1)
-						{
+							Flag.Step_Count++;
+							LED_B_Off();
 							LED_G_On();
-							Flag.Back_Flag = 1;
-							Flag.Current_Position = 3;
 						}
 					}break;
-					case 74:
-					{//4号路线走法
-						
+					case 12:
+					{
+						delay_ms(1000);
+//						if(Keys[0].Double_Flag ==1)//如果药被取走
+						{
+							Keys[0].Double_Flag =0;
+							LED_G_Off();
+							Flag.Step_Count++;
+							Car_Spin(3);//自右转180度
+						}
 					}break;
+					case 13:
+					{
+						if(Flag.Stop_Flag ==1)
+						{
+							Flag.Step_Count++;
+							Car_Go(60);
+						}
+					}break;
+					case 14:
+					{
+						if(Flag.CrossRoad_Flag == 1)
+						{
+							Flag.CrossRoad_Flag =0;
+							Car_Go(10);
+						}
+						if(Flag.Stop_Flag ==1)
+						{
+							Flag.Step_Count++;
+							Car_Spin(1);
+						}
+					}break;
+					case 15:
+					{
+						if(Flag.Stop_Flag ==1)
+						{
+							Flag.Step_Count++;
+							Car_Go(160);
+						}
+					}break;
+					case 16:
+					{
+						if(Flag.CrossRoad_Flag == 1)
+						{
+							Flag.CrossRoad_Flag =0;
+							Car_Go(80);
+							Flag.Step_Count++;
+						}
+					}break;
+					case 17:
+					{
+						if(Flag.Stop_Flag ==1)
+						{
+							LED_B_Off();
+							LED_G_On();
+						}
+					}break;
+					}
+					
+					{//4号走法
+					case 20:
+					{//车子转完弯停下来后
+						if(Flag.Stop_Flag ==1)
+						{
+							Car_Go(60);
+							Flag.Step_Count++;
+						}
+					}break;
+					case 21:
+					{
+						if(Flag.CrossRoad_Flag == 1)
+						{
+							Flag.CrossRoad_Flag = 0;
+							Car_Go(5);
+						}
+						if(Flag.Stop_Flag ==1)	
+						{
+							Flag.Step_Count++;
+							LED_B_Off();
+							LED_G_On();
+						}
+					}break;
+					case 22:
+					{
+						delay_ms(1000);
+//						if(Keys[0].Double_Flag ==1)//如果药被取走
+						{
+							Keys[0].Double_Flag =0;
+							LED_G_Off();
+							Flag.Step_Count++;
+							Car_Spin(2);//自左转180度
+						}
+					}break;
+					case 23:
+					{
+						if(Flag.Stop_Flag ==1)
+						{
+							Flag.Step_Count++;
+							Car_Go(60);
+						}
+					}break;
+					case 24:
+					{
+						if(Flag.CrossRoad_Flag == 1)
+						{
+							Flag.CrossRoad_Flag =0;
+							Car_Go(10);
+						}
+						if(Flag.Stop_Flag ==1)
+						{
+							Flag.Step_Count++;
+							Car_Spin(0);
+						}
+					}break;
+					case 25:
+					{
+						if(Flag.Stop_Flag ==1)
+						{
+							Flag.Step_Count++;
+							Car_Go(160);
+						}
+					}break;
+					case 26:
+					{
+						if(Flag.CrossRoad_Flag == 1)
+						{
+							Flag.CrossRoad_Flag =0;
+							Car_Go(80);
+							Flag.Step_Count++;
+						}
+					}break;
+					case 27:
+					{
+						if(Flag.Stop_Flag ==1)
+						{
+							LED_B_Off();
+							LED_G_On();
+						}
+					}break;
+					}
 				}
 			}
 			else if(Flag.Load_drug == 0&&Flag.Back_Flag == 1)

@@ -34,6 +34,11 @@ float Average_Distance;
 
 
 uint8_t TempData;
+uint8_t Temp_Angle;
+float Temp_Num;
+float Last_Num;
+uint8_t Num_Count=0;//识别到的数字计数
+uint8_t Num_Same_Flag;//数字一样标志位
 /**
  * @name:TA0_0_IRQHandler
  * @brief:TA0中断回调函数
@@ -50,13 +55,46 @@ void TA0_0_IRQHandler(void)
 	
 	Key_Scan2();
 	Encoder_Scan();
-	
-	Delay10msCnt++;
-	if(Delay10msCnt==5)
-	{
-		Delay10msCnt=0;
-		Servo_Scan2(2,45,50);
+	if(Flag.Servo_Scan_Flag ==1)
+	{//检测到舵机开始扫描
+		Delay10msCnt++;
+		if(Delay10msCnt==5)
+		{//50ms进一次
+			Delay10msCnt=0;
+			Temp_Angle = Servo_Scan2(2,45,135);
+			Temp_Num = SensorData1.D.Float_Data;
+			if(Temp_Num)
+			{//识别到有数字后存储到数组中
+				if(Temp_Num !=Flag.Num_Recognize[0]&&
+						Temp_Num !=Flag.Num_Recognize[1]&&
+							Temp_Num !=Flag.Num_Recognize[2]&&
+								Temp_Num !=Flag.Num_Recognize[3]&&
+									Temp_Num !=Flag.Num_Recognize[4]&&
+										Temp_Num !=Flag.Num_Recognize[5]&&
+											Temp_Num !=Flag.Num_Recognize[6]&&
+												Temp_Num !=Flag.Num_Recognize[7])
+				{//如果识别到的数字和上一次不相等
+					Flag.Num_Angle[Num_Count] = Temp_Angle;
+					Flag.Num_Recognize[Num_Count] = Temp_Num;
+					Num_Count++;
+					Last_Num = Temp_Num;
+				}
+			}
+			if(Temp_Angle ==255)
+			{//如果扫描完了
+				Flag.Servo_Scan_Flag =0;
+				Num_Count = 0;
+				OLED_Clear();
+				for(uint8_t i=0;i<6;i++)
+				{
+					OLED_ShowNum(16*i,2,Flag.Num_Angle[i],2,16);
+					OLED_ShowNum(16*i,4,Flag.Num_Recognize[i],2,16);
+				}
+			}
+			
+		}
 	}
+	
 	
 	
 	if(Flag.Start_Line_Flag == 1)
@@ -137,7 +175,7 @@ void TA0_0_IRQHandler(void)
 //			Flag.Target_Distance_Arrive = 1;
 //		}
 		//判断1.电机是否停转以及编码器的距离超过10cm或者2.编码器到达10cm以上同时巡线检测到中线
-		if(((Encoder.Speed[2]==0||Encoder.Speed[3]==0)&&((fabs(Encoder.Distance[2])>10.f)||(fabs(Encoder.Distance[3])>10.f)))||(((fabs(Encoder.Distance[2])>10.f)||(fabs(Encoder.Distance[3])>10.f))&&Reflectance_Data==0b00100000))
+		if(((Encoder.Speed[2]==0||Encoder.Speed[3]==0)&&((fabs(Encoder.Distance[2])>14.f)&&(fabs(Encoder.Distance[3])>14.f)))||(((fabs(Encoder.Distance[2])>14.f)&&(fabs(Encoder.Distance[3])>14.f))&&Reflectance_Data==0b00100000))
 		{
 			Flag.Stop_Count++;
 			if(Flag.Stop_Count>100)

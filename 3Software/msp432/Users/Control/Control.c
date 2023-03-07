@@ -203,8 +203,8 @@ void Car_Spin(uint8_t Direction)
 	
 	switch(Direction)
 	{
-		case 0: Distance_Left=-14.5f;Distance_Right=14.5f;break;
-		case 1: Distance_Left=14.5f;Distance_Right=-14.5f;break;
+		case 0: Distance_Left=-15.0f;Distance_Right=15.0f;break;
+		case 1: Distance_Left=15.0f;Distance_Right=-15.0f;break;
 		case 2: Distance_Left=-32.f;Distance_Right=32.f;break;//
 		case 3: Distance_Left=32.f;Distance_Right=-32.f;break;
 		default:break;

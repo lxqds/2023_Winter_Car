@@ -434,9 +434,6 @@ int main(void)
 						{	
 							Car_Go(1);
 							Flag.Step_Count++;
-//								Flag.Stop_Flag = 1;			
-//								Flag.Stop_Count = 0;//停止计时
-//								LED_G_On();//点灯
 						}
 						Flag.CrossRoad_Flag = 0;
 					}break;
@@ -477,6 +474,7 @@ int main(void)
 							}
 							else 
 							{//直走
+								Servo_Control2(2,70);
 								Car_Go(100);
 								Flag.Step_Count=30;//进入下一个状态
 							}
@@ -644,6 +642,238 @@ int main(void)
 							LED_G_On();
 						}
 					}break;
+					}
+					
+					{//远端走法
+					case 30:
+					{//识别到数字停下，扫描数字
+						if(SensorData1.D.Float_Data)
+						{	
+							Car_Go(1);
+							Flag.Step_Count++;
+						}
+						Flag.CrossRoad_Flag = 0;
+					}break;
+					case 31:
+					{
+						if(Flag.Stop_Flag ==1)
+						{//车子停下后开启舵机扫描
+							Flag.Servo_Scan_Flag2 = 1;
+							Flag.Step_Count++;
+						}
+					}break;
+					case 32:
+					{
+						if(Flag.Servo_Scan_Flag2 ==0)
+						{//舵机扫描完成后标志位置0
+							Flag.Step_Count++;//进入下一个状态
+							Car_Go(50);
+						}
+					}break;
+					case 33:
+					{
+						if(Flag.CrossRoad_Flag == 1)
+						{
+							Flag.CrossRoad_Flag = 0;
+							Car_Go(10);
+						}
+						if(Flag.Stop_Flag ==1)
+						{
+							if(Flag.Target_Num ==Flag.Num_Recognize2[0]||Flag.Target_Num ==Flag.Num_Recognize2[1])
+							{
+								Car_Spin(0);
+								Flag.Step_Count = 40;
+							}
+							else if(Flag.Target_Num ==Flag.Num_Recognize2[2]||Flag.Target_Num ==Flag.Num_Recognize2[3])
+							{
+								Car_Spin(1);
+								Flag.Step_Count = 80;
+							}
+						}
+					}break;
+					case 40:
+					{//远端左
+						 if(Flag.Stop_Flag ==1)
+						 {
+							Car_Go(60);
+							Flag.Step_Count++;
+						 }
+					}break;
+					case 41:
+					{
+						if(SensorData1.D.Float_Data)
+						{	
+							Car_Go(1);
+							Flag.Step_Count++;
+						}
+						if(Flag.Stop_Flag ==1)
+						{
+							Flag.Step_Count++;
+						}
+						Flag.CrossRoad_Flag = 0;
+					}break;
+					case 42:
+					{	
+						if(Flag.Stop_Flag ==1)
+						{
+							Flag.Servo_Scan_Flag = 1;
+							Flag.Step_Count++;
+						}
+					}break;
+					case 43:
+					{	
+						if(Flag.Servo_Scan_Flag == 0)
+						{
+							Car_Go(50);
+							Flag.Step_Count++;
+						}
+					}break;
+					case 44:
+					{	
+						if(Flag.CrossRoad_Flag == 1)
+						{
+							Flag.CrossRoad_Flag = 0;
+							Car_Go(10);
+						}
+						if(Flag.Stop_Flag ==1)
+						{
+							if(Flag.Target_Num == Flag.Num_Recognize[0])
+							{
+								Car_Spin(0);
+								Flag.Step_Count=45;
+							}
+							else
+							{
+								Car_Spin(1);
+								Flag.Step_Count = 60;
+							}
+						}
+					}break;
+					{//5号路线走法
+					case 45:
+					{
+						if(Flag.Stop_Flag ==1)
+						{
+							Car_Go(60);
+							Flag.Step_Count++;
+						}
+					}break;
+					case 46:
+					{
+						if(Flag.CrossRoad_Flag ==1)
+						{
+							Flag.CrossRoad_Flag = 0;
+							Car_Go(5);
+						}
+						if(Flag.Stop_Flag ==1)
+						{
+							LED_G_On();
+							Car_Spin(0);
+							Flag.Step_Count++;
+						}
+					}break;
+					case 47:
+					{
+						delay_ms(1000);
+//						if(Keys[0].Double_Flag ==1)//如果药被取走
+						{
+							Keys[0].Double_Flag =0;
+							LED_G_Off();
+							Flag.Step_Count++;
+							Car_Spin(3);//向右转180度
+						}
+					}break;
+					case 48:
+					{
+						if(Flag.Stop_Flag ==1)
+						{
+							Car_Go(60);
+							Flag.Step_Count++;
+						}
+					}break;
+					case 49:
+					{
+						if(Reflectance_Data ==0b00111000)
+						{
+							Car_Go(10);
+							Flag.Step_Count++;
+						}
+					}break;
+					case 50:
+					{
+						if(Flag.Stop_Flag ==1)
+						{
+							Car_Spin(1);
+							Flag.Step_Count++;
+						}
+					}break;
+					case 51:
+					{
+						if(Flag.Stop_Flag ==1)
+						{
+							Car_Go(60);
+							Flag.Step_Count++;
+						}
+					}break;
+					case 52:
+					{
+						if(Reflectance_Data ==0b00111000)
+						{
+							Car_Go(10);
+							Flag.Step_Count++;
+						}
+					}break;
+					case 53:
+					{
+						if(Flag.Stop_Flag ==1)
+						{
+							Car_Spin(1);//右转
+							Flag.Step_Count++;
+						}
+					}break;
+					case 54:
+					{
+						if(Flag.Stop_Flag ==1)
+						{
+							Car_Go(120);//直走120
+							Flag.Step_Count++;
+						}
+					}break;
+					case 55:
+					{
+						if(Flag.CrossRoad_Flag ==1)
+						{
+							Flag.CrossRoad_Flag = 0;
+							Car_Go(120);//直走120
+							Flag.Step_Count++;
+						}
+					}break;
+					case 56:
+					{
+						if(Flag.CrossRoad_Flag ==1)
+						{
+							Flag.CrossRoad_Flag = 0;
+							Car_Go(120);//直走120
+							Flag.Step_Count++;
+						}
+					}break;
+					case 57:
+					{
+						if(Flag.CrossRoad_Flag ==1)
+						{
+							Flag.CrossRoad_Flag = 0;
+							Car_Go(5);//直走120
+							Flag.Step_Count++;
+						}
+					}break;
+					case 58:
+					{
+						if(Flag.Stop_Flag == 1)
+						{
+							LED_G_On();
+						}
+					}break;
+					}
 					}
 				}
 			}

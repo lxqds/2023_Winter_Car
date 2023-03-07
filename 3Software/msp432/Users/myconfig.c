@@ -62,7 +62,22 @@ void TA0_0_IRQHandler(void)
 		{//50ms进一次
 			Delay10msCnt=0;
 			Temp_Angle = Servo_Scan2(2,45,135);
-			Temp_Num = SensorData1.D.Float_Data;
+//			Temp_Num = SensorData1.D.Float_Data;
+			if(SensorData1.D.Float_Data)
+			{//识别数字
+				static uint8_t Last_Num2,Temp_Num2;//创建临时变量存储判断数字
+				Temp_Num2 = SensorData1.D.Float_Data;//暂存变量
+				if(Temp_Num2 == Last_Num2)			//
+				{
+					Flag.Recognize_Num_Count++;
+					if(Flag.Recognize_Num_Count>=10)
+					{
+						Flag.Recognize_Num_Flag = 1;//识别到数字后置标志位为1,待处理数字
+						Temp_Num = Temp_Num2;//设置目标病房
+					}
+				}
+				Last_Num2 = Temp_Num2;
+			}
 			if(Temp_Num)
 			{//识别到有数字后存储到数组中
 				if(Temp_Num !=Flag.Num_Recognize[0]&&
@@ -74,7 +89,7 @@ void TA0_0_IRQHandler(void)
 											Temp_Num !=Flag.Num_Recognize[6]&&
 												Temp_Num !=Flag.Num_Recognize[7])
 				{//如果识别到的数字和上一次不相等
-					Flag.Num_Angle[Num_Count] = Temp_Angle;
+					Flag.Num_Angle2[Num_Count] = Temp_Angle;
 					Flag.Num_Recognize[Num_Count] = Temp_Num;
 					Num_Count++;
 					Last_Num = Temp_Num;
@@ -94,7 +109,59 @@ void TA0_0_IRQHandler(void)
 			
 		}
 	}
-	
+	if(Flag.Servo_Scan_Flag2 ==1)
+	{//检测到舵机开始扫描
+		Delay10msCnt++;
+		if(Delay10msCnt==5)
+		{//50ms进一次
+			Delay10msCnt=0;
+			Temp_Angle = Servo_Scan2(2,30,150);
+//			Temp_Num = SensorData1.D.Float_Data;
+			if(SensorData1.D.Float_Data)
+			{//识别数字
+				static uint8_t Last_Num2,Temp_Num2;//创建临时变量存储判断数字
+				Temp_Num2 = SensorData1.D.Float_Data;//暂存变量
+				if(Temp_Num2 == Last_Num2)			//
+				{
+					Flag.Recognize_Num_Count++;
+					if(Flag.Recognize_Num_Count>=10)
+					{
+						Temp_Num = Temp_Num2;//设置目标病房
+					}
+				}
+				Last_Num2 = Temp_Num2;
+			}
+			if(Temp_Num)
+			{//识别到有数字后存储到数组中
+				if(Temp_Num !=Flag.Num_Recognize2[0]&&
+						Temp_Num !=Flag.Num_Recognize2[1]&&
+							Temp_Num !=Flag.Num_Recognize2[2]&&
+								Temp_Num !=Flag.Num_Recognize2[3]&&
+									Temp_Num !=Flag.Num_Recognize2[4]&&
+										Temp_Num !=Flag.Num_Recognize2[5]&&
+											Temp_Num !=Flag.Num_Recognize2[6]&&
+												Temp_Num !=Flag.Num_Recognize2[7])
+				{//如果识别到的数字和上一次不相等
+					Flag.Num_Angle2[Num_Count] = Temp_Angle;
+					Flag.Num_Recognize2[Num_Count] = Temp_Num;
+					Num_Count++;
+					Last_Num = Temp_Num;
+				}
+			}
+			if(Temp_Angle ==255)
+			{//如果扫描完了
+				Flag.Servo_Scan_Flag2 =0;
+				Num_Count = 0;
+				OLED_Clear();
+				for(uint8_t i=0;i<6;i++)
+				{
+					OLED_ShowNum(16*i,2,Flag.Num_Angle2[i],2,16);
+					OLED_ShowNum(16*i,4,Flag.Num_Recognize2[i],2,16);
+				}
+			}
+			
+		}
+	}
 	
 	
 	if(Flag.Start_Line_Flag == 1)

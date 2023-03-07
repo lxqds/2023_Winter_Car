@@ -93,9 +93,12 @@ typedef struct
 	uint8_t White_Flag;//空白标志位
 	
 	uint8_t Servo_Scan_Flag;//舵机开始扫描标志位
+	uint8_t Servo_Scan_Flag2;//舵机开始扫描标志位2
 	
 	uint8_t Num_Recognize[8];
+	uint8_t Num_Recognize2[8];
 	uint8_t Num_Angle[8];
+	uint8_t Num_Angle2[8];
 
 }Flag_Init;
 

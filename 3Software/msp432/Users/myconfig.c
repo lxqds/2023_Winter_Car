@@ -159,11 +159,8 @@ void TA0_0_IRQHandler(void)
 					OLED_ShowNum(16*i,4,Flag.Num_Recognize2[i],2,16);
 				}
 			}
-			
 		}
 	}
-	
-	
 	if(Flag.Start_Line_Flag == 1)
 	{
 		//判断距离是否达到实际的距离
@@ -237,12 +234,9 @@ void TA0_0_IRQHandler(void)
 	
 	if(Flag.Spin_Start_Flag == 1)
 	{
-//		if((Encoder.Distance[2] >= (Flag.Target_Distance_Left-0.1 )&&(Encoder.Distance[2] <= (Flag.Target_Distance_Left+0.1 )))||(Encoder.Distance[3] >= (Flag.Target_Distance_Right-0.1 )&&Encoder.Distance[3] >= (Flag.Target_Distance_Right+0.1 )))
-//		{
-//			Flag.Target_Distance_Arrive = 1;
-//		}
+		
 		//判断1.电机是否停转以及编码器的距离超过10cm或者2.编码器到达10cm以上同时巡线检测到中线
-		if(((Encoder.Speed[2]==0||Encoder.Speed[3]==0)&&((fabs(Encoder.Distance[2])>14.f)&&(fabs(Encoder.Distance[3])>14.f)))||(((fabs(Encoder.Distance[2])>14.f)&&(fabs(Encoder.Distance[3])>14.f))&&Reflectance_Data==0b00100000))
+		if(((Encoder.Speed[2]==0||Encoder.Speed[3]==0)&&((fabs(Encoder.Distance[2])>=15.f)&&(fabs(Encoder.Distance[3])>15.f)))||(((fabs(Encoder.Distance[2])>15.f)&&(fabs(Encoder.Distance[3])>15.f))&&Reflectance_Data==0b00100000))
 		{
 			Flag.Stop_Count++;
 			if(Flag.Stop_Count>100)
@@ -289,6 +283,8 @@ void TA0_0_IRQHandler(void)
 				PWMtemp4  =0;
 				
 				CTRL_compute_Position();
+				if(((fabs(Encoder.Distance[2])>=10.f)&&(fabs(Encoder.Distance[3])>10.f)))
+				CTRL_compute_Direction(Flag.Bias);//开启巡线
 				CTRL_compute_Speed();
 				
 				PWMtemp1 = speed_pid.output;

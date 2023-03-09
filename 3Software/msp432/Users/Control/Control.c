@@ -65,7 +65,7 @@ void CTRL_compute_Direction(int16_t Bias)
  */
 void CTRL_compute_Position(void)
 {
-	uint16_t Limit_MAXspeed = 35;//限制轮子最高转速
+	uint16_t Limit_MAXspeed = 40;//限制轮子最高转速
 	move_pid.output = PID_realize(&move_pid,Encoder.Distance[2]);
 	move_pid2.output = PID_realize(&move_pid2,Encoder.Distance[3]);
 	move_pid3.output = PID_realize(&move_pid3,Encoder.Distance[0]);
@@ -203,8 +203,8 @@ void Car_Spin(uint8_t Direction)
 	
 	switch(Direction)
 	{
-		case 0: Distance_Left=-15.0f;Distance_Right=15.0f;break;
-		case 1: Distance_Left=15.0f;Distance_Right=-15.0f;break;
+		case 0: Distance_Left=-16.0f;Distance_Right=16.0f;break;
+		case 1: Distance_Left=16.0f;Distance_Right=-16.0f;break;
 		case 2: Distance_Left=-32.f;Distance_Right=32.f;break;//
 		case 3: Distance_Left=32.f;Distance_Right=-32.f;break;
 		default:break;

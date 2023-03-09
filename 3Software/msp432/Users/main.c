@@ -39,10 +39,10 @@ int main(void)
 	}
 	
 	{//配置PID
-		set_p_i_d(&move_pid,8,0,50);
-		set_p_i_d(&move_pid2,8,0,50);
-		set_p_i_d(&move_pid3,8,0,50);
-		set_p_i_d(&move_pid4,8,0,50);
+		set_p_i_d(&move_pid,50,0,50);
+		set_p_i_d(&move_pid2,50,0,50);
+		set_p_i_d(&move_pid3,50,0,50);
+		set_p_i_d(&move_pid4,50,0,50);
 		set_p_i_d(&speed_pid,0.45,0.03,0);
 		set_p_i_d(&speed_pid2,0.45,0.03,0);
 		set_p_i_d(&speed_pid3,0.45,0.03,0);
@@ -247,6 +247,10 @@ int main(void)
 							}
 							if(Flag.Stop_Flag ==1)//到达位置点亮led
 							{
+								Flag.Stop_Flag = 1;//置标志位
+								Flag.Start_Line_Flag = 0;
+								Flag.Stop_Count = 0;
+								LED_G_On();
 								Flag.Step_Count++;
 								LED_B_Off();
 								LED_G_On();
@@ -276,10 +280,15 @@ int main(void)
 							if(Flag.CrossRoad_Flag == 1)
 							{
 								Flag.CrossRoad_Flag = 0;
+								
 								Car_Go(10);
 							}
 							if(Flag.Stop_Flag ==1)
 							{
+								Flag.Stop_Flag = 1;//置标志位
+								Flag.Start_Line_Flag = 0;
+								Flag.Stop_Count = 0;
+								LED_G_On();
 								Flag.Step_Count++;
 								Car_Spin(1);
 								LED_G_Off();
@@ -388,6 +397,10 @@ int main(void)
 							}
 							if(Flag.Stop_Flag ==1)
 							{
+								Flag.Stop_Flag = 1;//置标志位
+								Flag.Start_Line_Flag = 0;
+								Flag.Stop_Count = 0;
+								LED_G_On();
 								Flag.Step_Count++;
 								Car_Spin(0);
 								LED_G_Off();

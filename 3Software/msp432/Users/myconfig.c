@@ -55,6 +55,62 @@ void TA0_0_IRQHandler(void)
 	
 	Key_Scan2();
 	Encoder_Scan();
+	Reflectance_Data = Reflectance_Read2();
+	
+	switch(Reflectance_Data)
+		{//读取循迹模块的值并判断所在位置，偏差，位置
+			case 0b00000000:
+			{
+				Flag.White_Flag = 1;
+				Flag.Bias =0;
+			}break;
+			case 0b00100000:
+			{
+				Flag.Bias =0;
+			}break;
+			case 0b01100000:
+			{//左偏1
+				Flag.Bias =-10;
+			}break;
+			case 0b01000000:
+			{//左偏2
+				Flag.Bias =-25;
+			}break;
+			case 0b10000000:
+			{//左偏3
+				Flag.Bias =-60;
+			}break;
+			case 0b00110000:
+			{//右偏1
+				Flag.Bias =10;
+			}break;
+			case 0b00010000:
+			{//右偏2
+				Flag.Bias =25;
+			}break;
+			case 0b00001000:
+			{//右偏3
+				Flag.Bias =60;
+			}break;
+			case 0b11111000:
+			{//遇到路口
+				Flag.CrossRoad_Flag = 1;
+				Flag.Bias =Flag.Last_Bias;
+			}
+			case 0b11011000:
+			{//遇到路口
+				Flag.CrossRoad_Flag = 1;
+				Flag.Bias =Flag.Last_Bias;
+			}
+			default:
+			{
+				//如果没有偏差以上一次为准
+				Flag.Bias =Flag.Last_Bias;
+			} break;
+		}
+		Flag.Last_Bias = Flag.Bias;//
+		Last_Reflectance_Data = Reflectance_Data;
+		
 	if(Flag.Servo_Scan_Flag ==1)
 	{//检测到舵机开始扫描
 		Delay10msCnt++;
@@ -164,7 +220,14 @@ void TA0_0_IRQHandler(void)
 	if(Flag.Start_Line_Flag == 1)
 	{
 		//判断距离是否达到实际的距离
-		if((Encoder.Speed[2]==0||Encoder.Speed[3]==0))
+		if(Reflectance_Data ==0b00100000)
+		{//归中取平均
+			float Distance_Averge;
+			Distance_Averge= (Encoder.Distance[2]+Encoder.Distance[3])/2;
+			Encoder.Distance[2] = Distance_Averge;
+			Encoder.Distance[3] = Distance_Averge;
+		}
+		if((Encoder.Speed[2]==0||Encoder.Speed[3]==0)&&((Encoder.Distance[2]>fabs(Flag.Target_Distance_Left-0.5f))&&(Encoder.Distance[3]>fabs(Flag.Target_Distance_Right-0.5f))))
 		{
 			Flag.Stop_Count++;
 			if(Flag.Stop_Count>100)
@@ -236,7 +299,7 @@ void TA0_0_IRQHandler(void)
 	{
 		
 		//判断1.电机是否停转以及编码器的距离超过10cm或者2.编码器到达10cm以上同时巡线检测到中线
-		if(((Encoder.Speed[2]==0||Encoder.Speed[3]==0)&&((fabs(Encoder.Distance[2])>=15.f)&&(fabs(Encoder.Distance[3])>15.f)))||(((fabs(Encoder.Distance[2])>15.f)&&(fabs(Encoder.Distance[3])>15.f))&&Reflectance_Data==0b00100000))
+		if(((Encoder.Speed[2]==0||Encoder.Speed[3]==0)&&((fabs(Encoder.Distance[2])>=13.f)&&(fabs(Encoder.Distance[3])>13.f)))||(((fabs(Encoder.Distance[2])>13.f)&&(fabs(Encoder.Distance[3])>13.f))&&Reflectance_Data==0b00100000))
 		{
 			Flag.Stop_Count++;
 			if(Flag.Stop_Count>100)

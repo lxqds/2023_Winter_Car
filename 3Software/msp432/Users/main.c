@@ -4,6 +4,7 @@
 void Menudisplay(void);
 void PID_Data_Send(void);
 void Back_Routine(uint8_t Routine);
+uint16_t s;
 int main(void)
 {
 	{//初始化代码
@@ -48,8 +49,8 @@ int main(void)
 		set_p_i_d(&speed_pid3,0.45,0.03,0);
 		set_p_i_d(&speed_pid4,0.45,0.03,0);
 		
-		set_p_i_d(&Dir_pid,1.2,0,0.5);
-		set_p_i_d(&Dir_pid2,1.2,0,0.5);
+		set_p_i_d(&Dir_pid,10,0,2);
+		set_p_i_d(&Dir_pid2,10,0,2);
 		
 		set_pid_target(&move_pid2,50);
 		set_pid_target(&move_pid,50);
@@ -68,7 +69,7 @@ int main(void)
 //		{//PID发送
 //			PID_Data_Send();
 //		}
-		Reflectance_Data = Reflectance_Read2();
+//		Reflectance_Data = Reflectance_Read2();
 //		if(Reflectance_Data!= Last_Reflectance_Data)
 //		{//判断空白出线情况
 //			if(Reflectance_Data==0b00000000)
@@ -91,57 +92,59 @@ int main(void)
 //				Last_Reflectance_Data = Reflectance_Data;
 //			}
 //		}
-		switch(Reflectance_Data)
-		{//读取循迹模块的值并判断所在位置，偏差，位置
-			case 0b00000000:
-			{
-				Flag.White_Flag = 1;
-				Flag.Bias =0;
-			}break;
-			case 0b00100000:
-			{
-				Flag.Bias =0;
-			}break;
-			case 0b01100000:
-			{//左偏1
-				Flag.Bias =-10;
-			}break;
-			case 0b01000000:
-			{//左偏2
-				Flag.Bias =-25;
-			}break;
-			case 0b10000000:
-			{//左偏3
-				Flag.Bias =-40;
-			}break;
-			case 0b00110000:
-			{//右偏1
-				Flag.Bias =10;
-			}break;
-			case 0b00010000:
-			{//右偏2
-				Flag.Bias =25;
-			}break;
-			case 0b00001000:
-			{//右偏3
-				Flag.Bias =40;
-			}break;
-			case 0b11111000:
-			{//遇到路口
-				Flag.CrossRoad_Flag = 1;
-			}
-			case 0b11011000:
-			{//遇到路口
-				Flag.CrossRoad_Flag = 1;
-			}
-			default:
-			{
-				//如果没有偏差以上一次为准
-				Flag.Bias =Flag.Last_Bias;
-			} break;
-		}
-		Flag.Last_Bias = Flag.Bias;//
-		Last_Reflectance_Data = Reflectance_Data;
+//		switch(Reflectance_Data)
+//		{//读取循迹模块的值并判断所在位置，偏差，位置
+//			case 0b00000000:
+//			{
+//				Flag.White_Flag = 1;
+//				Flag.Bias =0;
+//			}break;
+//			case 0b00100000:
+//			{
+//				Flag.Bias =0;
+//			}break;
+//			case 0b01100000:
+//			{//左偏1
+//				Flag.Bias =-10;
+//			}break;
+//			case 0b01000000:
+//			{//左偏2
+//				Flag.Bias =-25;
+//			}break;
+//			case 0b10000000:
+//			{//左偏3
+//				Flag.Bias =-60;
+//			}break;
+//			case 0b00110000:
+//			{//右偏1
+//				Flag.Bias =10;
+//			}break;
+//			case 0b00010000:
+//			{//右偏2
+//				Flag.Bias =25;
+//			}break;
+//			case 0b00001000:
+//			{//右偏3
+//				Flag.Bias =60;
+//			}break;
+//			case 0b11111000:
+//			{//遇到路口
+//				Flag.CrossRoad_Flag = 1;
+//				Flag.Bias =Flag.Last_Bias;
+//			}
+//			case 0b11011000:
+//			{//遇到路口
+//				Flag.CrossRoad_Flag = 1;
+//				Flag.Bias =Flag.Last_Bias;
+//			}
+//			default:
+//			{
+//				//如果没有偏差以上一次为准
+//				Flag.Bias =Flag.Last_Bias;
+//			} break;
+//		}
+//		Flag.Last_Bias = Flag.Bias;//
+//		Last_Reflectance_Data = Reflectance_Data;
 //		if(SensorData1.D.Float_Data)
 //		{
 //				Flag.Stop_Flag = 1;//置标志位

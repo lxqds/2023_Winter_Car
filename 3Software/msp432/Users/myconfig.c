@@ -285,7 +285,7 @@ void TA0_0_IRQHandler(void)
 				PWMtemp4 = speed_pid4.output;	
 				}
 				Set_PWM(PWMtemp1 ,PWMtemp2);
-				Set_PWM2(PWMtemp3 ,PWMtemp4);
+				Set_PWM2(PWMtemp1 ,PWMtemp2);
 			}
 		}
 		else
@@ -299,13 +299,15 @@ void TA0_0_IRQHandler(void)
 	{
 		
 		//判断1.电机是否停转以及编码器的距离超过10cm或者2.编码器到达10cm以上同时巡线检测到中线
-		if(((Encoder.Speed[2]==0||Encoder.Speed[3]==0)&&((fabs(Encoder.Distance[2])>=13.f)&&(fabs(Encoder.Distance[3])>13.f)))||(((fabs(Encoder.Distance[2])>13.f)&&(fabs(Encoder.Distance[3])>13.f))&&Reflectance_Data==0b00100000))
+//		if(((Encoder.Speed[2]==0||Encoder.Speed[3]==0)&&((fabs(Encoder.Distance[2])>=13.f)&&(fabs(Encoder.Distance[3])>13.f)))||(((fabs(Encoder.Distance[2])>13.f)&&(fabs(Encoder.Distance[3])>13.f))&&Reflectance_Data==0b00100000))
+//		if(((fabs(Encoder.Distance[2])>=14.f)&&(fabs(Encoder.Distance[3])>14.f))||((fabs(Encoder.Distance[2])>=10.0f)&&(fabs(Encoder.Distance[2])>=10.0f)&&Reflectance_Data==0b00100000))
+		if((fabs(Encoder.Distance[2])>=10.f||fabs(Encoder.Distance[3])>=10.f)&&(Reflectance_Data==0b00100000||Reflectance_Data==0b01100000||Reflectance_Data==0b00110000))
 		{
 			Flag.Stop_Count++;
-			if(Flag.Stop_Count>100)
+			if(Flag.Stop_Count>2)
 			{
 				Flag.Stop_Flag = 1;//置标志位
-				Flag.Spin_Start_Flag = 0;//开始转弯				
+				Flag.Spin_Start_Flag = 0;//停止转弯				
 				Flag.Stop_Count = 0;//停止计时
 				LED_G_On();//点灯
 				
@@ -345,17 +347,26 @@ void TA0_0_IRQHandler(void)
 				PWMtemp3  =0;
 				PWMtemp4  =0;
 				
-				CTRL_compute_Position();
-				if(((fabs(Encoder.Distance[2])>=10.f)&&(fabs(Encoder.Distance[3])>10.f)))
-				CTRL_compute_Direction(Flag.Bias);//开启巡线
-				CTRL_compute_Speed();
+//				CTRL_compute_Position();
+//				if(((fabs(Encoder.Distance[2])>=10.f)&&(fabs(Encoder.Distance[3])>10.f)))
+//				CTRL_compute_Direction(Flag.Bias);//开启巡线
+//				CTRL_compute_Speed();
+//				
+//				PWMtemp1 = speed_pid.output;
+//				PWMtemp2 = speed_pid2.output;
+//				PWMtemp3 = speed_pid3.output;
+//				PWMtemp4 = speed_pid4.output;
+				if(Flag.Target_Distance_Left<0&&Flag.Target_Distance_Right>0)
+				{//转的时候会设置目标，以此设置方向
+					Set_PWM(-30 ,30);
+					Set_PWM2(-30 ,30);
+				}
+				else if(Flag.Target_Distance_Left>0&&Flag.Target_Distance_Right<0)
+				{
+					Set_PWM(30 ,-30);
+					Set_PWM2(30 ,-30);
+				}
 				
-				PWMtemp1 = speed_pid.output;
-				PWMtemp2 = speed_pid2.output;
-				PWMtemp3 = speed_pid3.output;
-				PWMtemp4 = speed_pid4.output;
-				Set_PWM(PWMtemp1 ,PWMtemp2);
-				Set_PWM2(PWMtemp3 ,PWMtemp4);
 			}
 		}
 		else

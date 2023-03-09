@@ -174,17 +174,26 @@ void Car_Go(float Distance)
 	Encoder.Distance[2] = 0;
 	Encoder.Distance[3] = 0;
 
-	Flag.Stop_Flag =0;
-	Flag.Start_Line_Flag = 1;
+	Encoder.Speed[0] = 0;
+	Encoder.Speed[1] = 0;
+	Encoder.Speed[2] = 0;
+	Encoder.Speed[3] = 0;
+	
+	
 	Flag.Target_Distance_Left = Distance;
 	Flag.Target_Distance_Right = Distance;
-	Flag.Is_EnMOTOR = 1;
-	Flag.CarStart_Flag = 1;
 	
 	set_pid_target(&move_pid,Flag.Target_Distance_Left);
 	set_pid_target(&move_pid3,Flag.Target_Distance_Left);
 	set_pid_target(&move_pid2,Flag.Target_Distance_Right);
 	set_pid_target(&move_pid4,Flag.Target_Distance_Right);
+	
+	Flag.Stop_Flag =0;
+	Flag.Start_Line_Flag = 1;
+	Flag.Is_EnMOTOR = 1;
+	Flag.CarStart_Flag = 1;
+	
+	
 }
 /**
  * @name	转向
@@ -200,6 +209,10 @@ void Car_Spin(uint8_t Direction)
 	Encoder.Distance[1] = 0;
 	Encoder.Distance[2] = 0;
 	Encoder.Distance[3] = 0;
+	Encoder.Speed[0] = 0;
+	Encoder.Speed[1] = 0;
+	Encoder.Speed[2] = 0;
+	Encoder.Speed[3] = 0;
 	
 	switch(Direction)
 	{
@@ -211,16 +224,18 @@ void Car_Spin(uint8_t Direction)
 	}
 	Flag.Target_Distance_Left  = Distance_Left;
 	Flag.Target_Distance_Right = Distance_Right;
+	set_pid_target(&move_pid,Flag.Target_Distance_Left);
+	set_pid_target(&move_pid2,Flag.Target_Distance_Right);
+	set_pid_target(&move_pid3,Flag.Target_Distance_Left);
+	set_pid_target(&move_pid4,Flag.Target_Distance_Right);
+	
 	
 	Flag.Stop_Flag =0;//走之前将停止标志位置0
 	Flag.Spin_Start_Flag = 1;
 	Flag.Is_EnMOTOR = 1;
 	Flag.CarStart_Flag = 1;
 	
-	set_pid_target(&move_pid,Flag.Target_Distance_Left);
-	set_pid_target(&move_pid2,Flag.Target_Distance_Right);
-	set_pid_target(&move_pid3,Flag.Target_Distance_Left);
-	set_pid_target(&move_pid4,Flag.Target_Distance_Right);
+	
 }
 /**
  * @name	Car_Go_Distance

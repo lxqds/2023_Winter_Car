@@ -3,7 +3,7 @@
 <title>Static Call Graph - [..\Output\msp_432_Car.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image ..\Output\msp_432_Car.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060061: Last Updated: Thu Mar 09 23:54:06 2023
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060061: Last Updated: Fri Mar 10 02:28:56 2023
 <BR><P>
 <H3>Maximum Stack Usage =        408 bytes + Unknown(Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -676,7 +676,7 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[15]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TA0_0_IRQHandler
 </UL>
 
-<P><STRONG><a name="[72]"></a>Car_Go</STRONG> (Thumb, 86 bytes, Stack size 8 bytes, control.o(i.Car_Go))
+<P><STRONG><a name="[72]"></a>Car_Go</STRONG> (Thumb, 100 bytes, Stack size 8 bytes, control.o(i.Car_Go))
 <BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = Car_Go
 </UL>
 <BR>[Calls]<UL><LI><a href="#[73]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;set_pid_target
@@ -685,7 +685,7 @@ Global Symbols
 <LI><a href="#[97]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Menudisplay
 </UL>
 
-<P><STRONG><a name="[5f]"></a>Car_Spin</STRONG> (Thumb, 162 bytes, Stack size 8 bytes, control.o(i.Car_Spin))
+<P><STRONG><a name="[5f]"></a>Car_Spin</STRONG> (Thumb, 176 bytes, Stack size 8 bytes, control.o(i.Car_Spin))
 <BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = Car_Spin
 </UL>
 <BR>[Calls]<UL><LI><a href="#[73]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;set_pid_target
@@ -1062,7 +1062,7 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[d3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mpu_reset_fifo
 </UL>
 
-<P><STRONG><a name="[97]"></a>Menudisplay</STRONG> (Thumb, 600 bytes, Stack size 56 bytes, main.o(i.Menudisplay))
+<P><STRONG><a name="[97]"></a>Menudisplay</STRONG> (Thumb, 520 bytes, Stack size 56 bytes, main.o(i.Menudisplay))
 <BR><BR>[Stack]<UL><LI>Max Depth = 376<LI>Call Chain = Menudisplay &rArr; mpu_dmp_get_data &rArr; dmp_read_fifo &rArr; mpu_read_fifo_stream &rArr; mpu_reset_fifo &rArr; MPU_Write_Len &rArr; IIC_Send_Byte
 </UL>
 <BR>[Calls]<UL><LI><a href="#[9d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;set_motor_enable
@@ -1298,8 +1298,8 @@ Global Symbols
 <P><STRONG><a name="[26]"></a>T32_INT1_IRQHandler</STRONG> (Thumb, 10 bytes, Stack size 0 bytes, myconfig.o(i.T32_INT1_IRQHandler))
 <BR>[Address Reference Count : 1]<UL><LI> startup_msp432p401r_uvision.o(RESET)
 </UL>
-<P><STRONG><a name="[15]"></a>TA0_0_IRQHandler</STRONG> (Thumb, 1786 bytes, Stack size 64 bytes, myconfig.o(i.TA0_0_IRQHandler))
-<BR><BR>[Stack]<UL><LI>Max Depth = 164<LI>Call Chain = TA0_0_IRQHandler &rArr; OLED_ShowNum &rArr; OLED_ShowChar &rArr; OLED_Set_Pos &rArr; OLED_WR_Byte &rArr; Send_Byte
+<P><STRONG><a name="[15]"></a>TA0_0_IRQHandler</STRONG> (Thumb, 1664 bytes, Stack size 56 bytes, myconfig.o(i.TA0_0_IRQHandler))
+<BR><BR>[Stack]<UL><LI>Max Depth = 156<LI>Call Chain = TA0_0_IRQHandler &rArr; OLED_ShowNum &rArr; OLED_ShowChar &rArr; OLED_Set_Pos &rArr; OLED_WR_Byte &rArr; Send_Byte
 </UL>
 <BR>[Calls]<UL><LI><a href="#[b1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Set_PWM2
 <LI><a href="#[b0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Set_PWM
@@ -1579,7 +1579,7 @@ Global Symbols
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> _printf_char_file.o(.text)
 </UL>
-<P><STRONG><a name="[48]"></a>main</STRONG> (Thumb, 2910 bytes, Stack size 32 bytes, main.o(i.main))
+<P><STRONG><a name="[48]"></a>main</STRONG> (Thumb, 2944 bytes, Stack size 32 bytes, main.o(i.main))
 <BR><BR>[Stack]<UL><LI>Max Depth = 408 + Unknown Stack Size
 <LI>Call Chain = main &rArr; Menudisplay &rArr; mpu_dmp_get_data &rArr; dmp_read_fifo &rArr; mpu_read_fifo_stream &rArr; mpu_reset_fifo &rArr; MPU_Write_Len &rArr; IIC_Send_Byte
 </UL>

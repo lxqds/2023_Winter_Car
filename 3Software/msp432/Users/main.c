@@ -370,7 +370,7 @@ int main(void)
 								Car_Go(5);
 							}
 							if(Flag.Stop_Flag ==1)//到达位置点亮led
-							{
+							{//记得清零
 								Flag.Stop_Flag = 1;//置标志位
 								Flag.Start_Line_Flag = 0;
 								Flag.Stop_Count = 0;
@@ -388,7 +388,7 @@ int main(void)
 								Keys[0].Double_Flag =0;
 								LED_G_Off();
 								Flag.Step_Count++;
-								Car_Spin(3);//自向右转180度
+								Car_Spin(2);//自向右转180度
 							}
 						}break;
 						case 5:
@@ -436,6 +436,9 @@ int main(void)
 							}
 							if(Flag.Stop_Flag ==1)
 							{
+								Flag.Stop_Flag = 1;//置标志位
+								Flag.Start_Line_Flag = 0;
+								Flag.Stop_Count = 0;
 								Flag.Step_Count++;
 								LED_G_On();
 							}
@@ -492,6 +495,9 @@ int main(void)
 						}
 						if(Flag.Stop_Flag ==1)	
 						{
+							Flag.Stop_Flag = 1;//置标志位
+							Flag.Start_Line_Flag = 0;
+							Flag.Stop_Count = 0;
 							if(Flag.Num_Recognize[0] == Flag.Target_Num)
 							{//左转
 								Flag.Step_Count=10;//进入下一个状态
@@ -529,6 +535,9 @@ int main(void)
 						}
 						if(Flag.Stop_Flag ==1)	
 						{
+							Flag.Stop_Flag = 1;//置标志位
+							Flag.Start_Line_Flag = 0;
+							Flag.Stop_Count = 0;
 							Flag.Step_Count++;
 							LED_B_Off();
 							LED_G_On();
@@ -562,6 +571,9 @@ int main(void)
 						}
 						if(Flag.Stop_Flag ==1)
 						{
+							Flag.Stop_Flag = 1;//置标志位
+							Flag.Start_Line_Flag = 0;
+							Flag.Stop_Count = 0;
 							Flag.Step_Count++;
 							Car_Spin(1);
 						}
@@ -611,6 +623,9 @@ int main(void)
 						}
 						if(Flag.Stop_Flag ==1)	
 						{
+							Flag.Stop_Flag = 1;//置标志位
+							Flag.Start_Line_Flag = 0;
+							Flag.Stop_Count = 0;
 							Flag.Step_Count++;
 							LED_B_Off();
 							LED_G_On();
@@ -644,6 +659,9 @@ int main(void)
 						}
 						if(Flag.Stop_Flag ==1)
 						{
+							Flag.Stop_Flag = 1;//置标志位
+							Flag.Start_Line_Flag = 0;
+							Flag.Stop_Count = 0;
 							Flag.Step_Count++;
 							Car_Spin(0);
 						}
@@ -697,6 +715,7 @@ int main(void)
 					{
 						if(Flag.Servo_Scan_Flag2 ==0)
 						{//舵机扫描完成后标志位置0
+							Servo_Control2(2,70);
 							Flag.Step_Count++;//进入下一个状态
 							Car_Go(50);
 						}
@@ -710,6 +729,9 @@ int main(void)
 						}
 						if(Flag.Stop_Flag ==1)
 						{
+							Flag.Stop_Flag = 1;//置标志位
+							Flag.Start_Line_Flag = 0;
+							Flag.Stop_Count = 0;
 							if(Flag.Target_Num ==Flag.Num_Recognize2[0]||Flag.Target_Num ==Flag.Num_Recognize2[1])
 							{
 								Car_Spin(0);
@@ -737,10 +759,10 @@ int main(void)
 							Car_Go(1);
 							Flag.Step_Count++;
 						}
-						if(Flag.Stop_Flag ==1)
-						{
-							Flag.Step_Count++;
-						}
+//						if(Flag.Stop_Flag ==1)
+//						{
+//							Flag.Step_Count++;
+//						}
 						Flag.CrossRoad_Flag = 0;
 					}break;
 					case 42:
@@ -755,6 +777,7 @@ int main(void)
 					{	
 						if(Flag.Servo_Scan_Flag == 0)
 						{
+							Servo_Control2(2,70);
 							Car_Go(50);
 							Flag.Step_Count++;
 						}
@@ -768,6 +791,9 @@ int main(void)
 						}
 						if(Flag.Stop_Flag ==1)
 						{
+							Flag.Stop_Flag = 1;//置标志位
+							Flag.Start_Line_Flag = 0;
+							Flag.Stop_Count = 0;
 							if(Flag.Target_Num == Flag.Num_Recognize[0])
 							{
 								Car_Spin(0);
@@ -798,8 +824,10 @@ int main(void)
 						}
 						if(Flag.Stop_Flag ==1)
 						{
+							Flag.Stop_Flag = 1;//置标志位
+							Flag.Start_Line_Flag = 0;
+							Flag.Stop_Count = 0;
 							LED_G_On();
-							Car_Spin(0);
 							Flag.Step_Count++;
 						}
 					}break;
@@ -823,8 +851,8 @@ int main(void)
 						}
 					}break;
 					case 49:
-					{
-						if(Reflectance_Data ==0b00111000)
+					{//右转
+						if(Reflectance_Data ==0b11100000||Reflectance_Data ==0b11000000||Reflectance_Data ==0b11110000)
 						{
 							Car_Go(10);
 							Flag.Step_Count++;
@@ -834,6 +862,9 @@ int main(void)
 					{
 						if(Flag.Stop_Flag ==1)
 						{
+							Flag.Stop_Flag = 1;//置标志位
+							Flag.Start_Line_Flag = 0;
+							Flag.Stop_Count = 0;
 							Car_Spin(1);
 							Flag.Step_Count++;
 						}
@@ -848,7 +879,7 @@ int main(void)
 					}break;
 					case 52:
 					{
-						if(Reflectance_Data ==0b00111000)
+						if(Reflectance_Data ==0b11100000||Reflectance_Data ==0b11000000||Reflectance_Data ==0b11110000)
 						{
 							Car_Go(10);
 							Flag.Step_Count++;
@@ -858,6 +889,9 @@ int main(void)
 					{
 						if(Flag.Stop_Flag ==1)
 						{
+							Flag.Stop_Flag = 1;//置标志位
+							Flag.Start_Line_Flag = 0;
+							Flag.Stop_Count = 0;
 							Car_Spin(1);//右转
 							Flag.Step_Count++;
 						}
@@ -866,6 +900,9 @@ int main(void)
 					{
 						if(Flag.Stop_Flag ==1)
 						{
+							Flag.Stop_Flag = 1;//置标志位
+							Flag.Start_Line_Flag = 0;
+							Flag.Stop_Count = 0;
 							Car_Go(120);//直走120
 							Flag.Step_Count++;
 						}
@@ -875,15 +912,17 @@ int main(void)
 						if(Flag.CrossRoad_Flag ==1)
 						{
 							Flag.CrossRoad_Flag = 0;
-							Car_Go(120);//直走120
+							Car_Go(10);//直走120
 							Flag.Step_Count++;
 						}
 					}break;
 					case 56:
 					{
-						if(Flag.CrossRoad_Flag ==1)
+						if(Flag.Stop_Flag ==1)
 						{
-							Flag.CrossRoad_Flag = 0;
+							Flag.Stop_Flag = 1;//置标志位
+							Flag.Start_Line_Flag = 0;
+							Flag.Stop_Count = 0;
 							Car_Go(120);//直走120
 							Flag.Step_Count++;
 						}
@@ -893,7 +932,7 @@ int main(void)
 						if(Flag.CrossRoad_Flag ==1)
 						{
 							Flag.CrossRoad_Flag = 0;
-							Car_Go(5);//直走120
+							Car_Go(10);//直走120
 							Flag.Step_Count++;
 						}
 					}break;
@@ -901,9 +940,24 @@ int main(void)
 					{
 						if(Flag.Stop_Flag == 1)
 						{
+							Flag.Stop_Flag = 1;//置标志位
+							Flag.Start_Line_Flag = 0;
+							Flag.Stop_Count = 0;
+							Car_Go(120);//直走120
+							Flag.Step_Count++;
+							
+						}
+					}break;
+					case 59:
+					{
+						if(Flag.CrossRoad_Flag ==1)
+						{
+							Flag.CrossRoad_Flag = 0;
+							Car_Go(5);//直走120
 							LED_G_On();
 						}
 					}break;
+
 					}
 					}
 				}
@@ -1102,7 +1156,7 @@ void Menudisplay(void)
 				OLED_ShowNum(96,2,Flag.Step_Count,3,16);
 //				OLED_ShowNum(96,2,SensorData1.X,3,16);
 //				OLED_ShowNum(96,4,SensorData1.Y,3,16);
-//				OLED_ShowNum(96,6,SensorData1.D.Float_Data,3,16);
+				OLED_ShowNum(96,6,SensorData1.D.Float_Data,3,16);
 				
 				
 				if(Keys[1].Single_Flag == 1)

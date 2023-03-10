@@ -4,6 +4,7 @@
 void Menudisplay(void);
 void PID_Data_Send(void);
 void Back_Routine(uint8_t Routine);
+
 int main(void)
 {
 	{//初始化代码
@@ -65,119 +66,8 @@ int main(void)
 	}
 	for(;;)
 	{//主循环
-//		{//PID发送
-//			PID_Data_Send();
-//		}
-//		Reflectance_Data = Reflectance_Read2();
-//		if(Reflectance_Data!= Last_Reflectance_Data)
-//		{//判断空白出线情况
-//			if(Reflectance_Data==0b00000000)
-//			{//如果这次读取到的值为空白，增加计数值,将上一次的值进行赋值
-//				Reflectance_Data = Last_Reflectance_Data;
-//				Flag.White_Count++;
-//				if(Flag.White_Count>100)
-//				{//如果多次遇到，判定为出界
-//					Flag.White_Count = 0;
-//					Reflectance_Data = 0b00000000;
-//					Flag.Stop_Flag = 1;//置标志位			
-//					Flag.Stop_Count = 0;//停止计时
-//					LED_R_On();//点红灯
-//					Flag.Is_EnMOTOR = 0;//电机失能
-//				}
-//			}
-//			else
-//			{//如果不是空白,清空计数值，将新的循迹值赋值给上一次循迹值
-//				Flag.White_Count = 0;
-//				Last_Reflectance_Data = Reflectance_Data;
-//			}
-//		}
-//		switch(Reflectance_Data)
-//		{//读取循迹模块的值并判断所在位置，偏差，位置
-//			case 0b00000000:
-//			{
-//				Flag.White_Flag = 1;
-//				Flag.Bias =0;
-//			}break;
-//			case 0b00100000:
-//			{
-//				Flag.Bias =0;
-//			}break;
-//			case 0b01100000:
-//			{//左偏1
-//				Flag.Bias =-10;
-//			}break;
-//			case 0b01000000:
-//			{//左偏2
-//				Flag.Bias =-25;
-//			}break;
-//			case 0b10000000:
-//			{//左偏3
-//				Flag.Bias =-60;
-//			}break;
-//			case 0b00110000:
-//			{//右偏1
-//				Flag.Bias =10;
-//			}break;
-//			case 0b00010000:
-//			{//右偏2
-//				Flag.Bias =25;
-//			}break;
-//			case 0b00001000:
-//			{//右偏3
-//				Flag.Bias =60;
-//			}break;
-//			case 0b11111000:
-//			{//遇到路口
-//				Flag.CrossRoad_Flag = 1;
-//				Flag.Bias =Flag.Last_Bias;
-//			}
-//			case 0b11011000:
-//			{//遇到路口
-//				Flag.CrossRoad_Flag = 1;
-//				Flag.Bias =Flag.Last_Bias;
-//			}
-//			default:
-//			{
-//				//如果没有偏差以上一次为准
-//				Flag.Bias =Flag.Last_Bias;
-//			} break;
-//		}
-//		Flag.Last_Bias = Flag.Bias;//
-//		Last_Reflectance_Data = Reflectance_Data;
-//		if(SensorData1.D.Float_Data)
-//		{
-//				Flag.Stop_Flag = 1;//置标志位
-//				Flag.Spin_Start_Flag = 0;//开始转弯				
-//				Flag.Stop_Count = 0;//停止计时
-//				LED_G_On();//点灯
-//				
-//				Flag.Is_EnMOTOR = 0;//电机失能
-//		}
-		
 		Menudisplay();
 //		PID_Data_Send();
-		{//调试区
-//			while(1)
-//			{
-//				delay_ms(5000);
-//				Flag.Servo_Scan_Flag =1;
-//				//Servo_Scan();
-////				Servo_Scan2(2,45,70);
-////				delay_ms(60);
-////				Servo_Control2(1,90);
-////				Servo_Control2(2,90);
-////				Menudisplay();
-////				PID_Data_Send();
-////				receiving_process();
-////				Motor_Control(1,1,40);
-////				Motor_Control(2,1,40);
-////				set_motor_enable();
-////				Set_PWM2(-50,-50);
-////				//Servo_Control2(1,50);//向左调整舵机
-////				Servo_Control2(2,120);//向右调整舵机//110右1//120//右二
-//			}
-		}
-		
 		if(Flag.Task == 0)
 		{//第一步识别数字
 			if(SensorData1.D.Float_Data&&Flag.Recognize_Num_Flag ==0)
@@ -449,6 +339,7 @@ int main(void)
 			{//装药，识别数字，去送药
 				switch(Flag.Step_Count)
 				{
+					{//3-8号路线走法
 					case 0:
 					{//直走115
 						Flag.Step_Count++;
@@ -516,6 +407,7 @@ int main(void)
 							}
 						}
 					}break;
+					}
 					{//3号走法
 					case 10:
 					{//车子转完弯停下来后
@@ -603,7 +495,6 @@ int main(void)
 						}
 					}break;
 					}
-					
 					{//4号走法
 					case 20:
 					{//车子转完弯停下来后
@@ -693,6 +584,7 @@ int main(void)
 					}
 					
 					{//远端走法
+					{//远端走法
 					case 30:
 					{//识别到数字停下，扫描数字
 						if(SensorData1.D.Float_Data)
@@ -743,6 +635,8 @@ int main(void)
 							}
 						}
 					}break;
+					}
+					{//远端左
 					case 40:
 					{//远端左
 						 if(Flag.Stop_Flag ==1)
@@ -805,6 +699,72 @@ int main(void)
 							}
 						}
 					}break;
+					}
+					{//远端右
+					case 80:
+					{//远端右
+						 if(Flag.Stop_Flag ==1)
+						 {
+							Car_Go(20);
+							Flag.Step_Count++;
+						 }
+					}break;
+					case 81:
+					{
+						if(SensorData1.D.Float_Data)
+						{	
+							Car_Go(1);
+							Flag.Step_Count++;
+						}
+						if(Flag.Stop_Flag ==1)
+						{
+							Flag.Step_Count++;
+						}
+						Flag.CrossRoad_Flag = 0;
+					}break;
+					case 82:
+					{	
+						if(Flag.Stop_Flag ==1)
+						{
+							Flag.Servo_Scan_Flag = 1;
+							Flag.Step_Count++;
+						}
+					}break;
+					case 83:
+					{	
+						if(Flag.Servo_Scan_Flag == 0)
+						{
+							Servo_Control2(2,70);
+							Car_Go(35);
+							Flag.Step_Count++;
+						}
+					}break;
+					case 84:
+					{	
+						if(Flag.CrossRoad_Flag == 1)
+						{
+							Flag.CrossRoad_Flag = 0;
+							Car_Go(10);
+						}
+						if(Flag.Stop_Flag ==1)
+						{
+							Flag.Stop_Flag = 1;//置标志位
+							Flag.Start_Line_Flag = 0;
+							Flag.Stop_Count = 0;
+							if(Flag.Target_Num == Flag.Num_Recognize[0])
+							{
+								Car_Spin(0);
+								Flag.Step_Count=85;
+							}
+							else
+							{
+								Car_Spin(1);
+								Flag.Step_Count = 100;
+							}
+						}
+					}break;
+					}
+					
 					{//5号路线走法
 					case 45:
 					{
@@ -925,135 +885,373 @@ int main(void)
 					}break;
 
 					}
+					{//6号路线走法
+						case 60:
+						{
+							if(Flag.Stop_Flag ==1)
+							{
+								Car_Go(50);
+								Flag.Step_Count++;
+							}
+						}break;
+						case 61:
+						{
+							if(Flag.CrossRoad_Flag ==1)
+							{
+								Flag.CrossRoad_Flag = 0;
+								Car_Go(5);
+							}
+							if(Flag.Stop_Flag ==1)
+							{
+								Flag.Stop_Flag = 1;//置标志位
+								Flag.Start_Line_Flag = 0;
+								Flag.Stop_Count = 0;
+								LED_G_On();
+								Flag.Step_Count++;
+							}
+						}break;
+						case 62:
+						{
+							delay_ms(1000);
+	//						if(Keys[0].Double_Flag ==1)//如果药被取走
+							{
+								Keys[0].Double_Flag =0;
+								LED_G_Off();
+								Flag.Step_Count++;
+								Car_Spin(3);//向右转180度
+							}
+						}break;
+						case 63:
+						{
+							if(Flag.Stop_Flag ==1)
+							{
+								Car_Go(30);
+								Flag.Step_Count++;
+							}
+						}break;
+						case 64:
+						{//左转
+							if(Reflectance_Data ==0b00111000||Reflectance_Data ==0b00011000||Reflectance_Data ==0b01111000)
+							{
+								Car_Go(10);
+								Flag.Step_Count++;
+							}
+							if(Flag.Stop_Flag ==1)
+							{
+								Flag.Step_Count++;
+							}
+						}break;
+						case 65:
+						{
+							if(Flag.Stop_Flag ==1)
+							{
+								Flag.Stop_Flag = 1;//置标志位
+								Flag.Start_Line_Flag = 0;
+								Flag.Stop_Count = 0;
+								Car_Spin(0);
+								Flag.Step_Count++;
+							}
+						}break;
+						case 66:
+						{
+							if(Flag.Stop_Flag ==1)
+							{
+								Car_Go(55);
+								Flag.Step_Count++;
+							}
+						}break;
+						case 67:
+						{
+							if(Reflectance_Data ==0b11100000||Reflectance_Data ==0b11000000||Reflectance_Data ==0b11110000)
+							{
+								Car_Go(10);
+								Flag.Step_Count++;
+							}
+						}break;
+						case 68:
+						{
+							if(Flag.Stop_Flag ==1)
+							{
+								Flag.Stop_Flag = 1;//置标志位
+								Flag.Start_Line_Flag = 0;
+								Flag.Stop_Count = 0;
+								Car_Spin(1);//右转
+								Flag.Step_Count++;
+							}
+						}break;
+						case 69:
+						{
+							if(Flag.Stop_Flag ==1)
+							{
+								Flag.Stop_Flag = 1;//置标志位
+								Flag.Start_Line_Flag = 0;
+								Flag.Stop_Count = 0;
+								Car_Go(260);//直走250
+							}
+							if(Encoder.Distance[2]>=230.f)
+							{
+								Flag.CrossRoad_Flag =0;//标志位清零
+								Flag.Step_Count++;
+							}
+						}break;
+						case 70:
+						{
+							if(Flag.CrossRoad_Flag ==1)
+							{
+								Flag.CrossRoad_Flag = 0;
+								Car_Go(5);//到点停止
+								LED_G_On();
+							}
+						}break;
+					}
+					
+					{//7号路线走法
+					case 85:
+					{
+						if(Flag.Stop_Flag ==1)
+						{
+							Car_Go(30);
+							Flag.Step_Count++;
+						}
+					}break;
+					case 86:
+					{
+						if(Flag.CrossRoad_Flag ==1)
+						{
+							Flag.CrossRoad_Flag = 0;
+							Car_Go(5);
+						}
+						if(Flag.Stop_Flag ==1)
+						{
+							Flag.Stop_Flag = 1;//置标志位
+							Flag.Start_Line_Flag = 0;
+							Flag.Stop_Count = 0;
+							LED_G_On();
+							Flag.Step_Count++;
+						}
+					}break;
+					case 87:
+					{
+						delay_ms(1000);
+//						if(Keys[0].Double_Flag ==1)//如果药被取走
+						{
+							Keys[0].Double_Flag =0;
+							LED_G_Off();
+							Flag.Step_Count++;
+							Car_Spin(3);//向右转180度
+						}
+					}break;
+					case 88:
+					{
+						if(Flag.Stop_Flag ==1)
+						{
+							Car_Go(30);
+							Flag.Step_Count++;
+						}
+					}break;
+					case 89:
+					{//右转
+						if(Reflectance_Data ==0b11100000||Reflectance_Data ==0b11000000||Reflectance_Data ==0b11110000)
+						{
+							Car_Go(10);
+							Flag.Step_Count++;
+						}
+						if(Flag.Stop_Flag ==1)
+						{
+							Flag.Step_Count++;
+						}
+					}break;
+					case 90:
+					{
+						if(Flag.Stop_Flag ==1)
+						{
+							Flag.Stop_Flag = 1;//置标志位
+							Flag.Start_Line_Flag = 0;
+							Flag.Stop_Count = 0;
+							Car_Spin(1);
+							Flag.Step_Count++;
+						}
+					}break;
+					case 91:
+					{
+						if(Flag.Stop_Flag ==1)
+						{
+							Car_Go(55);
+							Flag.Step_Count++;
+						}
+					}break;
+					case 92:
+					{//左转
+						if(Reflectance_Data ==0b00111000||Reflectance_Data ==0b00011000||Reflectance_Data ==0b01111000)
+						{
+							Car_Go(10);
+							Flag.Step_Count++;
+						}
+					}break;
+					case 93:
+					{
+						if(Flag.Stop_Flag ==1)
+						{
+							Flag.Stop_Flag = 1;//置标志位
+							Flag.Start_Line_Flag = 0;
+							Flag.Stop_Count = 0;
+							Car_Spin(0);//左转
+							Flag.Step_Count++;
+						}
+					}break;
+					case 94:
+					{
+						if(Flag.Stop_Flag ==1)
+						{
+							Flag.Stop_Flag = 1;//置标志位
+							Flag.Start_Line_Flag = 0;
+							Flag.Stop_Count = 0;
+							Car_Go(260);//直走250
+						}
+						if(Encoder.Distance[2]>=230.f)
+						{
+							Flag.CrossRoad_Flag =0;//标志位清零
+							Flag.Step_Count++;
+						}
+					}break;
+					case 95:
+					{
+						if(Flag.CrossRoad_Flag ==1)
+						{
+							Flag.CrossRoad_Flag = 0;
+							Car_Go(5);//到点停止
+							LED_G_On();
+						}
+					}break;
+					}
+					
+					
+					{//8号路线走法
+						case 100:
+						{
+							if(Flag.Stop_Flag ==1)
+							{
+								Car_Go(50);
+								Flag.Step_Count++;
+							}
+						}break;
+						case 101:
+						{
+							if(Flag.CrossRoad_Flag ==1)
+							{
+								Flag.CrossRoad_Flag = 0;
+								Car_Go(5);
+							}
+							if(Flag.Stop_Flag ==1)
+							{
+								Flag.Stop_Flag = 1;//置标志位
+								Flag.Start_Line_Flag = 0;
+								Flag.Stop_Count = 0;
+								LED_G_On();
+								Flag.Step_Count++;
+							}
+						}break;
+						case 102:
+						{
+							delay_ms(1000);
+	//						if(Keys[0].Double_Flag ==1)//如果药被取走
+							{
+								Keys[0].Double_Flag =0;
+								LED_G_Off();
+								Flag.Step_Count++;
+								Car_Spin(3);//向右转180度
+							}
+						}break;
+						case 103:
+						{
+							if(Flag.Stop_Flag ==1)
+							{
+								Car_Go(30);
+								Flag.Step_Count++;
+							}
+						}break;
+						case 104:
+						{//左转
+							if(Reflectance_Data ==0b00111000||Reflectance_Data ==0b00011000||Reflectance_Data ==0b01111000)
+							{
+								Car_Go(10);
+								Flag.Step_Count++;
+							}
+							if(Flag.Stop_Flag ==1)
+							{
+								Flag.Step_Count++;
+							}
+						}break;
+						case 105:
+						{
+							if(Flag.Stop_Flag ==1)
+							{
+								Flag.Stop_Flag = 1;//置标志位
+								Flag.Start_Line_Flag = 0;
+								Flag.Stop_Count = 0;
+								Car_Spin(0);
+								Flag.Step_Count++;
+							}
+						}break;
+						case 106:
+						{
+							if(Flag.Stop_Flag ==1)
+							{
+								Car_Go(55);
+								Flag.Step_Count++;
+							}
+						}break;
+						case 107:
+						{
+							if(Reflectance_Data ==0b00111000||Reflectance_Data ==0b00011000||Reflectance_Data ==0b01111000)
+							{
+								Car_Go(10);
+								Flag.Step_Count++;
+							}
+						}break;
+						case 108:
+						{
+							if(Flag.Stop_Flag ==1)
+							{
+								Flag.Stop_Flag = 1;//置标志位
+								Flag.Start_Line_Flag = 0;
+								Flag.Stop_Count = 0;
+								Car_Spin(0);//左转
+								Flag.Step_Count++;
+							}
+						}break;
+						case 109:
+						{
+							if(Flag.Stop_Flag ==1)
+							{
+								Flag.Stop_Flag = 1;//置标志位
+								Flag.Start_Line_Flag = 0;
+								Flag.Stop_Count = 0;
+								Car_Go(260);//直走250
+							}
+							if(Encoder.Distance[2]>=230.f)
+							{
+								Flag.CrossRoad_Flag =0;//标志位清零
+								Flag.Step_Count++;
+							}
+						}break;
+						case 110:
+						{
+							if(Flag.CrossRoad_Flag ==1)
+							{
+								Flag.CrossRoad_Flag = 0;
+								Car_Go(5);//到点停止
+								LED_G_On();
+							}
+						}break;
+					}
 					}
 				}
 			}
-			else if(Flag.Load_drug == 0&&Flag.Back_Flag == 1)
-			{//药被取走，返回标志为1
-				if(Flag.Current_Position == 3)
-				{
-					Back_Routine(3);
-				}
-			}
+			
 		}
 	}
-	//return 0;
-}
-//输入返回路径
-void Back_Routine(uint8_t Routine)
-{
-	static uint8_t Do_Count;
-	uint8_t Init_Flag=0;
-	if(Init_Flag == 0)
-	{//初始化Do_Count
-		Init_Flag = 1;
-		Do_Count = 0;
-	}
-	switch(Routine)
-	{
-		case 3:
-		{
-			switch(Do_Count)
-			{
-				case  0:
-				{
-					Car_Spin(2);
-					Do_Count++;
-				}break;
-				case  1:
-				{
-					if(Flag.Stop_Flag ==1)
-					{
-						Car_Go(50);
-						Do_Count++;
-					}
-				}break;
-				case  2:
-				{
-					if(Flag.Stop_Flag ==1)
-					{
-						Car_Spin(1);
-						Do_Count++;
-					}
-				}break;
-				case  3:
-				{
-					if(Flag.Stop_Flag ==1)
-					{
-						Car_Go(70);
-						Do_Count++;
-					}
-				}break;
-				case  4:
-				{
-					if(Flag.Stop_Flag ==1)
-					{
-						LED_G_On();
-						Flag.Current_Position = 0;
-					}
-				}break;
-			}
-		}break;
-		case 4:
-		{
-			switch(Do_Count)
-			{
-				case  0:
-				{
-					Car_Spin(2);
-					Do_Count++;
-				}break;
-				case  1:
-				{
-					if(Flag.Stop_Flag ==1)
-					{
-						Car_Go(50);
-						Do_Count++;
-					}
-				}break;
-				case  2:
-				{
-					if(Flag.Stop_Flag ==1)
-					{
-						Car_Spin(0);
-						Do_Count++;
-					}
-				}break;
-				case  3:
-				{
-					if(Flag.Stop_Flag ==1)
-					{
-						Car_Go(70);
-						Do_Count++;
-					}
-				}break;
-				case  4:
-				{
-					if(Flag.Stop_Flag ==1)
-					{
-						LED_G_On();
-						Flag.Current_Position = 0;
-					}
-				}break;
-			}
-		}break;
-		case 5:
-		{
-			
-		}break;
-		case 6:
-		{
-			
-		}break;
-		case 7:
-		{
-			
-		}break;
-		case 8:
-		{
-			
-		}break;
-	}
+	
 }
 void PID_Data_Send(void)
 {

@@ -133,4 +133,16 @@ float PID_realize(_pid *pid, float actual_val)
   /*PID算法实现，并返回计算值*/
   return pid->actual_val;
 }
-
+/**
+  * @brief  PID值清空
+  *	@note 	无
+  * @retval 无
+  */
+void PID_Clear(_pid *pid)
+{
+	pid->actual_val = 0;
+	pid->err = 0;
+	pid->integral = 0;
+	pid->actual_val = 0;
+	pid->err_last = 0;
+}

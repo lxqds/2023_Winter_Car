@@ -4,7 +4,6 @@
 void Menudisplay(void);
 void PID_Data_Send(void);
 void Back_Routine(uint8_t Routine);
-uint16_t s;
 int main(void)
 {
 	{//初始化代码
@@ -453,7 +452,7 @@ int main(void)
 					case 0:
 					{//直走115
 						Flag.Step_Count++;
-						Car_Go(115);
+						Car_Go(120);
 						Servo_Control2(2,70);
 					}break;
 					case 1:

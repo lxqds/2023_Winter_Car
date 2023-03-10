@@ -121,16 +121,16 @@ void CTRL_compute_Speed(void)
 	speed_pid2.output = PID_realize(&speed_pid2,Encoder.Speed[3]);
 	speed_pid3.output = PID_realize(&speed_pid3,Encoder.Speed[0]);
 	speed_pid4.output = PID_realize(&speed_pid4,Encoder.Speed[1]);
-	if(speed_pid.output - speed_pid.Last_output > 5)// 限制增量为5
-	{
-		speed_pid.output = speed_pid.Last_output + 5;
-	}   
-	 speed_pid.Last_output = speed_pid.output;
-	if(speed_pid2.output - speed_pid2.Last_output > 5)// 限制增量为5
-	{
-		speed_pid2.output = speed_pid2.Last_output + 5;
-	}
-	 speed_pid2.Last_output = speed_pid2.output;
+//	if(speed_pid.output - speed_pid.Last_output > 5)// 限制增量为5
+//	{
+//		speed_pid.output = speed_pid.Last_output + 5;
+//	}   
+//	 speed_pid.Last_output = speed_pid.output;
+//	if(speed_pid2.output - speed_pid2.Last_output > 5)// 限制增量为5
+//	{
+//		speed_pid2.output = speed_pid2.Last_output + 5;
+//	}
+//	 speed_pid2.Last_output = speed_pid2.output;
 	
 	if(speed_pid.output >90)
 	{

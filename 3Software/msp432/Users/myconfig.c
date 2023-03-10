@@ -238,6 +238,14 @@ void TA0_0_IRQHandler(void)
 				LED_G_On();//点灯
 				
 				Flag.Is_EnMOTOR = 0;//电机失能
+				PID_Clear(&speed_pid);
+				PID_Clear(&speed_pid2);
+				PID_Clear(&speed_pid3);
+				PID_Clear(&speed_pid4);
+				PID_Clear(&move_pid);
+				PID_Clear(&move_pid2);
+				PID_Clear(&move_pid3);
+				PID_Clear(&move_pid4);
 			}	
 		}
 		else
@@ -304,7 +312,7 @@ void TA0_0_IRQHandler(void)
 		if((fabs(Encoder.Distance[2])>=10.f||fabs(Encoder.Distance[3])>=10.f)&&(Reflectance_Data==0b00100000||Reflectance_Data==0b01100000||Reflectance_Data==0b00110000))
 		{
 			Flag.Stop_Count++;
-			if(Flag.Stop_Count>2)
+			if(Flag.Stop_Count>=1)
 			{
 				Flag.Stop_Flag = 1;//置标志位
 				Flag.Spin_Start_Flag = 0;//停止转弯				
@@ -312,6 +320,10 @@ void TA0_0_IRQHandler(void)
 				LED_G_On();//点灯
 				
 				Flag.Is_EnMOTOR = 0;//电机失能
+				PID_Clear(&speed_pid);
+				PID_Clear(&speed_pid2);
+				PID_Clear(&speed_pid3);
+				PID_Clear(&speed_pid4);
 			}	
 		}
 		else
@@ -357,14 +369,32 @@ void TA0_0_IRQHandler(void)
 //				PWMtemp3 = speed_pid3.output;
 //				PWMtemp4 = speed_pid4.output;
 				if(Flag.Target_Distance_Left<0&&Flag.Target_Distance_Right>0)
-				{//转的时候会设置目标，以此设置方向
-					Set_PWM(-30 ,30);
-					Set_PWM2(-30 ,30);
+				{//转的时候会设置目标，以此设置方向、
+					set_pid_target(&speed_pid,-25);
+					set_pid_target(&speed_pid2,25);
+					set_pid_target(&speed_pid3,-25);
+					set_pid_target(&speed_pid4,25);
+					CTRL_compute_Speed();
+					PWMtemp1 = speed_pid.output;
+					PWMtemp2 = speed_pid2.output;
+					PWMtemp3 = speed_pid3.output;
+					PWMtemp4 = speed_pid4.output;
+					Set_PWM(PWMtemp1 ,PWMtemp2);
+					Set_PWM2(PWMtemp3 ,PWMtemp4);
 				}
 				else if(Flag.Target_Distance_Left>0&&Flag.Target_Distance_Right<0)
 				{
-					Set_PWM(30 ,-30);
-					Set_PWM2(30 ,-30);
+					set_pid_target(&speed_pid,25);
+					set_pid_target(&speed_pid2,-25);
+					set_pid_target(&speed_pid3,25);
+					set_pid_target(&speed_pid4,-25);
+					CTRL_compute_Speed();
+					PWMtemp1 = speed_pid.output;
+					PWMtemp2 = speed_pid2.output;
+					PWMtemp3 = speed_pid3.output;
+					PWMtemp4 = speed_pid4.output;
+					Set_PWM(PWMtemp1 ,PWMtemp2);
+					Set_PWM2(PWMtemp3 ,PWMtemp4);
 				}
 				
 			}

@@ -35,5 +35,5 @@ extern float get_pid_actual(_pid *pid);
 extern void set_p_i_d(_pid *pid, float p, float i, float d);
 extern float PID_realize(_pid *pid, float actual_val);
 extern void time_period_fun(void);
-
+extern void PID_Clear(_pid *pid);
 #endif

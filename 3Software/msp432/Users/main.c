@@ -58,7 +58,6 @@ int main(void)
 		set_pid_target(&Dir_pid2,-0.01);
 		set_computer_value(SEND_START_CMD,0x01,NULL,1);
 	}
-	
 	{//判断大小端
 		uint32_t data = 0x01020304;
 		char *p = (char *)&data;

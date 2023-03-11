@@ -3606,11 +3606,11 @@
       <ActiveTab>0</ActiveTab>
       <Doc>
         <Name>..\Users\main.c</Name>
-        <ColumnNumber>0</ColumnNumber>
-        <TopLine>18</TopLine>
-        <CurrentLine>410</CurrentLine>
+        <ColumnNumber>69</ColumnNumber>
+        <TopLine>91</TopLine>
+        <CurrentLine>705</CurrentLine>
         <Folding>1</Folding>
-        <ContractedFolders>9,41,60,70,95,214,340,409,496,585,637,701,766,886,1006,1127,1255,1269</ContractedFolders>
+        <ContractedFolders>9,41,60,69,86,111,230,356,425,512,601,719,782,902,1022,1143,1271</ContractedFolders>
         <PaneID>0</PaneID>
       </Doc>
       <Doc>
@@ -3633,11 +3633,11 @@
       </Doc>
       <Doc>
         <Name>..\Users\myconfig.c</Name>
-        <ColumnNumber>16</ColumnNumber>
-        <TopLine>237</TopLine>
-        <CurrentLine>245</CurrentLine>
+        <ColumnNumber>89</ColumnNumber>
+        <TopLine>142</TopLine>
+        <CurrentLine>258</CurrentLine>
         <Folding>1</Folding>
-        <ContractedFolders></ContractedFolders>
+        <ContractedFolders>63,166</ContractedFolders>
         <PaneID>0</PaneID>
       </Doc>
       <Doc>
@@ -3678,9 +3678,9 @@
       </Doc>
       <Doc>
         <Name>..\Users\myconfig.h</Name>
-        <ColumnNumber>0</ColumnNumber>
-        <TopLine>81</TopLine>
-        <CurrentLine>114</CurrentLine>
+        <ColumnNumber>28</ColumnNumber>
+        <TopLine>84</TopLine>
+        <CurrentLine>98</CurrentLine>
         <Folding>1</Folding>
         <ContractedFolders></ContractedFolders>
         <PaneID>0</PaneID>

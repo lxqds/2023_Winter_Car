@@ -67,6 +67,22 @@ int main(void)
 	{//主循环
 		Menudisplay();
 //		PID_Data_Send();
+		{//识别数字滤波
+			if(SensorData1.D.Float_Data)
+			{
+				static uint8_t Last_Num2,Temp_Num2;//创建临时变量存储判断数字
+				Temp_Num2 = SensorData1.D.Float_Data;//暂存变量
+				if(Temp_Num2 == Last_Num2)			//
+				{
+					Flag.Recognize_Num_Count++;
+					if(Flag.Recognize_Num_Count>=10)
+					{
+						Flag.Recognize_Num2 = Temp_Num2;//识别数字滤波
+					}
+				}
+				Last_Num2 = Temp_Num2;
+			}
+		}
 		if(Flag.Task == 0)
 		{//第一步识别数字
 			if(SensorData1.D.Float_Data&&Flag.Recognize_Num_Flag ==0)
@@ -586,7 +602,7 @@ int main(void)
 					{//远端走法
 					case 30:
 					{//识别到数字停下，扫描数字
-						if(SensorData1.D.Float_Data)
+						if(SensorData1.D.Float_Data&&Encoder.Distance[2]>=70)
 						{	
 							Car_Go(1);
 							Flag.Step_Count++;
@@ -661,13 +677,13 @@ int main(void)
 					{	
 						if(Flag.Stop_Flag ==1)
 						{
-							Flag.Servo_Scan_Flag = 1;
+							Flag.Servo_Scan_Flag3 = 1;
 							Flag.Step_Count++;
 						}
 					}break;
 					case 43:
 					{	
-						if(Flag.Servo_Scan_Flag == 0)
+						if(Flag.Servo_Scan_Flag3 == 0)
 						{
 							Servo_Control2(2,70);
 							Car_Go(35);
@@ -686,7 +702,7 @@ int main(void)
 							Flag.Stop_Flag = 1;//置标志位
 							Flag.Start_Line_Flag = 0;
 							Flag.Stop_Count = 0;
-							if(Flag.Target_Num == Flag.Num_Recognize[0])
+							if(Flag.Target_Num == Flag.Num_Recognize3[0])
 							{
 								Car_Spin(0);
 								Flag.Step_Count=45;
@@ -725,13 +741,13 @@ int main(void)
 					{	
 						if(Flag.Stop_Flag ==1)
 						{
-							Flag.Servo_Scan_Flag = 1;
+							Flag.Servo_Scan_Flag3 = 1;
 							Flag.Step_Count++;
 						}
 					}break;
 					case 83:
 					{	
-						if(Flag.Servo_Scan_Flag == 0)
+						if(Flag.Servo_Scan_Flag3 == 0)
 						{
 							Servo_Control2(2,70);
 							Car_Go(35);
@@ -750,7 +766,7 @@ int main(void)
 							Flag.Stop_Flag = 1;//置标志位
 							Flag.Start_Line_Flag = 0;
 							Flag.Stop_Count = 0;
-							if(Flag.Target_Num == Flag.Num_Recognize[0])
+							if(Flag.Target_Num == Flag.Num_Recognize3[0])
 							{
 								Car_Spin(0);
 								Flag.Step_Count=85;
@@ -924,7 +940,7 @@ int main(void)
 						{
 							if(Flag.Stop_Flag ==1)
 							{
-								Car_Go(30);
+								Car_Go(50);
 								Flag.Step_Count++;
 							}
 						}break;
@@ -1315,11 +1331,22 @@ void Menudisplay(void)
 					OLED_ShowBNum(48,4,Encoder.Distance[2],3,16);
 					OLED_ShowBNum(48,6,Encoder.Distance[3],3,16);
 				}
+				OLED_ShowNum(72,2,Flag.Num_Recognize2[0],1,16);
+				OLED_ShowNum(80,2,Flag.Num_Recognize2[1],1,16);
+				OLED_ShowNum(88,2,Flag.Num_Recognize2[2],1,16);
+				OLED_ShowNum(96,2,Flag.Num_Recognize2[3],1,16);
+				OLED_ShowNum(104,2,Flag.Num_Recognize2[4],1,16);
+				OLED_ShowNum(112,2,Flag.Num_Recognize2[5],1,16);
+				OLED_ShowNum(120,2,Flag.Num_Recognize2[6],1,16);
+				OLED_ShowNum(128,2,Flag.Num_Recognize2[7],1,16);
 				
-				OLED_ShowNum(96,2,Flag.Step_Count,3,16);
-//				OLED_ShowNum(96,2,SensorData1.X,3,16);
-//				OLED_ShowNum(96,4,SensorData1.Y,3,16);
-				OLED_ShowNum(96,6,SensorData1.D.Float_Data,3,16);
+				OLED_ShowNum(96,0,Flag.Step_Count,3,16);
+				OLED_ShowNum(96,4,Flag.Num_Recognize[0],1,16);
+				OLED_ShowNum(104,4,Flag.Num_Recognize[1],1,16);
+				OLED_ShowNum(112,4,Flag.Num_Recognize3[0],1,16);
+				OLED_ShowNum(120,4,Flag.Num_Recognize3[1],1,16);
+				OLED_ShowNum(96,6,SensorData1.D.Float_Data,1,16);
+				OLED_ShowNum(120,6,Flag.Target_Num,1,16);
 				
 				
 				if(Keys[1].Single_Flag == 1)

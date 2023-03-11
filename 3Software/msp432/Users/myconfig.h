@@ -81,6 +81,7 @@ typedef struct
 	uint8_t Recognize_Num_Count;//识别数字的数量判断
 	uint8_t Recognize_Num_Flag;//识别到数字
 	uint8_t Recognize_Num;//识别到的数字
+	uint8_t Recognize_Num2;//识别数字滤波
 	
 	uint8_t GO_Flag;
 	uint8_t Back_Flag;
@@ -94,11 +95,14 @@ typedef struct
 	
 	uint8_t Servo_Scan_Flag;//舵机开始扫描标志位
 	uint8_t Servo_Scan_Flag2;//舵机开始扫描标志位2
+	uint8_t Servo_Scan_Flag3;//舵机开始扫描标志位2
 	
 	uint8_t Num_Recognize[8];
 	uint8_t Num_Recognize2[8];
+	uint8_t Num_Recognize3[8];
 	uint8_t Num_Angle[8];
 	uint8_t Num_Angle2[8];
+	uint8_t Num_Angle3[8];
 
 }Flag_Init;
 
@@ -109,7 +113,6 @@ extern 	uint8_t Last_Reflectance_Data;
 
 extern Flag_Init Flag;
 extern  SensorData SensorData1;
-
 
 
 #endif /* __XXX_H */

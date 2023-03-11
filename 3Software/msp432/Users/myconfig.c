@@ -36,8 +36,11 @@ float Average_Distance;
 uint8_t TempData;
 uint8_t Temp_Angle;
 float Temp_Num;
+float Sensor_Num_Temp;
 float Last_Num;
 uint8_t Num_Count=0;//识别到的数字计数
+uint8_t Num_Count2=0;//识别到的数字计数
+uint8_t Num_Count3=0;//识别到的数字计数
 uint8_t Num_Same_Flag;//数字一样标志位
 /**
  * @name:TA0_0_IRQHandler
@@ -112,23 +115,23 @@ void TA0_0_IRQHandler(void)
 		Last_Reflectance_Data = Reflectance_Data;
 		
 	if(Flag.Servo_Scan_Flag ==1)
-	{//检测到舵机开始扫描
+	{//路口1检测到舵机开始扫描
 		Delay10msCnt++;
 		if(Delay10msCnt==5)
 		{//50ms进一次
+			Temp_Num = 0;//初始化
 			Delay10msCnt=0;
 			Temp_Angle = Servo_Scan2(2,45,135);
-//			Temp_Num = SensorData1.D.Float_Data;
-			if(SensorData1.D.Float_Data)
+			Sensor_Num_Temp = SensorData1.D.Float_Data;
+			if(Sensor_Num_Temp&&Temp_Angle>45)
 			{//识别数字
 				static uint8_t Last_Num2,Temp_Num2;//创建临时变量存储判断数字
-				Temp_Num2 = SensorData1.D.Float_Data;//暂存变量
+				Temp_Num2 = Sensor_Num_Temp;//暂存变量
 				if(Temp_Num2 == Last_Num2)			//
 				{
 					Flag.Recognize_Num_Count++;
 					if(Flag.Recognize_Num_Count>=10)
 					{
-						Flag.Recognize_Num_Flag = 1;//识别到数字后置标志位为1,待处理数字
 						Temp_Num = Temp_Num2;//设置目标病房
 					}
 				}
@@ -145,7 +148,7 @@ void TA0_0_IRQHandler(void)
 											Temp_Num !=Flag.Num_Recognize[6]&&
 												Temp_Num !=Flag.Num_Recognize[7])
 				{//如果识别到的数字和上一次不相等
-					Flag.Num_Angle2[Num_Count] = Temp_Angle;
+					Flag.Num_Angle[Num_Count] = Temp_Angle;
 					Flag.Num_Recognize[Num_Count] = Temp_Num;
 					Num_Count++;
 					Last_Num = Temp_Num;
@@ -153,39 +156,39 @@ void TA0_0_IRQHandler(void)
 			}
 			if(Temp_Angle ==255)
 			{//如果扫描完了
+				Last_Num = 0;
 				Flag.Servo_Scan_Flag =0;
 				Num_Count = 0;
-				OLED_Clear();
-				for(uint8_t i=0;i<6;i++)
-				{
-					OLED_ShowNum(16*i,2,Flag.Num_Angle[i],2,16);
-					OLED_ShowNum(16*i,4,Flag.Num_Recognize[i],2,16);
-				}
 			}
 			
 		}
-	}
+		}
 	if(Flag.Servo_Scan_Flag2 ==1)
-	{//检测到舵机开始扫描
+	{//路口2检测到舵机开始扫描
 		Delay10msCnt++;
 		if(Delay10msCnt==5)
 		{//50ms进一次
+			Temp_Num = 0;
 			Delay10msCnt=0;
 			Temp_Angle = Servo_Scan2(2,30,150);
-//			Temp_Num = SensorData1.D.Float_Data;
-			if(SensorData1.D.Float_Data)
+			Sensor_Num_Temp = SensorData1.D.Float_Data;
+			if(Sensor_Num_Temp&&Temp_Angle>35)
 			{//识别数字
-				static uint8_t Last_Num2,Temp_Num2;//创建临时变量存储判断数字
-				Temp_Num2 = SensorData1.D.Float_Data;//暂存变量
-				if(Temp_Num2 == Last_Num2)			//
+				static uint8_t Last_Num3,Temp_Num3;//创建临时变量存储判断数字
+				Temp_Num3 = Sensor_Num_Temp;//暂存变量
+				if(Temp_Num3 == Last_Num3)			//
 				{
 					Flag.Recognize_Num_Count++;
 					if(Flag.Recognize_Num_Count>=10)
 					{
-						Temp_Num = Temp_Num2;//设置目标病房
+						Temp_Num = Temp_Num3;//记录数字
 					}
 				}
-				Last_Num2 = Temp_Num2;
+				else
+				{
+					Flag.Recognize_Num_Count=0;
+				}
+				Last_Num3 = Temp_Num3;
 			}
 			if(Temp_Num)
 			{//识别到有数字后存储到数组中
@@ -196,27 +199,79 @@ void TA0_0_IRQHandler(void)
 									Temp_Num !=Flag.Num_Recognize2[4]&&
 										Temp_Num !=Flag.Num_Recognize2[5]&&
 											Temp_Num !=Flag.Num_Recognize2[6]&&
-												Temp_Num !=Flag.Num_Recognize2[7])
+												Temp_Num !=Flag.Num_Recognize2[7]&&
+													Temp_Num !=Flag.Num_Recognize[0]&&
+														Temp_Num !=Flag.Num_Recognize[1])
 				{//如果识别到的数字和上一次不相等
-					Flag.Num_Angle2[Num_Count] = Temp_Angle;
-					Flag.Num_Recognize2[Num_Count] = Temp_Num;
-					Num_Count++;
+					Flag.Num_Angle2[Num_Count2] = Temp_Angle;
+					Flag.Num_Recognize2[Num_Count2] = Temp_Num;
+					Num_Count2++;
 					Last_Num = Temp_Num;
 				}
 			}
 			if(Temp_Angle ==255)
 			{//如果扫描完了
+				Last_Num = 0;
 				Flag.Servo_Scan_Flag2 =0;
-				Num_Count = 0;
-				OLED_Clear();
-				for(uint8_t i=0;i<6;i++)
-				{
-					OLED_ShowNum(16*i,2,Flag.Num_Angle2[i],2,16);
-					OLED_ShowNum(16*i,4,Flag.Num_Recognize2[i],2,16);
-				}
+				Num_Count2 = 0;
 			}
 		}
 	}
+	if(Flag.Servo_Scan_Flag3 ==1)
+	{//路口3检测到舵机开始扫描
+		Delay10msCnt++;
+		if(Delay10msCnt==5)
+		{//50ms进一次
+			Temp_Num = 0;//初始化
+			Delay10msCnt=0;
+			Temp_Angle = Servo_Scan2(2,45,70);
+			Sensor_Num_Temp = SensorData1.D.Float_Data;//先赋值，再判断
+			if(Sensor_Num_Temp&&Temp_Angle>47)
+			{//识别数字
+				static uint8_t Last_Num4,Temp_Num4;//创建临时变量存储判断数字
+				Temp_Num4 = Sensor_Num_Temp;//暂存变量
+				if(Temp_Num4 == Last_Num4)			//
+				{
+					Flag.Recognize_Num_Count++;
+					if(Flag.Recognize_Num_Count>=10)
+					{
+						Temp_Num = Temp_Num4;//设置目标病房
+					}
+				}
+				else
+				{
+					Flag.Recognize_Num_Count = 0;
+				}
+				Last_Num4 = Temp_Num4;
+			}
+			if(Temp_Num)
+			{//识别到有数字后存储到数组中
+//				if(Temp_Num !=Flag.Num_Recognize3[0]&&
+//						Temp_Num !=Flag.Num_Recognize3[1]&&
+//							Temp_Num !=Flag.Num_Recognize3[2]&&
+//								Temp_Num !=Flag.Num_Recognize3[3]&&
+//									Temp_Num !=Flag.Num_Recognize3[4]&&
+//										Temp_Num !=Flag.Num_Recognize3[5]&&
+//											Temp_Num !=Flag.Num_Recognize3[6]&&
+//												Temp_Num !=Flag.Num_Recognize3[7]&&
+//													Temp_Num !=Flag.Num_Recognize[0]&&
+//														Temp_Num !=Flag.Num_Recognize[1])
+				{//如果识别到的数字和上一次不相等
+					Flag.Num_Angle3[Num_Count] = Temp_Angle;
+					Flag.Num_Recognize3[Num_Count] = Temp_Num;
+					Num_Count3++;
+					Last_Num = Temp_Num;
+				}
+			}
+			if(Temp_Angle ==255)
+			{//如果扫描完了
+				Last_Num = 0;
+				Flag.Servo_Scan_Flag3 =0;
+				Num_Count3 = 0;
+			}
+			
+		}
+		}	
 	if(Flag.Start_Line_Flag == 1)
 	{
 		//判断距离是否达到实际的距离

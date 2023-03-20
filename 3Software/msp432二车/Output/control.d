@@ -64,3 +64,4 @@
 ..\output\control.o: ..\Hardware\IIC\IIC.h
 ..\output\control.o: ..\Hardware\IIC\eMPL\inv_mpu.h
 ..\output\control.o: ..\Hardware\k210\k210.h
+..\output\control.o: D:\Keil\ARM\ARMCC\Bin\..\include\string.h

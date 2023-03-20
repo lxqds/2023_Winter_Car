@@ -4,6 +4,7 @@
 void Menudisplay(void);
 void PID_Data_Send(void);
 void Back_Routine(uint8_t Routine);
+void Uart_Rx_Process(void);
 
 int main(void)
 {
@@ -66,6 +67,7 @@ int main(void)
 	for(;;)
 	{//主循环
 		Menudisplay();
+		Uart_Rx_Process();
 //		PID_Data_Send();
 		{//识别数字滤波
 			if(SensorData1.D.Float_Data)
@@ -1268,6 +1270,34 @@ int main(void)
 	}
 	
 }
+extern char Cardata[30];
+extern uint8_t Cardat;
+extern uint8_t rx_pointer; 	
+char Car1_Stop;
+char Car2_Start;
+char Car1_Num;
+void Uart_Rx_Process(void)
+{
+	if(rx_pointer>0)
+	{
+		if(rx_pointer == 3)
+		{
+			sscanf(Cardata,"%c%c%c",&Car1_Stop,&Car2_Start,&Car1_Num);
+			char temp[30];
+			sprintf(temp,"Sucess!1:%c2:%c3:%c",Car1_Stop,Car2_Start,Car1_Num);
+			UART_transmitData(EUSCI_A0_BASE,'a');
+		}
+		else
+		{
+			char temp[30];
+			sprintf(temp,"Error!");
+			UART_transmitData(EUSCI_A0_BASE,'b');
+		}
+		rx_pointer = 0;
+		memset(Cardata,0,30);
+	}
+}
+
 void PID_Data_Send(void)
 {
 		int temp1 = Encoder.Speed[2];    // 上位机需要整数参数，转换一下

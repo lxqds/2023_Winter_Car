@@ -479,23 +479,33 @@ void T32_INT1_IRQHandler(void)
     /*结束填充用户代码*/
 }
 
+char Cardata[30];//1.Car1_Stop2.Car2_Start_Flag3.Car1_Num
+uint8_t Cardat;
+uint8_t rx_pointer;
+
 void EUSCIA0_IRQHandler(void)
 {
     uint32_t status = UART_getEnabledInterruptStatus(EUSCI_A0_BASE);
 	uint8_t dr;
     if(status & EUSCI_A_UART_RECEIVE_INTERRUPT_FLAG) //接收中断
     {
-		dr = MAP_UART_receiveData(EUSCI_A0_BASE);
-		protocol_data_recv(&dr,1);
+		
+		Cardata[rx_pointer++] = Cardat;
+		Cardat = MAP_UART_receiveData(EUSCI_A0_BASE);
+//		dr = MAP_UART_receiveData(EUSCI_A0_BASE);
+//		protocol_data_recv(&dr,1);
     }
 }
+
+
 void EUSCIA2_IRQHandler(void)
 {
     uint32_t status = UART_getEnabledInterruptStatus(EUSCI_A2_BASE);
 	
     if(status & EUSCI_A_UART_RECEIVE_INTERRUPT_FLAG) //接收中断
     {
-		Recive_Byte = MAP_UART_receiveData(EUSCI_A2_BASE);
+		Cardata[rx_pointer++] = Cardat;
+		Cardat = MAP_UART_receiveData(EUSCI_A2_BASE);
     }
 }
 

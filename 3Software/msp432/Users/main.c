@@ -1317,7 +1317,7 @@ void Menudisplay(void)
 			{
 				set_motor_enable();
 				OLED_ShowString(0,0,"Function1",16);
-				OLED_ShowBin(1,2,Reflectance_Data,8,16);
+				OLED_ShowBin(0,2,Reflectance_Data,8,16);
 				
 				{//前轮编码器
 //					OLED_ShowBNum(0,4,Encoder.Speed[0],3,16);

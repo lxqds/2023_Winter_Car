@@ -40,6 +40,8 @@
 #include "control.h"
 
 #include "k210.h"
+
+#include "string.h"
 /* define定义 -----------------------------------------------------------------------------------------------------------------*/
 typedef enum 
 {
@@ -106,12 +108,23 @@ typedef struct
 
 }Flag_Init;
 
+typedef struct Cardata_Struct
+{
+	uint8_t Car_Target_Num;
+	uint8_t Car_State;
+	uint8_t Car_Step;
+}Cardata_Init;
+typedef union Cardata_union
+{
+	unsigned char byte[30];
+	Cardata_Init Car_data;
+}Cardata_union;
 /* extern提供给其他C文件调用的函数 --------------------------------------------------------------------------------------------*/
 extern 	uint8_t Key;
 extern	uint8_t Reflectance_Data;
 extern 	uint8_t Last_Reflectance_Data;
 
-extern Flag_Init Flag;
+extern  Flag_Init Flag;
 extern  SensorData SensorData1;
 
 

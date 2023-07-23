@@ -50,7 +50,7 @@ int printf(const char *str, ...)
 //预编译
 //if 1 使用标准C库 如果报错就使用微库
 //if 0 使用微库 得去勾选魔术棒里的 Use MicroLIB
-#if 1
+#if 0
 #pragma import(__use_no_semihosting)
 //标准库需要的支持函数
 struct __FILE

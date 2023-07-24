@@ -114,6 +114,9 @@ int main(void)
 					{
 						case 0:
 						{//直走80cm
+							if(Flag.CrossRoad_Flag == 1){
+								Flag.CrossRoad_Flag = 0;
+							}
 							Flag.Step_Count++;
 							Car_Go(80);
 						}break;
@@ -142,17 +145,17 @@ int main(void)
 							if(Flag.Stop_Flag ==1)
 							{
 								Flag.Step_Count++;
-								Car_Go(60);
+								Car_Go(40);
 								LED_B_Off();
 								LED_G_On();
 							}
 						}break;
 						case 3:
-						{//检测到停止标志再走5cm
+						{//检测到停止标志再走1cm
 							if(Flag.CrossRoad_Flag == 1)
 							{
 								Flag.CrossRoad_Flag = 0;
-								Car_Go(5);
+								Car_Go(1);
 							}
 							if(Flag.Stop_Flag ==1)//到达位置点亮led
 							{
@@ -178,10 +181,14 @@ int main(void)
 						}break;
 						case 5:
 						{//检测到转完180度后停下
+							
 							if(Flag.Stop_Flag ==1)//向右转180度后车子停下
 							{
+								if(Flag.CrossRoad_Flag == 1){
+									Flag.CrossRoad_Flag = 0;
+								}
 								Flag.Step_Count++;
-								Car_Go(60);
+								Car_Go(50);
 							}
 						}break;
 						case 6:
@@ -208,7 +215,7 @@ int main(void)
 							if(Flag.Stop_Flag ==1)
 							{
 								Flag.Step_Count++;
-								Car_Go(70);
+								Car_Go(60);
 								LED_G_On();
 							}
 						}break;	
@@ -217,7 +224,7 @@ int main(void)
 							if(Flag.CrossRoad_Flag == 1)
 							{
 								Flag.CrossRoad_Flag = 0;
-								Car_Go(5);
+								Car_Go(1);
 							}
 							if(Flag.Stop_Flag ==1)
 							{
@@ -261,7 +268,7 @@ int main(void)
 							if(Flag.Stop_Flag ==1)
 							{
 								Flag.Step_Count++;
-								Car_Go(60);
+								Car_Go(40);
 								LED_B_Off();
 								LED_G_On();
 							}
@@ -271,7 +278,7 @@ int main(void)
 							if(Flag.CrossRoad_Flag == 1)
 							{
 								Flag.CrossRoad_Flag = 0;
-								Car_Go(5);
+								Car_Go(1);
 							}
 							if(Flag.Stop_Flag ==1)//到达位置点亮led
 							{//记得清零
@@ -437,7 +444,7 @@ int main(void)
 						if(Flag.CrossRoad_Flag == 1)
 						{
 							Flag.CrossRoad_Flag = 0;
-							Car_Go(5);
+							Car_Go(1);
 						}
 						if(Flag.Stop_Flag ==1)	
 						{
@@ -524,7 +531,7 @@ int main(void)
 						if(Flag.CrossRoad_Flag == 1)
 						{
 							Flag.CrossRoad_Flag = 0;
-							Car_Go(5);
+							Car_Go(1);
 						}
 						if(Flag.Stop_Flag ==1)	
 						{

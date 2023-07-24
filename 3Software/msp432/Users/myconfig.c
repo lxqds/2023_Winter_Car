@@ -105,6 +105,11 @@ void TA0_0_IRQHandler(void)
 				Flag.CrossRoad_Flag = 1;
 				Flag.Bias =Flag.Last_Bias;
 			}
+			case 0b01010000:
+			{//遇到路口
+				Flag.CrossRoad_Flag = 1;
+				Flag.Bias =Flag.Last_Bias;
+			}
 			default:
 			{
 				//如果没有偏差以上一次为准

@@ -403,7 +403,7 @@ int main(void)
 						if(Flag.Servo_Scan_Flag ==0)
 							{//舵机扫描完成后标志位置0
 								Flag.Step_Count++;//进入下一个状态
-								Car_Go(50);
+								Car_Go(40);
 							}
 					}break;
 					case 4:
@@ -433,7 +433,7 @@ int main(void)
 							{//直走
 								Flag.Step_Count=30;//进入下一个状态
 								Servo_Control2(2,70);
-								Car_Go(90);
+								Car_Go(50);
 							}
 						}
 					}break;
@@ -443,8 +443,11 @@ int main(void)
 					{//车子转完弯停下来后
 						if(Flag.Stop_Flag ==1)
 						{
+							if(Flag.CrossRoad_Flag == 1){
+								Flag.CrossRoad_Flag = 0;
+							}
 							Flag.Step_Count++;
-							Car_Go(60);
+							Car_Go(40);
 						}
 					}break;
 					case 11:
@@ -479,8 +482,11 @@ int main(void)
 					{
 						if(Flag.Stop_Flag ==1)
 						{
+							if(Flag.CrossRoad_Flag == 1){
+								Flag.CrossRoad_Flag = 0;
+							}
 							Flag.Step_Count++;
-							Car_Go(60);
+							Car_Go(40);
 						}
 					}break;
 					case 14:
@@ -503,8 +509,11 @@ int main(void)
 					{
 						if(Flag.Stop_Flag ==1)
 						{
+							if(Flag.CrossRoad_Flag == 1){
+								Flag.CrossRoad_Flag = 0;
+							}
 							Flag.Step_Count++;
-							Car_Go(160);
+							Car_Go(80);
 						}
 					}break;
 					case 16:
@@ -512,7 +521,7 @@ int main(void)
 						if(Flag.CrossRoad_Flag == 1)
 						{
 							Flag.CrossRoad_Flag =0;
-							Car_Go(80);
+							Car_Go(70);
 							Flag.Step_Count++;
 						}
 					}break;
@@ -530,7 +539,10 @@ int main(void)
 					{//车子转完弯停下来后
 						if(Flag.Stop_Flag ==1)
 						{
-							Car_Go(60);
+							if(Flag.CrossRoad_Flag == 1){
+								Flag.CrossRoad_Flag = 0;
+							}
+							Car_Go(40);
 							Flag.Step_Count++;
 						}
 					}break;
@@ -566,8 +578,11 @@ int main(void)
 					{
 						if(Flag.Stop_Flag ==1)
 						{
+							if(Flag.CrossRoad_Flag == 1){
+								Flag.CrossRoad_Flag = 0;
+							}
 							Flag.Step_Count++;
-							Car_Go(60);
+							Car_Go(40);
 						}
 					}break;
 					case 24:
@@ -590,8 +605,11 @@ int main(void)
 					{
 						if(Flag.Stop_Flag ==1)
 						{
+							if(Flag.CrossRoad_Flag == 1){
+								Flag.CrossRoad_Flag = 0;
+							}
 							Flag.Step_Count++;
-							Car_Go(160);
+							Car_Go(80);
 						}
 					}break;
 					case 26:
@@ -599,7 +617,7 @@ int main(void)
 						if(Flag.CrossRoad_Flag == 1)
 						{
 							Flag.CrossRoad_Flag =0;
-							Car_Go(80);
+							Car_Go(70);
 							Flag.Step_Count++;
 						}
 					}break;

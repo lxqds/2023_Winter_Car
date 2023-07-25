@@ -65,7 +65,7 @@ void CTRL_compute_Direction(int16_t Bias)
  */
 void CTRL_compute_Position(void)
 {
-	uint16_t Limit_MAXspeed = 40;//限制轮子最高转速
+	uint16_t Limit_MAXspeed = 50;//限制轮子最高转速
 	move_pid.output = PID_realize(&move_pid,Encoder.Distance[2]);
 	move_pid2.output = PID_realize(&move_pid2,Encoder.Distance[3]);
 	move_pid3.output = PID_realize(&move_pid3,Encoder.Distance[0]);

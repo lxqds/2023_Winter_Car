@@ -118,7 +118,7 @@ int main(void)
 								Flag.CrossRoad_Flag = 0;
 							}
 							Flag.Step_Count++;
-							Car_Go(80);
+							Car_Go(70);
 						}break;
 						case 1:
 						{//当检测到路口或是车停止就再直走10cm
@@ -240,8 +240,11 @@ int main(void)
 					{
 						case 0:
 						{//直走80cm
+							if(Flag.CrossRoad_Flag == 1){
+								Flag.CrossRoad_Flag = 0;
+							}
 							Flag.Step_Count++;
-							Car_Go(80);
+							Car_Go(70);
 						}break;
 						case 1:
 						{//当检测到路口或是车停止就再直走10cm
@@ -267,6 +270,9 @@ int main(void)
 						{//转完之后直走
 							if(Flag.Stop_Flag ==1)
 							{
+								if(Flag.CrossRoad_Flag == 1){
+									Flag.CrossRoad_Flag = 0;
+								}
 								Flag.Step_Count++;
 								Car_Go(40);
 								LED_B_Off();
@@ -306,6 +312,9 @@ int main(void)
 						{//检测到转完180度后停下
 							if(Flag.Stop_Flag ==1)//向右转180度后车子停下
 							{
+								if(Flag.CrossRoad_Flag == 1){
+									Flag.CrossRoad_Flag = 0;
+								}
 								Flag.Step_Count++;
 								Car_Go(60);
 							}
@@ -315,7 +324,6 @@ int main(void)
 							if(Flag.CrossRoad_Flag == 1)
 							{
 								Flag.CrossRoad_Flag = 0;
-								
 								Car_Go(10);
 							}
 							if(Flag.Stop_Flag ==1)
@@ -334,7 +342,7 @@ int main(void)
 							if(Flag.Stop_Flag ==1)
 							{
 								Flag.Step_Count++;
-								Car_Go(70);
+								Car_Go(60);
 								LED_G_On();
 							}
 						}break;	
@@ -343,7 +351,7 @@ int main(void)
 							if(Flag.CrossRoad_Flag == 1)
 							{
 								Flag.CrossRoad_Flag = 0;
-								Car_Go(5);
+								Car_Go(1);
 							}
 							if(Flag.Stop_Flag ==1)
 							{

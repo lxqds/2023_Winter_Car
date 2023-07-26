@@ -1,0 +1,7 @@
+Added Component: Designator=S1(SS-12F23)
+Add component (AddParameter): Name = "BOM名称"; Value = "波动开关"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "学习资源"; Value = "https://lmdzstyle.taobao.com/"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "版权归属"; Value = "黎明电子style"; VariantName = "[No Variations]"
+Added Pin To Net: NetName=NetJ1_1 Pin=S1-2
+Added Pin To Net: NetName=+12 Pin=S1-3
+Added Member To Class: ClassName=432驱动 Member=Component S1 SS-12F23

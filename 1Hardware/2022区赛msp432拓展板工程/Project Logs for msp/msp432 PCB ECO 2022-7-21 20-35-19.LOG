@@ -1,0 +1,55 @@
+Change Component Designator: OldDesignator=+12V NewDesignator=JP1
+Change Component Designator: OldDesignator=5.6 NewDesignator=JP21
+Change Component Designator: OldDesignator=5.7 NewDesignator=JP22
+Change Component Designator: OldDesignator=6.6 NewDesignator=JP23
+Change Component Designator: OldDesignator=A3 NewDesignator=JP19
+Change Component Designator: OldDesignator=GND NewDesignator=JP3
+Change Component Designator: OldDesignator=GND NewDesignator=JP4
+Change Component Designator: OldDesignator=MPU6050 NewDesignator=JP17
+Change Component Designator: OldDesignator=UART NewDesignator=JP18
+Change Component Designator: OldDesignator=降压模块 NewDesignator=*3
+Added Component: Designator=JP24(HDR2.54-M-LI-2P)
+Add component (AddParameter): Name = "BOM名称"; Value = "2P接插件"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "学习资源"; Value = "https://lmdzstyle.taobao.com/"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "版权归属"; Value = "黎明电子style"; VariantName = "[No Variations]"
+Added Component: Designator=JP25(HDR2.54-M-LI-2P)
+Add component (AddParameter): Name = "BOM名称"; Value = "2P接插件"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "学习资源"; Value = "https://lmdzstyle.taobao.com/"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "版权归属"; Value = "黎明电子style"; VariantName = "[No Variations]"
+Added Component: Designator=JP26(HDR2.54-M-LI-2P)
+Add component (AddParameter): Name = "BOM名称"; Value = "2P接插件"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "学习资源"; Value = "https://lmdzstyle.taobao.com/"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "版权归属"; Value = "黎明电子style"; VariantName = "[No Variations]"
+Added Component: Designator=JP27(HDR2.54-M-LI-2P)
+Add component (AddParameter): Name = "BOM名称"; Value = "2P接插件"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "学习资源"; Value = "https://lmdzstyle.taobao.com/"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "版权归属"; Value = "黎明电子style"; VariantName = "[No Variations]"
+Added Component: Designator=JP28(HDR2.54-M-LI-2P)
+Add component (AddParameter): Name = "BOM名称"; Value = "2P接插件"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "学习资源"; Value = "https://lmdzstyle.taobao.com/"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "版权归属"; Value = "黎明电子style"; VariantName = "[No Variations]"
+Added Component: Designator=JP29(HDR2.54-M-LI-2P)
+Add component (AddParameter): Name = "BOM名称"; Value = "2P接插件"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "学习资源"; Value = "https://lmdzstyle.taobao.com/"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "版权归属"; Value = "黎明电子style"; VariantName = "[No Variations]"
+Added Pin To Net: NetName=+12 Pin=JP24-1
+Added Pin To Net: NetName=+12 Pin=JP24-2
+Added Pin To Net: NetName=5V Pin=JP25-1
+Added Pin To Net: NetName=5V Pin=JP25-2
+Added Pin To Net: NetName=GND Pin=JP26-1
+Added Pin To Net: NetName=GND Pin=JP26-2
+Added Pin To Net: NetName=3V3 Pin=JP27-1
+Added Pin To Net: NetName=3V3 Pin=JP27-2
+Added Pin To Net: NetName=5V Pin=JP28-1
+Added Pin To Net: NetName=5V Pin=JP28-2
+Added Pin To Net: NetName=GND Pin=JP29-1
+Added Pin To Net: NetName=GND Pin=JP29-2
+Added Member To Class: ClassName=432驱动 Member=Component JP4 HDR-1X2
+Added Member To Class: ClassName=432驱动 Member=Component JP18 HDR-1X4
+Added Member To Class: ClassName=432驱动 Member=Component JP24 HDR-1X2
+Added Member To Class: ClassName=432驱动 Member=Component JP25 HDR-1X2
+Added Member To Class: ClassName=432驱动 Member=Component JP26 HDR-1X2
+Added Member To Class: ClassName=432驱动 Member=Component JP27 HDR-1X2
+Added Member To Class: ClassName=432驱动 Member=Component JP28 HDR-1X2
+Added Member To Class: ClassName=432驱动 Member=Component JP29 HDR-1X2
+Added Room: Name=432驱动

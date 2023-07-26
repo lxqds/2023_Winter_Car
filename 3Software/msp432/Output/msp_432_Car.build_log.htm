@@ -9,25 +9,59 @@ License Information: xiaoqi lxq, www, LIC=GMZI6-DNZLG-9UY4U-S7WGV-3GT9P-G97ZR
  
 Tool Versions:
 Toolchain:       MDK-ARM Plus  Version: 5.38.0.0
-Toolchain Path:  D:\Keil\ARM\ARMCC\Bin
-C Compiler:      Armcc.exe V5.06 update 1 (build 61)
-Assembler:       Armasm.exe V5.06 update 1 (build 61)
-Linker/Locator:  ArmLink.exe V5.06 update 1 (build 61)
-Library Manager: ArmAr.exe V5.06 update 1 (build 61)
-Hex Converter:   FromElf.exe V5.06 update 1 (build 61)
+Toolchain Path:  D:\Keil\ARM\ARMCLANG\Bin
+C Compiler:      ArmClang.exe V6.19
+Assembler:       Armasm.exe V6.19
+Linker/Locator:  ArmLink.exe V6.19
+Library Manager: ArmAr.exe V6.19
+Hex Converter:   FromElf.exe V6.19
 CPU DLL:         SARMCM3.DLL V5.38.0.0
 Dialog DLL:      DCM.DLL V1.17.5.0
 Target DLL:      CMSIS_AGDI.dll V1.33.15.0
 Dialog DLL:      TCM.DLL V1.56.4.0
  
 <h2>Project:</h2>
-C:\Users\lxq\OneDrive\2023WinterVacation\2021国赛F题小车\3Software\msp432\Project\msp_432_Car.uvprojx
-Project File Date:  03/13/2023
+C:\Users\lxq\OneDrive\2023WinterVacation\2021EC_F_Car\3Software\msp432\Project\msp_432_Car.uvprojx
+Project File Date:  07/23/2023
 
 <h2>Output:</h2>
-*** Using Compiler 'V5.06 update 1 (build 61)', folder: 'D:\Keil\ARM\ARMCC\Bin'
+*** Using Compiler 'V6.19', folder: 'D:\Keil\ARM\ARMCLANG\Bin'
 Build target 'Target 1'
-"..\Output\msp_432_Car.axf" - 0 Error(s), 0 Warning(s).
+../Users/main.c(1379): warning: passing 'char[10]' to parameter of type 'uint8_t *' (aka 'unsigned char *') converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
+                                OLED_ShowString(0,0,"Main_Menu",16);
+                                                    ^~~~~~~~~~~
+../Hardware/oled\oled.h(96): note: passing argument to parameter 'chr' here
+void OLED_ShowString(uint8_t x, uint8_t y, uint8_t *chr, uint8_t sizey);
+                                                    ^
+../Users/main.c(1380): warning: passing 'char[12]' to parameter of type 'uint8_t *' (aka 'unsigned char *') converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
+                                OLED_ShowString(0,2,"1.Function1",16);
+                                                    ^~~~~~~~~~~~~
+../Hardware/oled\oled.h(96): note: passing argument to parameter 'chr' here
+void OLED_ShowString(uint8_t x, uint8_t y, uint8_t *chr, uint8_t sizey);
+                                                    ^
+../Users/main.c(1381): warning: passing 'char[12]' to parameter of type 'uint8_t *' (aka 'unsigned char *') converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
+                                OLED_ShowString(0,4,"2.Function2",16);
+                                                    ^~~~~~~~~~~~~
+../Hardware/oled\oled.h(96): note: passing argument to parameter 'chr' here
+void OLED_ShowString(uint8_t x, uint8_t y, uint8_t *chr, uint8_t sizey);
+                                                    ^
+../Users/main.c(1401): warning: passing 'char[10]' to parameter of type 'uint8_t *' (aka 'unsigned char *') converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
+                                OLED_ShowString(0,0,"Function1",16);
+                                                    ^~~~~~~~~~~
+../Hardware/oled\oled.h(96): note: passing argument to parameter 'chr' here
+void OLED_ShowString(uint8_t x, uint8_t y, uint8_t *chr, uint8_t sizey);
+                                                    ^
+../Users/main.c(1472): warning: passing 'char[10]' to parameter of type 'uint8_t *' (aka 'unsigned char *') converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
+                                OLED_ShowString(64,0,"Function2",16);
+                                                     ^~~~~~~~~~~
+../Hardware/oled\oled.h(96): note: passing argument to parameter 'chr' here
+void OLED_ShowString(uint8_t x, uint8_t y, uint8_t *chr, uint8_t sizey);
+                                                    ^
+5 warnings generated.
+compiling main.c...
+linking...
+Program Size: Code=27952 RO-data=2988 RW-data=60 ZI-data=1356  
+"..\Output\msp_432_Car.axf" - 0 Error(s), 5 Warning(s).
 
 <h2>Software Packages used:</h2>
 
@@ -53,12 +87,12 @@ Package Vendor: TexasInstruments
    * Component: ARM::CMSIS:CORE:5.6.0
 
    * Component: TexasInstruments::Device:Startup:3.2.2
+      Source file:   Device/Source/startup_msp432p401r_uvision.s
+      Include file:  Device/Include/msp_compatibility.h
       Source file:   Examples/EmptyMain/main.c
       Source file:   Device/Source/system_msp432p401r.c
       Source file:   Examples/BlinkLED/blinkLED.c
-      Include file:  Device/Include/msp_compatibility.h
-      Source file:   Device/Source/startup_msp432p401r_uvision.s
-Build Time Elapsed:  00:00:00
+Build Time Elapsed:  00:00:01
 </pre>
 </body>
 </html>

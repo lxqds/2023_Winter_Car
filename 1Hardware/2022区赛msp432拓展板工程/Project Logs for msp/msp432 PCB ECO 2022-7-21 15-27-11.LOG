@@ -1,0 +1,11 @@
+Removed Pin From Net: NetName=5V Pin=D1-2
+Added Component: Designator=S2(SS-12F23)
+Add component (AddParameter): Name = "BOM名称"; Value = "波动开关"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "学习资源"; Value = "https://lmdzstyle.taobao.com/"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "版权归属"; Value = "黎明电子style"; VariantName = "[No Variations]"
+Added Pin To Net: NetName=5V Pin=S2-1
+Added Pin To Net: NetName=+5OUT Pin=D1-2
+Added Pin To Net: NetName=+5OUT Pin=S2-2
+Added Net: Name=+5OUT
+Added Member To Class: ClassName=432驱动 Member=Component S2 SS-12F23
+Added Room: Name=432驱动

@@ -1,0 +1,12 @@
+Board Information Report
+Filename     : C:\Users\27825\Desktop\电机驱动\msp432版本\msp\msp432.PcbDoc
+Date         : 2022/7/21
+Time         : 20:41:36
+Time Elapsed : 00:00:00
+
+Routing Information
+    Routing completion, 100.00%
+    Connections, 269
+    Connections routed, 269
+    Connections remaining, 0
+count : 4

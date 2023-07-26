@@ -3606,11 +3606,11 @@
       <ActiveTab>0</ActiveTab>
       <Doc>
         <Name>..\Users\main.c</Name>
-        <ColumnNumber>46</ColumnNumber>
-        <TopLine>452</TopLine>
-        <CurrentLine>621</CurrentLine>
+        <ColumnNumber>39</ColumnNumber>
+        <TopLine>298</TopLine>
+        <CurrentLine>664</CurrentLine>
         <Folding>1</Folding>
-        <ContractedFolders>60,69,86,237,634,686,688,750,752,815,935,1055,1176,1304,1318</ContractedFolders>
+        <ContractedFolders>60,69,86,237,440,536,828,960,1092,1225,1353,1367</ContractedFolders>
         <PaneID>0</PaneID>
       </Doc>
       <Doc>

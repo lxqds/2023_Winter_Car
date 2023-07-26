@@ -1,0 +1,7 @@
+Change Component Footprint: Designator=C10 Old Footprint=C 0805_L New Footprint=C 0805_M
+Change Component Footprint: Designator=C8 Old Footprint=C 0805_M New Footprint=C 0805_L
+Added Pin To Net: NetName=3V3 Pin=C9-2
+Added Pin To Net: NetName=3V3 Pin=C10-2
+Added Pin To Net: NetName=3V3 Pin=U6-2
+Added Pin To Net: NetName=3V3 Pin=U6-2
+Added Room: Name=432Çý¶¯

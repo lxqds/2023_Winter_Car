@@ -1,0 +1,13 @@
+Added Component: Designator=JP9(XH2.54-WI-6P)
+Add component (AddParameter): Name = "BOM名称"; Value = "6P接插件"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "学习资源"; Value = "https://lmdzstyle.taobao.com/"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "版权归属"; Value = "黎明电子style"; VariantName = "[No Variations]"
+Added Pin To Net: NetName=TA1 Pin=JP9-1
+Added Pin To Net: NetName=GND Pin=JP9-2
+Added Pin To Net: NetName=P4.0 Pin=JP9-3
+Added Pin To Net: NetName=P4.1 Pin=JP9-4
+Added Pin To Net: NetName=5V Pin=JP9-5
+Added Pin To Net: NetName=TA2 Pin=JP9-6
+Added Member To Class: ClassName=432驱动 Member=Component JP9 HDR-1X6
+Added Member To Class: ClassName=432驱动 Member=Component U1 MSP432
+Added Room: Name=432驱动

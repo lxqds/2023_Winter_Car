@@ -1434,7 +1434,7 @@ void Menudisplay(void)
 				if(Keys[1].Single_Flag == 1)
 				{
 					Keys[1].Single_Flag = 0;
-					Car_Go(800);  
+					Car_Go(578);  
 				}
 				if(Keys[1].Double_Flag == 1)
 				{

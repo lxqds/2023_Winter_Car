@@ -61,13 +61,23 @@ void TA0_0_IRQHandler(void)
 	Reflectance_Data = Reflectance_Read2();
 	if(Reflectance_Data == 0b00000000){
 		Flag.White_Count++;
-		if(Flag.White_Count>50){
+		if(Flag.White_Count>100){
 			Flag.White_Count=0;
 			Flag.White_Flag = 1;
 		}
 		
 	}else{	
 		Flag.White_Flag = 0;
+	}
+	if(Reflectance_Data == 0b11111000){
+		Flag.Black_Count++;
+		if(Flag.Black_Count>100){
+			Flag.Black_Count=0;
+			Flag.Black_Flag = 1;
+		}
+		
+	}else{	
+		Flag.Black_Flag = 0;
 	}
 	switch(Reflectance_Data)
 		{//读取循迹模块的值并判断所在位置，偏差，位置
@@ -341,7 +351,7 @@ void TA0_0_IRQHandler(void)
 //			LED_G_Off();
 //		}
 		
-		if(Flag.Is_EnMOTOR == 1&&Flag.White_Flag==0)
+		if(Flag.Is_EnMOTOR == 1&&Flag.White_Flag==0&&Flag.Black_Flag==0)
 		{
 			{
 				{

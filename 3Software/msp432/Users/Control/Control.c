@@ -37,24 +37,25 @@ void CTRL_compute_Position2(void)
  */
 void CTRL_compute_Direction(int16_t Bias)
 {
+	uint16_t Limit_MAXdir = 90;//限制轮子最高转角
 	Dir_pid.output = PID_realize(&Dir_pid,Bias);
 	Dir_pid2.output = PID_realize(&Dir_pid2,Bias);
 	
-	if(Dir_pid.output >90)
+	if(Dir_pid.output >Limit_MAXdir)
 	{
-		Dir_pid.output = 90;
+		Dir_pid.output = Limit_MAXdir;
 	}
-	else if(Dir_pid.output<-90)
+	else if(Dir_pid.output<-Limit_MAXdir)
 	{
-		Dir_pid.output = -90;
+		Dir_pid.output = -Limit_MAXdir;
 	}
-	if(Dir_pid2.output >90)
+	if(Dir_pid2.output >Limit_MAXdir)
 	{
-		Dir_pid2.output = 90;
+		Dir_pid2.output = Limit_MAXdir;
 	}
-	else if(Dir_pid2.output<-90)
+	else if(Dir_pid2.output<-Limit_MAXdir)
 	{
-		Dir_pid2.output = -90;
+		Dir_pid2.output = -Limit_MAXdir;
 	}
 }
 /**
@@ -65,7 +66,7 @@ void CTRL_compute_Direction(int16_t Bias)
  */
 void CTRL_compute_Position(void)
 {
-	uint16_t Limit_MAXspeed = 50;//限制轮子最高转速
+	uint16_t Limit_MAXspeed = 55;//限制轮子最高转速
 	move_pid.output = PID_realize(&move_pid,Encoder.Distance[2]);
 	move_pid2.output = PID_realize(&move_pid2,Encoder.Distance[3]);
 	move_pid3.output = PID_realize(&move_pid3,Encoder.Distance[0]);

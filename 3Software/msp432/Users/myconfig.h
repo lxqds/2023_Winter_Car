@@ -92,6 +92,8 @@ typedef struct
 	
 	uint8_t White_Count;//跑偏计数
 	uint8_t White_Flag;//空白标志位
+	uint8_t Black_Count;//全黑计数
+	uint8_t Black_Flag;//全黑标志位
 	
 	uint8_t Servo_Scan_Flag;//舵机开始扫描标志位
 	uint8_t Servo_Scan_Flag2;//舵机开始扫描标志位2

@@ -59,12 +59,20 @@ void TA0_0_IRQHandler(void)
 	Key_Scan2();
 	Encoder_Scan();
 	Reflectance_Data = Reflectance_Read2();
-	
+	if(Reflectance_Data == 0b00000000){
+		Flag.White_Count++;
+		if(Flag.White_Count>50){
+			Flag.White_Count=0;
+			Flag.White_Flag = 1;
+		}
+		
+	}else{	
+		Flag.White_Flag = 0;
+	}
 	switch(Reflectance_Data)
 		{//读取循迹模块的值并判断所在位置，偏差，位置
 			case 0b00000000:
 			{
-				Flag.White_Flag = 1;
 				Flag.Bias =0;
 			}break;
 			case 0b00100000:
@@ -81,7 +89,7 @@ void TA0_0_IRQHandler(void)
 			}break;
 			case 0b10000000:
 			{//左偏3
-				Flag.Bias =-60;
+				Flag.Bias =-50;
 			}break;
 			case 0b00110000:
 			{//右偏1
@@ -93,7 +101,7 @@ void TA0_0_IRQHandler(void)
 			}break;
 			case 0b00001000:
 			{//右偏3
-				Flag.Bias =60;
+				Flag.Bias =50;
 			}break;
 			case 0b11111000:
 			{//遇到路口
@@ -333,7 +341,7 @@ void TA0_0_IRQHandler(void)
 //			LED_G_Off();
 //		}
 		
-		if(Flag.Is_EnMOTOR == 1)
+		if(Flag.Is_EnMOTOR == 1&&Flag.White_Flag==0)
 		{
 			{
 				{

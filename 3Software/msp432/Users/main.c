@@ -49,8 +49,8 @@ int main(void)
 		set_p_i_d(&speed_pid3,0.45,0.03,0);
 		set_p_i_d(&speed_pid4,0.45,0.03,0);
 		
-		set_p_i_d(&Dir_pid,2,0,2);
-		set_p_i_d(&Dir_pid2,2,0,2);
+		set_p_i_d(&Dir_pid,1,0,2);
+		set_p_i_d(&Dir_pid2,1,0,2);
 		
 		set_pid_target(&move_pid2,50);
 		set_pid_target(&move_pid,50);
@@ -1434,7 +1434,7 @@ void Menudisplay(void)
 				if(Keys[1].Single_Flag == 1)
 				{
 					Keys[1].Single_Flag = 0;
-					Car_Go(80);  
+					Car_Go(800);  
 				}
 				if(Keys[1].Double_Flag == 1)
 				{

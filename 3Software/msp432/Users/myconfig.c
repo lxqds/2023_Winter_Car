@@ -27,7 +27,7 @@ uint8_t Last_Reflectance_Data;
 uint8_t Recive_Byte;
 
 Flag_Init Flag;
-
+car1_task1_e flag_car1_task1 = car_none1;
 float PWMtemp1,PWMtemp2,PWMtemp3,PWMtemp4;
 float g_fTargetJourney = 50;
 float Average_Distance;
@@ -59,6 +59,7 @@ void TA0_0_IRQHandler(void)
 	Key_Scan2();
 	Encoder_Scan();
 	Reflectance_Data = Reflectance_Read2();
+	//全白判断
 	if(Reflectance_Data == 0b00000000){
 		Flag.White_Count++;
 		if(Flag.White_Count>100){
@@ -69,7 +70,8 @@ void TA0_0_IRQHandler(void)
 	}else{	
 		Flag.White_Flag = 0;
 	}
-	if(Reflectance_Data == 0b11111000){
+	//全黑判断
+	if(Reflectance_Data  == 0b11111000){
 		Flag.Black_Count++;
 		if(Flag.Black_Count>100){
 			Flag.Black_Count=0;
@@ -79,6 +81,14 @@ void TA0_0_IRQHandler(void)
 	}else{	
 		Flag.Black_Flag = 0;
 	}
+	//十字判断
+	if(Reflectance_Data == 0b11111000||Reflectance_Data == 0b11011000||Reflectance_Data == 0b01110000||Reflectance_Data == 0b01010000){
+		Flag.crossroad_count++;
+		if(Flag.crossroad_count > 5){
+			Flag.CrossRoad_Flag = 1;
+		}
+	}
+	//循迹偏差
 	switch(Reflectance_Data)
 		{//读取循迹模块的值并判断所在位置，偏差，位置
 			case 0b00000000:
@@ -115,18 +125,15 @@ void TA0_0_IRQHandler(void)
 			}break;
 			case 0b11111000:
 			{//遇到路口
-				Flag.CrossRoad_Flag = 1;
-				Flag.Bias =Flag.Last_Bias;
+				Flag.Bias =0;
 			}
 			case 0b11011000:
 			{//遇到路口
-				Flag.CrossRoad_Flag = 1;
-				Flag.Bias =Flag.Last_Bias;
+				Flag.Bias =0;
 			}
-			case 0b01010000:
+			case 0b01110000:
 			{//遇到路口
-				Flag.CrossRoad_Flag = 1;
-				Flag.Bias =Flag.Last_Bias;
+				Flag.Bias =0;
 			}
 			default:
 			{
@@ -329,7 +336,6 @@ void TA0_0_IRQHandler(void)
 		else
 		{
 			Flag.Stop_Flag = 0;
-			LED_G_Off();
 		}
 //		if((Encoder.Distance[2] >= (Flag.Target_Distance_Left-0.5f )&&(Encoder.Distance[2] <= (Flag.Target_Distance_Left+0.5f )))||(Encoder.Distance[3] >= (Flag.Target_Distance_Right-0.5f )&&Encoder.Distance[3] >= (Flag.Target_Distance_Right+0.5f )))
 //		{
@@ -447,7 +453,7 @@ void TA0_0_IRQHandler(void)
 //				PWMtemp3 = speed_pid3.output;
 //				PWMtemp4 = speed_pid4.output;
 				if(Flag.Target_Distance_Left<0&&Flag.Target_Distance_Right>0)
-				{//转的时候会设置目标，以此设置方向、
+				{//转的时候会设置目标，以此设置方向
 					set_pid_target(&speed_pid,-25);
 					set_pid_target(&speed_pid2,25);
 					set_pid_target(&speed_pid3,-25);

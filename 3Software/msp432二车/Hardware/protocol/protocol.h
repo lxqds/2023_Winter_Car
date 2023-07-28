@@ -20,7 +20,7 @@ extern "C" {
 #define PROT_FRAME_LEN_CHECKSUM    1
 
 /* 数据头结构体 */
-typedef __packed struct
+typedef struct
 {
   uint32_t head;    // 包头
   uint8_t ch;		// 通道

@@ -4,7 +4,6 @@
 void Menudisplay(void);
 void PID_Data_Send(void);
 void Back_Routine(uint8_t Routine);
-void Uart_Rx_Process(void);
 
 int main(void)
 {
@@ -50,8 +49,8 @@ int main(void)
 		set_p_i_d(&speed_pid3,0.45,0.03,0);
 		set_p_i_d(&speed_pid4,0.45,0.03,0);
 		
-		set_p_i_d(&Dir_pid,2,0,2);
-		set_p_i_d(&Dir_pid2,2,0,2);
+		set_p_i_d(&Dir_pid,1,0,2);
+		set_p_i_d(&Dir_pid2,1,0,2);
 		
 		set_pid_target(&move_pid2,50);
 		set_pid_target(&move_pid,50);
@@ -67,7 +66,6 @@ int main(void)
 	for(;;)
 	{//主循环
 		Menudisplay();
-		Uart_Rx_Process();
 //		PID_Data_Send();
 		{//识别数字滤波
 			if(SensorData1.D.Float_Data)
@@ -116,8 +114,11 @@ int main(void)
 					{
 						case 0:
 						{//直走80cm
+							if(Flag.CrossRoad_Flag == 1){
+								Flag.CrossRoad_Flag = 0;
+							}
 							Flag.Step_Count++;
-							Car_Go(80);
+							Car_Go(70);
 						}break;
 						case 1:
 						{//当检测到路口或是车停止就再直走10cm
@@ -144,17 +145,17 @@ int main(void)
 							if(Flag.Stop_Flag ==1)
 							{
 								Flag.Step_Count++;
-								Car_Go(60);
+								Car_Go(40);
 								LED_B_Off();
 								LED_G_On();
 							}
 						}break;
 						case 3:
-						{//检测到停止标志再走5cm
+						{//检测到停止标志再走1cm
 							if(Flag.CrossRoad_Flag == 1)
 							{
 								Flag.CrossRoad_Flag = 0;
-								Car_Go(5);
+								Car_Go(1);
 							}
 							if(Flag.Stop_Flag ==1)//到达位置点亮led
 							{
@@ -180,10 +181,14 @@ int main(void)
 						}break;
 						case 5:
 						{//检测到转完180度后停下
+							
 							if(Flag.Stop_Flag ==1)//向右转180度后车子停下
 							{
+								if(Flag.CrossRoad_Flag == 1){
+									Flag.CrossRoad_Flag = 0;
+								}
 								Flag.Step_Count++;
-								Car_Go(60);
+								Car_Go(50);
 							}
 						}break;
 						case 6:
@@ -210,7 +215,7 @@ int main(void)
 							if(Flag.Stop_Flag ==1)
 							{
 								Flag.Step_Count++;
-								Car_Go(70);
+								Car_Go(60);
 								LED_G_On();
 							}
 						}break;	
@@ -219,7 +224,7 @@ int main(void)
 							if(Flag.CrossRoad_Flag == 1)
 							{
 								Flag.CrossRoad_Flag = 0;
-								Car_Go(5);
+								Car_Go(1);
 							}
 							if(Flag.Stop_Flag ==1)
 							{
@@ -235,8 +240,11 @@ int main(void)
 					{
 						case 0:
 						{//直走80cm
+							if(Flag.CrossRoad_Flag == 1){
+								Flag.CrossRoad_Flag = 0;
+							}
 							Flag.Step_Count++;
-							Car_Go(80);
+							Car_Go(70);
 						}break;
 						case 1:
 						{//当检测到路口或是车停止就再直走10cm
@@ -262,8 +270,11 @@ int main(void)
 						{//转完之后直走
 							if(Flag.Stop_Flag ==1)
 							{
+								if(Flag.CrossRoad_Flag == 1){
+									Flag.CrossRoad_Flag = 0;
+								}
 								Flag.Step_Count++;
-								Car_Go(60);
+								Car_Go(40);
 								LED_B_Off();
 								LED_G_On();
 							}
@@ -273,7 +284,7 @@ int main(void)
 							if(Flag.CrossRoad_Flag == 1)
 							{
 								Flag.CrossRoad_Flag = 0;
-								Car_Go(5);
+								Car_Go(1);
 							}
 							if(Flag.Stop_Flag ==1)//到达位置点亮led
 							{//记得清零
@@ -301,6 +312,9 @@ int main(void)
 						{//检测到转完180度后停下
 							if(Flag.Stop_Flag ==1)//向右转180度后车子停下
 							{
+								if(Flag.CrossRoad_Flag == 1){
+									Flag.CrossRoad_Flag = 0;
+								}
 								Flag.Step_Count++;
 								Car_Go(60);
 							}
@@ -310,7 +324,6 @@ int main(void)
 							if(Flag.CrossRoad_Flag == 1)
 							{
 								Flag.CrossRoad_Flag = 0;
-								
 								Car_Go(10);
 							}
 							if(Flag.Stop_Flag ==1)
@@ -329,7 +342,7 @@ int main(void)
 							if(Flag.Stop_Flag ==1)
 							{
 								Flag.Step_Count++;
-								Car_Go(70);
+								Car_Go(60);
 								LED_G_On();
 							}
 						}break;	
@@ -338,7 +351,7 @@ int main(void)
 							if(Flag.CrossRoad_Flag == 1)
 							{
 								Flag.CrossRoad_Flag = 0;
-								Car_Go(5);
+								Car_Go(1);
 							}
 							if(Flag.Stop_Flag ==1)
 							{
@@ -390,7 +403,7 @@ int main(void)
 						if(Flag.Servo_Scan_Flag ==0)
 							{//舵机扫描完成后标志位置0
 								Flag.Step_Count++;//进入下一个状态
-								Car_Go(50);
+								Car_Go(40);
 							}
 					}break;
 					case 4:
@@ -420,7 +433,7 @@ int main(void)
 							{//直走
 								Flag.Step_Count=30;//进入下一个状态
 								Servo_Control2(2,70);
-								Car_Go(90);
+								Car_Go(60);
 							}
 						}
 					}break;
@@ -430,8 +443,11 @@ int main(void)
 					{//车子转完弯停下来后
 						if(Flag.Stop_Flag ==1)
 						{
+							if(Flag.CrossRoad_Flag == 1){
+								Flag.CrossRoad_Flag = 0;
+							}
 							Flag.Step_Count++;
-							Car_Go(60);
+							Car_Go(40);
 						}
 					}break;
 					case 11:
@@ -439,7 +455,7 @@ int main(void)
 						if(Flag.CrossRoad_Flag == 1)
 						{
 							Flag.CrossRoad_Flag = 0;
-							Car_Go(5);
+							Car_Go(1);
 						}
 						if(Flag.Stop_Flag ==1)	
 						{
@@ -466,8 +482,11 @@ int main(void)
 					{
 						if(Flag.Stop_Flag ==1)
 						{
+							if(Flag.CrossRoad_Flag == 1){
+								Flag.CrossRoad_Flag = 0;
+							}
 							Flag.Step_Count++;
-							Car_Go(60);
+							Car_Go(40);
 						}
 					}break;
 					case 14:
@@ -490,8 +509,11 @@ int main(void)
 					{
 						if(Flag.Stop_Flag ==1)
 						{
+							if(Flag.CrossRoad_Flag == 1){
+								Flag.CrossRoad_Flag = 0;
+							}
 							Flag.Step_Count++;
-							Car_Go(160);
+							Car_Go(80);
 						}
 					}break;
 					case 16:
@@ -499,7 +521,7 @@ int main(void)
 						if(Flag.CrossRoad_Flag == 1)
 						{
 							Flag.CrossRoad_Flag =0;
-							Car_Go(80);
+							Car_Go(70);
 							Flag.Step_Count++;
 						}
 					}break;
@@ -517,7 +539,10 @@ int main(void)
 					{//车子转完弯停下来后
 						if(Flag.Stop_Flag ==1)
 						{
-							Car_Go(60);
+							if(Flag.CrossRoad_Flag == 1){
+								Flag.CrossRoad_Flag = 0;
+							}
+							Car_Go(40);
 							Flag.Step_Count++;
 						}
 					}break;
@@ -526,7 +551,7 @@ int main(void)
 						if(Flag.CrossRoad_Flag == 1)
 						{
 							Flag.CrossRoad_Flag = 0;
-							Car_Go(5);
+							Car_Go(1);
 						}
 						if(Flag.Stop_Flag ==1)	
 						{
@@ -553,8 +578,11 @@ int main(void)
 					{
 						if(Flag.Stop_Flag ==1)
 						{
+							if(Flag.CrossRoad_Flag == 1){
+								Flag.CrossRoad_Flag = 0;
+							}
 							Flag.Step_Count++;
-							Car_Go(60);
+							Car_Go(40);
 						}
 					}break;
 					case 24:
@@ -577,8 +605,11 @@ int main(void)
 					{
 						if(Flag.Stop_Flag ==1)
 						{
+							if(Flag.CrossRoad_Flag == 1){
+								Flag.CrossRoad_Flag = 0;
+							}
 							Flag.Step_Count++;
-							Car_Go(160);
+							Car_Go(80);
 						}
 					}break;
 					case 26:
@@ -586,7 +617,7 @@ int main(void)
 						if(Flag.CrossRoad_Flag == 1)
 						{
 							Flag.CrossRoad_Flag =0;
-							Car_Go(80);
+							Car_Go(70);
 							Flag.Step_Count++;
 						}
 					}break;
@@ -604,12 +635,14 @@ int main(void)
 					{//远端走法
 					case 30:
 					{//识别到数字停下，扫描数字
-						if(SensorData1.D.Float_Data&&Encoder.Distance[2]>=70)
+						if(SensorData1.D.Float_Data&&Encoder.Distance[2]>=40)
 						{	
+							if(Flag.CrossRoad_Flag == 1){
+								Flag.CrossRoad_Flag = 0;
+							}
 							Car_Go(1);
 							Flag.Step_Count++;
 						}
-						Flag.CrossRoad_Flag = 0;
 					}break;
 					case 31:
 					{
@@ -623,18 +656,24 @@ int main(void)
 					{
 						if(Flag.Servo_Scan_Flag2 ==0)
 						{//舵机扫描完成后标志位置0
+							if(Flag.CrossRoad_Flag == 1){
+								Flag.CrossRoad_Flag = 0;
+							}
 							Servo_Control2(2,70);
 							Flag.Step_Count++;//进入下一个状态
-							Car_Go(40);
+							Car_Go(30);
 						}
 					}break;
-					case 33:
-					{
+					case 33:{
 						if(Flag.CrossRoad_Flag == 1)
 						{
+							Flag.Step_Count++;//进入下一个状态
 							Flag.CrossRoad_Flag = 0;
 							Car_Go(10);
 						}
+					}
+					case 34:
+					{
 						if(Flag.Stop_Flag ==1)
 						{
 							Flag.Stop_Flag = 1;//置标志位
@@ -658,22 +697,20 @@ int main(void)
 					{//远端左
 						 if(Flag.Stop_Flag ==1)
 						 {
-							Car_Go(20);
+							if(Flag.CrossRoad_Flag == 1){
+								Flag.CrossRoad_Flag = 0;
+							}
+							Car_Go(50);
 							Flag.Step_Count++;
 						 }
 					}break;
 					case 41:
 					{
-						if(SensorData1.D.Float_Data)
+						if(SensorData1.D.Float_Data||Flag.Stop_Flag ==1)
 						{	
 							Car_Go(1);
 							Flag.Step_Count++;
 						}
-						if(Flag.Stop_Flag ==1)
-						{
-							Flag.Step_Count++;
-						}
-						Flag.CrossRoad_Flag = 0;
 					}break;
 					case 42:
 					{	
@@ -687,8 +724,11 @@ int main(void)
 					{	
 						if(Flag.Servo_Scan_Flag3 == 0)
 						{
+							if(Flag.CrossRoad_Flag == 1){
+								Flag.CrossRoad_Flag = 0;
+							}
 							Servo_Control2(2,70);
-							Car_Go(35);
+							Car_Go(30);
 							Flag.Step_Count++;
 						}
 					}break;
@@ -722,22 +762,23 @@ int main(void)
 					{//远端右
 						 if(Flag.Stop_Flag ==1)
 						 {
-							Car_Go(20);
+							if(Flag.CrossRoad_Flag == 1){
+								Flag.CrossRoad_Flag = 0;
+							}
+							Car_Go(50);
 							Flag.Step_Count++;
 						 }
 					}break;
 					case 81:
 					{
-						if(SensorData1.D.Float_Data)
+						if(SensorData1.D.Float_Data||Flag.Stop_Flag ==1)
 						{	
+							if(Flag.CrossRoad_Flag == 1){
+								Flag.CrossRoad_Flag = 0;
+							}
 							Car_Go(1);
 							Flag.Step_Count++;
 						}
-						if(Flag.Stop_Flag ==1)
-						{
-							Flag.Step_Count++;
-						}
-						Flag.CrossRoad_Flag = 0;
 					}break;
 					case 82:
 					{	
@@ -751,8 +792,11 @@ int main(void)
 					{	
 						if(Flag.Servo_Scan_Flag3 == 0)
 						{
+							if(Flag.CrossRoad_Flag == 1){
+								Flag.CrossRoad_Flag = 0;
+							}
 							Servo_Control2(2,70);
-							Car_Go(35);
+							Car_Go(30);
 							Flag.Step_Count++;
 						}
 					}break;
@@ -787,7 +831,10 @@ int main(void)
 					{
 						if(Flag.Stop_Flag ==1)
 						{
-							Car_Go(30);
+							if(Flag.CrossRoad_Flag == 1){
+								Flag.CrossRoad_Flag = 0;
+							}
+							Car_Go(40);
 							Flag.Step_Count++;
 						}
 					}break;
@@ -796,7 +843,7 @@ int main(void)
 						if(Flag.CrossRoad_Flag ==1)
 						{
 							Flag.CrossRoad_Flag = 0;
-							Car_Go(5);
+							Car_Go(1);
 						}
 						if(Flag.Stop_Flag ==1)
 						{
@@ -822,7 +869,10 @@ int main(void)
 					{
 						if(Flag.Stop_Flag ==1)
 						{
-							Car_Go(30);
+							if(Flag.CrossRoad_Flag == 1){
+								Flag.CrossRoad_Flag = 0;
+							}
+							Car_Go(40);
 							Flag.Step_Count++;
 						}
 					}break;
@@ -853,7 +903,10 @@ int main(void)
 					{
 						if(Flag.Stop_Flag ==1)
 						{
-							Car_Go(55);
+							if(Flag.CrossRoad_Flag == 1){
+								Flag.CrossRoad_Flag = 0;
+							}
+							Car_Go(80);
 							Flag.Step_Count++;
 						}
 					}break;
@@ -880,10 +933,13 @@ int main(void)
 					{
 						if(Flag.Stop_Flag ==1)
 						{
+							if(Flag.CrossRoad_Flag == 1){
+								Flag.CrossRoad_Flag = 0;
+							}
 							Flag.Stop_Flag = 1;//置标志位
 							Flag.Start_Line_Flag = 0;
 							Flag.Stop_Count = 0;
-							Car_Go(260);//直走250
+							Car_Go(240);//直走240
 						}
 						if(Encoder.Distance[2]>=230.f)
 						{
@@ -896,7 +952,7 @@ int main(void)
 						if(Flag.CrossRoad_Flag ==1)
 						{
 							Flag.CrossRoad_Flag = 0;
-							Car_Go(5);//到点停止
+							Car_Go(1);//到点停止
 							LED_G_On();
 						}
 					}break;
@@ -907,7 +963,10 @@ int main(void)
 						{
 							if(Flag.Stop_Flag ==1)
 							{
-								Car_Go(50);
+								if(Flag.CrossRoad_Flag == 1){
+									Flag.CrossRoad_Flag = 0;
+								}
+								Car_Go(40);
 								Flag.Step_Count++;
 							}
 						}break;
@@ -916,7 +975,7 @@ int main(void)
 							if(Flag.CrossRoad_Flag ==1)
 							{
 								Flag.CrossRoad_Flag = 0;
-								Car_Go(5);
+								Car_Go(1);
 							}
 							if(Flag.Stop_Flag ==1)
 							{
@@ -942,7 +1001,10 @@ int main(void)
 						{
 							if(Flag.Stop_Flag ==1)
 							{
-								Car_Go(50);
+								if(Flag.CrossRoad_Flag == 1){
+									Flag.CrossRoad_Flag = 0;
+								}
+								Car_Go(40);
 								Flag.Step_Count++;
 							}
 						}break;
@@ -973,7 +1035,10 @@ int main(void)
 						{
 							if(Flag.Stop_Flag ==1)
 							{
-								Car_Go(55);
+								if(Flag.CrossRoad_Flag == 1){
+									Flag.CrossRoad_Flag = 0;
+								}
+								Car_Go(80);
 								Flag.Step_Count++;
 							}
 						}break;
@@ -1000,10 +1065,13 @@ int main(void)
 						{
 							if(Flag.Stop_Flag ==1)
 							{
+								if(Flag.CrossRoad_Flag == 1){
+									Flag.CrossRoad_Flag = 0;
+								}
 								Flag.Stop_Flag = 1;//置标志位
 								Flag.Start_Line_Flag = 0;
 								Flag.Stop_Count = 0;
-								Car_Go(260);//直走250
+								Car_Go(240);//直走250
 							}
 							if(Encoder.Distance[2]>=230.f)
 							{
@@ -1016,7 +1084,7 @@ int main(void)
 							if(Flag.CrossRoad_Flag ==1)
 							{
 								Flag.CrossRoad_Flag = 0;
-								Car_Go(5);//到点停止
+								Car_Go(1);//到点停止
 								LED_G_On();
 							}
 						}break;
@@ -1027,7 +1095,10 @@ int main(void)
 					{
 						if(Flag.Stop_Flag ==1)
 						{
-							Car_Go(30);
+							if(Flag.CrossRoad_Flag == 1){
+								Flag.CrossRoad_Flag = 0;
+							}
+							Car_Go(40);
 							Flag.Step_Count++;
 						}
 					}break;
@@ -1036,7 +1107,7 @@ int main(void)
 						if(Flag.CrossRoad_Flag ==1)
 						{
 							Flag.CrossRoad_Flag = 0;
-							Car_Go(5);
+							Car_Go(1);
 						}
 						if(Flag.Stop_Flag ==1)
 						{
@@ -1062,7 +1133,10 @@ int main(void)
 					{
 						if(Flag.Stop_Flag ==1)
 						{
-							Car_Go(30);
+							if(Flag.CrossRoad_Flag == 1){
+								Flag.CrossRoad_Flag = 0;
+							}
+							Car_Go(40);
 							Flag.Step_Count++;
 						}
 					}break;
@@ -1093,7 +1167,10 @@ int main(void)
 					{
 						if(Flag.Stop_Flag ==1)
 						{
-							Car_Go(55);
+							if(Flag.CrossRoad_Flag == 1){
+								Flag.CrossRoad_Flag = 0;
+							}
+							Car_Go(80);
 							Flag.Step_Count++;
 						}
 					}break;
@@ -1120,10 +1197,13 @@ int main(void)
 					{
 						if(Flag.Stop_Flag ==1)
 						{
+							if(Flag.CrossRoad_Flag == 1){
+								Flag.CrossRoad_Flag = 0;
+							}
 							Flag.Stop_Flag = 1;//置标志位
 							Flag.Start_Line_Flag = 0;
 							Flag.Stop_Count = 0;
-							Car_Go(260);//直走250
+							Car_Go(240);//直走250
 						}
 						if(Encoder.Distance[2]>=230.f)
 						{
@@ -1136,7 +1216,7 @@ int main(void)
 						if(Flag.CrossRoad_Flag ==1)
 						{
 							Flag.CrossRoad_Flag = 0;
-							Car_Go(5);//到点停止
+							Car_Go(1);//到点停止
 							LED_G_On();
 						}
 					}break;
@@ -1148,7 +1228,7 @@ int main(void)
 						{
 							if(Flag.Stop_Flag ==1)
 							{
-								Car_Go(50);
+								Car_Go(40);
 								Flag.Step_Count++;
 							}
 						}break;
@@ -1183,7 +1263,7 @@ int main(void)
 						{
 							if(Flag.Stop_Flag ==1)
 							{
-								Car_Go(30);
+								Car_Go(40);
 								Flag.Step_Count++;
 							}
 						}break;
@@ -1214,7 +1294,7 @@ int main(void)
 						{
 							if(Flag.Stop_Flag ==1)
 							{
-								Car_Go(55);
+								Car_Go(80);
 								Flag.Step_Count++;
 							}
 						}break;
@@ -1244,7 +1324,7 @@ int main(void)
 								Flag.Stop_Flag = 1;//置标志位
 								Flag.Start_Line_Flag = 0;
 								Flag.Stop_Count = 0;
-								Car_Go(260);//直走250
+								Car_Go(240);//直走250
 							}
 							if(Encoder.Distance[2]>=230.f)
 							{
@@ -1257,7 +1337,7 @@ int main(void)
 							if(Flag.CrossRoad_Flag ==1)
 							{
 								Flag.CrossRoad_Flag = 0;
-								Car_Go(5);//到点停止
+								Car_Go(1);//到点停止
 								LED_G_On();
 							}
 						}break;
@@ -1270,34 +1350,6 @@ int main(void)
 	}
 	
 }
-extern char Cardata[30];
-extern uint8_t Cardat;
-extern uint8_t rx_pointer; 	
-char Car1_Stop;
-char Car2_Start;
-char Car1_Num;
-void Uart_Rx_Process(void)
-{
-	if(rx_pointer>0)
-	{
-		if(rx_pointer == 3)
-		{
-			sscanf(Cardata,"%c%c%c",&Car1_Stop,&Car2_Start,&Car1_Num);
-			char temp[30];
-			sprintf(temp,"Sucess!1:%c2:%c3:%c",Car1_Stop,Car2_Start,Car1_Num);
-			UART_transmitData(EUSCI_A0_BASE,'a');
-		}
-		else
-		{
-			char temp[30];
-			sprintf(temp,"Error!");
-			UART_transmitData(EUSCI_A0_BASE,'b');
-		}
-		rx_pointer = 0;
-		memset(Cardata,0,30);
-	}
-}
-
 void PID_Data_Send(void)
 {
 		int temp1 = Encoder.Speed[2];    // 上位机需要整数参数，转换一下
@@ -1347,7 +1399,7 @@ void Menudisplay(void)
 			{
 				set_motor_enable();
 				OLED_ShowString(0,0,"Function1",16);
-				OLED_ShowBin(1,2,Reflectance_Data,8,16);
+				OLED_ShowBin(0,2,Reflectance_Data,8,16);
 				
 				{//前轮编码器
 //					OLED_ShowBNum(0,4,Encoder.Speed[0],3,16);
@@ -1382,7 +1434,7 @@ void Menudisplay(void)
 				if(Keys[1].Single_Flag == 1)
 				{
 					Keys[1].Single_Flag = 0;
-					Car_Go(80);  
+					Car_Go(578);  
 				}
 				if(Keys[1].Double_Flag == 1)
 				{

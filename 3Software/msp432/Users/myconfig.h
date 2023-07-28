@@ -46,8 +46,37 @@ typedef enum
 	Main_State,
 	State1,
 	State2,
+	State3,
+	State4,
 }Menu_State;
-
+typedef enum 
+{
+    car_none1,
+    car_ready1,
+    car_run1,
+    car_stop1,
+}car1_task1_e;
+typedef enum 
+{
+    car_none2,
+    car_ready2,
+    car_run2,
+    car_stop2,
+}car1_task2_e;
+typedef enum 
+{
+    car_none3,
+    car_ready3,
+    car_run3,
+    car_stop3,
+}car1_task3_e;
+typedef enum 
+{
+    car_none4,
+    car_ready4,
+    car_run4,
+    car_stop4,
+}car1_task4_e;
 typedef struct 
 {
 	uint8_t Is_EnMOTOR;
@@ -68,6 +97,7 @@ typedef struct
 	uint8_t Bias_Middle;
 	int16_t Bias;//偏差
 	int16_t Last_Bias;//偏差
+	uint8_t crossroad_count;
 	uint8_t CrossRoad_Flag;
 	
 	uint8_t Load_drug;
@@ -105,6 +135,16 @@ typedef struct
 	uint8_t Num_Angle[8];
 	uint8_t Num_Angle2[8];
 	uint8_t Num_Angle3[8];
+	
+	uint8_t car1_start_flag;
+	uint8_t car2_start_flag;
+	uint8_t car3_start_flag;
+	uint8_t car4_start_flag;
+
+    uint8_t flag_car1_task1;
+    uint8_t flag_car1_task2;
+    uint8_t flag_car1_task3;
+    uint8_t flag_car1_task4;
 
 }Flag_Init;
 
@@ -112,6 +152,9 @@ typedef struct
 extern 	uint8_t Key;
 extern	uint8_t Reflectance_Data;
 extern 	uint8_t Last_Reflectance_Data;
+extern  car1_task1_e flag_car1_task1;
+
+extern Encoder_Init Encoder;
 
 extern Flag_Init Flag;
 extern  SensorData SensorData1;

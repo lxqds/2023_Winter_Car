@@ -549,12 +549,12 @@ ARM Macro Assembler    Page 9
               00000000 
 Command Line: --debug --xref --diag_suppress=9931,A1950W --cpu=Cortex-M4.fp.sp 
 --depend=..\output\startup_msp432p401r_uvision.d -o..\output\startup_msp432p401
-r_uvision.o -I.\RTE\_Target_1 -ID:\Keil\ARM\Pack\ARM\CMSIS\5.9.0\CMSIS\Core\Inc
-lude -ID:\Keil\ARM\Pack\TexasInstruments\MSP432P4xx_DFP\3.2.6\Device\Include --
-predefine="__MICROLIB SETA 1" --predefine="__UVISION_VERSION SETA 538" --predef
-ine="_RTE_ SETA 1" --predefine="_RTE_ SETA 1" --predefine="__MSP432P401R__ SETA
- 1" --list=.\listings\startup_msp432p401r_uvision.lst RTE/Device/MSP432P401R/st
-artup_msp432p401r_uvision.s
+r_uvision.o -I.\RTE\_Target_1 -IG:\APP_Data\Arm_Pack\ARM\CMSIS\5.9.0\CMSIS\Core
+\Include -IG:\APP_Data\Arm_Pack\TexasInstruments\MSP432P4xx_DFP\3.2.6\Device\In
+clude --predefine="__MICROLIB SETA 1" --predefine="__UVISION_VERSION SETA 538" 
+--predefine="_RTE_ SETA 1" --predefine="_RTE_ SETA 1" --predefine="__MSP432P401
+R__ SETA 1" --list=.\listings\startup_msp432p401r_uvision.lst RTE/Device/MSP432
+P401R/startup_msp432p401r_uvision.s
 
 
 

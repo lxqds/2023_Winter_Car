@@ -3,7 +3,7 @@
  * Auto generated Run-Time-Environment Configuration File
  *      *** Do not modify ! ***
  *
- * Project: 'msp_432_Car' 
+ * Project: 'msp_432_Car¶þ³µ' 
  * Target:  'Target 1' 
  */
 

@@ -1,44 +1,43 @@
-..\output\delay.o: ..\Hardware\sys\delay.c
-..\output\delay.o: ..\Hardware\sys\delay.h
-..\output\delay.o: ..\Libraries\ti_driverlib\simplelink_msp432p4_sdk_3_40_01_02\ti/devices/msp432p4xx/driverlib/driverlib.h
-..\output\delay.o: ..\Libraries\ti_driverlib\simplelink_msp432p4_sdk_3_40_01_02\ti/devices/msp432p4xx/driverlib/adc14.h
-..\output\delay.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
-..\output\delay.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdbool.h
-..\output\delay.o: ..\Libraries\ti_driverlib\simplelink_msp432p4_sdk_3_40_01_02\ti/devices/msp432p4xx/inc/msp.h
-..\output\delay.o: ..\Libraries\ti_driverlib\simplelink_msp432p4_sdk_3_40_01_02\ti/devices/msp432p4xx/inc/msp432p401r.h
-..\output\delay.o: ..\Libraries\ti_driverlib\simplelink_msp432p4_sdk_3_40_01_02\ti/devices/msp432p4xx/inc/msp_compatibility.h
-..\output\delay.o: ..\Libraries\ti_driverlib\simplelink_msp432p4_sdk_3_40_01_02\ti/devices/msp432p4xx/inc/msp432p401r_classic.h
-..\output\delay.o: G:\APP_Data\Arm_Pack\ARM\CMSIS\5.9.0\CMSIS\Core\Include\core_cm4.h
-..\output\delay.o: G:\APP_Data\Arm_Pack\ARM\CMSIS\5.9.0\CMSIS\Core\Include\cmsis_version.h
-..\output\delay.o: G:\APP_Data\Arm_Pack\ARM\CMSIS\5.9.0\CMSIS\Core\Include\cmsis_compiler.h
-..\output\delay.o: G:\APP_Data\Arm_Pack\ARM\CMSIS\5.9.0\CMSIS\Core\Include\cmsis_armcc.h
-..\output\delay.o: G:\APP_Data\Arm_Pack\ARM\CMSIS\5.9.0\CMSIS\Core\Include\mpu_armv7.h
-..\output\delay.o: ..\Libraries\ti_driverlib\simplelink_msp432p4_sdk_3_40_01_02\ti/devices/msp432p4xx/inc/system_msp432p401r.h
-..\output\delay.o: ..\Libraries\ti_driverlib\simplelink_msp432p4_sdk_3_40_01_02\ti/devices/msp432p4xx/driverlib/aes256.h
-..\output\delay.o: ..\Libraries\ti_driverlib\simplelink_msp432p4_sdk_3_40_01_02\ti/devices/msp432p4xx/driverlib/comp_e.h
-..\output\delay.o: ..\Libraries\ti_driverlib\simplelink_msp432p4_sdk_3_40_01_02\ti/devices/msp432p4xx/driverlib/cpu.h
-..\output\delay.o: ..\Libraries\ti_driverlib\simplelink_msp432p4_sdk_3_40_01_02\ti/devices/msp432p4xx/driverlib/crc32.h
-..\output\delay.o: ..\Libraries\ti_driverlib\simplelink_msp432p4_sdk_3_40_01_02\ti/devices/msp432p4xx/driverlib/cs.h
-..\output\delay.o: ..\Libraries\ti_driverlib\simplelink_msp432p4_sdk_3_40_01_02\ti/devices/msp432p4xx/driverlib/dma.h
-..\output\delay.o: ..\Libraries\ti_driverlib\simplelink_msp432p4_sdk_3_40_01_02\ti/devices/msp432p4xx/driverlib/interrupt.h
-..\output\delay.o: ..\Libraries\ti_driverlib\simplelink_msp432p4_sdk_3_40_01_02\ti/devices/msp432p4xx/driverlib/eusci.h
-..\output\delay.o: ..\Libraries\ti_driverlib\simplelink_msp432p4_sdk_3_40_01_02\ti/devices/msp432p4xx/driverlib/fpu.h
-..\output\delay.o: ..\Libraries\ti_driverlib\simplelink_msp432p4_sdk_3_40_01_02\ti/devices/msp432p4xx/driverlib/gpio.h
-..\output\delay.o: ..\Libraries\ti_driverlib\simplelink_msp432p4_sdk_3_40_01_02\ti/devices/msp432p4xx/driverlib/i2c.h
-..\output\delay.o: ..\Libraries\ti_driverlib\simplelink_msp432p4_sdk_3_40_01_02\ti/devices/msp432p4xx/driverlib/mpu.h
-..\output\delay.o: ..\Libraries\ti_driverlib\simplelink_msp432p4_sdk_3_40_01_02\ti/devices/msp432p4xx/driverlib/pcm.h
-..\output\delay.o: ..\Libraries\ti_driverlib\simplelink_msp432p4_sdk_3_40_01_02\ti/devices/msp432p4xx/driverlib/pmap.h
-..\output\delay.o: ..\Libraries\ti_driverlib\simplelink_msp432p4_sdk_3_40_01_02\ti/devices/msp432p4xx/driverlib/pss.h
-..\output\delay.o: ..\Libraries\ti_driverlib\simplelink_msp432p4_sdk_3_40_01_02\ti/devices/msp432p4xx/driverlib/ref_a.h
-..\output\delay.o: ..\Libraries\ti_driverlib\simplelink_msp432p4_sdk_3_40_01_02\ti/devices/msp432p4xx/driverlib/reset.h
-..\output\delay.o: ..\Libraries\ti_driverlib\simplelink_msp432p4_sdk_3_40_01_02\ti/devices/msp432p4xx/driverlib/rom.h
-..\output\delay.o: ..\Libraries\ti_driverlib\simplelink_msp432p4_sdk_3_40_01_02\ti/devices/msp432p4xx/driverlib/rom_map.h
-..\output\delay.o: ..\Libraries\ti_driverlib\simplelink_msp432p4_sdk_3_40_01_02\ti/devices/msp432p4xx/driverlib/rtc_c.h
-..\output\delay.o: ..\Libraries\ti_driverlib\simplelink_msp432p4_sdk_3_40_01_02\ti/devices/msp432p4xx/driverlib/spi.h
-..\output\delay.o: ..\Libraries\ti_driverlib\simplelink_msp432p4_sdk_3_40_01_02\ti/devices/msp432p4xx/driverlib/systick.h
-..\output\delay.o: ..\Libraries\ti_driverlib\simplelink_msp432p4_sdk_3_40_01_02\ti/devices/msp432p4xx/driverlib/timer32.h
-..\output\delay.o: ..\Libraries\ti_driverlib\simplelink_msp432p4_sdk_3_40_01_02\ti/devices/msp432p4xx/driverlib/timer_a.h
-..\output\delay.o: ..\Libraries\ti_driverlib\simplelink_msp432p4_sdk_3_40_01_02\ti/devices/msp432p4xx/driverlib/uart.h
-..\output\delay.o: ..\Libraries\ti_driverlib\simplelink_msp432p4_sdk_3_40_01_02\ti/devices/msp432p4xx/driverlib/wdt_a.h
-..\output\delay.o: ..\Libraries\ti_driverlib\simplelink_msp432p4_sdk_3_40_01_02\ti/devices/msp432p4xx/driverlib/sysctl.h
-..\output\delay.o: ..\Libraries\ti_driverlib\simplelink_msp432p4_sdk_3_40_01_02\ti/devices/msp432p4xx/driverlib/flash.h
+../output/delay.o: ..\Hardware\sys\delay.c ..\Hardware\sys\delay.h \
+  ..\Libraries\ti_driverlib\simplelink_msp432p4_sdk_3_40_01_02\ti\devices\msp432p4xx\driverlib\driverlib.h \
+  ..\Libraries\ti_driverlib\simplelink_msp432p4_sdk_3_40_01_02\ti\devices\msp432p4xx\driverlib\adc14.h \
+  C:\Keil_v5\ARM\ARMCLANG\Bin\..\include\stdint.h \
+  C:\Keil_v5\ARM\ARMCLANG\Bin\..\include\stdbool.h \
+  ..\Libraries\ti_driverlib\simplelink_msp432p4_sdk_3_40_01_02\ti\devices\msp432p4xx\inc\msp.h \
+  ..\Libraries\ti_driverlib\simplelink_msp432p4_sdk_3_40_01_02\ti\devices\msp432p4xx\inc\msp432p401r.h \
+  ..\Libraries\ti_driverlib\simplelink_msp432p4_sdk_3_40_01_02\ti\devices\msp432p4xx\inc\msp_compatibility.h \
+  ..\Libraries\ti_driverlib\simplelink_msp432p4_sdk_3_40_01_02\ti\devices\msp432p4xx\inc\msp432p401r_classic.h \
+  G:\APP_Data\Arm_Pack\ARM\CMSIS\5.9.0\CMSIS\Core\Include\core_cm4.h \
+  G:\APP_Data\Arm_Pack\ARM\CMSIS\5.9.0\CMSIS\Core\Include\cmsis_version.h \
+  G:\APP_Data\Arm_Pack\ARM\CMSIS\5.9.0\CMSIS\Core\Include\cmsis_compiler.h \
+  G:\APP_Data\Arm_Pack\ARM\CMSIS\5.9.0\CMSIS\Core\Include\cmsis_armclang.h \
+  G:\APP_Data\Arm_Pack\ARM\CMSIS\5.9.0\CMSIS\Core\Include\mpu_armv7.h \
+  ..\Libraries\ti_driverlib\simplelink_msp432p4_sdk_3_40_01_02\ti\devices\msp432p4xx\inc\system_msp432p401r.h \
+  ..\Libraries\ti_driverlib\simplelink_msp432p4_sdk_3_40_01_02\ti\devices\msp432p4xx\driverlib\aes256.h \
+  ..\Libraries\ti_driverlib\simplelink_msp432p4_sdk_3_40_01_02\ti\devices\msp432p4xx\driverlib\comp_e.h \
+  ..\Libraries\ti_driverlib\simplelink_msp432p4_sdk_3_40_01_02\ti\devices\msp432p4xx\driverlib\cpu.h \
+  ..\Libraries\ti_driverlib\simplelink_msp432p4_sdk_3_40_01_02\ti\devices\msp432p4xx\driverlib\crc32.h \
+  ..\Libraries\ti_driverlib\simplelink_msp432p4_sdk_3_40_01_02\ti\devices\msp432p4xx\driverlib\cs.h \
+  ..\Libraries\ti_driverlib\simplelink_msp432p4_sdk_3_40_01_02\ti\devices\msp432p4xx\driverlib\dma.h \
+  ..\Libraries\ti_driverlib\simplelink_msp432p4_sdk_3_40_01_02\ti\devices\msp432p4xx\driverlib\interrupt.h \
+  ..\Libraries\ti_driverlib\simplelink_msp432p4_sdk_3_40_01_02\ti\devices\msp432p4xx\driverlib\eusci.h \
+  ..\Libraries\ti_driverlib\simplelink_msp432p4_sdk_3_40_01_02\ti\devices\msp432p4xx\driverlib\fpu.h \
+  ..\Libraries\ti_driverlib\simplelink_msp432p4_sdk_3_40_01_02\ti\devices\msp432p4xx\driverlib\gpio.h \
+  ..\Libraries\ti_driverlib\simplelink_msp432p4_sdk_3_40_01_02\ti\devices\msp432p4xx\driverlib\i2c.h \
+  ..\Libraries\ti_driverlib\simplelink_msp432p4_sdk_3_40_01_02\ti\devices\msp432p4xx\driverlib\mpu.h \
+  ..\Libraries\ti_driverlib\simplelink_msp432p4_sdk_3_40_01_02\ti\devices\msp432p4xx\driverlib\pcm.h \
+  ..\Libraries\ti_driverlib\simplelink_msp432p4_sdk_3_40_01_02\ti\devices\msp432p4xx\driverlib\pmap.h \
+  ..\Libraries\ti_driverlib\simplelink_msp432p4_sdk_3_40_01_02\ti\devices\msp432p4xx\driverlib\pss.h \
+  ..\Libraries\ti_driverlib\simplelink_msp432p4_sdk_3_40_01_02\ti\devices\msp432p4xx\driverlib\ref_a.h \
+  ..\Libraries\ti_driverlib\simplelink_msp432p4_sdk_3_40_01_02\ti\devices\msp432p4xx\driverlib\reset.h \
+  ..\Libraries\ti_driverlib\simplelink_msp432p4_sdk_3_40_01_02\ti\devices\msp432p4xx\driverlib\rom.h \
+  ..\Libraries\ti_driverlib\simplelink_msp432p4_sdk_3_40_01_02\ti\devices\msp432p4xx\driverlib\rom_map.h \
+  ..\Libraries\ti_driverlib\simplelink_msp432p4_sdk_3_40_01_02\ti\devices\msp432p4xx\driverlib\rtc_c.h \
+  ..\Libraries\ti_driverlib\simplelink_msp432p4_sdk_3_40_01_02\ti\devices\msp432p4xx\driverlib\spi.h \
+  ..\Libraries\ti_driverlib\simplelink_msp432p4_sdk_3_40_01_02\ti\devices\msp432p4xx\driverlib\systick.h \
+  ..\Libraries\ti_driverlib\simplelink_msp432p4_sdk_3_40_01_02\ti\devices\msp432p4xx\driverlib\timer32.h \
+  ..\Libraries\ti_driverlib\simplelink_msp432p4_sdk_3_40_01_02\ti\devices\msp432p4xx\driverlib\timer_a.h \
+  ..\Libraries\ti_driverlib\simplelink_msp432p4_sdk_3_40_01_02\ti\devices\msp432p4xx\driverlib\uart.h \
+  ..\Libraries\ti_driverlib\simplelink_msp432p4_sdk_3_40_01_02\ti\devices\msp432p4xx\driverlib\wdt_a.h \
+  ..\Libraries\ti_driverlib\simplelink_msp432p4_sdk_3_40_01_02\ti\devices\msp432p4xx\driverlib\sysctl.h \
+  ..\Libraries\ti_driverlib\simplelink_msp432p4_sdk_3_40_01_02\ti\devices\msp432p4xx\driverlib\flash.h

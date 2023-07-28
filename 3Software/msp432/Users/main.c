@@ -4,6 +4,8 @@
 void Menudisplay(void);
 void PID_Data_Send(void);
 void Back_Routine(uint8_t Routine);
+void track_car_task();
+void Send_medicine_car_task();
 
 int main(void)
 {
@@ -65,9 +67,64 @@ int main(void)
 	}
 	for(;;)
 	{//主循环
+		
+		//菜单显示
 		Menudisplay();
 //		PID_Data_Send();
-		{//识别数字滤波
+		//循迹双车
+		track_car_task();
+		//送药车
+		Send_medicine_car_task();
+	}
+	
+}
+void track_car_task()
+{
+	if(Flag.car1_start_flag	==1){
+		Flag.car2_start_flag	=0;
+		Flag.car3_start_flag	=0;
+		Flag.car4_start_flag	=0;
+		
+
+        if(flag_car1_task1 ==car_none1){
+            Car_Go(600);
+            flag_car1_task1 = car_run1;
+        }
+        if(flag_car1_task1 == car_run1){
+						LED_G_On();
+            if(Encoder.Distance[0] > 578){
+                Flag.Is_EnMOTOR = 0;
+                
+                flag_car1_task1 = car_stop1;
+            }else{
+							
+								if(Flag.CrossRoad_Flag ==1){
+									
+								}
+								else{
+									LED_B_Off();
+									LED_G_On();
+								}
+						}
+        }
+				if(flag_car1_task1 == car_stop1){
+					LED_G_Off();	
+					LED_R_On();
+				}
+
+		
+	}else if(Flag.car2_start_flag == 1){
+		
+	}else if(Flag.car3_start_flag == 1){
+		
+	}else if(Flag.car4_start_flag == 1){
+		
+	}
+	
+}
+void Send_medicine_car_task()
+{
+			{//识别数字滤波
 			if(SensorData1.D.Float_Data)
 			{
 				static uint8_t Last_Num2,Temp_Num2;//创建临时变量存储判断数字
@@ -1347,7 +1404,6 @@ int main(void)
 			}
 			
 		}
-	}
 	
 }
 void PID_Data_Send(void)
@@ -1394,6 +1450,14 @@ void Menudisplay(void)
 					Keys[0].Long_Press_Flag = 0;
 					New_State = Main_State;
 				}
+				else if(Keys[1].Single_Flag == 1){
+					Keys[1].Single_Flag = 0;
+					New_State = State3;
+				}
+				else if(Keys[1].Double_Flag == 1){
+					Keys[1].Double_Flag = 0;
+					New_State = State4;
+				}
 			}break;
 			case State1:
 			{
@@ -1434,7 +1498,7 @@ void Menudisplay(void)
 				if(Keys[1].Single_Flag == 1)
 				{
 					Keys[1].Single_Flag = 0;
-					Car_Go(578);  
+					Car_Go(80);				
 				}
 				if(Keys[1].Double_Flag == 1)
 				{
@@ -1490,5 +1554,85 @@ void Menudisplay(void)
 					New_State = Main_State;
 				}
 			}break;
+			case State3:
+			{
+				set_motor_enable();
+				OLED_ShowString(0,0,"Function3",16);
+				OLED_ShowBin(0,2,Reflectance_Data,8,16);
+				
+				OLED_ShowNum(96,0,flag_car1_task1,3,16);
+				
+				{//后轮编码器
+					OLED_ShowBNum(0,4,Encoder.Speed[2],3,16);
+					OLED_ShowBNum(0,6,Encoder.Speed[3],3,16);
+					OLED_ShowBNum(48,4,Encoder.Distance[2],3,16);
+					OLED_ShowBNum(48,6,Encoder.Distance[3],3,16);
+				}
+				
+				if(Keys[0].Single_Flag == 1)
+				{
+					Keys[0].Single_Flag = 0;
+					Flag.car1_start_flag	=1;				
+				}else if(Keys[0].Double_Flag == 1){
+					Keys[0].Double_Flag = 0;
+					Flag.car2_start_flag	=1;
+				}
+				else if(Keys[1].Single_Flag == 1){
+					Keys[1].Single_Flag = 0;
+					Flag.car3_start_flag	=1;
+				}
+				else if(Keys[1].Double_Flag == 1){
+					Keys[1].Double_Flag = 0;
+					Flag.car4_start_flag	=1;
+				}
+				else if(Keys[0].Long_Press_Flag == 1){
+					Keys[0].Long_Press_Flag = 0;
+					New_State = Main_State;
+				}
+				else if(Keys[1].Long_Press_Flag == 1){
+					Keys[1].Long_Press_Flag = 0;
+					New_State = Main_State;
+				}
+				
+			}break;
+			case State4:
+			{
+				set_motor_enable();
+				OLED_ShowString(0,0,"Function4",16);
+				OLED_ShowBin(0,2,Reflectance_Data,8,16);
+				
+				{//后轮编码器
+					OLED_ShowBNum(0,4,Encoder.Speed[2],3,16);
+					OLED_ShowBNum(0,6,Encoder.Speed[3],3,16);
+					OLED_ShowBNum(48,4,Encoder.Distance[2],3,16);
+					OLED_ShowBNum(48,6,Encoder.Distance[3],3,16);
+				}
+				
+				if(Keys[0].Single_Flag == 1)
+				{
+					Keys[0].Single_Flag = 0;
+					Car_Go(578);				
+				}else if(Keys[0].Double_Flag == 1){
+					Keys[0].Double_Flag = 0;
+					Car_Spin(0);
+				}
+				else if(Keys[1].Single_Flag == 1){
+					Keys[1].Single_Flag = 0;
+					Car_Spin(1);
+				}
+				else if(Keys[1].Double_Flag == 1){
+					Keys[1].Double_Flag = 0;
+					Car_Spin(2);
+				}
+				else if(Keys[0].Long_Press_Flag == 1){
+					Keys[0].Long_Press_Flag = 0;
+					New_State = Main_State;
+				}
+				else if(Keys[1].Long_Press_Flag == 1){
+					Keys[1].Long_Press_Flag = 0;
+					New_State = Main_State;
+				}
+			}break;
+				
 		}
 }

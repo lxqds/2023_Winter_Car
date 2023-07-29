@@ -100,6 +100,7 @@ typedef struct
 	int16_t Last_Bias;//偏差
 	uint8_t crossroad_count;
 	uint8_t CrossRoad_Flag;
+	uint8_t no_crossroad_count;
 	
 	uint8_t Load_drug;
 	uint8_t Target_Num;

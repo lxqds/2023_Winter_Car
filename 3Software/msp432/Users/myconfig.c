@@ -87,6 +87,12 @@ void TA0_0_IRQHandler(void)
 		if(Flag.crossroad_count > 5){
 			Flag.CrossRoad_Flag = 1;
 		}
+	}else{
+			Flag.no_crossroad_count++;
+		if(Flag.no_crossroad_count>50){
+			Flag.CrossRoad_Flag = 0;
+		}
+		
 	}
 	//循迹偏差
 	switch(Reflectance_Data)
@@ -511,11 +517,11 @@ void T32_INT1_IRQHandler(void)
 void EUSCIA0_IRQHandler(void)
 {
     uint32_t status = UART_getEnabledInterruptStatus(EUSCI_A0_BASE);
-	uint8_t dr;
+		uint8_t dr;
     if(status & EUSCI_A_UART_RECEIVE_INTERRUPT_FLAG) //接收中断
     {
-		dr = MAP_UART_receiveData(EUSCI_A0_BASE);
-		protocol_data_recv(&dr,1);
+		//dr = MAP_UART_receiveData(EUSCI_A0_BASE);
+		//protocol_data_recv(&dr,1);
     }
 }
 void EUSCIA2_IRQHandler(void)
@@ -524,7 +530,8 @@ void EUSCIA2_IRQHandler(void)
 	
     if(status & EUSCI_A_UART_RECEIVE_INTERRUPT_FLAG) //接收中断
     {
-		Recive_Byte = MAP_UART_receiveData(EUSCI_A2_BASE);
+			Recive_Byte = MAP_UART_receiveData(EUSCI_A2_BASE);
+			run_rece(Recive_Byte);
     }
 }
 

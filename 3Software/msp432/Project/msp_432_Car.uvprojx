@@ -341,7 +341,7 @@
               <MiscControls></MiscControls>
               <Define></Define>
               <Undefine></Undefine>
-              <IncludePath>..\Libraries\ti_driverlib\simplelink_msp432p4_sdk_3_40_01_02;..\Users;..\Hardware\encoder;..\Hardware\key;..\Hardware\led;..\Hardware\motor;..\Hardware\oled;..\Hardware\reflectance;..\Hardware\servo;..\Hardware\sys;..\Hardware\tim32;..\Hardware\timA;..\Hardware\uart1;..\Hardware\IIC;..\Hardware\IIC\eMPL;..\Hardware\protocol;..\Hardware\pid;..\Users\Control;..\Users\app;..\Hardware\k210</IncludePath>
+              <IncludePath>..\Libraries\ti_driverlib\simplelink_msp432p4_sdk_3_40_01_02;..\Users;..\Hardware\encoder;..\Hardware\key;..\Hardware\led;..\Hardware\motor;..\Hardware\oled;..\Hardware\reflectance;..\Hardware\servo;..\Hardware\sys;..\Hardware\tim32;..\Hardware\timA;..\Hardware\uart1;..\Hardware\IIC;..\Hardware\IIC\eMPL;..\Hardware\protocol;..\Hardware\pid;..\Users\Control;..\Users\app;..\Hardware\k210;..\Hardware\communicate</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -603,6 +603,21 @@
           </Files>
         </Group>
         <Group>
+          <GroupName>communicate</GroupName>
+          <Files>
+            <File>
+              <FileName>communicate.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Hardware\communicate\communicate.c</FilePath>
+            </File>
+            <File>
+              <FileName>communicate.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\Hardware\communicate\communicate.h</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
           <GroupName>::CMSIS</GroupName>
         </Group>
         <Group>
@@ -719,5 +734,14 @@
       </file>
     </files>
   </RTE>
+
+  <LayerInfo>
+    <Layers>
+      <Layer>
+        <LayName>msp_432_Car</LayName>
+        <LayPrjMark>1</LayPrjMark>
+      </Layer>
+    </Layers>
+  </LayerInfo>
 
 </Project>

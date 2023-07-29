@@ -65,6 +65,7 @@ int main(void)
 		char *p = (char *)&data;
 		printf("0x0%x\n",*p);//判断大小端，0x04为小端，0x01为大端
 	}
+	
 	for(;;)
 	{//主循环
 		
@@ -85,31 +86,30 @@ void track_car_task()
 		Flag.car3_start_flag	=0;
 		Flag.car4_start_flag	=0;
 		
-
-        if(flag_car1_task1 ==car_none1){
-            Car_Go(600);
-            flag_car1_task1 = car_run1;
+        if(flag_car1_task1 == car_none1){
+						run_send(Flag.car1_start_flag,Flag.car1_circle_count,Flag.car1_distance,Encoder.Distance[0]);
+						Car_Go(600);
+						flag_car1_task1 = car_run1;
+						LED_RED_On();
         }
         if(flag_car1_task1 == car_run1){
-						LED_G_On();
             if(Encoder.Distance[0] > 578){
-                Flag.Is_EnMOTOR = 0;
-                
+								LED_RED_Off();
                 flag_car1_task1 = car_stop1;
             }else{
 							
 								if(Flag.CrossRoad_Flag ==1){
-									
+									LED_R_On();
 								}
 								else{
-									LED_B_Off();
-									LED_G_On();
+									LED_RED_Off();
 								}
 						}
         }
 				if(flag_car1_task1 == car_stop1){
-					LED_G_Off();	
-					LED_R_On();
+					Flag.car1_start_flag = 0;
+					Flag.Is_EnMOTOR = 0;
+					run_send(Flag.car1_start_flag,Flag.car1_circle_count,Flag.car1_distance,Encoder.Distance[0]);
 				}
 
 		
@@ -1498,7 +1498,7 @@ void Menudisplay(void)
 				if(Keys[1].Single_Flag == 1)
 				{
 					Keys[1].Single_Flag = 0;
-					Car_Go(80);				
+					Car_Go(578);				
 				}
 				if(Keys[1].Double_Flag == 1)
 				{
@@ -1567,6 +1567,12 @@ void Menudisplay(void)
 					OLED_ShowBNum(0,6,Encoder.Speed[3],3,16);
 					OLED_ShowBNum(48,4,Encoder.Distance[2],3,16);
 					OLED_ShowBNum(48,6,Encoder.Distance[3],3,16);
+				}
+				{//车辆状态
+					OLED_ShowNum(80,4,Flag.car1_start_flag,2,16);
+					OLED_ShowNum(80,6,Flag.car1_circle_count,2,16);
+					OLED_ShowNum(104,4,(uint32_t)Flag.car1_distance,2,16);
+					//OLED_ShowNum(104,6,(uint32_t)Encoder.Distance[0],2,16);
 				}
 				
 				if(Keys[0].Single_Flag == 1)

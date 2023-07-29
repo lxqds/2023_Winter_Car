@@ -40,6 +40,7 @@
 #include "control.h"
 
 #include "k210.h"
+#include "communicate.h"
 /* define定义 -----------------------------------------------------------------------------------------------------------------*/
 typedef enum 
 {
@@ -145,6 +146,11 @@ typedef struct
     uint8_t flag_car1_task2;
     uint8_t flag_car1_task3;
     uint8_t flag_car1_task4;
+		
+		uint8_t car1_circle_count;
+		float car1_distance;
+		
+		uint8_t car2_ready;
 
 }Flag_Init;
 

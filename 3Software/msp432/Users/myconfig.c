@@ -318,7 +318,7 @@ void TA0_0_IRQHandler(void)
 			Encoder.Distance[2] = Distance_Averge;
 			Encoder.Distance[3] = Distance_Averge;
 		}
-		if((Encoder.Speed[2]==0||Encoder.Speed[3]==0)&&((Encoder.Distance[2]>fabs(Flag.Target_Distance_Left-0.5f))&&(Encoder.Distance[3]>fabs(Flag.Target_Distance_Right-0.5f))))
+		if((Encoder.Speed[2]==0&&Encoder.Speed[3]==0)||((Encoder.Distance[2]>=fabs(Flag.Target_Distance_Left-0.5f))&&(Encoder.Distance[3]>fabs(Flag.Target_Distance_Right-0.5f))))
 		{
 			Flag.Stop_Count++;
 			if(Flag.Stop_Count>100)
@@ -326,7 +326,7 @@ void TA0_0_IRQHandler(void)
 				Flag.Stop_Flag = 1;//置标志位
 				Flag.Spin_Start_Flag = 0;//开始转弯				
 				Flag.Stop_Count = 0;//停止计时
-				LED_G_On();//点灯
+				LED_R_On();//点灯
 				
 				Flag.Is_EnMOTOR = 0;//电机失能
 				PID_Clear(&speed_pid);
@@ -341,6 +341,7 @@ void TA0_0_IRQHandler(void)
 		}
 		else
 		{
+			LED_R_Off();//点灯
 			Flag.Stop_Flag = 0;
 		}
 //		if((Encoder.Distance[2] >= (Flag.Target_Distance_Left-0.5f )&&(Encoder.Distance[2] <= (Flag.Target_Distance_Left+0.5f )))||(Encoder.Distance[3] >= (Flag.Target_Distance_Right-0.5f )&&Encoder.Distance[3] >= (Flag.Target_Distance_Right+0.5f )))
@@ -351,7 +352,7 @@ void TA0_0_IRQHandler(void)
 //				Flag.Stop_Flag = 1;//置标志位
 //				Flag.Start_Line_Flag = 0;
 //				Flag.Stop_Count = 0;
-//				LED_G_On();
+//				LED_R_On();
 //				
 //				Flag.Is_EnMOTOR = 0;//电机失能
 //			}
@@ -399,7 +400,7 @@ void TA0_0_IRQHandler(void)
 		//判断1.电机是否停转以及编码器的距离超过10cm或者2.编码器到达10cm以上同时巡线检测到中线
 //		if(((Encoder.Speed[2]==0||Encoder.Speed[3]==0)&&((fabs(Encoder.Distance[2])>=13.f)&&(fabs(Encoder.Distance[3])>13.f)))||(((fabs(Encoder.Distance[2])>13.f)&&(fabs(Encoder.Distance[3])>13.f))&&Reflectance_Data==0b00100000))
 //		if(((fabs(Encoder.Distance[2])>=14.f)&&(fabs(Encoder.Distance[3])>14.f))||((fabs(Encoder.Distance[2])>=10.0f)&&(fabs(Encoder.Distance[2])>=10.0f)&&Reflectance_Data==0b00100000))
-		if((fabs(Encoder.Distance[2])>=10.f||fabs(Encoder.Distance[3])>=10.f)&&(Reflectance_Data==0b00100000||Reflectance_Data==0b01100000||Reflectance_Data==0b00110000))
+		if((fabs(Encoder.Distance[2])>=fabs(Flag.Target_Distance_Left-9)||fabs(Encoder.Distance[3])>=fabs(Flag.Target_Distance_Right-9))&&(Reflectance_Data==0b00100000||Reflectance_Data==0b01100000||Reflectance_Data==0b00110000))
 		{
 			Flag.Stop_Count++;
 			if(Flag.Stop_Count>=1)
@@ -407,7 +408,7 @@ void TA0_0_IRQHandler(void)
 				Flag.Stop_Flag = 1;//置标志位
 				Flag.Spin_Start_Flag = 0;//停止转弯				
 				Flag.Stop_Count = 0;//停止计时
-				LED_G_On();//点灯
+				LED_R_On();//点灯
 				
 				Flag.Is_EnMOTOR = 0;//电机失能
 				PID_Clear(&speed_pid);
@@ -419,7 +420,7 @@ void TA0_0_IRQHandler(void)
 		else
 		{
 			Flag.Stop_Flag = 0;
-			LED_G_Off();
+			LED_R_Off();
 		}
 //		if((Encoder.Distance[2] >= (Flag.Target_Distance_Left-0.5f )&&(Encoder.Distance[2] <= (Flag.Target_Distance_Left+0.5f )))||(Encoder.Distance[3] >= (Flag.Target_Distance_Right-0.5f )&&Encoder.Distance[3] >= (Flag.Target_Distance_Right+0.5f )))
 //		{
@@ -429,7 +430,7 @@ void TA0_0_IRQHandler(void)
 //				Flag.Stop_Flag = 1;//置标志位
 //				Flag.Spin_Start_Flag = 0;//开始转弯				
 //				Flag.Stop_Count = 0;//停止计时
-//				LED_G_On();//点灯
+//				LED_R_On();//点灯
 //				
 //				Flag.Is_EnMOTOR = 0;//电机失能
 //			}	
@@ -460,10 +461,10 @@ void TA0_0_IRQHandler(void)
 //				PWMtemp4 = speed_pid4.output;
 				if(Flag.Target_Distance_Left<0&&Flag.Target_Distance_Right>0)
 				{//转的时候会设置目标，以此设置方向
-					set_pid_target(&speed_pid,-25);
-					set_pid_target(&speed_pid2,25);
-					set_pid_target(&speed_pid3,-25);
-					set_pid_target(&speed_pid4,25);
+					set_pid_target(&speed_pid,-30);
+					set_pid_target(&speed_pid2,30);
+					set_pid_target(&speed_pid3,-30);
+					set_pid_target(&speed_pid4,30);
 					CTRL_compute_Speed();
 					PWMtemp1 = speed_pid.output;
 					PWMtemp2 = speed_pid2.output;
@@ -474,10 +475,10 @@ void TA0_0_IRQHandler(void)
 				}
 				else if(Flag.Target_Distance_Left>0&&Flag.Target_Distance_Right<0)
 				{
-					set_pid_target(&speed_pid,25);
-					set_pid_target(&speed_pid2,-25);
-					set_pid_target(&speed_pid3,25);
-					set_pid_target(&speed_pid4,-25);
+					set_pid_target(&speed_pid,30);
+					set_pid_target(&speed_pid2,-30);
+					set_pid_target(&speed_pid3,30);
+					set_pid_target(&speed_pid4,-30);
 					CTRL_compute_Speed();
 					PWMtemp1 = speed_pid.output;
 					PWMtemp2 = speed_pid2.output;

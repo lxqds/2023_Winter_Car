@@ -88,25 +88,25 @@ void track_car_task()
 		
         if(flag_car1_task1 == car_none1){
 						run_send(Flag.car1_start_flag,Flag.car1_circle_count,Flag.car1_distance,Encoder.Distance[0]);
-						Car_Go(600);
+						Car_Go(578);
 						flag_car1_task1 = car_run1;
-						LED_RED_On();
         }
         if(flag_car1_task1 == car_run1){
-            if(Encoder.Distance[0] > 578){
+            if(Encoder.Distance[0] > 550&&Flag.CrossRoad_Flag ==1){
 								LED_RED_Off();
                 flag_car1_task1 = car_stop1;
             }else{
 							
-								if(Flag.CrossRoad_Flag ==1){
-									LED_R_On();
-								}
-								else{
-									LED_R_Off();
-								}
-						}
+                        if(Flag.CrossRoad_Flag ==1){
+                            LED_R_On();
+                        }
+                        else{
+                            LED_R_Off();
+                        }
+                }
         }
 				if(flag_car1_task1 == car_stop1){
+                    LED_RED_On();
 					Flag.car1_start_flag = 0;
 					Flag.Is_EnMOTOR = 0;
 					run_send(Flag.car1_start_flag,Flag.car1_circle_count,Flag.car1_distance,Encoder.Distance[0]);
@@ -189,7 +189,7 @@ void Send_medicine_car_task()
 								Flag.Stop_Flag = 1;//置标志位
 								Flag.Start_Line_Flag = 0;
 								Flag.Stop_Count = 0;
-								LED_G_On();
+								LED_R_On();
 								
 								Flag.Is_EnMOTOR = 0;//电机失能
 								Flag.Step_Count++;
@@ -204,7 +204,7 @@ void Send_medicine_car_task()
 								Flag.Step_Count++;
 								Car_Go(40);
 								LED_B_Off();
-								LED_G_On();
+								LED_R_On();
 							}
 						}break;
 						case 3:
@@ -219,10 +219,10 @@ void Send_medicine_car_task()
 								Flag.Stop_Flag = 1;//置标志位
 								Flag.Start_Line_Flag = 0;
 								Flag.Stop_Count = 0;
-								LED_G_On();
+								LED_R_On();
 								Flag.Step_Count++;
 								LED_B_Off();
-								LED_G_On();
+								LED_R_On();
 							}
 						}break;
 						case 4:
@@ -261,7 +261,7 @@ void Send_medicine_car_task()
 								Flag.Stop_Flag = 1;//置标志位
 								Flag.Start_Line_Flag = 0;
 								Flag.Stop_Count = 0;
-								LED_G_On();
+								LED_R_On();
 								Flag.Step_Count++;
 								Car_Spin(1);
 								LED_G_Off();
@@ -273,7 +273,7 @@ void Send_medicine_car_task()
 							{
 								Flag.Step_Count++;
 								Car_Go(60);
-								LED_G_On();
+								LED_R_On();
 							}
 						}break;	
 						case 8:
@@ -286,7 +286,7 @@ void Send_medicine_car_task()
 							if(Flag.Stop_Flag ==1)
 							{
 								Flag.Step_Count++;
-								LED_G_On();
+								LED_R_On();
 							}
 						}break;
 					}
@@ -315,7 +315,7 @@ void Send_medicine_car_task()
 								Flag.Stop_Flag = 1;//置标志位
 								Flag.Start_Line_Flag = 0;
 								Flag.Stop_Count = 0;
-								LED_G_On();
+								LED_R_On();
 								
 								Flag.Is_EnMOTOR = 0;//电机失能
 								Flag.Step_Count++;
@@ -333,7 +333,7 @@ void Send_medicine_car_task()
 								Flag.Step_Count++;
 								Car_Go(40);
 								LED_B_Off();
-								LED_G_On();
+								LED_R_On();
 							}
 						}break;
 						case 3:
@@ -348,10 +348,10 @@ void Send_medicine_car_task()
 								Flag.Stop_Flag = 1;//置标志位
 								Flag.Start_Line_Flag = 0;
 								Flag.Stop_Count = 0;
-								LED_G_On();
+								LED_R_On();
 								Flag.Step_Count++;
 								LED_B_Off();
-								LED_G_On();
+								LED_R_On();
 							}
 						}break;
 						case 4:
@@ -388,7 +388,7 @@ void Send_medicine_car_task()
 								Flag.Stop_Flag = 1;//置标志位
 								Flag.Start_Line_Flag = 0;
 								Flag.Stop_Count = 0;
-								LED_G_On();
+								LED_R_On();
 								Flag.Step_Count++;
 								Car_Spin(0);
 								LED_G_Off();
@@ -400,7 +400,7 @@ void Send_medicine_car_task()
 							{
 								Flag.Step_Count++;
 								Car_Go(60);
-								LED_G_On();
+								LED_R_On();
 							}
 						}break;	
 						case 8:
@@ -416,7 +416,7 @@ void Send_medicine_car_task()
 								Flag.Start_Line_Flag = 0;
 								Flag.Stop_Count = 0;
 								Flag.Step_Count++;
-								LED_G_On();
+								LED_R_On();
 							}
 						}break;
 					}
@@ -428,9 +428,9 @@ void Send_medicine_car_task()
 				{
 					{//3-8号路线走法
 					case 0:
-					{//直走115
+					{//直走125
 						Flag.Step_Count++;
-						Car_Go(120);
+						Car_Go(130);
 						Servo_Control2(2,70);
 					}break;
 					case 1:
@@ -521,7 +521,7 @@ void Send_medicine_car_task()
 							Flag.Stop_Count = 0;
 							Flag.Step_Count++;
 							LED_B_Off();
-							LED_G_On();
+							LED_R_On();
 						}
 					}break;
 					case 12:
@@ -587,7 +587,7 @@ void Send_medicine_car_task()
 						if(Flag.Stop_Flag ==1)
 						{
 							LED_B_Off();
-							LED_G_On();
+							LED_R_On();
 						}
 					}break;
 					}
@@ -617,7 +617,7 @@ void Send_medicine_car_task()
 							Flag.Stop_Count = 0;
 							Flag.Step_Count++;
 							LED_B_Off();
-							LED_G_On();
+							LED_R_On();
 						}
 					}break;
 					case 22:
@@ -683,7 +683,7 @@ void Send_medicine_car_task()
 						if(Flag.Stop_Flag ==1)
 						{
 							LED_B_Off();
-							LED_G_On();
+							LED_R_On();
 						}
 					}break;
 					}
@@ -716,9 +716,8 @@ void Send_medicine_car_task()
 							if(Flag.CrossRoad_Flag == 1){
 								Flag.CrossRoad_Flag = 0;
 							}
-							Servo_Control2(2,70);
 							Flag.Step_Count++;//进入下一个状态
-							Car_Go(30);
+							Car_Go(35);
 						}
 					}break;
 					case 33:{
@@ -727,12 +726,14 @@ void Send_medicine_car_task()
 							Flag.Step_Count++;//进入下一个状态
 							Flag.CrossRoad_Flag = 0;
 							Car_Go(10);
+							Servo_Control2(2,70);
 						}
-					}
+					}break;
 					case 34:
 					{
 						if(Flag.Stop_Flag ==1)
 						{
+							
 							Flag.Stop_Flag = 1;//置标志位
 							Flag.Start_Line_Flag = 0;
 							Flag.Stop_Count = 0;
@@ -763,7 +764,7 @@ void Send_medicine_car_task()
 					}break;
 					case 41:
 					{
-						if(SensorData1.D.Float_Data||Flag.Stop_Flag ==1)
+						if((SensorData1.D.Float_Data&&Encoder.Distance[0]>40)||Flag.Stop_Flag ==1)
 						{	
 							Car_Go(1);
 							Flag.Step_Count++;
@@ -907,7 +908,7 @@ void Send_medicine_car_task()
 							Flag.Stop_Flag = 1;//置标志位
 							Flag.Start_Line_Flag = 0;
 							Flag.Stop_Count = 0;
-							LED_G_On();
+							LED_R_On();
 							Flag.Step_Count++;
 						}
 					}break;
@@ -996,7 +997,7 @@ void Send_medicine_car_task()
 							Flag.Stop_Flag = 1;//置标志位
 							Flag.Start_Line_Flag = 0;
 							Flag.Stop_Count = 0;
-							Car_Go(240);//直走240
+							Car_Go(250);//直走240
 						}
 						if(Encoder.Distance[2]>=230.f)
 						{
@@ -1010,7 +1011,7 @@ void Send_medicine_car_task()
 						{
 							Flag.CrossRoad_Flag = 0;
 							Car_Go(1);//到点停止
-							LED_G_On();
+							LED_R_On();
 						}
 					}break;
 
@@ -1039,7 +1040,7 @@ void Send_medicine_car_task()
 								Flag.Stop_Flag = 1;//置标志位
 								Flag.Start_Line_Flag = 0;
 								Flag.Stop_Count = 0;
-								LED_G_On();
+								LED_R_On();
 								Flag.Step_Count++;
 							}
 						}break;
@@ -1128,7 +1129,7 @@ void Send_medicine_car_task()
 								Flag.Stop_Flag = 1;//置标志位
 								Flag.Start_Line_Flag = 0;
 								Flag.Stop_Count = 0;
-								Car_Go(240);//直走250
+								Car_Go(250);//直走250
 							}
 							if(Encoder.Distance[2]>=230.f)
 							{
@@ -1142,7 +1143,7 @@ void Send_medicine_car_task()
 							{
 								Flag.CrossRoad_Flag = 0;
 								Car_Go(1);//到点停止
-								LED_G_On();
+								LED_R_On();
 							}
 						}break;
 					}
@@ -1171,7 +1172,7 @@ void Send_medicine_car_task()
 							Flag.Stop_Flag = 1;//置标志位
 							Flag.Start_Line_Flag = 0;
 							Flag.Stop_Count = 0;
-							LED_G_On();
+							LED_R_On();
 							Flag.Step_Count++;
 						}
 					}break;
@@ -1260,7 +1261,7 @@ void Send_medicine_car_task()
 							Flag.Stop_Flag = 1;//置标志位
 							Flag.Start_Line_Flag = 0;
 							Flag.Stop_Count = 0;
-							Car_Go(240);//直走250
+							Car_Go(250);//直走250
 						}
 						if(Encoder.Distance[2]>=230.f)
 						{
@@ -1274,7 +1275,7 @@ void Send_medicine_car_task()
 						{
 							Flag.CrossRoad_Flag = 0;
 							Car_Go(1);//到点停止
-							LED_G_On();
+							LED_R_On();
 						}
 					}break;
 					}
@@ -1301,7 +1302,7 @@ void Send_medicine_car_task()
 								Flag.Stop_Flag = 1;//置标志位
 								Flag.Start_Line_Flag = 0;
 								Flag.Stop_Count = 0;
-								LED_G_On();
+								LED_R_On();
 								Flag.Step_Count++;
 							}
 						}break;
@@ -1381,7 +1382,7 @@ void Send_medicine_car_task()
 								Flag.Stop_Flag = 1;//置标志位
 								Flag.Start_Line_Flag = 0;
 								Flag.Stop_Count = 0;
-								Car_Go(240);//直走250
+								Car_Go(250);//直走250
 							}
 							if(Encoder.Distance[2]>=230.f)
 							{
@@ -1395,7 +1396,7 @@ void Send_medicine_car_task()
 							{
 								Flag.CrossRoad_Flag = 0;
 								Car_Go(1);//到点停止
-								LED_G_On();
+								LED_R_On();
 							}
 						}break;
 					}
@@ -1513,7 +1514,7 @@ void Menudisplay(void)
 					Flag.Load_drug = 1;
 //					Flag.Target_Num = 1;
 //					Flag.Step_Count=0;
-					LED_G_On();
+					LED_R_On();
 				}
 //				else if(Keys[0].Double_Flag == 1)
 //				{

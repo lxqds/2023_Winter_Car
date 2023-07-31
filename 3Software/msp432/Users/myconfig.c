@@ -235,9 +235,7 @@ void TA0_0_IRQHandler(void)
 									Temp_Num !=Flag.Num_Recognize2[4]&&
 										Temp_Num !=Flag.Num_Recognize2[5]&&
 											Temp_Num !=Flag.Num_Recognize2[6]&&
-												Temp_Num !=Flag.Num_Recognize2[7]&&
-													Temp_Num !=Flag.Num_Recognize[0]&&
-														Temp_Num !=Flag.Num_Recognize[1])
+												Temp_Num !=Flag.Num_Recognize2[7])
 				{//如果识别到的数字和上一次不相等
 					Flag.Num_Angle2[Num_Count2] = Temp_Angle;
 					Flag.Num_Recognize2[Num_Count2] = Temp_Num;
@@ -260,7 +258,7 @@ void TA0_0_IRQHandler(void)
 		{//50ms进一次
 			Temp_Num = 0;//初始化
 			Delay10msCnt=0;
-			Temp_Angle = Servo_Scan2(2,45,70);
+			Temp_Angle = Servo_Scan2(2,45,90);
 			Sensor_Num_Temp = SensorData1.D.Float_Data;//先赋值，再判断
 			if(Sensor_Num_Temp&&Temp_Angle>47)
 			{//识别数字
@@ -282,16 +280,14 @@ void TA0_0_IRQHandler(void)
 			}
 			if(Temp_Num)
 			{//识别到有数字后存储到数组中
-//				if(Temp_Num !=Flag.Num_Recognize3[0]&&
-//						Temp_Num !=Flag.Num_Recognize3[1]&&
-//							Temp_Num !=Flag.Num_Recognize3[2]&&
-//								Temp_Num !=Flag.Num_Recognize3[3]&&
-//									Temp_Num !=Flag.Num_Recognize3[4]&&
-//										Temp_Num !=Flag.Num_Recognize3[5]&&
-//											Temp_Num !=Flag.Num_Recognize3[6]&&
-//												Temp_Num !=Flag.Num_Recognize3[7]&&
-//													Temp_Num !=Flag.Num_Recognize[0]&&
-//														Temp_Num !=Flag.Num_Recognize[1])
+				if(Temp_Num !=Flag.Num_Recognize3[0]&&
+						Temp_Num !=Flag.Num_Recognize3[1]&&
+							Temp_Num !=Flag.Num_Recognize3[2]&&
+								Temp_Num !=Flag.Num_Recognize3[3]&&
+									Temp_Num !=Flag.Num_Recognize3[4]&&
+										Temp_Num !=Flag.Num_Recognize3[5]&&
+											Temp_Num !=Flag.Num_Recognize3[6]&&
+												Temp_Num !=Flag.Num_Recognize3[7])
 				{//如果识别到的数字和上一次不相等
 					Flag.Num_Angle3[Num_Count] = Temp_Angle;
 					Flag.Num_Recognize3[Num_Count] = Temp_Num;

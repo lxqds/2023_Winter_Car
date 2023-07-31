@@ -717,7 +717,7 @@ void Send_medicine_car_task()
 								Flag.CrossRoad_Flag = 0;
 							}
 							Flag.Step_Count++;//进入下一个状态
-							Car_Go(35);
+							Car_Go(30);
 						}
 					}break;
 					case 33:{
@@ -725,7 +725,7 @@ void Send_medicine_car_task()
 						{
 							Flag.Step_Count++;//进入下一个状态
 							Flag.CrossRoad_Flag = 0;
-							Car_Go(10);
+							Car_Go(8);
 							Servo_Control2(2,70);
 						}
 					}break;
